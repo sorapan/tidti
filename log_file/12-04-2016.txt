@@ -13,4 +13,4 @@
 12-04-2016 13:05 -- 155404130050 is logging in 
 12-04-2016 13:06 -- 155404130050 is deleting his/her registered mac address 
 12-04-2016 17:43 -- 155404130050 is logging in 
-12-04-2016 17:43 -- 155404130050 was logging out 
+
