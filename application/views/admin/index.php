@@ -15,15 +15,22 @@
 $files = scandir('log_file/');
 foreach($files as $file) {
     if($file == '.' || $file == '..') continue;
-    echo $file . '<br>';
+    echo '<a href="?log='.$file.'">'. $file . '</a><br>';
 }
 
 ?>
 
-<br><br>
+<br>
 
 <?php
-echo nl2br(file_get_contents('log_file/'. end($files) ));
+if(!empty($_GET['log'])){
+?>
+
+<h2>ช้อมูลการใช้งาน <?=$_GET['log']?></h2><br>
+
+<?php
+echo nl2br(file_get_contents('log_file/'. $_GET['log'] ));
+}
 ?>
 
 </body>
