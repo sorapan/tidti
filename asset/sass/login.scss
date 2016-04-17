@@ -1,0 +1,275 @@
+.thaisans{
+    font-family: 'Thaisans';
+    font-weight: normal;
+}
+.opensans{
+    font-family: 'Opensans';
+    font-weight: normal;
+}
+.bold{
+    font-weight: bold;
+}
+.login {
+        margin-top: 0;
+        padding: 5vh;
+        height: 100%;
+        position: absolute!important;
+        background-color: #D8E6E7;
+
+    ._1,._2{
+        padding: 15px 0;
+    }
+    > ._1{
+        height: 20vh;
+        background-color: #ff5f2e;
+    }
+    >._2{
+        height: 80vh;
+
+        background-color: #fff;
+    }
+
+    .form{
+            // padding: 0 60px 15px 60px;
+        > div {
+            float: left;
+        }
+
+        .head{
+            width: 100%;
+            box-shadow: 0 2px 0 0 #D1D3D4;
+            h2{
+                font-size: 3em;
+            }
+        }
+        .sub-head{
+            width: 100%;
+            margin: none;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            h2{
+                font-size: 1.9em;
+                margin-top: 10px;
+                color: #a3a1a1;
+
+            }
+
+        }
+        >.input{
+            margin-top: 20px;
+            margin-bottom: 30px;
+            >div{
+                float: left;
+            }
+
+        }
+        .inputbox{
+            position: relative;
+            height: 50px;
+            width: 100%;
+            margin: 10px 0;
+
+
+            >div{
+                box-shadow: 0 2px 0 0 #D1D3D4;
+            }
+            label{
+                width: 50px;
+                text-align: center;
+                line-height: 60px;
+                font-size: 2em;
+                color: #D1D3D4;
+                position: absolute;
+            }
+        }
+        .id,.pass{
+            height: 50px;
+            padding: 5px 10px;
+            margin-left: 50px;
+            margin-bottom: 5px;
+            border: none;
+            // box-shadow: 0 1px 0 0 #8b8687;
+        }
+        .submit{
+            width: 100%;
+            float: left;
+            margin: 15px 0;
+            box-shadow: 0 -2px 0 0 #D1D3D4;
+            padding-top: 20px;
+
+            input[type="submit"]{
+                width: 200px;
+                height: 40px;
+                border: none;
+                color: #fff;
+                background-color: #004e66;
+                float: right;
+            }
+        }
+
+
+
+    }
+
+    .box{
+
+        // text-align: center;
+        // padding: 15px 20px;
+        margin-top: 20px;
+        > div{
+            margin: 0 5px;
+            float: left;
+        }
+        .status{
+            width: 100%;
+            h2{
+                font-size: 2em;
+                color: #C2C2C2;
+                margin-top: 0;
+            }
+        }
+        label {
+          width: 200px;
+          // border-radius: 3px;
+          color: #777;
+          border: 1px solid #D1D3D4;
+          >span{
+            font-size: 1.6em;
+          }
+        }
+
+        /* hide input */
+        input.radio:empty {
+            position: absolute;
+            margin-left: -999px;
+        }
+
+        /* style label */
+        input.radio:empty ~ label {
+            position: relative;
+            float: left;
+            line-height: 2.5em;
+            text-indent: 3.25em;
+            // margin-top: 2em;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        input.radio:empty ~ label:before {
+            position: absolute;
+            display: block;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            content: '';
+            width: 2.5em;
+            content:'\2714';
+            text-indent: .9em;
+            color: #D1D3D4;
+            background: #D1D3D4;
+            // border-radius: 3px 0 0 3px;
+        }
+
+        /* toggle hover */
+        input.radio:hover:not(:checked) ~ label:before {
+            // content:'\2714';
+            // text-indent: .9em;
+            color: #C2C2C2;
+        }
+
+        input.radio:hover:not(:checked) ~ label {
+            color: #888;
+        }
+
+        /* toggle on */
+        input.radio:checked ~ label:before {
+            content:'\2714';
+            text-indent: .9em;
+            line-height: 2.8em;
+            color: #eee;
+            background-color: #004e66;
+        }
+
+        input.radio:checked ~ label {
+            color: #777;
+        }
+
+        /* radio focus */
+        input.radio:focus ~ label:before {
+            box-shadow: 0 0 0 2px #999;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+@media all and (min-width: 768px) {
+
+     .nopad{
+        padding: 0;
+     }
+
+    .contain{
+        height: 100vh;
+        background-color: #004e66;
+    }
+
+    .login{
+        height: 75vh;
+        // width: 100vw;
+        margin-top: 10vh;
+        position: absolute;
+
+            .form{
+                padding: 0;
+            }
+
+            ._1{
+                height: 75vh;
+            }
+            ._2{
+                height: 75vh;
+            }
+
+
+
+    }
+
+
+
+
+
+
+}
+
+@media all and (min-width: 992px){
+    .admin > .sidebar{
+        visibility: visible;
+    }
+    .burger{
+        visibility: hidden;
+    }
+
+    .admin{
+        > .content{
+
+
+            >.mac_list{
+                left: 347px;
+                right: 0;
+                top: 45px;
+                bottom: 0;
+                background-color: #EFFFE9;
+                position: absolute;
+            }
+        }
+    }
+}

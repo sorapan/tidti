@@ -33,9 +33,8 @@ if(!empty($mac_data)){
 ?>
 
 <h1>Mac address ที่ลงทะเบียนแล้ว</h1>
-
 <table>
-
+  
 <thead>
 <tr>
 <th>mac address</th>

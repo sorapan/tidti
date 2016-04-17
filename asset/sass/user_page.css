@@ -1,0 +1,53 @@
+.nopad {
+  padding: 0 !important; }
+
+.user-page > ._1 > .head {
+  width: 100%;
+  text-align: center; }
+  .user-page > ._1 > .head h2 {
+    text-align: center;
+    font-size: 4em; }
+.user-page .add-device > h2.thaisans {
+  margin: none; }
+.user-page .ch-device {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  margin: 20px 0;
+  /* hide input */ }
+  .user-page .ch-device > label {
+    height: 70px;
+    width: 70px;
+    background-color: transparent;
+    font-size: 5em;
+    line-height: 70px;
+    text-align: center;
+    left: 0;
+    color: #D1D3D4;
+    position: absolute; }
+    .user-page .ch-device > label.tablet {
+      font-size: 4em;
+      line-height: 75px; }
+    .user-page .ch-device > label.laptop {
+      font-size: 3.5em; }
+  .user-page .ch-device > input.text {
+    width: 100%;
+    height: 70px;
+    padding-left: 75px;
+    font-size: 2em;
+    border-radius: 0.5em 0 0 0.5em;
+    border: 2px solid #D1D3D4;
+    border-right: none;
+    float: left; }
+  .user-page .ch-device > button.button {
+    height: 70px;
+    line-height: 75px;
+    font-size: 5em;
+    border: none;
+    background-color: #a3a1a1;
+    color: #ddd;
+    position: absolute; }
+    .user-page .ch-device > button.button:hover {
+      background-color: #fcbe32; }
+  .user-page .ch-device > input.text:focus ~ label {
+    color: #004e66; }

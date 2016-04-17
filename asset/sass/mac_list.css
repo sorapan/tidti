@@ -1,0 +1,24 @@
+.nopad {
+  padding: 0 !important; }
+
+.user .header {
+  height: 40px;
+  background-color: #333030;
+  color: #fff;
+  text-align: center; }
+.user .middle {
+  height: auto; }
+  .user .middle .content {
+    background-color: #fff; }
+  .user .middle .table {
+    margin: 15px 0;
+    text-align: center; }
+    .user .middle .table td {
+      border: none;
+      margin-left: 5px;
+      background-color: #ddd; }
+    .user .middle .table .index, .user .middle .table .mac, .user .middle .table .tool {
+      background-color: #8b8687;
+      color: #fff; }
+    .user .middle .table .index {
+      width: 40px; }

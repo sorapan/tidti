@@ -1,0 +1,43 @@
+.nopad{
+    padding:0 !important;
+}
+.user{
+    // background-color: #a3a1a1;
+
+    .header{
+        height: 40px;
+        background-color: #333030;
+        color: #fff;
+        text-align: center;
+    }
+    .middle{
+
+        height: auto;
+        // background-color: #e3dede;
+        .content{
+            background-color: #fff;
+        }
+        .table{
+            margin: 15px 0;
+            text-align: center;
+            td{
+                border: none;
+                margin-left: 5px;
+                background-color: #ddd;
+            }
+            .index,.mac,.tool{
+                background-color: #8b8687;
+                color: #fff;
+            }
+            .index{
+                width: 40px;
+            }
+            .mac{
+            }
+            .tool{
+
+            }
+        }
+    }
+
+}

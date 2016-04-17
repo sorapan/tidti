@@ -1,6 +1,6 @@
 <?php
 
-class Student_login extends CI_Controller {
+class Login extends CI_Controller {
 
 	 public function __construct()
 	 {
@@ -14,7 +14,7 @@ class Student_login extends CI_Controller {
 		public function index()
 		{
 
-			$this->load->view('student_login');
+			$this->load->view('login');
 
 		}
 
