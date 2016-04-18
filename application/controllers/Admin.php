@@ -19,10 +19,19 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/index');
 	}
 
-	public function Macaddress()
+	public function mac()
 	{
-		$this->load->view('admin/Macaddress');
+		if(!empty($_GET['qry']))
+		{
+			
+			$this->load->view('admin/Macaddress',array(
+				'qry' => $_GET['qry']
+			));
+			
+		}
+		else $this->load->view('admin/Macaddress');
 	}
+	
 
 	public function login()
 	{
