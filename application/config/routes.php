@@ -64,5 +64,6 @@ $route['student/signout'] = 'student_page/signout';
 
 //////////ADMIN PAGE
 $route['admin'] = 'admin';
-$route['admin/log'] = 'admin';
+// $route['admin/log'] = 'admin';
 $route['admin/login'] = 'admin/login';
+$route['admin/mac'] = 'admin/macaddress';

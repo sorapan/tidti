@@ -21,13 +21,13 @@ class Admin extends CI_Controller {
 
 	public function Macaddress()
 	{
-		
+		$this->load->view('admin/Macaddress');
 	}
 
-  public function login()
-  {
-  	$this->load->view('admin/login');
-  }
+	public function login()
+	{
+		$this->load->view('admin/login');
+	}
 
 	function signin($user,$pass){
 
