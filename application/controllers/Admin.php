@@ -24,6 +24,8 @@ class Admin extends CI_Controller {
 		if(!empty($_GET['qry']))
 		{
 			
+			
+			
 			$this->load->view('admin/Macaddress',array(
 				'qry' => $_GET['qry']
 			));
