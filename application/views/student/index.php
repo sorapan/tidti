@@ -11,8 +11,10 @@
             </div>
             <div class="content">
                 <a href="student/signout">ออกจากระบบ</a>
-                <div class="name"><?= $this->session->userdata('firstname')?> <?= $this->session->userdata('lastname')?></div>
-                <div class="major"><?= $this->session->userdata('id')?></div>
+                <div class="name"><?=prefix_name_id($this->session->userdata('prefix_name_id'))?> <?= $this->session->userdata('firstname')?> <?= $this->session->userdata('lastname')?></div>
+                <div class="major">รหัส <?= $this->session->userdata('id')?></div>
+                <div class="major">คณะ <?=fac_id($this->session->userdata('fac_id'))?></div>
+                <div class="major">สาขา <?=program_id($this->session->userdata('program_id'))?></div>
             </div>
         </div>
         <div class="_2 col-xs-12 col-sm-8">

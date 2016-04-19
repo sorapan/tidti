@@ -17,13 +17,95 @@ function AddLog($mes)
 
 }
 
+//////////////ID DECODE
+
+function prefix_name_id($id)
+{
+    
+    switch ($id) 
+    {
+        case '003':
+            return 'นาย';
+            break;
+        
+        case '004':
+            return 'นางสาว';
+            break;
+    }
+    
+}
+
+function fac_id($id)
+{
+    switch ($id) 
+    {
+        case '00004':
+            return 'วิศวกรรมศาสตร์';
+            break;
+        case '00014':
+            return 'ครุศาสตร์';
+            break;
+        case '00001':
+            return 'ศิลปศาสตร์';
+            break;
+        case '00010':
+            return 'สถาปัตย์';
+            break;
+        case '00005':
+            return 'บริหารธุรกิจ';
+            break;
+    }
+}
+
+function program_id($id)
+{
+    switch ($id) 
+    {
+        case '000014':
+            return 'วิศวกรรมคอมพิวเตอร์';
+            break;
+        case '000013':
+            return 'วิศวกรรมไฟฟ้า';
+            break;
+        case '000071':
+            return 'วิศวกรรมโทรคมนาคม';
+            break;
+        case '000017':
+            return 'วิศวกรรมเครื่องกล';
+            break;
+        case '000019':
+            return 'วิศวกรรมเครื่องนุ่งห่ม';
+            break;
+        case '000023':
+            return 'เทคโนโลยีอุตสาหกรรม';
+            break;
+        case '000022':
+            return 'เทคโนโลยีเครื่องกล';
+            break;
+        case '000016':
+            return 'วิศวกรรมสำรวจ';
+            break;
+        case '000018':
+            return 'วิศวกรรมอุตสาหการ';
+            break;
+        case '000081':
+            return 'วิศวกรรมการผลิต';
+            break;
+        case '000015':
+            return 'วิศวกรรมอิเล็กทรอนิกส์';
+            break;
+    }
+}
+
 //////////////FRONT END
 
-function asset_url(){
+function asset_url()
+{
    return base_url().'asset/';
 }
 
-function header_url(){
+function header_url()
+{
     return '<head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -41,3 +123,4 @@ function header_url(){
         <script type="text/javascript" src="'.asset_url().'bootstrap/js/bootstrap.js"></script>
     </head>';
 }
+

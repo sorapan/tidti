@@ -14,7 +14,6 @@
             <div class="form  col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
                 <div class="head">
                     <h2 class="thaisans bold">เข้าสู่ระบบ</h2>
-                    <h3> s155404130050</h3>
                 </div>
                 
                 
@@ -24,7 +23,7 @@
                         <div class="inputbox">
                             <div class="col-xs-offset-1 col-xs-10 col-sm-10 col-md-offset-1 col-md-10 nopad">
                                 <label><i class="glyphicon glyphicon-user"></i></label>
-                                <input type="text" class="id opensans" name="e_pass" id="" placeholder="e-passport">
+                                <input type="text" class="id opensans" name="e_pass" id="" placeholder="e-passport" value="s155404130050">
                             </div>
                         </div>
                         <div class="inputbox">
