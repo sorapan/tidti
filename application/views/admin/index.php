@@ -6,8 +6,8 @@
 
 <h2>menu</h2>
 <ul>
-    <li>users log</li>
-    <li>mac address</li>
+    <li><a href="">users log</a></li>
+    <li><a href="">mac address</a></li>
 </ul>
 
 <?php
