@@ -18,46 +18,51 @@ class Student_page extends CI_Controller {
    public function index()
    {
 
-		 $mac_registered_num = $this->MacModel->CountDataOnStdId($this->session->userdata('id'));
-     $macdata = $this->MacModel->FetchDataWithSTDID($this->session->userdata('id'));
-     $this->load->view('student/index',array(
-       'mac_data' => $macdata,
-			 'mac_num' => $mac_registered_num
-     ));
+		$mac_registered_num = $this->MacModel->CountDataOnStdId($this->session->userdata('id'));
+     	$macdata = $this->MacModel->FetchDataWithSTDID($this->session->userdata('id'));
+     	$this->load->view('student/index',array(
+			'mac_data' => $macdata,
+			'mac_num' => $mac_registered_num
+		));
 
    }
 
    public function add_mac()
    {
-		 $mac_registered_num = $this->MacModel->CountDataOnStdId($this->session->userdata('id'));
-		 if($mac_registered_num < 3)
-		 {
-			 if(empty($this->MacModel->CheckMac($_POST['mac'])))
-			 {
-				 if(empty($this->MacModel->CheckDevice($_POST['device'])))
-				 {
-					 $this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
-					 AddLog(	$this->session->userdata('id')." is adding mac address" );
-					 @header('Location: ' . $_SERVER['HTTP_REFERER']);
-				 }
-				 else
-				 {
-					 echo "คุณลงทะเบียนอุปกรณ์ซ้ำไม่ได้ ";
-					 @header( "Refresh:3; ". $_SERVER['HTTP_REFERER']);
-				 }
-			 }
-			 else
-			 {
-				 echo "คุณลงทะเบียน Mac Address ซ้ำไม่ได้ ";
-				 @header( "Refresh:3; ". $_SERVER['HTTP_REFERER']);
-			 }
-		 }
-		 else
-		 {
-			 echo "คุณลงทะเบียนครบแล้ว<br>";
-			 echo "กรุณารอสักครู่...";
-			 @header( "Refresh:3; ". $_SERVER['HTTP_REFERER']);
-		 }
+		//  $mac_registered_num = $this->MacModel->CountDataOnStdId($this->session->userdata('id'));
+		//  if($mac_registered_num < 3)
+		//  {
+		// 	 if(empty($this->MacModel->CheckMac($_POST['mac'])))
+		// 	 {
+		// 		 if(empty($this->MacModel->CheckDevice($_POST['device'])))
+		// 		 {
+		// 			 $this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
+		// 			 AddLog(	$this->session->userdata('id')." is adding mac address" );
+		// 			 @header('Location: ' . $_SERVER['HTTP_REFERER']);
+		// 		 }
+		// 		 else
+		// 		 {
+		// 			 echo "คุณลงทะเบียนอุปกรณ์ซ้ำไม่ได้ ";
+		// 			 @header( "Refresh:3; ". $_SERVER['HTTP_REFERER']);
+		// 		 }
+		// 	 }
+		// 	 else
+		// 	 {
+		// 		 echo "คุณลงทะเบียน Mac Address ซ้ำไม่ได้ ";
+		// 		 @header( "Refresh:3; ". $_SERVER['HTTP_REFERER']);
+		// 	 }
+		//  }
+		//  else
+		//  {
+		// 	 echo "คุณลงทะเบียนครบแล้ว<br>";
+		// 	 echo "กรุณารอสักครู่...";
+		// 	 @header( "Refresh:3; ". $_SERVER['HTTP_REFERER']);
+		//  }
+		
+			$this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
+			AddLog(	$this->session->userdata('id')." is adding mac address" );
+			@header('Location: ' . $_SERVER['HTTP_REFERER']);
+		
    }
 
 	 public function delete_mac()
