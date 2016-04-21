@@ -6,7 +6,6 @@ class MacModel extends CI_Model {
     {
         // Call the Model constructor
         parent::__construct();
-
     }
 
     function AddData($id,$device,$mac)
@@ -21,11 +20,9 @@ class MacModel extends CI_Model {
 
     function FetchDataWithSTDID($std_id)
     {
-
       $this->db->select('*');
       $this->db->where('std_id',$std_id);
       return $this->db->get('mac')->result();
-
     }
 
     function CountDataOnStdId($std_id)

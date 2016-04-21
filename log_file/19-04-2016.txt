@@ -16,3 +16,21 @@
 19-04-2016 12:32 -- 155404130050 was logging out 
 19-04-2016 12:32 -- 155404130050 is logging in 
 19-04-2016 12:33 -- 155404130050 was logging out 
+19-04-2016 12:50 -- 155404130050 is logging in 
+19-04-2016 12:50 -- 155404130050 was deleting his/her registered mac address 
+19-04-2016 12:50 -- 155404130050 is adding mac address 
+19-04-2016 12:50 -- 155404130050 was deleting his/her registered mac address 
+19-04-2016 12:50 -- 155404130050 is adding mac address 
+19-04-2016 12:50 -- 155404130050 was deleting his/her registered mac address 
+19-04-2016 12:50 -- 155404130050 is adding mac address 
+19-04-2016 12:50 -- 155404130050 was logging out 
+19-04-2016 12:50 -- 155404130050 is logging in 
+19-04-2016 12:51 -- 155404130050 was logging out 
+19-04-2016 12:53 -- 155404130050 is logging in 
+19-04-2016 12:53 -- 155404130050 was deleting his/her registered mac address 
+19-04-2016 12:53 -- 155404130050 is adding mac address 
+19-04-2016 12:53 -- 155404130050 was deleting his/her registered mac address 
+19-04-2016 12:53 -- 155404130050 is adding mac address 
+19-04-2016 12:54 -- 155404130050 was deleting his/her registered mac address 
+19-04-2016 12:54 -- 155404130050 is adding mac address 
+19-04-2016 13:01 -- 155404130050 was logging out 

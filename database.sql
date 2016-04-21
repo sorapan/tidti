@@ -11,13 +11,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for imfdb1
-DROP DATABASE IF EXISTS `imfdb1`;
 CREATE DATABASE IF NOT EXISTS `imfdb1` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `imfdb1`;
 
 
 -- Dumping structure for table imfdb1.admin_data
-DROP TABLE IF EXISTS `admin_data`;
 CREATE TABLE IF NOT EXISTS `admin_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` tinytext NOT NULL,
@@ -34,7 +32,6 @@ INSERT INTO `admin_data` (`id`, `username`, `password`) VALUES
 
 
 -- Dumping structure for table imfdb1.e_pass
-DROP TABLE IF EXISTS `e_pass`;
 CREATE TABLE IF NOT EXISTS `e_pass` (
   `usre` varchar(13) COLLATE utf8_unicode_ci NOT NULL,
   `pass` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -58,28 +55,34 @@ INSERT INTO `e_pass` (`usre`, `pass`, `name`) VALUES
 
 
 -- Dumping structure for table imfdb1.mac
-DROP TABLE IF EXISTS `mac`;
 CREATE TABLE IF NOT EXISTS `mac` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
+  `num` int(15) NOT NULL AUTO_INCREMENT,
   `std_id` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `mac` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `device` tinytext COLLATE utf8_unicode_ci,
   `date` tinytext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ID` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
+  `PREFIX_NAME_ID` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
+  `STD_FNAME` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `STD_LNAME` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `FAC_ID` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `PROGRAM_ID` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
+  `EMAIL` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `TELEPHONE` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`num`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table imfdb1.mac: ~0 rows (approximately)
+-- Dumping data for table imfdb1.mac: ~3 rows (approximately)
 DELETE FROM `mac`;
 /*!40000 ALTER TABLE `mac` DISABLE KEYS */;
-INSERT INTO `mac` (`id`, `std_id`, `mac`, `device`, `date`) VALUES
-	(20, '155404130050', 'sdssdfww', 'phone', '1461057252'),
-	(21, '155404130050', 'dsf', 'comp', '1461057257'),
-	(22, '155404130050', 'dfqwqq', 'tablet', '1461057262');
+INSERT INTO `mac` (`num`, `std_id`, `mac`, `device`, `date`, `ID`, `PREFIX_NAME_ID`, `STD_FNAME`, `STD_LNAME`, `FAC_ID`, `PROGRAM_ID`, `EMAIL`, `TELEPHONE`) VALUES
+	(26, '155404130050', 'yhy8uuu', 'comp', '1461063206', '', '', '', '', '', '', '', ''),
+	(27, '155404130050', 'hhhhhhhhhhhhh', 'tablet', '1461063212', '', '', '', '', '', '', '', ''),
+	(28, '155404130050', 'fffffffffffffffffffffffffffffffffff', 'phone', '1461063245', '', '', '', '', '', '', '', '');
 /*!40000 ALTER TABLE `mac` ENABLE KEYS */;
 
 
 -- Dumping structure for table imfdb1.uoc_std
-DROP TABLE IF EXISTS `uoc_std`;
 CREATE TABLE IF NOT EXISTS `uoc_std` (
   `ID` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
   `PREFIX_NAME_ID` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
