@@ -34,7 +34,7 @@
                         <div class="inputbox">
                             <div class="col-xs-offset-1 col-xs-10 col-sm-10 col-md-offset-1 col-md-10 nopad">
                                 <label><i class="glyphicon glyphicon-user"></i></label>
-                                <input type="text" class="id opensans" name="e_pass" id="" placeholder="e-passport" value="">
+                                <input type="text" class="id opensans" name="e_pass" id="" placeholder="e-passport" value="s155404130050">
                             </div>
                         </div>
                         <div class="inputbox">
