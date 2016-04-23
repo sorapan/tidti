@@ -7,23 +7,34 @@
 <div class="contain col-xs-12 nopad">
     <div class="login  col-md-offset-2 col-xs-12 col-sm-12 col-md-8 nopad">
         <div class="_1 col-xs-12 col-sm-4">
+                <h2 class="opensans bold">SrivijayaWifi <i class="fa fa-wifi wifi" aria-hidden="true"></i></h2>
 
+                <h3 class="opensans bold">e-passport</h3>
+                <p class=" thaisans">ลงทะเบียนอุปกรณ์เพื่อเข้าใช้งานอินเตอร์เน็ต</p>
+                <div class="footer">
+                    <h2 class="thaisans">ติดต่อ</h2>
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> : 074-317100 ต่อ 1911 - 1912</p>
+                    <p><i class="fa fa-envelope-o" aria-hidden="true"></i> : noc@rmutsv.ac.th</p>
+                </div>
         </div>
         <div class="_2 col-xs-12 col-sm-8">
 
-            <div class="form  col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+            <!-- <div class="form  col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
                 <div class="head">
                     <h2 class="thaisans bold">เข้าสู่ระบบ</h2>
                 </div>
-                
-                
-                <form method="post" action="std_logincheck">
-                    
+ -->
+
+                <form method="post" class="form  col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" action="std_logincheck">
+                <!-- <div class="form  col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10"> -->
+                    <div class="head">
+                        <h2 class="thaisans bold">เข้าสู่ระบบ</h2>
+                    </div>
                     <div class="input">
                         <div class="inputbox">
                             <div class="col-xs-offset-1 col-xs-10 col-sm-10 col-md-offset-1 col-md-10 nopad">
                                 <label><i class="glyphicon glyphicon-user"></i></label>
-                                <input type="text" class="id opensans" name="e_pass" id="" placeholder="e-passport" value="s155404130050">
+                                <input type="text" class="id opensans" name="e_pass" id="" placeholder="e-passport" value="">
                             </div>
                         </div>
                         <div class="inputbox">
@@ -50,9 +61,13 @@
                         <div class="submit">
                             <input type="submit" class="" value="เข้าสู่ระบบ">
                         </div>
-                    </div>
-                    
+
+                    <!-- </div> -->
+
                 </form>
+
+
+
 
         </div>
 

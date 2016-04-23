@@ -9,28 +9,84 @@
 .bold{
     font-weight: bold;
 }
+.contain{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+}
 .login {
         margin-top: 0;
         padding: 5vh;
-        height: 100%;
+        // height: 100%;
         position: absolute!important;
-        background-color: #D8E6E7;
+        background-color: transparent;
 
     ._1,._2{
         padding: 15px 0;
     }
     > ._1{
-        height: 20vh;
-        background-color: #ff5f2e;
+        // height: 20vh;
+        // min-height: 200px;
+        margin-top: 0;
+        // background-color: #ff5f2e;
+        background: url('../pic/blue.jpg') center;
+        // background-color: rgba(0, 78, 102,0.7);
+        background-size: cover;
+        color: #EFFFE9;
+
+        > h2 , h3{
+            text-align: center;
+            color: #fcbe32;
+
+        }
+        > h2{
+            font-size: 3em;
+            > .wifi{
+                color:#EFFFE9;
+            }
+        }
+
+        > h3{
+            margin-top: -10px;
+            padding-bottom: 15px;
+            box-shadow: 0 2px 0 0 #fcbe32;
+        }
+        > p{
+            font-size: 1.8em;
+            text-align: center;
+            padding: 15px 30px;
+        }
+        >.footer{
+            float: left;
+            padding: 0 20px;
+            bottom: 0;
+            text-align: center;
+            width: 100%;
+            > h2{
+                display: inline-block;
+                font-size: 1.8em;
+            }
+            > p{
+                display: inline-block;
+                padding: 0 15px;
+                font-size: 1em;
+                >i {
+                    font-size: 1.2em;
+                }
+            }
+        }
+
     }
     >._2{
-        height: 80vh;
-
+        // height: 80vh;
         background-color: #fff;
+        // height: 700px;
     }
 
     .form{
-            // padding: 0 60px 15px 60px;
+            // position: absolute;
+            padding-bottom: 25px;
         > div {
             float: left;
         }
@@ -58,34 +114,38 @@
         >.input{
             margin-top: 20px;
             margin-bottom: 30px;
+            float: left;
             >div{
                 float: left;
             }
 
-        }
-        .inputbox{
-            position: relative;
-            height: 50px;
-            width: 100%;
-            margin: 10px 0;
+            .inputbox{
+                position: relative;
+                height: 50px;
+                width: 100%;
+                margin: 10px 0;
 
 
-            >div{
-                box-shadow: 0 2px 0 0 #D1D3D4;
+                >div{
+                    box-shadow: 0 2px 0 0 #D1D3D4;
+                }
+                label{
+                    width: 50px;
+                    text-align: center;
+                    line-height: 60px;
+                    font-size: 2em;
+                    color: #D1D3D4;
+                    position: absolute;
+                }
             }
-            label{
-                width: 50px;
-                text-align: center;
-                line-height: 60px;
-                font-size: 2em;
-                color: #D1D3D4;
-                position: absolute;
-            }
+
         }
+
         .id,.pass{
             height: 50px;
+            width: 100%;
             padding: 5px 10px;
-            margin-left: 50px;
+            padding-left: 50px;
             margin-bottom: 5px;
             border: none;
             // box-shadow: 0 1px 0 0 #8b8687;
@@ -93,7 +153,7 @@
         .submit{
             width: 100%;
             float: left;
-            margin: 15px 0;
+            margin-top: 30px;
             box-shadow: 0 -2px 0 0 #D1D3D4;
             padding-top: 20px;
 
@@ -141,6 +201,7 @@
         /* hide input */
         input.radio:empty {
             position: absolute;
+            visibility: hidden;
             margin-left: -999px;
         }
 
@@ -202,10 +263,22 @@
             box-shadow: 0 0 0 2px #999;
         }
     }
+
+
 }
 
-
-
+// .footer{
+//     // position: absolute;
+//     float: left;
+//     bottom: 0;
+//     padding: 0 20px;
+//     > p{
+//         font-size: 1em;
+//         >i {
+//             font-size: 1.2em;
+//         }
+//     }
+// }
 
 
 
@@ -218,30 +291,71 @@
      }
 
     .contain{
-        height: 100vh;
+
+        .contain{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
         background-color: #004e66;
+        background: url('../pic/blue.jpg') top center;
+        background-size: cover;
     }
 
     .login{
         height: 75vh;
         // width: 100vw;
-        margin-top: 10vh;
+        margin-top: 100px;
+        margin-bottom: 55px;
         position: absolute;
+        min-height: 700px;
 
             .form{
                 padding: 0;
+                padding-bottom: 15px;
             }
 
             ._1{
                 height: 75vh;
+                background: none;
+                background-color: rgba(0, 78, 102,0.7);
+                min-height: 700px;
+
+                > .footer{
+                    position: absolute;
+                    bottom: 0;
+                    text-align: center;
+                    width: 100%;
+                    > h2{
+                        display: inline-block;
+                        font-size: 1.8em;
+                    }
+                    > p{
+                        display: inline-block;
+                        padding: 0 15px;
+                        font-size: 1em;
+                        >i {
+                            font-size: 1.2em;
+                        }
+                    }
+                }
             }
             ._2{
                 height: 75vh;
+                min-height: 700px;
+                overflow-y: auto;
             }
 
 
 
     }
+
+    // .user-page{
+        >._1{
+
+        }
+
+    // }
 
 
 
@@ -251,25 +365,4 @@
 }
 
 @media all and (min-width: 992px){
-    .admin > .sidebar{
-        visibility: visible;
-    }
-    .burger{
-        visibility: hidden;
-    }
-
-    .admin{
-        > .content{
-
-
-            >.mac_list{
-                left: 347px;
-                right: 0;
-                top: 45px;
-                bottom: 0;
-                background-color: #EFFFE9;
-                position: absolute;
-            }
-        }
-    }
 }

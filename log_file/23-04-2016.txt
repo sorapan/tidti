@@ -1,0 +1,4 @@
+23-04-2016 09:53 -- 155404130050 is logging in 
+23-04-2016 09:53 -- 155404130050 is adding mac address 
+23-04-2016 09:53 -- 155404130050 was deleting his/her registered mac address 
+23-04-2016 09:53 -- 155404130050 was logging out 

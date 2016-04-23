@@ -9,74 +9,114 @@
 .bold {
   font-weight: bold; }
 
+.contain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow: auto; }
+
 .login {
   margin-top: 0;
   padding: 5vh;
-  height: 100%;
   position: absolute !important;
-  background-color: #D8E6E7; }
+  background-color: transparent; }
   .login ._1, .login ._2 {
     padding: 15px 0; }
   .login > ._1 {
-    height: 20vh;
-    background-color: #ff5f2e; }
-  .login > ._2 {
-    height: 80vh;
-    background-color: #fff; }
-  .login .form > div {
-    float: left; }
-  .login .form .head {
-    width: 100%;
-    box-shadow: 0 2px 0 0 #D1D3D4; }
-    .login .form .head h2 {
-      font-size: 3em; }
-  .login .form .sub-head {
-    width: 100%;
-    margin: none;
-    padding-bottom: 15px;
-    padding-left: 15px; }
-    .login .form .sub-head h2 {
-      font-size: 1.9em;
-      margin-top: 10px;
-      color: #a3a1a1; }
-  .login .form > .input {
-    margin-top: 20px;
-    margin-bottom: 30px; }
-    .login .form > .input > div {
-      float: left; }
-  .login .form .inputbox {
-    position: relative;
-    height: 50px;
-    width: 100%;
-    margin: 10px 0; }
-    .login .form .inputbox > div {
-      box-shadow: 0 2px 0 0 #D1D3D4; }
-    .login .form .inputbox label {
-      width: 50px;
+    margin-top: 0;
+    background: url("../pic/blue.jpg") center;
+    background-size: cover;
+    color: #EFFFE9; }
+    .login > ._1 > h2, .login > ._1 h3 {
       text-align: center;
-      line-height: 60px;
-      font-size: 2em;
-      color: #D1D3D4;
-      position: absolute; }
-  .login .form .id, .login .form .pass {
-    height: 50px;
-    padding: 5px 10px;
-    margin-left: 50px;
-    margin-bottom: 5px;
-    border: none; }
-  .login .form .submit {
-    width: 100%;
-    float: left;
-    margin: 15px 0;
-    box-shadow: 0 -2px 0 0 #D1D3D4;
-    padding-top: 20px; }
-    .login .form .submit input[type="submit"] {
-      width: 200px;
-      height: 40px;
-      border: none;
-      color: #fff;
-      background-color: #004e66;
-      float: right; }
+      color: #fcbe32; }
+    .login > ._1 > h2 {
+      font-size: 3em; }
+      .login > ._1 > h2 > .wifi {
+        color: #EFFFE9; }
+    .login > ._1 > h3 {
+      margin-top: -10px;
+      padding-bottom: 15px;
+      box-shadow: 0 2px 0 0 #fcbe32; }
+    .login > ._1 > p {
+      font-size: 1.8em;
+      text-align: center;
+      padding: 15px 30px; }
+    .login > ._1 > .footer {
+      float: left;
+      padding: 0 20px;
+      bottom: 0;
+      text-align: center;
+      width: 100%; }
+      .login > ._1 > .footer > h2 {
+        display: inline-block;
+        font-size: 1.8em; }
+      .login > ._1 > .footer > p {
+        display: inline-block;
+        padding: 0 15px;
+        font-size: 1em; }
+        .login > ._1 > .footer > p > i {
+          font-size: 1.2em; }
+  .login > ._2 {
+    background-color: #fff; }
+  .login .form {
+    padding-bottom: 25px; }
+    .login .form > div {
+      float: left; }
+    .login .form .head {
+      width: 100%;
+      box-shadow: 0 2px 0 0 #D1D3D4; }
+      .login .form .head h2 {
+        font-size: 3em; }
+    .login .form .sub-head {
+      width: 100%;
+      margin: none;
+      padding-bottom: 15px;
+      padding-left: 15px; }
+      .login .form .sub-head h2 {
+        font-size: 1.9em;
+        margin-top: 10px;
+        color: #a3a1a1; }
+    .login .form > .input {
+      margin-top: 20px;
+      margin-bottom: 30px;
+      float: left; }
+      .login .form > .input > div {
+        float: left; }
+      .login .form > .input .inputbox {
+        position: relative;
+        height: 50px;
+        width: 100%;
+        margin: 10px 0; }
+        .login .form > .input .inputbox > div {
+          box-shadow: 0 2px 0 0 #D1D3D4; }
+        .login .form > .input .inputbox label {
+          width: 50px;
+          text-align: center;
+          line-height: 60px;
+          font-size: 2em;
+          color: #D1D3D4;
+          position: absolute; }
+    .login .form .id, .login .form .pass {
+      height: 50px;
+      width: 100%;
+      padding: 5px 10px;
+      padding-left: 50px;
+      margin-bottom: 5px;
+      border: none; }
+    .login .form .submit {
+      width: 100%;
+      float: left;
+      margin-top: 30px;
+      box-shadow: 0 -2px 0 0 #D1D3D4;
+      padding-top: 20px; }
+      .login .form .submit input[type="submit"] {
+        width: 200px;
+        height: 40px;
+        border: none;
+        color: #fff;
+        background-color: #004e66;
+        float: right; }
   .login .box {
     margin-top: 20px;
     /* hide input */
@@ -101,6 +141,7 @@
         font-size: 1.6em; }
     .login .box input.radio:empty {
       position: absolute;
+      visibility: hidden;
       margin-left: -999px; }
     .login .box input.radio:empty ~ label {
       position: relative;
@@ -138,39 +179,49 @@
       color: #777; }
     .login .box input.radio:focus ~ label:before {
       box-shadow: 0 0 0 2px #999; }
-    .radio{
-      visibility: hidden;
-    }
 
 @media all and (min-width: 768px) {
   .nopad {
     padding: 0; }
 
   .contain {
-    height: 100vh;
-    background-color: #004e66; }
+    background-color: #004e66;
+    background: url("../pic/blue.jpg") top center;
+    background-size: cover; }
+    .contain .contain {
+      position: absolute;
+      top: 0;
+      bottom: 0; }
 
   .login {
     height: 75vh;
-    margin-top: 10vh;
-    position: absolute; }
+    margin-top: 100px;
+    margin-bottom: 55px;
+    position: absolute;
+    min-height: 700px; }
     .login .form {
-      padding: 0; }
+      padding: 0;
+      padding-bottom: 15px; }
     .login ._1 {
-      height: 75vh; }
+      height: 75vh;
+      background: none;
+      background-color: rgba(0, 78, 102, 0.7);
+      min-height: 700px; }
+      .login ._1 > .footer {
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        width: 100%; }
+        .login ._1 > .footer > h2 {
+          display: inline-block;
+          font-size: 1.8em; }
+        .login ._1 > .footer > p {
+          display: inline-block;
+          padding: 0 15px;
+          font-size: 1em; }
+          .login ._1 > .footer > p > i {
+            font-size: 1.2em; }
     .login ._2 {
-      height: 75vh; } }
-@media all and (min-width: 992px) {
-  .admin > .sidebar {
-    visibility: visible; }
-
-  .burger {
-    visibility: hidden; }
-
-  .admin > .content > .mac_list {
-    left: 347px;
-    right: 0;
-    top: 45px;
-    bottom: 0;
-    background-color: #EFFFE9;
-    position: absolute; } }
+      height: 75vh;
+      min-height: 700px;
+      overflow-y: auto; } }
