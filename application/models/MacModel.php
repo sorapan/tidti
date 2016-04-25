@@ -14,6 +14,15 @@ class MacModel extends CI_Model {
           'std_id' => $id,
           'device' => $device,
           'mac' => $mac,
+          'ID' => $this->session->userdata('id'),
+          'PREFIX_NAME_ID' => $this->session->userdata('prefix_name_id'),
+          'STD_FNAME' => $this->session->userdata('firstname'),
+          'STD_LNAME' => $this->session->userdata('lastname'),
+          'FAC_ID' => $this->session->userdata('fac_id'),
+          'PROGRAM_ID' => $this->session->userdata('program_id'),
+          'EMAIL' => $this->session->userdata('email'),
+          'TELEPHONE' => $this->session->userdata('tel'),
+          'CITIZEN_ID' => $this->session->userdata('citizen_id'),
           'date' => time()
         ));
     }

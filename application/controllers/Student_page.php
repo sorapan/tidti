@@ -58,10 +58,14 @@ class Student_page extends CI_Controller {
 		// 	 @header( "Refresh:3; ". $_SERVER['HTTP_REFERER']);
 		//  }
 			
-			
-		$this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
-		AddLog(	$this->session->userdata('id')." is adding mac address" );
-		@header('Location: ' . $_SERVER['HTTP_REFERER']);
+		if(!ctype_space($_POST['mac'])){
+			$this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
+			AddLog(	$this->session->userdata('id')." is adding mac address" );
+			@header('Location: ' . $_SERVER['HTTP_REFERER']);
+		}else{
+			echo 'กรุณากรอก Mac Address<br>';
+			echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+		}	
 		
    	}
 
