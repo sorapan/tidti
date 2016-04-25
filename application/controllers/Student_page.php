@@ -17,7 +17,6 @@ class Student_page extends CI_Controller {
 
 	public function index()
 	{
-
 		$mac_registered_num = $this->MacModel->CountDataOnStdId($this->session->userdata('id'));
 		$macdata = $this->MacModel->FetchDataWithSTDID($this->session->userdata('id'));
 		$this->load->view('student/index',array(

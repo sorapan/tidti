@@ -13,11 +13,13 @@
 
                 <div class="name"><?=prefix_name_id($this->session->userdata('prefix_name_id'))?> <?= $this->session->userdata('firstname')?> <?= $this->session->userdata('lastname')?></div>
                 <div class="epassport">รหัส <?= $this->session->userdata('id')?></div>
-                <div class="faculty">คณะ <?=fac_id($this->session->userdata('fac_id'))?></div>
-                <div class="major">สาขา <?=program_id($this->session->userdata('program_id'))?></div> 
+                 <?php //fac_id($this->session->userdata('fac_id'))?>
+                <div class="faculty">คณะ <?=$this->session->userdata('fac')?></div>
+                <?php //program_id($this->session->userdata('program_id'))?>
+                <div class="major">สาขา <?=$this->session->userdata('program')?></div> 
+                <div class="major">สาขา <?=$this->session->userdata('citizen_id')?></div> 
                 <div class="email">อีเมลล์ <?=$this->session->userdata('email')?></div> 
                 <div class="tel">โทร <?=$this->session->userdata('tel')?></div> 
-                <a href="student/signout" class="signout"><i class="fa fa-sign-out" title="ออกจากระบบ" aria-hidden="true"></i>&nbspออกจากระบบ</a>
                 <a href="student/signout" class="signout"><i class="fa fa-sign-out" title="ออกจากระบบ" aria-hidden="true"></i>&nbspออกจากระบบ</a>
             </div>
             <div class="footer">
