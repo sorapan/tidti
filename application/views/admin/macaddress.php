@@ -37,6 +37,7 @@ if($qry != null)
         <td><?=$data->device?></td>
         <td><?=$data->mac?></td>
         <td><?=date('d-m-Y',$data->date) ?></td>
+        
         <td><form><button>ลบ</button></form></td>
     </tr>
 
