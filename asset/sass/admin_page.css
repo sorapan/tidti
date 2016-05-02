@@ -1,85 +1,61 @@
+.center {
+  text-align: center; }
+
 .admin {
   top: 0;
   bottom: 0;
   position: absolute; }
-  .admin > .header {
-    height: 45px;
+  .admin > .nav {
+    height: 40px;
+    position: absolute;
+    top: 0;
     left: 0;
     right: 0;
-    text-align: center;
     background-color: #555; }
-    .admin > .header > .burger {
-      height: 45px;
-      width: 45px;
-      font-size: 1.8em;
-      background-color: transparent;
-      border: none;
-      color: #fff;
-      float: left; }
   .admin > .sidebar {
-    top: 0;
+    top: 40px;
     bottom: 0;
-    max-width: 347px;
     position: absolute;
-    background-color: #555; }
+    background-color: #004e66; }
+  .admin > .content {
+    padding-left: 300px;
+    padding-top: 40px;
+    width: 100%;
+    float: left; }
   .admin .menus > .logo {
     text-align: center;
     font-size: 2em;
     color: #ff5f2e; }
   .admin .menus > li {
-    padding: 0 5px;
-    margin: 10px;
+    padding: 0 10px;
     font-size: 2em;
-    border-radius: 2px; }
+    color: #FFFFF3; }
     .admin .menus > li > span {
       width: 50px;
       vertical-align: middle;
       display: inline-block;
       padding: 0 10px; }
-    .admin .menus > li:hover:not(.logo) {
+    .admin .menus > li:hover {
       cursor: pointer;
       color: #fff;
       background-color: #c1c1c1; }
-  .admin .mac_list > ._1 > .search {
-    height: 60px; }
-  .admin .mac_list > ._1 > .items {
-    padding: 5px 10px; }
-    .admin .mac_list > ._1 > .items > div, .admin .mac_list > ._1 > .items .text {
-      height: 80px;
-      display: inline-block; }
-    .admin .mac_list > ._1 > .items.laptop .logo {
-      background-color: #ff5f2e; }
-    .admin .mac_list > ._1 > .items.tablet .logo {
-      background-color: #ffc952; }
-    .admin .mac_list > ._1 > .items.phone .logo {
-      background-color: #ff7473; }
-    .admin .mac_list > ._1 > .items > .icon {
-      width: 80px;
-      height: 80px;
-      padding: 10px;
-      margin-right: 15px;
-      background-color: #fff; }
-      .admin .mac_list > ._1 > .items > .icon > .logo {
-        width: 60px;
-        height: 60px;
-        font-size: 3em;
-        text-align: center;
-        border: 1px solid transparent;
-        border-radius: 50%;
-        line-height: 60px;
-        color: #EFFFE9; }
-    .admin .mac_list > ._1 > .items > .text {
-      margin-bottom: 0; }
-      .admin .mac_list > ._1 > .items > .text > .mac {
-        height: 40px;
-        line-height: 60px;
-        font-size: 1.6em;
-        color: #555; }
-      .admin .mac_list > ._1 > .items > .text > .name {
-        height: 40px;
-        font-size: 1.3em;
-        color: #bdbdbd; }
-    .admin .mac_list > ._1 > .items > .date {
-      line-height: 60px; }
-  .admin .sidebar {
-    visibility: hidden; }
+    .admin .menus > li.active, .admin .menus > li.active:hover {
+      background-color: #fff;
+      color: #004e66; }
+  .admin > .content > .mac_list {
+    width: 100%;
+    min-width: 960px;
+    padding: 15px 0;
+    float: left; }
+    .admin > .content > .mac_list > ._1, .admin > .content > .mac_list ._2 {
+      float: left; }
+    .admin > .content > .mac_list > ._1 {
+      width: 75%;
+      min-width: 700px; }
+      .admin > .content > .mac_list > ._1 > .search {
+        padding: 0 0 25px 0;
+        float: left; }
+    .admin > .content > .mac_list > ._2 {
+      padding: 0 0 0 30px;
+      width: 25%;
+      min-width: 200px; }

@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -7,7 +10,7 @@
 <h2>menu</h2>
 <ul>
     <li><a href="">users log</a></li>
-    <li><a href="">mac address</a></li>
+    <li><a href="admin/mac">mac address</a></li>
 </ul>
 
 <?php

@@ -26,6 +26,13 @@ class MacModel extends CI_Model {
           'date' => time()
         ));
     }
+    
+    function LikeStudentID($stdid)
+    {
+      $this->db->select('*');
+      $this->db->like('std_id', $stdid); 
+      return $this->db->get('mac')->result();
+    }
 
     function FetchDataWithSTDID($std_id)
     {

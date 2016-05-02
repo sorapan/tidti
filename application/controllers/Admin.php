@@ -10,6 +10,7 @@ class Admin extends CI_Controller {
 		 $this->load->model('E_passModel');
 		 $this->load->model('Uoc_stdModel');
 		 $this->load->model('Admin_dataModel');
+		 $this->load->model('MacModel');
 
 	}
 
@@ -21,13 +22,11 @@ class Admin extends CI_Controller {
 
 	public function mac()
 	{
-		if(!empty($_GET['qry']))
+		if(isset($_GET['qry']))
 		{
-			
-			
-			
+				
 			$this->load->view('admin/Macaddress',array(
-				'qry' => $_GET['qry']
+				'qry' => $this->MacModel->LikeStudentID($_GET['qry'])
 			));
 			
 		}
