@@ -23,7 +23,7 @@
                 <a href="student/signout" class="signout"><i class="fa fa-sign-out" title="ออกจากระบบ" aria-hidden="true"></i>&nbspออกจากระบบ</a>
             </div>
             <div class="footer">
-                <h2 class="thaisans">ติดต่อ</h2>
+                <h2 class="thaisans">มีปัญหาติดต่อ งานวิศวกรรมเครือข่าย สำนักวิทยบริการฯ่อ</h2>
                 <p><i class="fa fa-phone" aria-hidden="true"></i> : 074-317100 ต่อ 1911 - 1912 </p>
                 <p> <i class="fa fa-envelope-o" aria-hidden="true"></i> : noc@rmutsv.ac.th</p>
             </div>
