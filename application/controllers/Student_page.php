@@ -13,6 +13,8 @@ class Student_page extends CI_Controller {
 		$this->load->model('E_passModel');
 		$this->load->model('Uoc_stdModel');
 		$this->load->model('MacModel');
+		$this->load->model('RadAccountModel');
+				
 	}
 
 	public function index()
@@ -21,7 +23,8 @@ class Student_page extends CI_Controller {
 		$macdata = $this->MacModel->FetchDataWithSTDID($this->session->userdata('id'));
 		$this->load->view('student/index',array(
 			'mac_data' => $macdata,
-			'mac_num' => $mac_registered_num
+			'mac_num' => $mac_registered_num,
+			'rad_test' => $this->RadAccountModel->login()
 		));
 
 	}

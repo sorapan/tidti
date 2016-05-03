@@ -10,7 +10,7 @@
                 <h2 class="thaisans">นักศึกษา</h2>
             </div>
             <div class="content thaisans">
-
+<?php print_r($rad_test)?>
                 <div class="name"><?=prefix_name_id($this->session->userdata('prefix_name_id'))?> <?= $this->session->userdata('firstname')?> <?= $this->session->userdata('lastname')?></div>
                 <div class="epassport">รหัส <?= $this->session->userdata('id')?></div>
                  <?php //fac_id($this->session->userdata('fac_id'))?>
