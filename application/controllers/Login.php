@@ -9,6 +9,7 @@ class Login extends CI_Controller {
 		 	$this->load->model('E_passModel');
 		 	$this->load->model('Uoc_stdModel');
 		 	$this->load->model('RefModel');
+		 	$this->load->model('RadAccountModel');
 
 	 }
 

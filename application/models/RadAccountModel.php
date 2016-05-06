@@ -20,6 +20,14 @@ class RadAccountModel extends CI_Model {
         $this->db->db_select('radius');
         $this->db->insert('account', $data); 
     }
+    
+    function GetLocationDataByStudentId($studentid)
+    {
+        $this->db->db_select('radius');
+        $this->db->select('location_id');
+        $this->db->where('idcard',$studentid);
+        return $this->db->get('account')->result();
+    }
 
 
 }

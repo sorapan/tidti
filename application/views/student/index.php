@@ -51,8 +51,11 @@
 
 
                             <h3 class="thaisans bold">วิทยาเขต</h3>
+                            <?php if($this->session->userdata('location')){?>
+                            <h3><?=$this->session->userdata('location')?></h3>
+                            <?php }?>
                             
-                            <form method="post" action="">
+                            <form method="post" action="student/submitlocation">
                                 <select name="location">
                                     <option value="sk">สงขลา</option>
                                     <option value="sai">ไสใหญ่</option>
@@ -61,6 +64,7 @@
                                     <option value="tr">ตรัง</option>
                                     <option value="rat">วิทยาลัยรัตภูมิ</option>
                                 </select>
+                                <button type="submit">ตกลง</button>
                             </form>
                             
                             

@@ -31,7 +31,10 @@ class Student_page extends CI_Controller {
 	
 	public function submit_location()
 	{
-		
+		if(isset($_POST['location'])){
+			$this->session->set_userdata('location',$_POST['location']);
+			@header('Location: ' . $_SERVER['HTTP_REFERER']);
+		}
 	}
 
 	public function add_mac()
@@ -43,21 +46,21 @@ class Student_page extends CI_Controller {
 			// AddLog(	$this->session->userdata('id')." is adding mac address" );
 			// @header('Location: ' . $_SERVER['HTTP_REFERER']);
 			
-			// $this->RadAccountModel->AddData(array(
-			// 	'username' => $_POST['mac'],
-			// 	'password' => null,
-			// 	'pname' => $this->session->userdata('prefix_name_id'),
-			// 	'firstname' => $this->session->userdata('prefix_name_id'),
-			// 	'lastname' => $this->session->userdata('prefix_name_id'),
-			// 	'idcard' => $this->session->userdata('prefix_name_id'),
-			// 	'mailaddr' => $this->session->userdata('prefix_name_id'),
-			// 	'discipline' => null,
-			// 	'department' => null,
-			// 	'year' => null,
-			// 	'dateregis' => null,
-			// 	'status' => 'นักศึกษา',
-			// 	'location_id' => null
-			// ));
+			$this->RadAccountModel->AddData(array(
+				'username' => $_POST['mac'],
+				'password' => null,
+				'pname' => $this->session->userdata('prefix_name_id'),
+				'firstname' => $this->session->userdata('prefix_name_id'),
+				'lastname' => $this->session->userdata('prefix_name_id'),
+				'idcard' => $this->session->userdata('prefix_name_id'),
+				'mailaddr' => $this->session->userdata('prefix_name_id'),
+				'discipline' => null,
+				'department' => null,
+				'year' => null,
+				'dateregis' => null,
+				'status' => 'นักศึกษา',
+				'location_id' => null
+			));
 
 			
 		}else{
