@@ -28,46 +28,43 @@ class Student_page extends CI_Controller {
 		));
 
 	}
+	
+	public function submit_location()
+	{
+		
+	}
 
 	public function add_mac()
 	{
-		//  $mac_registered_num = $this->MacModel->CountDataOnStdId($this->session->userdata('id'));
-		//  if($mac_registered_num < 3)
-		//  {
-		// 	 if(empty($this->MacModel->CheckMac($_POST['mac'])))
-		// 	 {
-		// 		 if(empty($this->MacModel->CheckDevice($_POST['device'])))
-		// 		 {
-		// 			 $this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
-		// 			 AddLog(	$this->session->userdata('id')." is adding mac address" );
-		// 			 @header('Location: ' . $_SERVER['HTTP_REFERER']);
-		// 		 }
-		// 		 else
-		// 		 {
-		// 			 echo "คุณลงทะเบียนอุปกรณ์ซ้ำไม่ได้ ";
-		// 			 @header( "Refresh:3; ". $_SERVER['HTTP_REFERER']);
-		// 		 }
-		// 	 }
-		// 	 else
-		// 	 {
-		// 		 echo "คุณลงทะเบียน Mac Address ซ้ำไม่ได้ ";
-		// 		 @header( "Refresh:3; ". $_SERVER['HTTP_REFERER']);
-		// 	 }
-		//  }
-		//  else
-		//  {
-		// 	 echo "คุณลงทะเบียนครบแล้ว<br>";
-		// 	 echo "กรุณารอสักครู่...";
-		// 	 @header( "Refresh:3; ". $_SERVER['HTTP_REFERER']);
-		//  }
 			
 		if(!ctype_space($_POST['mac'])){
-			$this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
-			AddLog(	$this->session->userdata('id')." is adding mac address" );
-			@header('Location: ' . $_SERVER['HTTP_REFERER']);
+			
+			// $this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
+			// AddLog(	$this->session->userdata('id')." is adding mac address" );
+			// @header('Location: ' . $_SERVER['HTTP_REFERER']);
+			
+			// $this->RadAccountModel->AddData(array(
+			// 	'username' => $_POST['mac'],
+			// 	'password' => null,
+			// 	'pname' => $this->session->userdata('prefix_name_id'),
+			// 	'firstname' => $this->session->userdata('prefix_name_id'),
+			// 	'lastname' => $this->session->userdata('prefix_name_id'),
+			// 	'idcard' => $this->session->userdata('prefix_name_id'),
+			// 	'mailaddr' => $this->session->userdata('prefix_name_id'),
+			// 	'discipline' => null,
+			// 	'department' => null,
+			// 	'year' => null,
+			// 	'dateregis' => null,
+			// 	'status' => 'นักศึกษา',
+			// 	'location_id' => null
+			// ));
+
+			
 		}else{
+			
 			echo 'กรุณากรอก Mac Address<br>';
 			echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+			
 		}	
 		
    	}

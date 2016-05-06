@@ -15,6 +15,11 @@ class RadAccountModel extends CI_Model {
         return $this->db->get('account')->result();
         
     }
+    
+    function AddData($data){
+        $this->db->db_select('radius');
+        $this->db->insert('account', $data); 
+    }
 
 
 }

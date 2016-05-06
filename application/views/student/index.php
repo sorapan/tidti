@@ -10,7 +10,7 @@
                 <h2 class="thaisans">นักศึกษา</h2>
             </div>
             <div class="content thaisans">
-<?php print_r($rad_test)?>
+<?php //print_r($rad_test)?>
                 <div class="name"><?=prefix_name_id($this->session->userdata('prefix_name_id'))?> <?= $this->session->userdata('firstname')?> <?= $this->session->userdata('lastname')?></div>
                 <div class="epassport">รหัส <?= $this->session->userdata('id')?></div>
                  <?php //fac_id($this->session->userdata('fac_id'))?>
@@ -50,6 +50,22 @@
                             <!--<div class="alert">alert</div>-->
 
 
+                            <h3 class="thaisans bold">วิทยาเขต</h3>
+                            
+                            <form method="post" action="">
+                                <select name="location">
+                                    <option value="sk">สงขลา</option>
+                                    <option value="sai">ไสใหญ่</option>
+                                    <option value="tho">ทุ่งใหญ่</option>
+                                    <option value="ka">ขนอม</option>
+                                    <option value="tr">ตรัง</option>
+                                    <option value="rat">วิทยาลัยรัตภูมิ</option>
+                                </select>
+                            </form>
+                            
+                            
+
+                            
                             <!--/////////////////////////////////////////////////////////////////////////-->
 
                                 <h3 class="thaisans bold">คอมพิวเตอร์/โน็ตบุ๊ค</h3>
@@ -79,7 +95,7 @@
                                 }else{
                             ?>
 
-                                <form method="POST" action="student/addmac">
+                                <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
                                       <input type="text" class="text opensans" placeholder="mac-address" name="mac" id="">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
@@ -123,7 +139,7 @@
                                 }else{
                             ?>
 
-                                <form method="POST" action="student/addmac">
+                                <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
                                       <input type="text" class="text opensans" name="mac" placeholder="mac-address" id="">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
@@ -176,7 +192,7 @@
                                 }else{
                             ?>
 
-                                <form method="POST" action="student/addmac">
+                                <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
                                       <input type="text" class="text opensans" name="mac" placeholder="mac-address" id="">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
