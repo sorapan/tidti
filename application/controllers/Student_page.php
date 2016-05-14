@@ -41,6 +41,7 @@ class Student_page extends CI_Controller {
 	{
 			
 		if(!ctype_space($_POST['mac'])){
+			if($this->session->userdata('location') ){
 			
 			// $this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
 			// AddLog(	$this->session->userdata('id')." is adding mac address" );
@@ -62,7 +63,10 @@ class Student_page extends CI_Controller {
 				'location_id' => null
 			));
 
-			
+			}else{
+				echo 'กรุณากรอกข้อมูลวิทยาเขต<br>';
+				echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+			}
 		}else{
 			
 			echo 'กรุณากรอก Mac Address<br>';

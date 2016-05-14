@@ -48,7 +48,10 @@
                 <div class="content col-xs-10">
                         <div class="add-device">
                             <!--<div class="alert">alert</div>-->
-
+<?php
+if(!$this->session->userdata('location') ){
+?>
+<div class="alert alert-danger" role="alert">** กรุณากรอกข้อมูลวิทยาเขตก่อนกรอก Mac Address **
 
                             <h3 class="thaisans bold">วิทยาเขต</h3>
                             <?php if($this->session->userdata('location')){?>
@@ -66,8 +69,39 @@
                                 </select>
                                 <button type="submit">ตกลง</button>
                             </form>
+                            </div>
                             
-                            
+<?php
+}else{
+?>    
+    <div class="alert alert-success" role="alert">วิทยาเขต <?php
+    
+    switch ($this->session->userdata('location')) {
+        case 'sk':
+            echo "สงขลา";
+            break;
+        case 'sai':
+            echo "ไสใหญ่";
+            break;
+        case 'tho':
+            echo "ทุ่งใหญ่";
+            break;
+        case 'ka':
+            echo "ขนอม";
+            break;
+        case 'tr':
+            echo "ตรัง";
+            break;
+        case 'rat':
+            echo "วิทยาลัยรัตภูมิ";
+            break;
+        
+    }
+    
+    ?></div>
+<?php
+}
+?>                
 
                             
                             <!--/////////////////////////////////////////////////////////////////////////-->
