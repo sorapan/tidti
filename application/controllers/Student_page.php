@@ -49,19 +49,20 @@ class Student_page extends CI_Controller {
 			
 			$this->RadAccountModel->AddData(array(
 				'username' => $_POST['mac'],
-				'password' => null,
+				'password' => '',
 				'pname' => $this->session->userdata('prefix_name_id'),
-				'firstname' => $this->session->userdata('prefix_name_id'),
-				'lastname' => $this->session->userdata('prefix_name_id'),
-				'idcard' => $this->session->userdata('prefix_name_id'),
-				'mailaddr' => $this->session->userdata('prefix_name_id'),
-				'discipline' => null,
-				'department' => null,
-				'year' => null,
-				'dateregis' => null,
+				'firstname' => $this->session->userdata('firstname'),
+				'lastname' => $this->session->userdata('lastname'),
+				'idcard' => $this->session->userdata('id'),
+				'mailaddr' => $this->session->userdata('email'),
+				'discipline' => '',
+				'department' => '',
+				'year' => '',
+				'dateregis' => date('Y-m-d H:i:s',time()),
 				'status' => 'นักศึกษา',
-				'location_id' => null
+				'location_id' => $this->session->userdata('location')
 			));
+			
 
 			}else{
 				echo 'กรุณากรอกข้อมูลวิทยาเขต<br>';

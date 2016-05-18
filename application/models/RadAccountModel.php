@@ -19,6 +19,7 @@ class RadAccountModel extends CI_Model {
     function AddData($data){
         $this->db->db_select('radius');
         $this->db->insert('account', $data); 
+        echo "fuck";
     }
     
     function GetLocationDataByStudentId($studentid)
