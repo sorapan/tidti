@@ -15,8 +15,10 @@
   text-align: center; }
   .user-page > ._1 > .content > div {
     font-size: 1.8em; }
+  .user-page > ._1 > .content > .epassport {
+    margin-bottom: 15px; }
   .user-page > ._1 > .content > .tel {
-    margin-bottom: 30px; }
+    margin-bottom: 40px; }
   .user-page > ._1 > .content > .signout {
     padding: 5px 20px;
     border: 1px solid #ff5f2e;
@@ -92,3 +94,23 @@
       background-color: #2b90d9; }
   .user-page .ch-device > input.text:focus ~ label {
     color: #004e66; }
+.user-page .my-button {
+  padding: 0; }
+
+.my-modal-content {
+  margin-bottom: 0;
+  overflow-y: auto;
+  border-radius: 0; }
+
+.my-modal-text > div > p {
+  font-size: 1.2em; }
+
+.img {
+  text-align: center; }
+  .img + p {
+    margin-top: 20px; }
+
+@media all and (min-width: 768px) {
+  .my-modal-content {
+    height: 97%;
+    width: 700px; } }

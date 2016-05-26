@@ -16,14 +16,14 @@
                  <?php //fac_id($this->session->userdata('fac_id'))?>
                 <div class="faculty">คณะ <?=$this->session->userdata('fac')?></div>
                 <?php //program_id($this->session->userdata('program_id'))?>
-                <div class="major">สาขา <?=$this->session->userdata('program')?></div> 
-                <div class="major">สาขา <?=$this->session->userdata('citizen_id')?></div> 
-                <div class="email">อีเมลล์ <?=$this->session->userdata('email')?></div> 
-                <div class="tel">โทร <?=$this->session->userdata('tel')?></div> 
+                <div class="major">สาขา <?=$this->session->userdata('program')?></div>
+                <div class="major">สาขา <?=$this->session->userdata('citizen_id')?></div>
+                <div class="email">อีเมลล์ <?=$this->session->userdata('email')?></div>
+                <div class="tel">โทร <?=$this->session->userdata('tel')?></div>
                 <a href="student/signout" class="signout"><i class="fa fa-sign-out" title="ออกจากระบบ" aria-hidden="true"></i>&nbspออกจากระบบ</a>
             </div>
             <div class="footer">
-                <h2 class="thaisans">มีปัญหาติดต่อ งานวิศวกรรมเครือข่าย สำนักวิทยบริการฯ่อ</h2>
+                <h2 class="thaisans">มีปัญหาติดต่อ งานวิศวกรรมเครือข่าย <br>สำนักวิทยบริการฯ</h2>
                 <p><i class="fa fa-phone" aria-hidden="true"></i> : 074-317100 ต่อ 1911 - 1912 </p>
                 <p> <i class="fa fa-envelope-o" aria-hidden="true"></i> : noc@rmutsv.ac.th</p>
             </div>
@@ -57,7 +57,7 @@ if(!$this->session->userdata('location') ){
                             <?php if($this->session->userdata('location')){?>
                             <h3><?=$this->session->userdata('location')?></h3>
                             <?php }?>
-                            
+
                             <form method="post" action="student/submitlocation">
                                 <select name="location">
                                     <option value="sk">สงขลา</option>
@@ -70,12 +70,12 @@ if(!$this->session->userdata('location') ){
                                 <button type="submit">ตกลง</button>
                             </form>
                             </div>
-                            
+
 <?php
 }else{
-?>    
+?>
     <div class="alert alert-success" role="alert">วิทยาเขต <?php
-    
+
     switch ($this->session->userdata('location')) {
         case 'sk':
             echo "สงขลา";
@@ -95,15 +95,20 @@ if(!$this->session->userdata('location') ){
         case 'rat':
             echo "วิทยาลัยรัตภูมิ";
             break;
-        
+
     }
-    
+
     ?></div>
+
+
 <?php
 }
-?>                
+?>
 
-                            
+                             <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+                                  วิธีดู Mac address
+                                </button>
                             <!--/////////////////////////////////////////////////////////////////////////-->
 
                                 <h3 class="thaisans bold">คอมพิวเตอร์/โน็ตบุ๊ค</h3>
@@ -241,6 +246,60 @@ if(!$this->session->userdata('location') ){
                             <?php
                                 }
                             ?>
+
+
+
+                        <!-- Modal -->
+                        <div class="modal fade my-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog my-modal-content" role="document">
+                            <div class="modal-content  my-modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title thaisans" style="font-size: 2.2em" id="myModalLabel">วิธีดู Mac address</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="my-modal-text">
+                                    <h2>IOS</h2>
+                                    <div>
+                                    <p>ไปที่ "Settings" -> "General" -> "About" แล้วเลื่อนลงมา MAC address คือ "Wi-Fi Address"</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_ios.png" align="middle" width="60%" height="60%"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="my-modal-text">
+                                    <h2>Android</h2>
+                                    <div>
+                                    <p>ไปที่ "Settings" -> "About phone" -> "Status" แล้วเลื่อนลงมา MAC address คือ "Wi-Fi MAC Address"</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_android.png" width="60%" height="60%"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="my-modal-text">
+                                    <h2>Windows Phone</h2>
+                                    <div>
+                                    <p>ไปที่ "Settings" -> "about" -> "more info" </p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_wp.jpg" width="60%" height="60%"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="my-modal-text">
+                                    <h2>BlackBerry</h2>
+                                    <div>
+                                    <p>1. ไปที่ Options</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_bb1.jpg" width="60%" height="60%"></div>
+                                    <p>2. เลื่อนลงไปเลือก Status </p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_bb2.jpg" width="60%" height="60%"></div>
+                                    <p>3. เลื่อนลงไปดูที่ WLAN MAC</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_bb3.jpg" width="60%" height="60%"></div>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         </div>
 
                     </div>

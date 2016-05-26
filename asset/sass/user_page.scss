@@ -33,7 +33,10 @@
 
             }
             >.epassport{
-                margin-bottom: 30px;
+                margin-bottom: 15px;
+            }
+            >.tel{
+                margin-bottom: 40px;
             }
             >.signout{
                 padding: 5px 20px;
@@ -152,5 +155,33 @@
             color: #004e66;
         }
     }
+
+    .my-button{
+        padding: 0;
+    }
+
+}
+.my-modal-content{
+    // height: 95%;
+    margin-bottom: 0;
+    overflow-y: auto;
+    border-radius: 0;
+}
+.my-modal-text{
+    >div>p{
+        font-size: 1.2em;
+    }
+}
+.img{
+    text-align: center;
+    & + p{
+        margin-top: 20px;
+    }
 }
 
+@media all and (min-width: 768px) {
+    .my-modal-content{
+        height: 97%;
+        width: 700px;
+    }
+}
