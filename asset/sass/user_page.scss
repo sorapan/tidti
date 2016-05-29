@@ -160,7 +160,50 @@
         padding: 0;
     }
 
-}
+
+    /// start  professor
+    &.professor{
+        & .dev {
+            & + .ch-device{
+                margin-top: 10px;
+                margin-bottom: 20px;
+            }
+            & .select label{
+                font-size: 3em;
+                display: inline-block;
+                color: #ccc;
+                border: 2px solid #ccc;
+                width: 70px;
+                text-align: center;
+                vertical-align: middle;
+                padding:10px;
+            }
+            & .select > input{
+                visibility: hidden;
+                &.laptop:checked + label{
+                    border-color: red;
+                    color:red;
+                }
+                &.phone:checked + label{
+                    border-color: gold;
+                    color:gold;
+                }
+                &.tablet:checked + label{
+                    border-color: tomato;
+                    color:tomato;
+                }
+            }
+
+
+        }
+        & .ch-device .text{
+            padding-left: 15px;
+        }
+    }
+
+}//end of user
+
+
 .my-modal-content{
     // height: 95%;
     margin-bottom: 0;

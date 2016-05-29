@@ -1,0 +1,6 @@
+29-05-2016 17:06 --  was deleting his/her registered mac address 
+29-05-2016 17:14 --  was logging out 
+29-05-2016 17:14 -- 155404130050 is logging in 
+29-05-2016 17:14 -- 155404130050 was logging out 
+29-05-2016 17:17 -- 155404130050 is logging in 
+29-05-2016 17:17 -- 155404130050 was logging out 

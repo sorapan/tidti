@@ -96,6 +96,31 @@
     color: #004e66; }
 .user-page .my-button {
   padding: 0; }
+.user-page.professor .dev + .ch-device {
+  margin-top: 10px;
+  margin-bottom: 20px; }
+.user-page.professor .dev .select label {
+  font-size: 3em;
+  display: inline-block;
+  color: #ccc;
+  border: 2px solid #ccc;
+  width: 70px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px; }
+.user-page.professor .dev .select > input {
+  visibility: hidden; }
+  .user-page.professor .dev .select > input.laptop:checked + label {
+    border-color: red;
+    color: red; }
+  .user-page.professor .dev .select > input.phone:checked + label {
+    border-color: gold;
+    color: gold; }
+  .user-page.professor .dev .select > input.tablet:checked + label {
+    border-color: tomato;
+    color: tomato; }
+.user-page.professor .ch-device .text {
+  padding-left: 15px; }
 
 .my-modal-content {
   margin-bottom: 0;
