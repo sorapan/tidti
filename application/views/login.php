@@ -12,9 +12,9 @@
                 <h3 class="opensans bold">e-passport</h3>
                 <p class=" thaisans">ลงทะเบียนอุปกรณ์เพื่อเข้าใช้งานอินเตอร์เน็ต</p>
                 <div class="footer">
-                    <h2 class="thaisans">ติดต่อ</h2>
-                    <p><i class="fa fa-phone" aria-hidden="true"></i> : 074-317100 ต่อ 1911 - 1912</p>
-                    <p><i class="fa fa-envelope-o" aria-hidden="true"></i> : noc@rmutsv.ac.th</p>
+                    <h2 class="thaisans">มีปัญหาติดต่อ งานวิศวกรรมเครือข่าย <br>สำนักวิทยบริการฯ</h2>
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> : 074-317100 ต่อ 1911 - 1912 </p>
+                    <p> <i class="fa fa-envelope-o" aria-hidden="true"></i> : noc@rmutsv.ac.th</p>
                 </div>
         </div>
         <div class="_2 col-xs-12 col-sm-8">

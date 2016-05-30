@@ -4,10 +4,10 @@
 </html>
 <body>
 <div class="contain col-xs-12 nopad">
-    <div class="login user-page col-md-offset-2 col-xs-12 col-sm-12 col-md-8 nopad">
+    <div class="professor login user-page col-md-offset-2 col-xs-12 col-sm-12 col-md-8 nopad">
         <div class="_1 col-xs-12 col-sm-4">
             <div class="head">
-                <h2 class="thaisans">นักศึกษา</h2>
+                <h2 class="thaisans">อาจารย์ / บุคลากร</h2>
             </div>
             <div class="content thaisans">
 <?php //print_r($rad_test)?>
@@ -111,143 +111,56 @@ if(!$this->session->userdata('location') ){
                                 </button>
                             <!--/////////////////////////////////////////////////////////////////////////-->
 
-                                <h3 class="thaisans bold">คอมพิวเตอร์/โน็ตบุ๊ค</h3>
 
-                            <?php
-                                $data_exists = false;
-                                foreach($mac_data as $data){
-                                    if($data->device=='comp')
-                                    {
-                                        $data_exists = true;
-                                        break;
-                                    }
-                                }
-                                if($data_exists){
-                            ?>
-
-                                <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
-                                    <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->mac?>" id="">
-                                        <button class="button"><i class="fa fa-trash-o"></i></button>
-                                        <label for="laptop" class="laptop"><i class="fa fa-laptop active"></i></label>
-                                    </div>
-                                    <input type="hidden" name="del" value="<?=$data->mac?>">
-                                </form>
-
-                            <?php
-                                }else{
-                            ?>
 
                                 <form id="mac_submit" method="POST" action="student/addmac">
+
+                                <div class="dev">
+                                    <h3 class="thaisans bold">เลือกอุปกรณ์</h3>
+                                    <div class="select laptop">
+                                        <input type="radio" class="laptop" name="device" id="laptop"><label class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
+                                        <input type="radio" class="phone" name="device" id="phone"><label class="fa fa-mobile" for="phone" title="มือถือ"></label>
+                                        <input type="radio" class="tablet" name="device" id="taplet"><label class="fa fa-tablet" for="taplet" title="แท็บเล็ต"></label>
+                                    </div>
+                                </div>
                                   <div class="ch-device ">
                                       <input type="text" class="text opensans" placeholder="mac-address" name="mac" id="">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
-                                      <label for="laptop" class="laptop"><i class="fa fa-laptop"></i></label>
                                   </div>
                                   <input type="hidden" name="device" value="comp">
                                 </form>
 
-                            <?php
-                                }
 
-                            ?>
-
-                            <!--/////////////////////////////////////////////////////////////////////////-->
-
-                                <h3 class="thaisans bold">โทรศัพท์</h3>
-
-                            <?php
-                            $data_exists = false;
-                            foreach($mac_data as $data){
-                                if($data->device=='phone')
-                                {
-                                    $data_exists = true;
-                                    break;
-                                }
-                            }
-                                if($data_exists){
-                            ?>
-
+                                <h3 class="thaisans bold">อุปกรณ์ของคุณ</h3>
+                                 <!-- ///////////////////// -->
                                 <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->mac?>" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="" id="">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
-                                        <label for="mobile" class="mobile"><i class="fa fa-mobile active"></i></label>
+                                        <label for="laptop" class="laptop"><i class="fa fa-laptop active"></i></label>
                                     </div>
-                                    <input type="hidden" name="del" value="<?=$data->mac?>">
+                                    <input type="hidden" name="del" value=">">
                                 </form>
 
-                            <?php
-
-                                }else{
-                            ?>
-
-                                <form id="mac_submit" method="POST" action="student/addmac">
-                                  <div class="ch-device ">
-                                      <input type="text" class="text opensans" name="mac" placeholder="mac-address" id="">
-                                      <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
-                                      <label for="mobile" class="mobile"><i class="fa fa-mobile"></i></label>
-                                  </div>
-                                  <input type="hidden" name="device" value="phone">
-                                </form>
-
-                            <?php
-                                }
-
-                            ?>
-
-                                <!--<form method="POST">
-                                  <div class="ch-device ">
-                                      <input type="text" class="text opensans" name="mac_mobile" placeholder="mac-address" id="">
-                                      <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
-                                      <label for="mobile"><i class="fa fa-mobile"></i></label>
-                                  </div>
-                                </form>-->
-
-                            <!--/////////////////////////////////////////////////////////////////////////-->
-
-                                <h3 class="thaisans bold">แท็ปเล็ต</h3>
-
-                            <?php
-                                    $data_exists = false;
-                            foreach($mac_data as $data){
-                                if($data->device=='tablet')
-                                {
-                                    $data_exists = true;
-                                    $data_mac = $data->mac;
-                                    break;
-                                }
-                            }
-                                if($data_exists){
-                            ?>
-
-
+                                    <!-- ///////////////////// -->
                                 <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->mac?>" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="" id="">
+                                        <button class="button"><i class="fa fa-trash-o"></i></button>
+                                        <label for="phone" class="phone"><i class="fa fa-mobile active"></i></label>
+                                    </div>
+                                    <input type="hidden" name="del" value=">">
+                                </form>
+
+                                <!-- ///////////////////// -->
+                                <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+                                    <div class="ch-device activated">
+                                        <input type="text" class="text opensans" disabled name="" value="" id="">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="tablet" class="tablet"><i class="fa fa-tablet active"></i></label>
                                     </div>
-                                    <input type="hidden" name="del" value="<?=$data->mac?>">
+                                    <input type="hidden" name="del" value=">">
                                 </form>
-
-                            <?php
-                                }else{
-                            ?>
-
-                                <form id="mac_submit" method="POST" action="student/addmac">
-                                  <div class="ch-device ">
-                                      <input type="text" class="text opensans" name="mac" placeholder="mac-address" id="">
-                                      <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
-                                      <label for="tablet" class="tablet"><i class="fa fa-tablet"></i></label>
-                                  </div>
-                                  <input type="hidden" name="device" value="tablet">
-                                </form>
-                            <?php
-                                }
-                            ?>
-
-
 
                         <!-- Modal -->
                         <div class="modal fade my-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
