@@ -70,6 +70,8 @@ class Student_page extends CI_Controller {
 				'dev_net_type' => "Wireless"
 			));
 			
+			@header('Location: ' . $_SERVER['HTTP_REFERER']);
+			
 
 			}else{
 				echo 'กรุณากรอกข้อมูลวิทยาเขต<br>';
