@@ -1,6 +1,6 @@
 <?php
 
-class RadAccountModel extends CI_Model {
+class DeviceModel extends CI_Model {
 
     function __construct()
     {
@@ -16,11 +16,9 @@ class RadAccountModel extends CI_Model {
         
     }
     
-    function AddData($account_data,$device_data){
+    function AddData($data){
         $this->db->db_select('radius');
-        $this->db->insert('account', $account_data); 
-        $this->db->insert('device', $device_data); 
-        
+        $this->db->insert('account', $data); 
     }
     
     function GetLocationDataByStudentId($studentid)

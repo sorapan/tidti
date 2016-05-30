@@ -36,6 +36,8 @@ class Login extends CI_Controller {
 					//echo explode("s",$res[0]->usre)[1];
 
 					$std_data = $this->Uoc_stdModel->fetchDataById( explode("s",$res[0]->usre)[1] );
+					
+					
 					//var_dump($std_data);
 
 					foreach($std_data as $sd)
@@ -53,6 +55,14 @@ class Login extends CI_Controller {
 						$this->session->set_userdata('tel',$sd->TELEPHONE);
 						$this->session->set_userdata('citizen_id',$sd->CITIZEN_ID);
 					}
+					
+					$std_mac_registered = $this->RadAccountModel->getDataByFirstAndLastName( $this->session->userdata('firstname'),$this->session->userdata('lastname'));
+					
+					if(!empty($std_mac_registered))
+					{
+						$this->session->set_userdata('location',$std_mac_registered[0]->location_id);
+					}
+					
 					AddLog(	$this->session->userdata('id')." is logging in" );
 					//echo $this->session->userdata('email');
 					header("Location: student");

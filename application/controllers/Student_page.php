@@ -19,6 +19,7 @@ class Student_page extends CI_Controller {
 
 	public function index()
 	{
+		
 		$mac_registered_num = $this->MacModel->CountDataOnStdId($this->session->userdata('id'));
 		$macdata = $this->MacModel->FetchDataWithSTDID($this->session->userdata('id'));
 		$this->load->view('student/index',array(
@@ -47,7 +48,8 @@ class Student_page extends CI_Controller {
 			// AddLog(	$this->session->userdata('id')." is adding mac address" );
 			// @header('Location: ' . $_SERVER['HTTP_REFERER']);
 			
-			$this->RadAccountModel->AddData(array(
+			$this->RadAccountModel->AddData(
+			array(
 				'username' => $_POST['mac'],
 				'password' => '',
 				'pname' => $this->session->userdata('prefix_name_id'),
@@ -61,6 +63,11 @@ class Student_page extends CI_Controller {
 				'dateregis' => date('Y-m-d H:i:s',time()),
 				'status' => 'นักศึกษา',
 				'location_id' => $this->session->userdata('location')
+			),
+			array(
+				'UserName' => $_POST['mac'],
+				'dev_type' => $_POST['device'],
+				'dev_net_type' => "Wireless"
 			));
 			
 
