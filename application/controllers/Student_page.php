@@ -93,7 +93,8 @@ class Student_page extends CI_Controller {
 
 	public function delete_mac()
 	{
-		$this->MacModel->DelData($this->session->userdata('id'),$_POST['del']);
+		$this->RadAccountModel->DeleteDataByIDCard($this->session->userdata('id'),$_POST['del']);
+		$this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
 		AddLog(	$this->session->userdata('id')." was deleting his/her registered mac address" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}

@@ -47,5 +47,14 @@ class RadAccountModel extends CI_Model {
         return $this->db->get('account')->result();
     }
 
+    function DeleteDataByIDCard($idcard,$username)
+    {
+        $this->db->db_select('radius');
+        $this->db->delete('account', array(
+            'idcard' => $idcard,
+            'username' => $username
+        )); 
+
+    }
 
 }

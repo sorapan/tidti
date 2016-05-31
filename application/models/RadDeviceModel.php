@@ -16,6 +16,15 @@ class RadDeviceModel extends CI_Model {
         return $this->db->get('device')->result();
     }
     
+    function DeleteDataByUsername($username)
+    {
+        $this->db->db_select('radius');
+        $this->db->delete('device', array(
+            'UserName' => $username
+        )); 
+
+    }
+    
 
 
 
