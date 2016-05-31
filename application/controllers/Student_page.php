@@ -14,6 +14,7 @@ class Student_page extends CI_Controller {
 		$this->load->model('Uoc_stdModel');
 		$this->load->model('MacModel');
 		$this->load->model('RadAccountModel');
+		$this->load->model('RadDeviceModel');
 				
 	}
 
@@ -21,7 +22,12 @@ class Student_page extends CI_Controller {
 	{
 		
 		$mac_registered_num = $this->MacModel->CountDataOnStdId($this->session->userdata('id'));
-		$macdata = $this->MacModel->FetchDataWithSTDID($this->session->userdata('id'));
+		//$macdata = $this->MacModel->FetchDataWithSTDID($this->session->userdata('id'));
+		$macdata = $this->RadAccountModel->GetDataByStudentId($this->session->userdata('id'));
+		foreach($macdata as $key=>$val)
+		{
+			$macdata[$key]->device = $this->RadDeviceModel->GetDataByMac($val->username)[0]->dev_type;
+		}
 		$this->load->view('student/index',array(
 			'mac_data' => $macdata,
 			'mac_num' => $mac_registered_num,
@@ -39,8 +45,7 @@ class Student_page extends CI_Controller {
 	}
 
 	public function add_mac()
-	{
-			
+	{			
 		if(!ctype_space($_POST['mac'])){
 			if($this->session->userdata('location') ){
 			

@@ -1,42 +1,22 @@
 <?php
 
-class DeviceModel extends CI_Model {
+class RadDeviceModel extends CI_Model {
 
     function __construct()
     {
         // Call the Model constructor
         parent::__construct();
     }
+    
+    function GetDataByMac($mac)
+    {
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->where('UserName',$mac);
+        return $this->db->get('device')->result();
+    }
+    
 
-    function Login(){
-        
-        $this->db->db_select('radius');
-        $this->db->select('*');
-        return $this->db->get('account')->result();
-        
-    }
-    
-    function AddData($data){
-        $this->db->db_select('radius');
-        $this->db->insert('account', $data); 
-    }
-    
-    function GetLocationDataByStudentId($studentid)
-    {
-        $this->db->db_select('radius');
-        $this->db->select('location_id');
-        $this->db->where('idcard',$studentid);
-        return $this->db->get('account')->result();
-    }
-    
-    function getDataByFirstAndLastName($firstname,$lastname)
-    {
-        $this->db->db_select('radius');
-        $this->db->select('*');
-        $this->db->where('firstname',$firstname);
-        $this->db->where('lastname',$lastname);
-        return $this->db->get('account')->result();
-    }
 
 
 }

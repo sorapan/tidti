@@ -8,25 +8,26 @@ class RadAccountModel extends CI_Model {
         parent::__construct();
     }
 
-    function Login(){
-        
+    function Login()
+    {   
         $this->db->db_select('radius');
         $this->db->select('*');
         return $this->db->get('account')->result();
-        
     }
     
     function AddData($account_data,$device_data)
     {
         $this->db->db_select('radius');
         $this->db->insert('account', $account_data); 
-        $this->db->insert('device', $device_data); 
-        
+        $this->db->insert('device', $device_data);   
     }
     
-    function GetDataByUserID($userid)
+    function GetDataByStudentId($studentid)
     {
         $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->where('idcard',$studentid);
+        return $this->db->get('account')->result();
     }
     
     function GetLocationDataByStudentId($studentid)
