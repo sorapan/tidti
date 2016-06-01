@@ -10,7 +10,16 @@
                 <h2 class="thaisans">อาจารย์ / บุคลากร</h2>
             </div>
             <div class="content thaisans">
-<?php //print_r($rad_test)?>
+
+                <!-- /////////////////////////////////////////////////////
+                ในกรณีที่ข้อมูลไม่ได้กรอก ไม่เรียบร้อย -->
+                <div class="alert">
+                    คุณยังไม่ได้กรอกข้อมูลส่วนตัว
+                </div>
+
+
+                <!-- /////////////////////////////////////////////////////
+                กรอกข้อมูลแล้ว หรือ มีข้อมูลอยู่แล้ว แสดงในส่วนนี้
                 <div class="name"><?=prefix_name_id($this->session->userdata('prefix_name_id'))?> <?= $this->session->userdata('firstname')?> <?= $this->session->userdata('lastname')?></div>
                 <div class="epassport">รหัส <?= $this->session->userdata('id')?></div>
                  <?php //fac_id($this->session->userdata('fac_id'))?>
@@ -20,6 +29,8 @@
                 <div class="major">สาขา <?=$this->session->userdata('citizen_id')?></div>
                 <div class="email">อีเมลล์ <?=$this->session->userdata('email')?></div>
                 <div class="tel">โทร <?=$this->session->userdata('tel')?></div>
+                ///////////////////////////////////////////////////// -->
+
                 <a href="student/signout" class="signout"><i class="fa fa-sign-out" title="ออกจากระบบ" aria-hidden="true"></i>&nbspออกจากระบบ</a>
             </div>
             <div class="footer">
@@ -51,25 +62,23 @@
 <?php
 if(!$this->session->userdata('location') ){
 ?>
-<div class="alert alert-danger" role="alert">** กรุณากรอกข้อมูลวิทยาเขตก่อนกรอก Mac Address **
+<div class="alert alert-danger" role="alert">** กรุณากรอกข้อมูลก่อนกรอก Mac Address **
 
-                            <h3 class="thaisans bold">วิทยาเขต</h3>
-                            <?php if($this->session->userdata('location')){?>
-                            <h3><?=$this->session->userdata('location')?></h3>
-                            <?php }?>
-
-                            <form method="post" action="student/submitlocation">
-                                <select name="location">
-                                    <option value="sk">สงขลา</option>
-                                    <option value="sai">ไสใหญ่</option>
-                                    <option value="tho">ทุ่งใหญ่</option>
-                                    <option value="ka">ขนอม</option>
-                                    <option value="tr">ตรัง</option>
-                                    <option value="rat">วิทยาลัยรัตภูมิ</option>
-                                </select>
-                                <button type="submit">ตกลง</button>
-                            </form>
-                            </div>
+                            <h3 class="thaisans bold">ข้อมูลส่วนตัว</h3>
+                             <div class="form-group">
+                                <div class="form-group form-inline">
+                                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
+                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="นามสกุล">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                 </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
+                                </div>
+                                <button type="submit" class="btn btn-danger">บันทึก</button>
+                              </div>
+</div>
 
 <?php
 }else{
