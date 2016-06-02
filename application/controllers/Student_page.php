@@ -119,6 +119,11 @@ class Student_page extends CI_Controller {
 		//$this->RadRegisterOnlineModel->DeleteDataByStudentID($this->session->userdata('id'));
 		$this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
 		$this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
+		
+		$device_data = $this->RadRegisterOnlineModel->GetDataByEpass('s'.$this->session->userdata('id'));
+		
+		if($device_data == null)$this->RadOnlineProfileModel->DeleteDataByStudentID($this->session->userdata('id'));
+		
 		AddLog(	$this->session->userdata('id')." was deleting his/her registered mac address" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
