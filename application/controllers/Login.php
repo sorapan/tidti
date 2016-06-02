@@ -56,7 +56,8 @@ class Login extends CI_Controller {
 						$this->session->set_userdata('citizen_id',$sd->CITIZEN_ID);
 					}
 					
-					$std_mac_registered = $this->RadAccountModel->getDataByFirstAndLastName( $this->session->userdata('firstname'),$this->session->userdata('lastname'));
+					//$std_mac_registered = $this->RadAccountModel->getDataByFirstAndLastName( $this->session->userdata('firstname'),$this->session->userdata('lastname'));
+					$std_mac_registered = $this->RadOnlineProfileModel->getDataByStudentID($this->session->userdata('id'));
 					
 					if(!empty($std_mac_registered))
 					{

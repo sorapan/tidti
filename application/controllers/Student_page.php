@@ -15,6 +15,7 @@ class Student_page extends CI_Controller {
 		$this->load->model('MacModel');
 		$this->load->model('RadAccountModel');
 		$this->load->model('RadDeviceModel');
+		$this->load->model('RadOnlineProfileModel');
 				
 	}
 
@@ -53,26 +54,41 @@ class Student_page extends CI_Controller {
 			// AddLog(	$this->session->userdata('id')." is adding mac address" );
 			// @header('Location: ' . $_SERVER['HTTP_REFERER']);
 			
+			$epass = 's'.$this->session->userdata('id');
+			$checkprofileexist = $this->RadOnlineProfileModel->CheckExistDataByStudentID($this->session->userdata('id'));
+			$profile_data = array();
+			
+			if($checkprofileexist){
+				$profile_data = array(
+					'username' => $epass,
+					'password' => null,
+					'pname' => $this->session->userdata('prefix_name_id'),
+					'firstname' => $this->session->userdata('firstname'),
+					'lastname' => $this->session->userdata('lastname'),
+					'idcard' => $this->session->userdata('id'),
+					'mailaddr' => $this->session->userdata('email'),
+					'discipline' => '',
+					'department' => '',
+					'year' => '-',
+					'dateregis' => date('Y-m-d H:i:s',time()),
+					'status' => 'นักศึกษา',
+					'location_id' => $this->session->userdata('location')
+				);
+			}else{
+				$profile_data = null;
+			}
+			
 			$this->RadAccountModel->AddData(
-			array(
-				'username' => $_POST['mac'],
-				'password' => '',
-				'pname' => $this->session->userdata('prefix_name_id'),
-				'firstname' => $this->session->userdata('firstname'),
-				'lastname' => $this->session->userdata('lastname'),
-				'idcard' => $this->session->userdata('id'),
-				'mailaddr' => $this->session->userdata('email'),
-				'discipline' => '',
-				'department' => '',
-				'year' => '',
-				'dateregis' => date('Y-m-d H:i:s',time()),
-				'status' => 'นักศึกษา',
-				'location_id' => $this->session->userdata('location')
-			),
+			$profile_data,
 			array(
 				'UserName' => $_POST['mac'],
 				'dev_type' => $_POST['device'],
 				'dev_net_type' => "Wireless"
+			),
+			array(
+				'username' => $epass,
+				'macaddress' => $_POST['mac'],
+				'status_on' => 'staff'
 			));
 			
 			@header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -82,6 +98,7 @@ class Student_page extends CI_Controller {
 				echo 'กรุณากรอกข้อมูลวิทยาเขต<br>';
 				echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
 			}
+			
 		}else{
 			
 			echo 'กรุณากรอก Mac Address<br>';
