@@ -10,6 +10,7 @@ class Login extends CI_Controller {
 		 	$this->load->model('Uoc_stdModel');
 		 	$this->load->model('RefModel');
 		 	$this->load->model('RadAccountModel');
+		 	$this->load->model('RadOnlineProfileModel');
 
 	 }
 
@@ -36,8 +37,7 @@ class Login extends CI_Controller {
 					//echo explode("s",$res[0]->usre)[1];
 
 					$std_data = $this->Uoc_stdModel->fetchDataById( explode("s",$res[0]->usre)[1] );
-					
-					
+										
 					//var_dump($std_data);
 
 					foreach($std_data as $sd)
@@ -66,8 +66,6 @@ class Login extends CI_Controller {
 					AddLog(	$this->session->userdata('id')." is logging in" );
 					//echo $this->session->userdata('email');
 					header("Location: student");
-
-
 
 				}
 		}
