@@ -76,6 +76,17 @@ if(!$this->session->userdata('location') ){
                                 <div class="form-group">
                                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
                                 </div>
+                                <div class="form-group">
+                                    <select name="location" class="form-control">
+                                        <option label="วิทยาเขต">วิทยาเขต</option>
+                                        <option value="sk">สงขลา</option>
+                                        <option value="sai">ไสใหญ่</option>
+                                        <option value="tho">ทุ่งใหญ่</option>
+                                        <option value="ka">ขนอม</option>
+                                        <option value="tr">ตรัง</option>
+                                        <option value="rat">วิทยาลัยรัตภูมิ</option>
+                                    </select>
+                                </div>
                                 <button type="submit" class="btn btn-danger">บันทึก</button>
                               </div>
 </div>
