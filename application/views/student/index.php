@@ -115,7 +115,7 @@ if(!$this->session->userdata('location') ){
 
                             <?php
                                 $data_exists = false;
-                                var_dump($mac_data);
+                                //var_dump($mac_data);
                                 foreach($mac_data as $data){
                                     if($data->device=='Notebook')
                                     {

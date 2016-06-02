@@ -15,5 +15,13 @@ class RadRegisterOnlineModel extends CI_Model {
         $this->db->where('username',$epass);
         return $this->db->get('register_online')->result();
     }
+    
+    function DeleteDataByMac($mac)
+    {
+        $this->db->db_select('radius');
+        $this->db->delete('register_online', array(
+            'macaddress' => $mac
+        )); 
+    }
 
 }

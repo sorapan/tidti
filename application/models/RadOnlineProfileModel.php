@@ -37,8 +37,16 @@ class RadOnlineProfileModel extends CI_Model {
         $this->db->where('idcard',$studentid);
         $data = $this->db->get('online_profile')->result();
         $res = !empty($data)?true:false;
-        return $res;
-        
+        return $res;  
+    }
+    
+    function DeleteDataByStudentID($studentid)
+    {
+        $this->db->db_select('radius');
+        $this->db->delete('online_profile', array(
+            'idcard' => $studentid
+        )); 
+
     }
     
 
