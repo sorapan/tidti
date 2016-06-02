@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `account` (
   KEY `status` (`status`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Dumping data for table radius.account: 4,634 rows
+-- Dumping data for table radius.account: 4,639 rows
 DELETE FROM `account`;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
 INSERT INTO `account` (`username`, `password`, `pname`, `firstname`, `lastname`, `idcard`, `mailaddr`, `discipline`, `department`, `year`, `dateregis`, `encryption`, `status`, `location_id`) VALUES
@@ -3720,8 +3720,7 @@ INSERT INTO `account` (`username`, `password`, `pname`, `firstname`, `lastname`,
 	('00-23-B1-E1-BB-2B', 'Liu;b=yp;kpakp', 'นาย', 'ยงยุธ', 'สุจิโต', '3-2002-00093-38-12', 'yongyut.s@rmutsv.ac.th', 'T014', 'de04', '-', '2013-01-01 16:02:42', 'Cleartext-Password', 'อาจารย์', 'sk'),
 	('78-59-5E-CF-5F-A7', 'Liu;b=yp;kpakp', 'นาย', 'นุจรีย์', 'โปฏกรัตน์', '3-9011-00048-17-71', '-', '-', 'st10', '-', '2013-01-02 10:24:47', 'Cleartext-Password', 'เจ้าหน้าที่', 'sk'),
 	('wuttichai.i', 'wuttichai', 'นาย', 'วุฒิชัย', 'อินทร์แก้ว', '0000000000001', 'wuttichai@hotmail.com', '-', 'UserLogin', '-', '2013-01-02 14:03:10', 'Cleartext-Password', 'UserNameLogin', 'sk'),
-	('78-6C-1C-D0-79-DF', 'Liu;b=yp;kpakp', 'นางสาว', 'สร้อยสิน', 'แก้วหนู', '3-9004-00368-02-91', 'soysin.k@rmutsv.ac.th', 'หอพักหญิง', 'st16', '-', '2013-01-03 09:35:33', 'Cleartext-Password', 'เจ้าหน้าที่', 'sk');
-INSERT INTO `account` (`username`, `password`, `pname`, `firstname`, `lastname`, `idcard`, `mailaddr`, `discipline`, `department`, `year`, `dateregis`, `encryption`, `status`, `location_id`) VALUES
+	('78-6C-1C-D0-79-DF', 'Liu;b=yp;kpakp', 'นางสาว', 'สร้อยสิน', 'แก้วหนู', '3-9004-00368-02-91', 'soysin.k@rmutsv.ac.th', 'หอพักหญิง', 'st16', '-', '2013-01-03 09:35:33', 'Cleartext-Password', 'เจ้าหน้าที่', 'sk'),
 	('B0-AA-36-26-87-1C', 'Liu;b=yp;kpakp', 'นาย', 'กมล', 'พลสวัสดิ์', '1-9001-00080-27-41', '-', '-', 'st02', '-', '2013-01-03 15:33:58', 'Cleartext-Password', 'เจ้าหน้าที่', 'sk'),
 	('00-18-F8-28-9A-BE', 'Liu;b=yp;kpakp', 'นาย', 'นราวัฒน์', 'เลิศวิทยาวิวัฒน์', '3-9098-00363-67-61', '-', 'T026', 'de10', '-', '2013-01-04 15:02:56', 'Cleartext-Password', 'อาจารย์', 'sk'),
 	('60-21-C0-4B-FA-C1', 'Liu;b=yp;kpakp', 'นาย', 'ยงยุธ', 'สุจิโต', '3-2002-00093-38-91', '-', 'T014', 'de04', '-', '2013-01-24 10:59:48', 'Cleartext-Password', 'อาจารย์', 'sk'),
@@ -4676,7 +4675,12 @@ INSERT INTO `account` (`username`, `password`, `pname`, `firstname`, `lastname`,
 	('saiyai176', '01839542', '--', 'saiyai176', '--', '--', '--', '--', 'gernerate', '2016', '2016-04-25 10:19:55', 'Cleartext-Password', 'บุคคลทั่วไป', 'sk'),
 	('saiyai177', '07284316', '--', 'saiyai177', '--', '--', '--', '--', 'gernerate', '2016', '2016-04-25 10:19:55', 'Cleartext-Password', 'บุคคลทั่วไป', 'sk'),
 	('saiyai178', '95612840', '--', 'saiyai178', '--', '--', '--', '--', 'gernerate', '2016', '2016-04-25 10:19:55', 'Cleartext-Password', 'บุคคลทั่วไป', 'sk'),
-	('28-ED-6A-1A-0C-F7', 'Liu;b=yp;kpakp', 'นาย', 'ศิรินันท์', 'จิรัฐวุฒินันต์', '157405750034-3', 'lingkwang26@gmail.com', 'de05T028', 'de05', '2557', '2016-04-26 11:03:23', 'Cleartext-Password', 'นักศึกษา : ปกติ', 'sk');
+	('28-ED-6A-1A-0C-F7', 'Liu;b=yp;kpakp', 'นาย', 'ศิรินันท์', 'จิรัฐวุฒินันต์', '157405750034-3', 'lingkwang26@gmail.com', 'de05T028', 'de05', '2557', '2016-04-26 11:03:23', 'Cleartext-Password', 'นักศึกษา : ปกติ', 'sk'),
+	('sdsd', '', '003', '003', '003', '003', '003', '', '', '', '2016-05-18 04:55:27', '', 'นักศึกษา', 'sk'),
+	('wqee', '', '003', '003', '003', '003', '003', '', '', '', '2016-05-18 05:00:12', '', 'นักศึกษา', 'sk'),
+	('sss', '', '003', '003', '003', '003', '003', '', '', '', '2016-05-18 05:00:23', '', 'นักศึกษา', 'sk'),
+	('rrr', '', '003', 'อาคม', 'กีบเสน', '155404130050', 'chbj;;;,[][\'fyyii', '', '', '', '2016-05-31 13:50:43', '', 'นักศึกษา', 'sk'),
+	('dfdf', '', '003', 'อาคม', 'กีบเสน', '155404130050', 'chbj;;;,[][\'fyyii', '', '', '', '2016-05-31 13:54:44', '', 'นักศึกษา', 'sk');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 
 
@@ -4688,9 +4692,9 @@ CREATE TABLE IF NOT EXISTS `device` (
   `dev_net_type` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `UserName` (`UserName`)
-) ENGINE=MyISAM AUTO_INCREMENT=12737 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12743 DEFAULT CHARSET=utf8;
 
--- Dumping data for table radius.device: 3,471 rows
+-- Dumping data for table radius.device: 3,473 rows
 DELETE FROM `device`;
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
 INSERT INTO `device` (`id`, `UserName`, `dev_type`, `dev_net_type`) VALUES
@@ -8164,8 +8168,57 @@ INSERT INTO `device` (`id`, `UserName`, `dev_type`, `dev_net_type`) VALUES
 	(12733, '9C-3A-AF-DB-48-B2', 'Phone', 'Wireless'),
 	(12734, '1C-7B-21-D8-33-9F', 'Phone', 'Wireless'),
 	(12735, 'F4-42-8F-0C-3C-3A', 'Phone', 'Wireless'),
-	(12736, '0C-D7-46-96-16-6D', '', '');
+	(12736, '0C-D7-46-96-16-6D', '', ''),
+	(12739, 'rrr', 'Phone', 'Wireless'),
+	(12740, 'dfdf', 'Tablet', 'Wireless');
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
+
+
+-- Dumping structure for table radius.groups
+CREATE TABLE IF NOT EXISTS `groups` (
+  `gid` int(11) NOT NULL AUTO_INCREMENT,
+  `gname` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `gdesc` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `gupload` int(11) NOT NULL DEFAULT '0',
+  `gdownload` int(11) NOT NULL DEFAULT '0',
+  `gexpire` varchar(25) NOT NULL DEFAULT '0000-00-00T00:00:00',
+  `glimited` int(11) NOT NULL DEFAULT '0',
+  `gstatus` int(11) NOT NULL DEFAULT '0',
+  `location_id` varchar(5) NOT NULL,
+  PRIMARY KEY (`gid`),
+  KEY `gname` (`gname`),
+  KEY `gdesc` (`gdesc`)
+) ENGINE=MyISAM AUTO_INCREMENT=2246 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table radius.groups: 24 rows
+DELETE FROM `groups`;
+/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
+INSERT INTO `groups` (`gid`, `gname`, `gdesc`, `gupload`, `gdownload`, `gexpire`, `glimited`, `gstatus`, `location_id`) VALUES
+	(2190, 'group20110524102433', 'บ้านเดี่ยว', 50, 50, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2169, 'group20100202133610', 'ARIT_WiFi', 100, 100, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2168, 'group20100202133504', 'บุคคลทั่วไป', 50, 50, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2167, 'group20100202133413', 'เจ้าหน้าที่', 100, 100, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2166, 'group20100202133332', 'อาจารย์', 100, 100, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2165, 'group20100202133149', 'นักศึกษา : ปกติ', 50, 50, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2170, 'group20100202205642', 'นักศึกษา : สมทบ', 50, 50, '0000-00-00T00:00:00 ', 0, 0, 'sk'),
+	(2171, 'group20100203095708', 'นักศึกษา : แลกเปลี่ยน', 50, 50, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2178, 'group20100316140829', 'นักศึกษาฝึกงาน', 50, 50, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2183, 'group20100601092757', 'เจ้าหน้าที่สารสนเทศ', 50, 50, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2163, 'group20100201132041', 'ห้องอบรม', 50, 50, '0000-00-00T00:00:00 ', 0, 0, 'sk'),
+	(2184, 'group20100730122620', 'ลูกจ้างชั่วคราว', 50, 50, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2186, 'group20110114093036', 'หอพัก43 ยูนิต', 100, 100, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2192, 'group20110621135722', 'E_Passport', 50, 50, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2187, 'group20110114093115', 'หอพัก 16 ยูนิต', 100, 100, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2188, 'group20110114093146', 'หอพักหญิง', 100, 100, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2189, 'group20110224144430', 'หอพัก30 ยูนิต', 50, 50, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2241, 'group20150325132906', 'งานสารสนเทศ', 30, 30, '0000-00-00T00:00:00', 0, 0, 'ka'),
+	(2240, 'group20150325132849', 'งานสารบัญ', 50, 50, '0000-00-00T00:00:00', 0, 0, 'ka'),
+	(2242, 'group20150325133024', 'งานสัตวศาสตร์', 50, 60, '0000-00-00T00:00:00', 0, 0, 'tr'),
+	(2243, 'group20150325133053', 'งานเพาะชำ', 50, 10, '0000-00-00T00:00:00', 0, 0, 'tr'),
+	(2244, 'group20151211101510', 'อาจารย์เกษียณ', 0, 0, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2211, 'group20110922095929', 'อาจารย์จ้างสอน', 40, 50, '0000-00-00T00:00:00', 0, 0, 'sk'),
+	(2245, 'group20160121141230', 'เจ้าหน้าที่.', 0, 0, '0000-00-00T00:00:00', 0, 0, 'ka');
+/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 
 
 -- Dumping structure for table radius.location_peple
@@ -8187,6 +8240,38 @@ INSERT INTO `location_peple` (`id`, `location_id`, `location_name`) VALUES
 	(1, 'sk', 'วิทยาเขต สงขลา'),
 	(6, 'rat', 'วิทยาลัยรัตภูมิ');
 /*!40000 ALTER TABLE `location_peple` ENABLE KEYS */;
+
+
+-- Dumping structure for table radius.online_profile
+CREATE TABLE IF NOT EXISTS `online_profile` (
+  `username` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Cleartext-Password',
+  `pname` varchar(7) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `firstname` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `idcard` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '0000000000000',
+  `mailaddr` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `discipline` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `department` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `year` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `dateregis` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `encryption` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `location_id` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`username`),
+  KEY `username` (`username`),
+  KEY `department` (`department`),
+  KEY `discipline` (`discipline`),
+  KEY `status` (`status`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- Dumping data for table radius.online_profile: 2 rows
+DELETE FROM `online_profile`;
+/*!40000 ALTER TABLE `online_profile` DISABLE KEYS */;
+INSERT INTO `online_profile` (`username`, `password`, `pname`, `firstname`, `lastname`, `idcard`, `mailaddr`, `discipline`, `department`, `year`, `dateregis`, `encryption`, `status`, `location_id`) VALUES
+	('11-11-11-11-11-11', 'Liu;b=yp;kpakp', 'นาย', 'กนกพล', 'เมืองรักษ์', '3800800567142', 'kanokpon.m@rmutsv.ac.th', '107', 'st12', '-', '2016-05-11 15:00:29', 'Cleartext-Password', 'เจ้าหน้าที่สารสนเทศ', 'sk'),
+	('11-11-11-11-22-22', 'Liu;b=yp;kpakp', 'นาย', 'กนกพล', 'เมืองรักษ์', '3800800567142', 'kanokpon.m@rmutsv.ac.th', '107', 'st12', '-', '2016-05-11 15:04:28', 'Cleartext-Password', 'เจ้าหน้าที่สารสนเทศ', 'sk');
+/*!40000 ALTER TABLE `online_profile` ENABLE KEYS */;
 
 
 -- Dumping structure for table radius.radcheck
@@ -15550,7 +15635,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table radius.staff: 18 rows
+-- Dumping data for table radius.staff: 26 rows
 DELETE FROM `staff`;
 /*!40000 ALTER TABLE `staff` DISABLE KEYS */;
 INSERT INTO `staff` (`id`, `staff_id`, `staff_name`, `location_id`) VALUES
@@ -15571,7 +15656,15 @@ INSERT INTO `staff` (`id`, `staff_id`, `staff_name`, `location_id`) VALUES
 	(15, 'st15', 'คณะวิศวกรรมศาสตร์', 'sk'),
 	(16, 'st16', 'คณะศิลปศาสตร์', 'sk'),
 	(17, 'st17', 'คณะสถาปัตยกรรมศาสตร์', 'sk'),
-	(18, 'st18', 'คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี', 'sk');
+	(18, 'st18', 'คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี', 'sk'),
+	(20, 'st19', 'งานสารสนเทศ', 'rat'),
+	(21, 'st20', 'งานประกันคุณภาพ', 'rat'),
+	(22, 'st21', 'งานทะเบียนและวัดผล', 'rat'),
+	(23, 'st22', 'งานวิจัยและบริการวิชาการ', 'rat'),
+	(24, 'st23', 'งานนโยบายและแผน', 'rat'),
+	(25, 'st24', 'งานบุคลากร', 'rat'),
+	(26, 'st25', 'สำนักงานวิทยาเขตตรัง', 'tr'),
+	(32, 'st26', 'วิทยาลัยอุตสาหกรรมและการจัดการ', 'ka');
 /*!40000 ALTER TABLE `staff` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
