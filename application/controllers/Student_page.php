@@ -16,6 +16,7 @@ class Student_page extends CI_Controller {
 		$this->load->model('RadAccountModel');
 		$this->load->model('RadDeviceModel');
 		$this->load->model('RadOnlineProfileModel');
+		$this->load->model('RadRegisterOnlineModel');
 				
 	}
 
@@ -24,10 +25,11 @@ class Student_page extends CI_Controller {
 		
 		$mac_registered_num = $this->MacModel->CountDataOnStdId($this->session->userdata('id'));
 		//$macdata = $this->MacModel->FetchDataWithSTDID($this->session->userdata('id'));
-		$macdata = $this->RadAccountModel->GetDataByStudentId($this->session->userdata('id'));
+		//$macdata = $this->RadOnlineProfileModel->getDataByStudentID($this->session->userdata('id'));
+		$macdata = $this->RadRegisterOnlineModel->GetDataByEpass('s'.$this->session->userdata('id'));
 		foreach($macdata as $key=>$val)
 		{
-			$macdata[$key]->device = $this->RadDeviceModel->GetDataByMac($val->username)[0]->dev_type;
+			$macdata[$key]->device = $this->RadDeviceModel->GetDataByMac($val->macaddress)[0]->dev_type;
 		}
 		$this->load->view('student/index',array(
 			'mac_data' => $macdata,
@@ -39,7 +41,8 @@ class Student_page extends CI_Controller {
 	
 	public function submit_location()
 	{
-		if(isset($_POST['location'])){
+		if(isset($_POST['location']))
+		{
 			$this->session->set_userdata('location',$_POST['location']);
 			@header('Location: ' . $_SERVER['HTTP_REFERER']);
 		}
@@ -58,10 +61,11 @@ class Student_page extends CI_Controller {
 			$checkprofileexist = $this->RadOnlineProfileModel->CheckExistDataByStudentID($this->session->userdata('id'));
 			$profile_data = array();
 			
-			if($checkprofileexist){
+			if(!$checkprofileexist)
+			{
 				$profile_data = array(
 					'username' => $epass,
-					'password' => null,
+					//'password' => null,
 					'pname' => $this->session->userdata('prefix_name_id'),
 					'firstname' => $this->session->userdata('firstname'),
 					'lastname' => $this->session->userdata('lastname'),
@@ -74,11 +78,13 @@ class Student_page extends CI_Controller {
 					'status' => 'นักศึกษา',
 					'location_id' => $this->session->userdata('location')
 				);
-			}else{
+			}
+			else
+			{
 				$profile_data = null;
 			}
 			
-			$this->RadAccountModel->AddData(
+			$this->RadOnlineProfileModel->AddData(
 			$profile_data,
 			array(
 				'UserName' => $_POST['mac'],
@@ -93,7 +99,6 @@ class Student_page extends CI_Controller {
 			
 			@header('Location: ' . $_SERVER['HTTP_REFERER']);
 			
-
 			}else{
 				echo 'กรุณากรอกข้อมูลวิทยาเขต<br>';
 				echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';

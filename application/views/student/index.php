@@ -115,7 +115,7 @@ if(!$this->session->userdata('location') ){
 
                             <?php
                                 $data_exists = false;
-                                //var_dump($mac_data);
+                                var_dump($mac_data);
                                 foreach($mac_data as $data){
                                     if($data->device=='Notebook')
                                     {
@@ -128,11 +128,11 @@ if(!$this->session->userdata('location') ){
 
                                 <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->username?>" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->macaddress?>" id="">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="laptop" class="laptop"><i class="fa fa-laptop active"></i></label>
                                     </div>
-                                    <input type="hidden" name="del" value="<?=$data->username?>">
+                                    <input type="hidden" name="del" value="<?=$data->macaddress?>">
                                 </form>
 
                             <?php
@@ -171,11 +171,11 @@ if(!$this->session->userdata('location') ){
 
                                 <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->username?>" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->macaddress?>" id="">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="mobile" class="mobile"><i class="fa fa-mobile active"></i></label>
                                     </div>
-                                    <input type="hidden" name="del" value="<?=$data->username?>">
+                                    <input type="hidden" name="del" value="<?=$data->macaddress?>">
                                 </form>
 
                             <?php
@@ -215,7 +215,7 @@ if(!$this->session->userdata('location') ){
                                 if($data->device=='Tablet')
                                 {
                                     $data_exists = true;
-                                    $data_mac = $data->username;
+                                    $data_mac = $data->macaddress;
                                     break;
                                 }
                             }
@@ -224,11 +224,11 @@ if(!$this->session->userdata('location') ){
 
                                 <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->username?>" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->macaddress?>" id="">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="tablet" class="tablet"><i class="fa fa-tablet active"></i></label>
                                     </div>
-                                    <input type="hidden" name="del" value="<?=$data->username?>">
+                                    <input type="hidden" name="del" value="<?=$data->macaddress?>">
                                 </form>
 
                             <?php

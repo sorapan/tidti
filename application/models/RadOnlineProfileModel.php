@@ -22,7 +22,10 @@ class RadOnlineProfileModel extends CI_Model {
     function AddData($profile_data,$device_data,$register_data)
     {
         $this->db->db_select('radius');
-        if($profile_data!==null)$this->db->insert('online_profile', $profile_data); 
+        if($profile_data!=null)
+        {
+            $this->db->insert('online_profile', $profile_data);
+        } 
         $this->db->insert('device', $device_data); 
         $this->db->insert('register_online', $register_data); 
     }

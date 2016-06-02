@@ -24,8 +24,5 @@ class RadDeviceModel extends CI_Model {
         )); 
 
     }
-    
-
-
 
 }
