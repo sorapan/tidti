@@ -21,23 +21,23 @@ function AddLog($mes)
 
 function prefix_name_id($id)
 {
-    
-    switch ($id) 
+
+    switch ($id)
     {
         case '003':
             return 'นาย';
             break;
-        
+
         case '004':
             return 'นางสาว';
             break;
     }
-    
+
 }
 
 function fac_id($id)
 {
-    switch ($id) 
+    switch ($id)
     {
         case '00004':
             return 'วิศวกรรมศาสตร์';
@@ -59,7 +59,7 @@ function fac_id($id)
 
 function program_id($id)
 {
-    switch ($id) 
+    switch ($id)
     {
         case '000014':
             return 'วิศวกรรมคอมพิวเตอร์';
@@ -124,3 +124,18 @@ function header_url()
     </head>';
 }
 
+////////////// switch case show device icon
+function switchIcon($dev){
+    switch ($dev) {
+        case 'Phone':
+            return 'mobile';
+            break;
+        case 'Notebook':
+            return 'laptop';
+            break;
+
+        default:
+            return false;
+            break;
+    }
+}
