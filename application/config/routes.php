@@ -70,3 +70,4 @@ $route['admin'] = 'admin';
 // $route['admin/log'] = 'admin';
 $route['admin/login'] = 'admin/login';
 $route['admin/mac'] = 'admin/mac';
+$route['admin/user'] = 'admin/user';

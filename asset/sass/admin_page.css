@@ -2,60 +2,162 @@
   text-align: center; }
 
 .admin {
+  right: 0;
+  left: 0;
   top: 0;
   bottom: 0;
   position: absolute; }
+  .admin.wrap {
+    min-width: 1200px;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute; }
   .admin > .nav {
     height: 40px;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    background-color: #555; }
+    background-color: #004e66;
+    font-size: 1.6em;
+    text-align: right;
+    overflow: hidden;
+    line-height: 40px; }
+    .admin > .nav > .secret {
+      color: #EFFFF9; }
+    .admin > .nav > .username {
+      color: #ff5f2e;
+      padding: 0 15px;
+      height: 40px;
+      line-height: 30px;
+      vertical-align: middle;
+      display: inline-block; }
+    .admin > .nav > .logout {
+      padding: 0 10px;
+      border: none;
+      background-color: #ff5f2e;
+      color: #004e66; }
+      .admin > .nav > .logout:hover {
+        background-color: #d9e1e8; }
   .admin > .sidebar {
     top: 40px;
     bottom: 0;
     position: absolute;
     background-color: #004e66; }
-  .admin > .content {
-    padding-left: 300px;
-    padding-top: 40px;
-    width: 100%;
-    float: left; }
   .admin .menus > .logo {
     text-align: center;
-    font-size: 2em;
+    font-size: 1.7em;
     color: #ff5f2e; }
-  .admin .menus > li {
+  .admin .menus > a {
+    text-decoration: none; }
+  .admin .menus > a li {
     padding: 0 10px;
-    font-size: 2em;
+    font-size: 1.7em;
     color: #FFFFF3; }
-    .admin .menus > li > span {
+    .admin .menus > a li > span {
       width: 50px;
       vertical-align: middle;
       display: inline-block;
       padding: 0 10px; }
-    .admin .menus > li:hover {
+    .admin .menus > a li:hover {
       cursor: pointer;
       color: #fff;
       background-color: #c1c1c1; }
-    .admin .menus > li.active, .admin .menus > li.active:hover {
+    .admin .menus > a li.active, .admin .menus > a li.active:hover {
       background-color: #fff;
       color: #004e66; }
-  .admin > .content > .mac_list {
+  .admin > .signin {
+    width: 400px;
+    background-color: #d9e1e8;
+    padding: 30px 60px;
+    box-shadow: 0 3px 0 0 #004e66;
+    margin: 0 auto;
+    margin-top: 150px; }
+    .admin > .signin > .header {
+      margin-bottom: 30px;
+      text-align: center; }
+      .admin > .signin > .header > h2, .admin > .signin > .header h3 {
+        font-size: 3em;
+        margin: 0;
+        color: #004e66; }
+      .admin > .signin > .header > h2 {
+        padding-bottom: 2px;
+        box-shadow: 0 2px 0 0 #004e66; }
+    .admin > .signin > form {
+      padding: 0 0 20px 0; }
+      .admin > .signin > form > .input {
+        margin-top: 20px; }
+        .admin > .signin > form > .input > label {
+          color: #004e66;
+          font-size: 1.4em; }
+        .admin > .signin > form > .input > input {
+          width: 100%;
+          height: 40px;
+          border: 2px solid #ff5f2e;
+          padding-left: 15px; }
+      .admin > .signin > form > .submit {
+        padding: 15px 0; }
+        .admin > .signin > form > .submit > button {
+          height: 40px;
+          width: 100px;
+          background-color: #004e66;
+          border: 2px solid #004e66;
+          color: #fff; }
+  .admin > .content {
     width: 100%;
-    min-width: 960px;
     padding: 15px 0;
+    padding-left: 250px;
+    padding-top: 40px;
+    padding-right: 15px;
     float: left; }
-    .admin > .content > .mac_list > ._1, .admin > .content > .mac_list ._2 {
+  .admin > .content.mac_list > ._1, .admin > .content.mac_list ._2 {
+    float: left; }
+  .admin > .content.mac_list > ._1 {
+    width: 100%; }
+    .admin > .content.mac_list > ._1 > .search {
+      margin: 25px 0;
+      height: 35px;
       float: left; }
-    .admin > .content > .mac_list > ._1 {
-      width: 75%;
-      min-width: 700px; }
-      .admin > .content > .mac_list > ._1 > .search {
-        padding: 0 0 25px 0;
+      .admin > .content.mac_list > ._1 > .search > .input, .admin > .content.mac_list > ._1 > .search > .button {
+        height: 100%;
+        font-size: 1.5em;
         float: left; }
-    .admin > .content > .mac_list > ._2 {
-      padding: 0 0 0 30px;
-      width: 25%;
-      min-width: 200px; }
+      .admin > .content.mac_list > ._1 > .search > .input {
+        width: 300px;
+        margin-right: 5px;
+        padding: 5px;
+        border: 2px solid #ff5f2e;
+        background-color: #fff; }
+      .admin > .content.mac_list > ._1 > .search > .button {
+        background-color: #fff;
+        border: 2px solid #004E66;
+        color: #004E66; }
+    .admin > .content.mac_list > ._1 > table > thead {
+      background-color: #d9e1e8; }
+      .admin > .content.mac_list > ._1 > table > thead > tr th {
+        border: none;
+        color: #004e66; }
+      .admin > .content.mac_list > ._1 > table > thead > tr th:first-child {
+        background-color: #004e66;
+        color: #EFFFF9;
+        width: 50px; }
+    .admin > .content.mac_list > ._1 > table > tbody > tr {
+      color: #004e66; }
+      .admin > .content.mac_list > ._1 > table > tbody > tr > td {
+        vertical-align: middle; }
+      .admin > .content.mac_list > ._1 > table > tbody > tr td:first-child, .admin > .content.mac_list > ._1 > table > tbody > tr td:last-child, .admin > .content.mac_list > ._1 > table > tbody > tr td:nth-child(2) {
+        text-align: center; }
+      .admin > .content.mac_list > ._1 > table > tbody > tr td:first-child {
+        font-size: 2em; }
+      .admin > .content.mac_list > ._1 > table > tbody > tr td:last-child > button {
+        border: 1px solid #ff5f2e;
+        background-color: transparent;
+        color: #ff5f2e;
+        font-size: 1.2em;
+        padding: 2px 8px; }
+  .admin > .content.mac_list > ._2 {
+    padding: 0 0 0 30px;
+    width: 25%;
+    min-width: 200px; }

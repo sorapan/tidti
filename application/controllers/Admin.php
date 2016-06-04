@@ -11,6 +11,7 @@ class Admin extends CI_Controller {
 		 $this->load->model('Uoc_stdModel');
 		 $this->load->model('Admin_dataModel');
 		 $this->load->model('MacModel');
+		 $this->load->model('DeviceModel');
 
 	}
 
@@ -22,21 +23,21 @@ class Admin extends CI_Controller {
 
 	public function mac()
 	{
-		if(isset($_GET['qry']))
-		{
-				
-			$this->load->view('admin/Macaddress',array(
-				'qry' => $this->MacModel->LikeStudentID($_GET['qry'])
-			));
-			
-		}
-		else $this->load->view('admin/Macaddress');
+
+		$data = $this->DeviceModel->SelectDevice();
+		// $data= '';
+		$this->load->view('admin/admin_mac_list',array('data'=> $data));
 	}
-	
+
 
 	public function login()
 	{
-		$this->load->view('admin/login');
+		$this->load->view('admin/admin_login');
+	}
+
+	public function user()
+	{
+		$this->load->view('admin/admin_user');
 	}
 
 	function signin($user,$pass){
