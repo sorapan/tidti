@@ -60,11 +60,12 @@
                         <div class="add-device">
                             <!--<div class="alert">alert</div>-->
 <?php
-if(!$this->session->userdata('location') ){
+if(!$this->session->userdata('detail_exists') ){
 ?>
 <div class="alert alert-danger" role="alert">** กรุณากรอกข้อมูลก่อนกรอก Mac Address **
 
                             <h3 class="thaisans bold">ข้อมูลส่วนตัว</h3>
+                            <h3 class="thaisans bold">- <?=$this->session->userdata('username');?></h3>
                              <div class="form-group">
                                 <div class="form-group form-inline">
                                     <input type="email" class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
@@ -92,38 +93,9 @@ if(!$this->session->userdata('location') ){
 </div>
 
 <?php
-}else{
-?>
-    <div class="alert alert-success" role="alert">วิทยาเขต <?php
-
-    switch ($this->session->userdata('location')) {
-        case 'sk':
-            echo "สงขลา";
-            break;
-        case 'sai':
-            echo "ไสใหญ่";
-            break;
-        case 'tho':
-            echo "ทุ่งใหญ่";
-            break;
-        case 'ka':
-            echo "ขนอม";
-            break;
-        case 'tr':
-            echo "ตรัง";
-            break;
-        case 'rat':
-            echo "วิทยาลัยรัตภูมิ";
-            break;
-
-    }
-
-    ?></div>
-
-
-<?php
 }
 ?>
+
 
                              <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">

@@ -15,6 +15,14 @@ class RadOnlineProfileModel extends CI_Model {
         $this->db->where('idcard',$studentid);
         return $this->db->get('online_profile')->result();
     }
+
+        function getDataByUsername($username)
+    {
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->where('username',$username);
+        return $this->db->get('online_profile')->result();
+    }
     
     /*
     Use multiple databases in this method
