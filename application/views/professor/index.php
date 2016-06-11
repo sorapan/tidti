@@ -69,7 +69,7 @@ if(!$this->session->userdata('detail_exists') ){
                              <form method="post" action="submit_detail" class="form-group">
                                 <div class="form-group form-inline">
                                     <select class="form-control" name="pname">
-                                        <option disabled selected>*คำนำหน้า</option>
+                                        <option value="" disabled selected>*คำนำหน้า</option>
                                         <option value="นาย">นาย</option>
                                         <option value="นางสาว">นางสาว</option>
                                         <option value="นาง">นาง</option>
@@ -85,19 +85,19 @@ if(!$this->session->userdata('detail_exists') ){
                                 </div>
                                 <div class="form-group form-inline">
                                     <select class="form-control" name="department">
-                                        <option disabled selected>*คณะ</option>
+                                        <option value="" disabled selected>*คณะ</option>
                                         <option value="นาย">นาย</option>
                                         <option value="นางสาว">นางสาว</option>
                                         <option value="นาง">นาง</option>
                                     </select>
                                     <select class="form-control" name="branch">
-                                        <option disabled selected>*สาขา</option>
+                                        <option value="" disabled selected>*สาขา</option>
                                         <option value="นาย">นาย</option>
                                         <option value="นางสาว">นางสาว</option>
                                         <option value="นาง">นาง</option>
                                     </select>
                                     <select class="form-control" name="group">
-                                        <option disabled selected>*กลุ่ม</option>
+                                        <option value="" disabled selected>*กลุ่ม</option>
                                         <option value="นาย">นาย</option>
                                         <option value="นางสาว">นางสาว</option>
                                         <option value="นาง">นาง</option>
