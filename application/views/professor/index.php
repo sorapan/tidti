@@ -66,16 +66,42 @@ if(!$this->session->userdata('detail_exists') ){
 
                             <h3 class="thaisans bold">ข้อมูลส่วนตัว</h3>
                             <h3 class="thaisans bold">- <?=$this->session->userdata('username');?></h3>
-                             <div class="form-group">
+                             <form method="post" action="submit_detail" class="form-group">
                                 <div class="form-group form-inline">
-                                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
-                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="นามสกุล">
+                                    <select class="form-control" name="pname">
+                                        <option disabled selected>*คำนำหน้า</option>
+                                        <option value="นาย">นาย</option>
+                                        <option value="นางสาว">นางสาว</option>
+                                        <option value="นาง">นาง</option>
+                                    </select>
+                                    <input type="text" name="firstname" class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
+                                    <input type="text" name="lastname" class="form-control" id="exampleInputPassword3" placeholder="นามสกุล">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                                  </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
+                                    <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
+                                </div>
+                                <div class="form-group form-inline">
+                                    <select class="form-control" name="department">
+                                        <option disabled selected>*คณะ</option>
+                                        <option value="นาย">นาย</option>
+                                        <option value="นางสาว">นางสาว</option>
+                                        <option value="นาง">นาง</option>
+                                    </select>
+                                    <select class="form-control" name="branch">
+                                        <option disabled selected>*สาขา</option>
+                                        <option value="นาย">นาย</option>
+                                        <option value="นางสาว">นางสาว</option>
+                                        <option value="นาง">นาง</option>
+                                    </select>
+                                    <select class="form-control" name="group">
+                                        <option disabled selected>*กลุ่ม</option>
+                                        <option value="นาย">นาย</option>
+                                        <option value="นางสาว">นางสาว</option>
+                                        <option value="นาง">นาง</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <select name="location" class="form-control">
@@ -89,7 +115,7 @@ if(!$this->session->userdata('detail_exists') ){
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-danger">บันทึก</button>
-                              </div>
+                              </form>
 </div>
 
 <?php
