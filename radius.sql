@@ -4692,9 +4692,9 @@ CREATE TABLE IF NOT EXISTS `device` (
   `dev_net_type` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `UserName` (`UserName`)
-) ENGINE=MyISAM AUTO_INCREMENT=12743 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12749 DEFAULT CHARSET=utf8;
 
--- Dumping data for table radius.device: 3,473 rows
+-- Dumping data for table radius.device: 3,475 rows
 DELETE FROM `device`;
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
 INSERT INTO `device` (`id`, `UserName`, `dev_type`, `dev_net_type`) VALUES
@@ -8169,8 +8169,10 @@ INSERT INTO `device` (`id`, `UserName`, `dev_type`, `dev_net_type`) VALUES
 	(12734, '1C-7B-21-D8-33-9F', 'Phone', 'Wireless'),
 	(12735, 'F4-42-8F-0C-3C-3A', 'Phone', 'Wireless'),
 	(12736, '0C-D7-46-96-16-6D', '', ''),
+	(12747, 'aaa', 'Notebook', 'Wireless'),
 	(12739, 'rrr', 'Phone', 'Wireless'),
-	(12740, 'dfdf', 'Tablet', 'Wireless');
+	(12740, 'dfdf', 'Tablet', 'Wireless'),
+	(12748, '00aa', 'Phone', 'Wireless');
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
 
 
@@ -8258,6 +8260,10 @@ CREATE TABLE IF NOT EXISTS `online_profile` (
   `encryption` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `status` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `location_id` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `prof_department` varchar(200) NOT NULL,
+  `prof_branch` varchar(200) NOT NULL,
+  `staff_group` varchar(200) NOT NULL,
+  `staff_org` varchar(200) NOT NULL,
   PRIMARY KEY (`username`),
   KEY `username` (`username`),
   KEY `department` (`department`),
@@ -8265,12 +8271,13 @@ CREATE TABLE IF NOT EXISTS `online_profile` (
   KEY `status` (`status`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Dumping data for table radius.online_profile: 2 rows
+-- Dumping data for table radius.online_profile: 3 rows
 DELETE FROM `online_profile`;
 /*!40000 ALTER TABLE `online_profile` DISABLE KEYS */;
-INSERT INTO `online_profile` (`username`, `password`, `pname`, `firstname`, `lastname`, `idcard`, `mailaddr`, `discipline`, `department`, `year`, `dateregis`, `encryption`, `status`, `location_id`) VALUES
-	('11-11-11-11-11-11', 'Liu;b=yp;kpakp', 'นาย', 'กนกพล', 'เมืองรักษ์', '3800800567142', 'kanokpon.m@rmutsv.ac.th', '107', 'st12', '-', '2016-05-11 15:00:29', 'Cleartext-Password', 'เจ้าหน้าที่สารสนเทศ', 'sk'),
-	('11-11-11-11-22-22', 'Liu;b=yp;kpakp', 'นาย', 'กนกพล', 'เมืองรักษ์', '3800800567142', 'kanokpon.m@rmutsv.ac.th', '107', 'st12', '-', '2016-05-11 15:04:28', 'Cleartext-Password', 'เจ้าหน้าที่สารสนเทศ', 'sk');
+INSERT INTO `online_profile` (`username`, `password`, `pname`, `firstname`, `lastname`, `idcard`, `mailaddr`, `discipline`, `department`, `year`, `dateregis`, `encryption`, `status`, `location_id`, `prof_department`, `prof_branch`, `staff_group`, `staff_org`) VALUES
+	('11-11-11-11-11-11', 'Liu;b=yp;kpakp', 'นาย', 'กนกพล', 'เมืองรักษ์', '3800800567142', 'kanokpon.m@rmutsv.ac.th', '107', 'st12', '-', '2016-05-11 15:00:29', 'Cleartext-Password', 'เจ้าหน้าที่สารสนเทศ', 'sk', '', '', '', ''),
+	('11-11-11-11-22-22', 'Liu;b=yp;kpakp', 'นาย', 'กนกพล', 'เมืองรักษ์', '3800800567142', 'kanokpon.m@rmutsv.ac.th', '107', 'st12', '-', '2016-05-11 15:04:28', 'Cleartext-Password', 'เจ้าหน้าที่สารสนเทศ', 'sk', '', '', '', ''),
+	('s155404130050', 'Cleartext-Password', '003', 'อาคม', 'กีบเสน', '155404130050', 'chbj;;;,[][\'fyyii', '', '', '-', '2016-06-03 13:18:47', '', 'นักศึกษา', 'sk', '', '', '', '');
 /*!40000 ALTER TABLE `online_profile` ENABLE KEYS */;
 
 
@@ -15529,13 +15536,15 @@ CREATE TABLE IF NOT EXISTS `register_online` (
   `status_on` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`oid`),
   UNIQUE KEY `MAC` (`username`,`macaddress`)
-) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
 
--- Dumping data for table radius.register_online: 1 rows
+-- Dumping data for table radius.register_online: 3 rows
 DELETE FROM `register_online`;
 /*!40000 ALTER TABLE `register_online` DISABLE KEYS */;
 INSERT INTO `register_online` (`oid`, `username`, `macaddress`, `addtime`, `updatetime`, `status_on`) VALUES
-	(98, 'peerasak.c', 'CC-25-EF-38-08-FA', '2016-03-08 11:25:31', '0000-00-00 00:00:00', 'staff');
+	(98, 'peerasak.c', 'CC-25-EF-38-08-FA', '2016-03-08 11:25:31', '0000-00-00 00:00:00', 'staff'),
+	(103, 's155404130050', 'aaa', '2016-06-03 18:18:47', '0000-00-00 00:00:00', 'staff'),
+	(104, 's155404130050', '00aa', '2016-06-03 18:19:06', '0000-00-00 00:00:00', 'staff');
 /*!40000 ALTER TABLE `register_online` ENABLE KEYS */;
 
 

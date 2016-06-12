@@ -5,13 +5,20 @@ class Professor_page extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('RadOnlineProfileModel');
+        $this->load->model('RadSKOModel');
 
     }
 
     public function index()
     {
-        $this->load->view('professor/index');
-        $this->load->model('RadOnlineProfileModel');
+        $fac_data = $this->RadSKOModel->getFacData();
+        $program_data = $this->RadSKOModel->getProgramData();
+        $this->load->view('professor/index',
+        array(
+            'fac_data' => $fac_data,
+            'program_data' => $program_data
+        ));
     }
 
     public function submit_detail()
@@ -42,6 +49,8 @@ class Professor_page extends CI_Controller {
         if(!in_array(null,$data_insert) || !in_array("",$data_insert))
         {
             $this->RadOnlineProfileModel->AddSingleData($data_insert);
+            $this->session->set_userdata('detail_exists',true);
+            @header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
         else
         {

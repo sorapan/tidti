@@ -13,9 +13,27 @@
 
                 <!-- /////////////////////////////////////////////////////
                 ในกรณีที่ข้อมูลไม่ได้กรอก ไม่เรียบร้อย -->
+            <?php
+            if($this->session->userdata('detail_exists') == false)
+            {
+            ?>
+
                 <div class="alert">
                     คุณยังไม่ได้กรอกข้อมูลส่วนตัว
                 </div>
+
+            <?php
+            }
+            else
+            {
+            ?>
+            
+                
+            
+            <?php
+            }
+            ?>    
+
 
 
                 <!-- /////////////////////////////////////////////////////
@@ -60,7 +78,7 @@
                         <div class="add-device">
                             <!--<div class="alert">alert</div>-->
 <?php
-if(!$this->session->userdata('detail_exists') ){
+if($this->session->userdata('detail_exists') == false){
 ?>
 <div class="alert alert-danger" role="alert">** กรุณากรอกข้อมูลก่อนกรอก Mac Address **
 
