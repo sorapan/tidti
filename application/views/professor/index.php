@@ -104,9 +104,15 @@ if($this->session->userdata('detail_exists') == false){
                                 <div class="form-group form-inline">
                                     <select class="form-control" name="department">
                                         <option value="" disabled selected>*คณะ</option>
-                                        <option value="นาย">นาย</option>
-                                        <option value="นางสาว">นางสาว</option>
-                                        <option value="นาง">นาง</option>
+
+                                    <?php
+                                    foreach($fac_data as $fd)
+                                    {
+                                    ?>
+                                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
+                                    <?php
+                                    }
+                                    ?>
                                     </select>
                                     <select class="form-control" name="branch">
                                         <option value="" disabled selected>*สาขา</option>
