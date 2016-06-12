@@ -129,21 +129,32 @@ if($this->session->userdata('detail_exists') == false){
 
                                     </select>
                                     <select class="form-control" name="group">
-                                        <option value="" disabled selected>*กลุ่ม</option>
-                                        <option value="นาย">นาย</option>
-                                        <option value="นางสาว">นางสาว</option>
-                                        <option value="นาง">นาง</option>
+                                            <option value="" disabled selected>*กลุ่ม</option>
+
+                                    <?php
+                                    foreach($group_data as $gd)
+                                    {
+                                    ?>
+                                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
+                                    <?php
+                                    }
+                                    ?>
+
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <select name="location" class="form-control">
-                                        <option label="วิทยาเขต">วิทยาเขต</option>
-                                        <option value="sk">สงขลา</option>
-                                        <option value="sai">ไสใหญ่</option>
-                                        <option value="tho">ทุ่งใหญ่</option>
-                                        <option value="ka">ขนอม</option>
-                                        <option value="tr">ตรัง</option>
-                                        <option value="rat">วิทยาลัยรัตภูมิ</option>
+                                        <option value="" disabled selected>*วิทยาเขต</option>
+
+                                    <?php
+                                    foreach($location_data as $ld)
+                                    {
+                                    ?>
+                                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
+                                    <?php
+                                    }
+                                    ?>
+
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-danger">บันทึก</button>

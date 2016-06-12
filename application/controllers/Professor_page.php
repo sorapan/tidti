@@ -12,12 +12,12 @@ class Professor_page extends CI_Controller {
 
     public function index()
     {
-        $fac_data = $this->RadSKOModel->getFacData();
-        $program_data = $this->RadSKOModel->getProgramData();
         $this->load->view('professor/index',
         array(
-            'fac_data' => $fac_data,
-            'program_data' => $program_data
+            'fac_data' => $this->RadSKOModel->getFacData(),
+            'program_data' => $this->RadSKOModel->getProgramData(),
+            'group_data' => $this->RadSKOModel->getGroupsData(),
+            'location_data' => $this->RadSKOModel->getLocationData()
         ));
     }
 

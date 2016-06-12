@@ -22,5 +22,19 @@ class RadSKOModel extends CI_Model {
         return $this->db->get('sko_program')->result();
     }
 
+    function getGroupsData()
+    {
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        return $this->db->get('groups')->result();
+    }
+
+    function getLocationData()
+    {
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        return $this->db->get('location_peple')->result();
+    }
+
     
 }
