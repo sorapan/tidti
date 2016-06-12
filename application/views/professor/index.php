@@ -113,12 +113,20 @@ if($this->session->userdata('detail_exists') == false){
                                     <?php
                                     }
                                     ?>
+
                                     </select>
                                     <select class="form-control" name="branch">
                                         <option value="" disabled selected>*สาขา</option>
-                                        <option value="นาย">นาย</option>
-                                        <option value="นางสาว">นางสาว</option>
-                                        <option value="นาง">นาง</option>
+
+                                    <?php
+                                    foreach($program_data as $pd)
+                                    {
+                                    ?>
+                                        <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
+                                    <?php
+                                    }
+                                    ?>
+
                                     </select>
                                     <select class="form-control" name="group">
                                         <option value="" disabled selected>*กลุ่ม</option>
