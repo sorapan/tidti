@@ -188,7 +188,7 @@ if($this->session->userdata('detail_exists') == false){
                                         <input type="radio" class="laptop" name="device" id="laptop" value="laptop"><label class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
                                         <input type="radio" class="phone" name="device" id="phone" value="phone"><label class="fa fa-mobile" for="phone" title="มือถือ"></label>
                                         <input type="radio" class="tablet" name="device" id="taplet" value="tablet"><label class="fa fa-tablet" for="taplet" title="แท็บเล็ต"></label>
-                                        <input type="radio" class="other" name="device" id="taplet" value="other"><label class="fa fa-tablet" for="taplet" title="อื่นๆ"></label>
+                                        <input type="radio" class="other" name="device" id="other" value="other"><label class="fa fa-tablet" for="other" title="อื่นๆ"></label>
                                     </div>
                                 </div>
                                   <div class="ch-device ">

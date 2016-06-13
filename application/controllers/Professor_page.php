@@ -107,21 +107,32 @@ class Professor_page extends CI_Controller {
         {
             if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
             {
-                // var_dump($_POST);
-                // var_dump(ctype_space($_POST['mac']) == false);
-                $this->RadOnlineProfileModel->AddDataWithoutProfile(
-                array(
-                    'UserName' => $_POST['mac'],
-                    'dev_type' => $_POST['device'],
-                    'dev_net_type' => "Wireless"
-                ),
-                array(
-                    'username' => $this->session->userdata('username'),
-                    'macaddress' => $_POST['mac'],
-                    'status_on' => 'staff'
-                ));
-                
-                @header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+                $count_data = $this->RadRegisterOnlineModel->GetNumberDataByEpass($this->session->userdata('username'));
+
+                if($count_data<7)
+                {
+                    // var_dump($_POST);
+                    // var_dump(ctype_space($_POST['mac']) == false);
+                    $this->RadOnlineProfileModel->AddDataWithoutProfile(
+                    array(
+                        'UserName' => $_POST['mac'],
+                        'dev_type' => $_POST['device'],
+                        'dev_net_type' => "Wireless"
+                    ),
+                    array(
+                        'username' => $this->session->userdata('username'),
+                        'macaddress' => $_POST['mac'],
+                        'status_on' => 'staff'
+                    ));
+                    
+                    @header('Location: ' . $_SERVER['HTTP_REFERER']);
+                }
+                else
+                {
+                    echo 'กรอกข้อมูลได้เพียง 7 อุปกรณ์เท่านั้น<br>';
+                    echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+                }
             }
             else
             {
