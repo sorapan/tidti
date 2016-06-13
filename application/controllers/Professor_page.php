@@ -11,14 +11,22 @@ class Professor_page extends CI_Controller {
 		}
 
         $this->load->model('RadOnlineProfileModel');
+        $this->load->model('RadRegisterOnlineModel');
+        $this->load->model('RadDeviceModel');
         $this->load->model('RadSKOModel');
 
     }
 
     public function index()
     {
+        $macdata = $this->RadRegisterOnlineModel->GetDataByEpass($this->session->userdata('username'));
+        foreach($macdata as $key=>$val)
+		{
+			$macdata[$key]->device = $this->RadDeviceModel->GetDataByMac($val->macaddress)[0]->dev_type;
+		}
         $this->load->view('professor/index',
         array(
+            'mac_data' => $macdata,
             'fac_data' => $this->RadSKOModel->getFacData(),
             'program_data' => $this->RadSKOModel->getProgramData(),
             'group_data' => $this->RadSKOModel->getGroupsData(),
@@ -126,6 +134,15 @@ class Professor_page extends CI_Controller {
             echo 'กรุณากรอกข้อมูลส่วนตัว<br>';
             echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
         }
+    }
+
+    public function deletemac()
+    {
+        $this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
+		$this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
+		
+		AddLog(	$this->session->userdata('id')." was deleting his/her registered mac address" );
+		@header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function logout()

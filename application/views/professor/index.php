@@ -201,34 +201,55 @@ if($this->session->userdata('detail_exists') == false){
 
                                 <h3 class="thaisans bold">อุปกรณ์ของคุณ</h3>
                                  <!-- ///////////////////// -->
-                                <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+
+                                 <?php
+                                 //var_dump($mac_data);
+
+                                 foreach($mac_data as $val)
+                                 {
+                                 ?>
+
+                                    <form method="POST" action="professor/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+                                        <div class="ch-device activated">
+                                            <input type="text" class="text opensans" disabled name="" value="<?=$val->macaddress?>" id="laptop">
+                                            <button class="button" type="submit"><i class="fa fa-trash-o"></i></button>
+                                            <label for="laptop" class="laptop"><i class="fa fa-<?=$val->device?> active"></i></label>
+                                        </div>
+                                        <input type="hidden" name="del" value="<?=$val->macaddress?>">
+                                    </form>
+
+                                 <?php   
+                                 }
+                                 ?>
+
+                                <!--<form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
                                         <input type="text" class="text opensans" disabled name="" value="" id="laptop">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="laptop" class="laptop"><i class="fa fa-laptop active"></i></label>
                                     </div>
                                     <input type="hidden" name="del" value=">">
-                                </form>
+                                </form>-->
 
                                     <!-- ///////////////////// -->
-                                <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+                                <!--<form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
                                         <input type="text" class="text opensans" disabled name="" value="" id="laptop">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="phone" class="phone"><i class="fa fa-mobile active"></i></label>
                                     </div>
                                     <input type="hidden" name="del" value=">">
-                                </form>
+                                </form>-->
 
                                 <!-- ///////////////////// -->
-                                <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+                                <!--<form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
                                         <input type="text" class="text opensans" disabled name="" value="" id="laptop">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="tablet" class="tablet"><i class="fa fa-tablet active"></i></label>
                                     </div>
                                     <input type="hidden" name="del" value=">">
-                                </form>
+                                </form>-->
 
                         <!-- Modal -->
                         <div class="modal fade my-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
