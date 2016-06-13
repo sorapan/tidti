@@ -20,3 +20,18 @@
 13-06-2016 13:13 -- santi.p is logging in 
 13-06-2016 13:14 -- santi.p is logging in 
 13-06-2016 13:14 -- 0000000000000 was logging out 
+13-06-2016 13:16 -- santi.p is logging in 
+13-06-2016 13:16 -- 0000000000000 was logging out 
+13-06-2016 13:17 -- santi.p is logging in 
+13-06-2016 13:24 -- 0000000000000 was logging out 
+13-06-2016 13:24 -- santi.p is logging in 
+13-06-2016 13:27 -- 12554541854545 was logging out 
+13-06-2016 13:28 -- santi.p is logging in 
+13-06-2016 13:28 -- 12554541854545 was logging out 
+13-06-2016 13:28 -- santi.p is logging in 
+13-06-2016 13:44 -- 123544444444 was logging out 
+13-06-2016 13:44 -- 155404130050 is logging in 
+13-06-2016 13:44 -- 155404130050 was deleting his/her registered mac address 
+13-06-2016 13:44 -- 155404130050 was deleting his/her registered mac address 
+13-06-2016 13:46 -- 155404130050 was logging out 
+13-06-2016 13:46 -- santi.p is logging in 

@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <div class="box col-xs-offset-1 col-xs-10 col-md-offset-1 nopad">
+                        <!--<div class="box col-xs-offset-1 col-xs-10 col-md-offset-1 nopad">
                             <div class="status"><h2 class="thaisans bold">สถานะ</h2></div>
                             <div>
                                 <input type="radio" name="radio" id="student" class="radio" value="0" checked/>
@@ -55,7 +55,7 @@
                                 <input type="radio" name="radio" id="teacher" class="radio" value="1" />
                                 <label for="teacher"><span class="thaisans">อาจารย์</span></label>
                             </div>
-                        </div>
+                        </div>-->
 
                     </div>
                         <div class="submit">

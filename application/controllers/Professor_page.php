@@ -28,6 +28,7 @@ class Professor_page extends CI_Controller {
 
     public function submit_detail()
     {
+        // {
         // $_POST['pname'];
         // $_POST['firstname'];
         // $_POST['lastname'];
@@ -37,6 +38,7 @@ class Professor_page extends CI_Controller {
         // $_POST['branch'];
         // $_POST['group'];
         // $_POST['location'];
+        // }
 
         $data_insert = array(
             'username' => $this->session->userdata('username'),
@@ -46,6 +48,7 @@ class Professor_page extends CI_Controller {
             'discipline' => isset($_POST['group'])?$_POST['group']:null,
             'mailaddr' => $_POST['email'],
             'status' => 'อาจารย์',
+            'idcard' => $_POST['citizen_id'],
             'location_id' => $_POST['location'],
             'department' => isset($_POST['department'])?$_POST['department']:null,
             'prof_department' => isset($_POST['department'])?$_POST['department']:null,
@@ -72,7 +75,10 @@ class Professor_page extends CI_Controller {
                         $this->session->set_userdata('lastname',$sd->lastname);
                         $this->session->set_userdata('email',$sd->mailaddr);
                         $this->session->set_userdata('status',$sd->status);
-                        $this->session->set_userdata('location',$sd->location_id);
+                        $this->session->set_userdata('location',$this->RadSKOModel->getLocationDataByLocationID($sd->location_id)[0]->location_name);
+                        $this->session->set_userdata('discipline',$sd->discipline);
+                        $this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
+                        $this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->prof_branch)[0]->PRO_NAME);
                     }
                 }
 
@@ -85,6 +91,41 @@ class Professor_page extends CI_Controller {
             echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
         }
         
+    }
+
+    public function addmac()
+    {
+        if($this->session->userdata('detail_exists') == true)
+        {
+            if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
+            {
+                // var_dump($_POST);
+                // var_dump(ctype_space($_POST['mac']) == false);
+                $this->RadOnlineProfileModel->AddDataWithoutProfile(
+                array(
+                    'UserName' => $_POST['mac'],
+                    'dev_type' => $_POST['device'],
+                    'dev_net_type' => "Wireless"
+                ),
+                array(
+                    'username' => $this->session->userdata('username'),
+                    'macaddress' => $_POST['mac'],
+                    'status_on' => 'staff'
+                ));
+                
+                @header('Location: ' . $_SERVER['HTTP_REFERER']);
+            }
+            else
+            {
+                echo 'กรุณากรอก Mac Address<br>';
+                echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+            }
+        }
+        else
+        {
+            echo 'กรุณากรอกข้อมูลส่วนตัว<br>';
+            echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+        }
     }
 
     public function logout()

@@ -38,6 +38,13 @@ class RadOnlineProfileModel extends CI_Model {
         $this->db->insert('register_online', $register_data); 
     }
 
+    function AddDataWithoutProfile($device_data,$register_data)
+    {
+        $this->db->db_select('radius');
+        $this->db->insert('device', $device_data); 
+        $this->db->insert('register_online', $register_data); 
+    }
+
     function AddSingleData($profile_data)
     {
         $this->db->db_select('radius');

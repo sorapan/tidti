@@ -50,8 +50,10 @@ class Student_page extends CI_Controller {
 
 	public function add_mac()
 	{			
-		if(!ctype_space($_POST['mac'])){
-			if($this->session->userdata('location') ){
+		if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
+		{
+			if($this->session->userdata('location') )
+			{
 			
 			// $this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
 			// AddLog(	$this->session->userdata('id')." is adding mac address" );

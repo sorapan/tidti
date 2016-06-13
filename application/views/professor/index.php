@@ -180,21 +180,22 @@ if($this->session->userdata('detail_exists') == false){
 
 
 
-                                <form id="mac_submit" method="POST" action="student/addmac">
+                                <form id="mac_submit" method="POST" action="professor/addmac">
 
                                 <div class="dev">
                                     <h3 class="thaisans bold">เลือกอุปกรณ์</h3>
                                     <div class="select laptop">
-                                        <input type="radio" class="laptop" name="device" id="laptop"><label class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
-                                        <input type="radio" class="phone" name="device" id="phone"><label class="fa fa-mobile" for="phone" title="มือถือ"></label>
-                                        <input type="radio" class="tablet" name="device" id="taplet"><label class="fa fa-tablet" for="taplet" title="แท็บเล็ต"></label>
+                                        <input type="radio" class="laptop" name="device" id="laptop" value="laptop"><label class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
+                                        <input type="radio" class="phone" name="device" id="phone" value="phone"><label class="fa fa-mobile" for="phone" title="มือถือ"></label>
+                                        <input type="radio" class="tablet" name="device" id="taplet" value="tablet"><label class="fa fa-tablet" for="taplet" title="แท็บเล็ต"></label>
+                                        <input type="radio" class="other" name="device" id="taplet" value="other"><label class="fa fa-tablet" for="taplet" title="อื่นๆ"></label>
                                     </div>
                                 </div>
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" placeholder="mac-address" name="mac" id="">
+                                      <input type="text" class="text opensans" placeholder="mac-address" name="mac" id="laptop">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                   </div>
-                                  <input type="hidden" name="device" value="comp">
+
                                 </form>
 
 
@@ -202,7 +203,7 @@ if($this->session->userdata('detail_exists') == false){
                                  <!-- ///////////////////// -->
                                 <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="" id="laptop">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="laptop" class="laptop"><i class="fa fa-laptop active"></i></label>
                                     </div>
@@ -212,7 +213,7 @@ if($this->session->userdata('detail_exists') == false){
                                     <!-- ///////////////////// -->
                                 <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="" id="laptop">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="phone" class="phone"><i class="fa fa-mobile active"></i></label>
                                     </div>
@@ -222,7 +223,7 @@ if($this->session->userdata('detail_exists') == false){
                                 <!-- ///////////////////// -->
                                 <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="" id="laptop">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="tablet" class="tablet"><i class="fa fa-tablet active"></i></label>
                                     </div>
