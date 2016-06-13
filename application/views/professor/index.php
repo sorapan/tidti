@@ -28,7 +28,7 @@
             {
             ?>
             
-                
+                <div class="name"><?=prefix_name_id($this->session->userdata('prefix_name_id'))?> <?= $this->session->userdata('firstname')?> <?= $this->session->userdata('lastname')?></div>
             
             <?php
             }
