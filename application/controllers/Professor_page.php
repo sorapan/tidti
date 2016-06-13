@@ -5,6 +5,11 @@ class Professor_page extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+
+		if(!$this->session->userdata('login')){
+			@header('Location: ' . base_url());
+		}
+
         $this->load->model('RadOnlineProfileModel');
         $this->load->model('RadSKOModel');
 
@@ -52,7 +57,7 @@ class Professor_page extends CI_Controller {
         {
             $this->RadOnlineProfileModel->AddSingleData($data_insert);
 
-            $stf_data = $this->RadOnlineProfileModel->getDataByUsername($_POST['e_pass']);
+            $stf_data = $this->RadOnlineProfileModel->getDataByUsername($this->session->userdata('username'));
 
                 if(!empty($stf_data))
                 {
@@ -80,6 +85,13 @@ class Professor_page extends CI_Controller {
             echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
         }
         
+    }
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        AddLog(	$this->session->userdata('id')." was logging out" );
+        @header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
 }

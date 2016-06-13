@@ -28,8 +28,14 @@
             {
             ?>
             
-                <div class="name"><?=prefix_name_id($this->session->userdata('prefix_name_id'))?> <?= $this->session->userdata('firstname')?> <?= $this->session->userdata('lastname')?></div>
-            
+                <div class="name"><?=$this->session->userdata('prefix_name_id')?> <?= $this->session->userdata('firstname')?> <?=$this->session->userdata('lastname')?></div>
+                <div class="epassport">รหัส <?= $this->session->userdata('id')?></div>
+                <div class="faculty">คณะ <?=$this->session->userdata('department')?></div>
+                <div class="faculty">สาขา <?=$this->session->userdata('branch')?></div>
+                <div class="faculty"><?=$this->session->userdata('location')?></div>
+                <div class="faculty">email <?=$this->session->userdata('email')?></div>
+
+                <br>
             <?php
             }
             ?>    
@@ -49,7 +55,7 @@
                 <div class="tel">โทร <?=$this->session->userdata('tel')?></div>
                 ///////////////////////////////////////////////////// -->
 
-                <a href="student/signout" class="signout"><i class="fa fa-sign-out" title="ออกจากระบบ" aria-hidden="true"></i>&nbspออกจากระบบ</a>
+                <a href="professor/logout" class="signout"><i class="fa fa-sign-out" title="ออกจากระบบ" aria-hidden="true"></i>&nbspออกจากระบบ</a>
             </div>
             <div class="footer">
                 <h2 class="thaisans">มีปัญหาติดต่อ งานวิศวกรรมเครือข่าย <br>สำนักวิทยบริการฯ</h2>
@@ -84,7 +90,7 @@ if($this->session->userdata('detail_exists') == false){
 
                             <h3 class="thaisans bold">ข้อมูลส่วนตัว</h3>
                             <h3 class="thaisans bold">- <?=$this->session->userdata('username');?></h3>
-                             <form method="post" action="submit_detail" class="form-group">
+                             <form method="post" action="professor/submit_detail" class="form-group">
                                 <div class="form-group form-inline">
                                     <select class="form-control" name="pname">
                                         <option value="" disabled selected>*คำนำหน้า</option>
