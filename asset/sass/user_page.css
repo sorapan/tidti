@@ -121,6 +121,8 @@
     color: tomato; }
 .user-page.professor .ch-device .text {
   padding-left: 15px; }
+.user-page.professor .ch-device.activated .text {
+  padding-left: 75px; }
 
 .my-modal-content {
   margin-bottom: 0;
