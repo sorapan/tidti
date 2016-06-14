@@ -4692,7 +4692,7 @@ CREATE TABLE IF NOT EXISTS `device` (
   `dev_net_type` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `UserName` (`UserName`)
-) ENGINE=MyISAM AUTO_INCREMENT=12772 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12749 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table radius.device: 3,475 rows
 DELETE FROM `device`;
@@ -8171,15 +8171,8 @@ INSERT INTO `device` (`id`, `UserName`, `dev_type`, `dev_net_type`) VALUES
 	(12736, '0C-D7-46-96-16-6D', '', ''),
 	(12747, 'aaa', 'Notebook', 'Wireless'),
 	(12739, 'rrr', 'Phone', 'Wireless'),
-	(12767, 'sdweww', 'tablet', 'Wireless'),
-	(12748, '00aa', 'Phone', 'Wireless'),
-	(12751, 'asdsdd', 'laptop', 'Wireless'),
-	(12752, 'sdsdwwww', 'laptop', 'Wireless'),
-	(12765, 'esxc', 'laptop', 'Wireless'),
-	(12764, 'ddddd', 'laptop', 'Wireless'),
-	(12759, 'dfsdsdww', 'phone', 'Wireless'),
-	(12766, 'rbvb', 'tablet', 'Wireless'),
-	(12768, 'gfhtrth', 'laptop', 'Wireless');
+	(12740, 'dfdf', 'Tablet', 'Wireless'),
+	(12748, '00aa', 'Phone', 'Wireless');
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
 
 
@@ -8278,14 +8271,13 @@ CREATE TABLE IF NOT EXISTS `online_profile` (
   KEY `status` (`status`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Dumping data for table radius.online_profile: 4 rows
+-- Dumping data for table radius.online_profile: 3 rows
 DELETE FROM `online_profile`;
 /*!40000 ALTER TABLE `online_profile` DISABLE KEYS */;
 INSERT INTO `online_profile` (`username`, `password`, `pname`, `firstname`, `lastname`, `idcard`, `mailaddr`, `discipline`, `department`, `year`, `dateregis`, `encryption`, `status`, `location_id`, `prof_department`, `prof_branch`, `staff_group`, `staff_org`) VALUES
 	('11-11-11-11-11-11', 'Liu;b=yp;kpakp', 'นาย', 'กนกพล', 'เมืองรักษ์', '3800800567142', 'kanokpon.m@rmutsv.ac.th', '107', 'st12', '-', '2016-05-11 15:00:29', 'Cleartext-Password', 'เจ้าหน้าที่สารสนเทศ', 'sk', '', '', '', ''),
 	('11-11-11-11-22-22', 'Liu;b=yp;kpakp', 'นาย', 'กนกพล', 'เมืองรักษ์', '3800800567142', 'kanokpon.m@rmutsv.ac.th', '107', 'st12', '-', '2016-05-11 15:04:28', 'Cleartext-Password', 'เจ้าหน้าที่สารสนเทศ', 'sk', '', '', '', ''),
-	('s155404130050', 'Cleartext-Password', '003', 'อาคม', 'กีบเสน', '155404130050', 'chbj;;;,[][\'fyyii', '', '', '-', '2016-06-03 13:18:47', '', 'นักศึกษา', 'sk', '', '', '', ''),
-	('santi.p', 'Cleartext-Password', 'นาย', 'asdsdsad', 'asdasd', '123544444444', 'asdasd@dsdsdsd', 'งานสารสนเทศ', 'de05', '', '0000-00-00 00:00:00', '', 'อาจารย์', 'sk', 'de05', 'T017', 'งานสารสนเทศ', '');
+	('s155404130050', 'Cleartext-Password', '003', 'อาคม', 'กีบเสน', '155404130050', 'chbj;;;,[][\'fyyii', '', '', '-', '2016-06-03 13:18:47', '', 'นักศึกษา', 'sk', '', '', '', '');
 /*!40000 ALTER TABLE `online_profile` ENABLE KEYS */;
 
 
@@ -15544,7 +15536,7 @@ CREATE TABLE IF NOT EXISTS `register_online` (
   `status_on` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`oid`),
   UNIQUE KEY `MAC` (`username`,`macaddress`)
-) ENGINE=MyISAM AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table radius.register_online: 3 rows
 DELETE FROM `register_online`;
@@ -15552,13 +15544,7 @@ DELETE FROM `register_online`;
 INSERT INTO `register_online` (`oid`, `username`, `macaddress`, `addtime`, `updatetime`, `status_on`) VALUES
 	(98, 'peerasak.c', 'CC-25-EF-38-08-FA', '2016-03-08 11:25:31', '0000-00-00 00:00:00', 'staff'),
 	(103, 's155404130050', 'aaa', '2016-06-03 18:18:47', '0000-00-00 00:00:00', 'staff'),
-	(104, 's155404130050', '00aa', '2016-06-03 18:19:06', '0000-00-00 00:00:00', 'staff'),
-	(119, 'santi.p', 'esxc', '2016-06-13 19:27:54', '0000-00-00 00:00:00', 'staff'),
-	(118, 'santi.p', 'ddddd', '2016-06-13 19:27:44', '0000-00-00 00:00:00', 'staff'),
-	(113, 'santi.p', 'dfsdsdww', '2016-06-13 19:25:02', '0000-00-00 00:00:00', 'staff'),
-	(120, 'santi.p', 'rbvb', '2016-06-13 19:29:14', '0000-00-00 00:00:00', 'staff'),
-	(121, 'santi.p', 'sdweww', '2016-06-13 19:29:44', '0000-00-00 00:00:00', 'staff'),
-	(122, 'santi.p', 'gfhtrth', '2016-06-13 19:29:54', '0000-00-00 00:00:00', 'staff');
+	(104, 's155404130050', '00aa', '2016-06-03 18:19:06', '0000-00-00 00:00:00', 'staff');
 /*!40000 ALTER TABLE `register_online` ENABLE KEYS */;
 
 

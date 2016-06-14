@@ -116,24 +116,34 @@
     float: left; }
   .admin > .content.mac_list > ._1 {
     width: 100%; }
-    .admin > .content.mac_list > ._1 > .search {
+    .admin > .content.mac_list > ._1 > .search form {
       margin: 25px 0;
       height: 35px;
       float: left; }
-      .admin > .content.mac_list > ._1 > .search > .input, .admin > .content.mac_list > ._1 > .search > .button {
+      .admin > .content.mac_list > ._1 > .search form > .input, .admin > .content.mac_list > ._1 > .search form > .button {
         height: 100%;
         font-size: 1.5em;
         float: left; }
-      .admin > .content.mac_list > ._1 > .search > .input {
+      .admin > .content.mac_list > ._1 > .search form > .input {
         width: 300px;
         margin-right: 5px;
         padding: 5px;
         border: 2px solid #ff5f2e;
         background-color: #fff; }
-      .admin > .content.mac_list > ._1 > .search > .button {
+      .admin > .content.mac_list > ._1 > .search form > .button {
         background-color: #fff;
         border: 2px solid #004E66;
         color: #004E66; }
+    .admin > .content.mac_list > ._1 > .cancle {
+      margin: 25px 0;
+      height: 35px;
+      float: right; }
+      .admin > .content.mac_list > ._1 > .cancle > .button {
+        background-color: #ff5f2e;
+        border: 2px solid transparent;
+        color: #fff;
+        font-size: 1.5em;
+        padding: 0 20px; }
     .admin > .content.mac_list > ._1 > table > thead {
       background-color: #d9e1e8; }
       .admin > .content.mac_list > ._1 > table > thead > tr th {
@@ -143,6 +153,8 @@
         background-color: #004e66;
         color: #EFFFF9;
         width: 50px; }
+    .admin > .content.mac_list > ._1 > table > tbody > tr.edit {
+      color: #ff5f2e; }
     .admin > .content.mac_list > ._1 > table > tbody > tr {
       color: #004e66; }
       .admin > .content.mac_list > ._1 > table > tbody > tr > td {
@@ -156,8 +168,114 @@
         background-color: transparent;
         color: #ff5f2e;
         font-size: 1.2em;
+        width: 34px;
+        height: 30px;
         padding: 2px 8px; }
+      .admin > .content.mac_list > ._1 > table > tbody > tr td:last-child > h3 {
+        font-size: 1.2em;
+        color: #ff5f2e; }
   .admin > .content.mac_list > ._2 {
     padding: 0 0 0 30px;
     width: 25%;
     min-width: 200px; }
+  .admin > .content.manage .top {
+    margin-top: 20px;
+    background-color: #d9e1e8; }
+    .admin > .content.manage .top > h3 {
+      display: inline-block;
+      margin: 0;
+      padding: 10px 20px;
+      background-color: #ff5f2e; }
+  .admin > .content.manage .tab {
+    border: 2px solid #004e66;
+    display: inline-block;
+    text-align: center;
+    background-color: #FFFFF3;
+    width: 130px; }
+    .admin > .content.manage .tab.active {
+      border: 1px solid transparent;
+      background-color: #ff5f2e; }
+      .admin > .content.manage .tab.active > a {
+        color: #FFFFF3; }
+    .admin > .content.manage .tab > a {
+      display: block;
+      padding: 10px 10px;
+      color: #004e66;
+      text-decoration: none; }
+      .admin > .content.manage .tab > a > i {
+        margin: 5px 0;
+        display: block;
+        font-size: 3.5em; }
+  .admin > .content.manage .mid {
+    padding-top: 20px;
+    padding-left: 30px; }
+    .admin > .content.manage .mid .form {
+      width: 535px;
+      padding: 20px 15px;
+      color: #004e66;
+      background-color: #d9e1e8; }
+      .admin > .content.manage .mid .form .pname, .admin > .content.manage .mid .form .fname, .admin > .content.manage .mid .form .lname {
+        display: inline-block; }
+      .admin > .content.manage .mid .form .pname {
+        padding-left: 5px;
+        width: 100px; }
+      .admin > .content.manage .mid .form .fname, .admin > .content.manage .mid .form .lname {
+        width: 196px; }
+  .admin .maclistedit > ._1 > .showalert {
+    margin: 25px 0 0 0;
+    height: 35px;
+    width: 400px;
+    font-size: 1.5em;
+    padding: 3px 20px;
+    display: inline-block;
+    background-color: #d6e9c6; }
+  .admin .maclistedit .mid {
+    background-color: #d9e1e8; }
+    .admin .maclistedit .mid > .head {
+      font-size: 2em;
+      border-bottom: 1px solid aliceblue;
+      color: #ff5f2e; }
+      .admin .maclistedit .mid > .head > i {
+        background-color: #ff5f2e;
+        padding: 5px 15px 5px 15px;
+        border: 2px solid #ff5f2e;
+        color: aliceblue; }
+  .admin .maclistedit .form {
+    margin-left: 50px;
+    width: 535px;
+    padding: 20px 15px;
+    color: #004e66; }
+    .admin .maclistedit .form .pname, .admin .maclistedit .form .fname, .admin .maclistedit .form .lname {
+      display: inline-block; }
+    .admin .maclistedit .form .pname {
+      padding-left: 5px;
+      width: 100px; }
+    .admin .maclistedit .form .fname, .admin .maclistedit .form .lname {
+      width: 196px; }
+  .admin > .content.log > .board, .admin > .content.log .list {
+    float: left; }
+  .admin > .content.log > .board > h2 {
+    padding: 5px;
+    background-color: #004e66;
+    color: #FFFFF3;
+    font-size: 2em; }
+  .admin > .content.log > .board > .content {
+    width: 700px;
+    height: 700px;
+    padding: 10px 20px 15px 10px;
+    border: 1px solid #004e66;
+    font-size: 1.4em;
+    overflow-y: auto; }
+  .admin > .content.log > .list {
+    margin-left: 10px; }
+    .admin > .content.log > .list > h3 {
+      padding: 5px;
+      background-color: #ff5f2e;
+      color: #FFFFF3; }
+    .admin > .content.log > .list > .content {
+      overflow-y: auto;
+      font-size: 1.2em;
+      padding: 5px 10px;
+      height: 700px;
+      border: 1px solid #ff5f2e;
+      background-color: #d9e1e8; }
