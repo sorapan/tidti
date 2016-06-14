@@ -1,52 +1,33 @@
-13-06-2016 07:07 --  was logging out 
-13-06-2016 07:07 -- santi.p is logging in 
-13-06-2016 07:37 -- santi.p is logging in 
-13-06-2016 07:40 -- 0000000000000 was logging out 
-13-06-2016 10:13 -- santi.p is logging in 
-13-06-2016 10:16 -- santi.p is logging in 
-13-06-2016 12:32 -- santi.p is logging in 
-13-06-2016 12:48 -- santi.p is logging in 
-13-06-2016 12:49 -- santi.p is logging in 
-13-06-2016 13:01 -- santi.p is logging in 
-13-06-2016 13:04 -- santi.p is logging in 
-13-06-2016 13:05 -- santi.p is logging in 
-13-06-2016 13:10 -- 0000000000000 was logging out 
-13-06-2016 13:11 -- 155404130050 is logging in 
-13-06-2016 13:11 -- 155404130050 was logging out 
-13-06-2016 13:11 -- santi.p is logging in 
-13-06-2016 13:11 -- 0000000000000 was logging out 
-13-06-2016 13:12 -- 155404130050 is logging in 
-13-06-2016 13:12 -- 155404130050 was logging out 
-13-06-2016 13:13 -- santi.p is logging in 
-13-06-2016 13:14 -- santi.p is logging in 
-13-06-2016 13:14 -- 0000000000000 was logging out 
-13-06-2016 13:16 -- santi.p is logging in 
-13-06-2016 13:16 -- 0000000000000 was logging out 
-13-06-2016 13:17 -- santi.p is logging in 
-13-06-2016 13:24 -- 0000000000000 was logging out 
-13-06-2016 13:24 -- santi.p is logging in 
-13-06-2016 13:27 -- 12554541854545 was logging out 
-13-06-2016 13:28 -- santi.p is logging in 
-13-06-2016 13:28 -- 12554541854545 was logging out 
-13-06-2016 13:28 -- santi.p is logging in 
-13-06-2016 13:44 -- 123544444444 was logging out 
-13-06-2016 13:44 -- 155404130050 is logging in 
-13-06-2016 13:44 -- 155404130050 was deleting his/her registered mac address 
-13-06-2016 13:44 -- 155404130050 was deleting his/her registered mac address 
-13-06-2016 13:46 -- 155404130050 was logging out 
-13-06-2016 13:46 -- santi.p is logging in 
-13-06-2016 14:15 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:15 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:15 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:25 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:25 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:26 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:27 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:27 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:27 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:36 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:36 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:37 -- 123544444444 was deleting his/her registered mac address 
-13-06-2016 14:37 -- 123544444444 was logging out 
-13-06-2016 14:37 -- 155404130050 is logging in 
-13-06-2016 17:48 -- 155404130050 is logging in 
+13-06-2016 21:58 --  is logging in 
+13-06-2016 21:58 --  is logging in 
+13-06-2016 21:58 --  is logging in 
+13-06-2016 21:59 -- santi.p is logging in 
+13-06-2016 22:01 -- 123544444444 was logging out 
+13-06-2016 22:01 --  is logging in 
+13-06-2016 22:01 --  is logging in 
+13-06-2016 22:03 --  is logging in 
+13-06-2016 22:14 -- 123544444444 was logging out 
+13-06-2016 22:14 --  is logging in 
+13-06-2016 22:17 --  is logging in 
+13-06-2016 22:19 -- santi.p is logging in 
+13-06-2016 22:19 -- 123544444444 was logging out 
+13-06-2016 22:20 --  is logging in 
+13-06-2016 22:20 --  is logging in 
+13-06-2016 22:20 --  is logging in 
+13-06-2016 22:21 --  is logging in 
+13-06-2016 22:21 --  is logging in 
+13-06-2016 22:21 -- santi.p is logging in 
+13-06-2016 22:22 -- 123544444444 was logging out 
+13-06-2016 22:22 --  is logging in 
+13-06-2016 22:25 --  is logging in 
+13-06-2016 22:25 -- santi.p is logging in 
+13-06-2016 22:31 -- 123544444444 was logging out 
+13-06-2016 22:31 --  is logging in 
+13-06-2016 22:31 -- santi.p is logging in 
+13-06-2016 22:36 -- 123544444444 is logging in 
+13-06-2016 22:36 -- 123544444444 was logging out 
+13-06-2016 22:36 --  is logging in 
+13-06-2016 22:36 -- santi.p is logging in 
+13-06-2016 22:37 -- 123544444444 was logging out 
+13-06-2016 22:37 --  is logging in 
+13-06-2016 22:37 -- santi.p is logging in 

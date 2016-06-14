@@ -19,18 +19,26 @@
 
         <div class="content">
             <ul class="menus thaisans">
+                <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
                 <a href="<?=base_url().'admin/mac'?>"><li class="maclist active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
-                <a href="<?=base_url().'admin/history'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
-                <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a>
+                <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
+                <a href="<?=base_url().'admin/log?log='?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
             </ul>
-
         </div>
+
     </div>
     <div class="content mac_list">
         <div class="_1">
             <div class="search">
-                <input type="text" class="input thaisans" name="search" placeholder="ค้นหา" id="search">
-                <button class="button"><i class="fa fa-search"></i></button>
+            <?php
+                if(empty($search)){
+                    $search = "";
+                }
+            ?>
+                <form method="post" action="search">
+                <input type="text" class="input thaisans" name="search" value="<?=$search?>" placeholder="ค้นหา" id="search">
+                <button class="button" type="submit"><i class="fa fa-search"></i></button>
+                </form>
             </div>
             <table class="table table-hover">
                 <thead>
@@ -39,7 +47,6 @@
                     <th>username</th>
                     <th>name</th>
                     <th>date</th>
-                    <th>exp</th>
                     <th class="center">
                         ...
                     </th>
@@ -55,12 +62,13 @@
                     <td><?=$val->username?></td>
                     <td><?=$val->firstname.' '.$val->lastname?></td>
                     <td><?=$val->addtime?></td>
-                    <td><?=$val->updatetime?></td>
                     <td>
                         <button title="ลบ"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         <button title="บล็อค"><i class="fa fa-lock" aria-hidden="true"></i></button>
+                        <button title="แก้ไข" onclick="window.location='<?=base_url().'admin/mac/'.$val->oid.'?stt='?>'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                     </td>
                 </tr>
+
                 <?php
                     }
                 ?>

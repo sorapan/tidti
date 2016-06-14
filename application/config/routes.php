@@ -70,8 +70,17 @@ $route['professor/deletemac'] = 'professor_page/deletemac';
 $route['professor/logout'] = 'professor_page/logout';
 
 //////////ADMIN PAGE
-$route['admin'] = 'admin';
+//$route['admin'] = 'admin/login';
+$route['admin'] = 'admin/manage';
 // $route['admin/log'] = 'admin';
+$route['admin/log'] = 'admin/log';
 $route['admin/login'] = 'admin/login';
+$route['admin/manage'] = 'admin/manage';
+$route['admin/manage/(:any)'] = 'admin/adduser/$1';
 $route['admin/mac'] = 'admin/mac';
+$route['admin/mac/search'] = 'admin/searchToManageMac';
+$route['admin/mac/(:any)'] = 'admin/editmac/$1';
 $route['admin/user'] = 'admin/user';
+$route['admin/submitdevice/(:any)'] = 'admin/submitdevice/$1';
+$route['admin/mac/setDataToEditById/(:any)'] = 'admin/setDataToEditById/$1';
+

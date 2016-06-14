@@ -27,7 +27,7 @@
             else
             {
             ?>
-            
+
                 <div class="name"><?=$this->session->userdata('prefix_name_id')?> <?= $this->session->userdata('firstname')?> <?=$this->session->userdata('lastname')?></div>
                 <div class="epassport">รหัส <?= $this->session->userdata('id')?></div>
                 <div class="faculty">คณะ <?=$this->session->userdata('department')?></div>
@@ -38,7 +38,7 @@
                 <br>
             <?php
             }
-            ?>    
+            ?>
 
 
 
@@ -188,7 +188,7 @@ if($this->session->userdata('detail_exists') == false){
                                         <input type="radio" class="laptop" name="device" id="laptop" value="laptop"><label class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
                                         <input type="radio" class="phone" name="device" id="phone" value="phone"><label class="fa fa-mobile" for="phone" title="มือถือ"></label>
                                         <input type="radio" class="tablet" name="device" id="taplet" value="tablet"><label class="fa fa-tablet" for="taplet" title="แท็บเล็ต"></label>
-                                        <input type="radio" class="other" name="device" id="other" value="other"><label class="fa fa-tablet" for="other" title="อื่นๆ"></label>
+                                        <!-- <input type="radio" class="other" name="device" id="other" value="other"><label class="fa fa-tablet" for="other" title="อื่นๆ"></label> -->
                                     </div>
                                 </div>
                                   <div class="ch-device ">
@@ -213,12 +213,12 @@ if($this->session->userdata('detail_exists') == false){
                                         <div class="ch-device activated">
                                             <input type="text" class="text opensans" disabled name="" value="<?=$val->macaddress?>" id="laptop">
                                             <button class="button" type="submit"><i class="fa fa-trash-o"></i></button>
-                                            <label for="laptop" class="laptop"><i class="fa fa-<?=$val->device?> active"></i></label>
+                                            <label for="laptop" class="laptop"><i class="fa fa-<?=switchIcon($val->device)?> active"></i></label>
                                         </div>
                                         <input type="hidden" name="del" value="<?=$val->macaddress?>">
                                     </form>
 
-                                 <?php   
+                                 <?php
                                  }
                                  ?>
 

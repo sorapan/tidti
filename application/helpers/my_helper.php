@@ -121,6 +121,7 @@ function header_url()
 
         <script type="text/javascript" src="'.asset_url().'js/jquery.js"></script>
         <script type="text/javascript" src="'.asset_url().'bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="'.asset_url().'js/script.js"></script>
     </head>';
 }
 
@@ -133,9 +134,72 @@ function switchIcon($dev){
         case 'Notebook':
             return 'laptop';
             break;
+        case 'Tablet':
+            return 'tablet';
+            break;
+        case 'phone':
+            return 'mobile';
+            break;
+        case 'laptop':
+            return 'laptop';
+            break;
+        case 'tablet':
+            return 'tablet';
+            break;
+        case 'Other':
+            return '';
+            break;
 
         default:
             return false;
             break;
     }
+}
+
+function selectLocation($locate){
+    $arr = array(
+                "sk" => " ",
+                "sai" => " ",
+                "tho" => " ",
+                "ka" => " ",
+                "tr" => " ",
+                "rat" => " "
+            );
+    foreach ($arr as $key => $value) {
+        if($locate == $key){
+            $arr[$key] = "selected";
+            break;
+        }
+    }
+
+    echo '
+        <option value="-" disabled >วิทยาเขต</option>
+        <option value="sk" '.$arr["sk"].'>สงขลา</option>
+        <option value="sai" '.$arr["sai"].'>ไสใหญ่</option>
+        <option value="tho" '.$arr["tho"].'>ทุ่งใหญ่</option>
+        <option value="ka" '.$arr["ka"].'>ขนอม</option>
+        <option value="tr" '.$arr["tr"].'>ตรัง</option>
+        <option value="rat" '.$arr["rat"].'>วิทยาลัยรัตภูมิ</option>';
+}
+
+function selectDevice($dev){
+    $arr = array(
+                "Notebook" => " ",
+                "Phone" => " ",
+                "Tablet" => " ",
+                "Other" => " "
+            );
+    foreach ($arr as $key => $value) {
+        if($dev == $key){
+            $arr[$key] = "selected";
+            break;
+        }
+    }
+
+    echo '
+        <option value="-" disabled >วิทยาเขต</option>
+        <option value="Phone" '.$arr["Phone"].'>มือถือ</option>
+        <option value="Notebook" '.$arr["Notebook"].'>โน๊ตบุ๊ค</option>
+        <option value="Tablet" '.$arr["Tablet"].'>แท็บเล็ต</option>
+        <option value="Other" '.$arr["Other"].'>อื่นๆ</option>';
 }
