@@ -41,7 +41,7 @@
 
         }
         > h2{
-            font-size: 3em;
+            font-size: 2.5em;
             > .wifi{
                 color:#EFFFE9;
             }
@@ -308,7 +308,7 @@
         margin-top: 100px;
         margin-bottom: 55px;
         position: absolute;
-        min-height: 700px;
+        min-height: 600px;
 
             .form{
                 padding: 0;
@@ -319,7 +319,7 @@
                 height: 75vh;
                 background: none;
                 background-color: rgba(0, 78, 102,0.7);
-                min-height: 700px;
+                min-height: 600px;
 
                 > .footer{
                     position: absolute;
@@ -342,7 +342,7 @@
             }
             ._2{
                 height: 75vh;
-                min-height: 700px;
+                min-height: 600px;
                 overflow-y: auto;
             }
 

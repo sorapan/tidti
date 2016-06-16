@@ -35,15 +35,15 @@
             <h3 class="thaisans bold" style="font-size: 2em;margin-top:0;">เลือกประเภทผู้ใช้</h3>
             <ul role="tablist">
             <li role="presentation" class="tab"><a href="#student" aria-controls="tabstudent" role="tab" data-toggle="tab"><div>เพิ่มอุปกรณ์</div><i class="fa fa-user" aria-hidden="true"></i><label>นักศึกษา</label></a></li>
-            <li role="presentation" class="tab"><a href="#professor" aria-controls="professor" role="tab" data-toggle="tab"><div>เพิ่มอุปกรณ์</div><i class="fa fa-users" aria-hidden="true"></i></i><label>อาจารย์/บุคลากร</label></a></li>
-            <li role="presentation" class="tab"><a href="#staff" aria-controls="professor" role="tab" data-toggle="tab"><div>เพิ่มอุปกรณ์</div><i class="fa fa-user" aria-hidden="true"></i><label>เจ้าหน้าที่</label></a></li>
+            <li role="presentation" class="tab"><a href="#professor" aria-controls="professor" role="tab" data-toggle="tab"><div>เพิ่มอุปกรณ์</div><i class="fa fa-users" aria-hidden="true"></i></i><label>อาจารย์</label></a></li>
+            <li role="presentation" class="tab"><a href="#staff" aria-controls="professor" role="tab" data-toggle="tab"><div>เพิ่มอุปกรณ์</div><i class="fa fa-user" aria-hidden="true"></i><label>บุคลากร</label></a></li>
             <li role="presentation" class="tab"><a href="#special" aria-controls="professor" role="tab" data-toggle="tab"><div>เพิ่มอุปกรณ์</div><i class="fa fa-user-secret" aria-hidden="true"></i><label>ผู้ใช้พิเศษ</label></a></li>
             </ul>
 
             <!-- นักศึกษา -->
             <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade form" id="student">
-                <form method="post" action="submitdevice/student">
+                <form method="post" action="admin/AddManualUser/student">
                 <div class="form-group">
                     <h3 class="thaisans bold" style="margin-top: 0">นักศึกษา</h3>
                     <label>ข้อมูลส่วนตัว</label>
@@ -65,7 +65,7 @@
                     <input type="text" name="idcard" class="form-control" id="exampleInputEmail1" placeholder="รหัสนักศึกษา">
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="group">
+                    <select class="form-control" name="status">
                             <option value="" disabled selected>*กลุ่ม</option>
 
                     <?php
@@ -95,7 +95,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="branch">
+                    <select class="form-control" name="discipline">
                             <option value="" disabled selected>*สาขา</option>
 
                         <?php
@@ -240,11 +240,11 @@
                 </form>
             </div>
 
-             <!-- เจ้าหน้าที่ -->
+             <!-- บุคลากร -->
             <div role="tabpanel" class="tab-pane fade form" id="staff">
                 <form method="post" action="admin/submitdevice/staff">
                 <div class="form-group">
-                    <h3 class="thaisans bold" style="margin-top: 0">เจ้าหน้าที่</h3>
+                    <h3 class="thaisans bold" style="margin-top: 0">บุคลากร</h3>
                     <label for="exampleInputEmail1">ข้อมูลส่วนตัว</label>
                     <div>
                         <select class="form-control pname" name="pname">
@@ -280,33 +280,18 @@
                 </div>
                 <div class="form-group">
                     <select class="form-control" name="department">
-                        <option value="" disabled selected>*คณะ</option>
+                        <option value="" disabled selected>*หน่วยงาน</option>
 
                     <?php
-                    foreach($fac_data as $fd)
+                    foreach($staff_data as $sd)
                     {
                     ?>
-                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
+                        <option value="<?=$sd->staff_id?>"><?=$sd->staff_name?></option>
                     <?php
                     }
                     ?>
 
                     </select>
-                </div>
-                <div class="form-group">
-                    <select class="form-control" name="branch">
-                            <option value="" disabled selected>*สาขา</option>
-
-                        <?php
-                        foreach($program_data as $pd)
-                        {
-                        ?>
-                            <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
-                        <?php
-                        }
-                        ?>
-
-                        </select>
                 </div>
                 <div class="form-group">
                     <select name="location" class="form-control">
