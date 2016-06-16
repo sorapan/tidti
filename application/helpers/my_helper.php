@@ -147,7 +147,10 @@ function switchIcon($dev){
             return 'tablet';
             break;
         case 'Other':
-            return '';
+            return 'question';
+            break;
+        case 'other':
+            return 'question';
             break;
 
         default:

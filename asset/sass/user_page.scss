@@ -168,6 +168,9 @@
                 margin-top: 10px;
                 margin-bottom: 20px;
             }
+            & .select > .tooltip{
+                font-size: 1em;
+            }
             & .select label{
                 font-size: 3em;
                 display: inline-block;
@@ -185,12 +188,16 @@
                     color:red;
                 }
                 &.phone:checked + label{
+                    border-color: tomato;
+                    color:tomato;
+                }
+                &.tablet:checked + label{
                     border-color: gold;
                     color:gold;
                 }
-                &.tablet:checked + label{
-                    border-color: tomato;
-                    color:tomato;
+                &.other:checked + label{
+                    border-color: royalblue;
+                    color:royalblue;
                 }
             }
 

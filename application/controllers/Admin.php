@@ -13,6 +13,8 @@ class Admin extends CI_Controller {
 		 $this->load->model('MacModel');
 		 $this->load->model('DeviceModel');
 		 $this->load->model('RadSKOModel');
+		 $this->load->model('RadSKOModel');
+		 $this->load->model('ManualUserModel');
 
 	}
 
@@ -22,16 +24,19 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/index');
 	}
 
+	// manage page
 	public function manage(){
 		$fac_data = $this->RadSKOModel->getFacData();
 		$program_data = $this->RadSKOModel->getProgramData();
 		$group_data = $this->RadSKOModel->getGroupsData();
 		$location_data = $this->RadSKOModel->getLocationData();
+		$staff_data = $this->RadSKOModel->getStaffData();
 		$this->load->view('admin/admin_manage',array(
 							'fac_data' => $fac_data,
 							'program_data' => $program_data,
 							'group_data' => $group_data,
-							'location_data' => $location_data
+							'location_data' => $location_data,
+							'staff_data' => $staff_data
 			));
 	}
 
@@ -42,9 +47,21 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/admin_mac_list',array('data'=> $data,'search'=> $search));
 	}
 
-	public function adduser($user){
-		$data = '';
-		$this->load->view('admin/admin_manage',array("data"=>$data));
+	public function AddManualUser($user){
+		$this->ManualUserModel->AddDataManualUser(array(
+					'username'=>$_POST['macaddress'],
+					// 'password'=>$_POST['password'],
+					'pname'=>$_POST['pname'],
+					'firstname'=>$_POST['firstname'],
+					'lastname'=>$_POST['lastname'],
+					'idcard'=>$_POST['idcard'],
+					'mailaddr'=>$_POST['mailaddr'],
+					'discipline'=>$_POST['discipline'],
+					'department'=>$_POST['department'],
+					'dateregis'=>date('Y-m-d H:i:s',time()),
+					'status'=>$_POST['status'],
+					'location_id'=>$_POST['location_id']
+			));
 	}
 
 	public function mac()

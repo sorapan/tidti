@@ -99,6 +99,8 @@
 .user-page.professor .dev + .ch-device {
   margin-top: 10px;
   margin-bottom: 20px; }
+.user-page.professor .dev .select > .tooltip {
+  font-size: 1em; }
 .user-page.professor .dev .select label {
   font-size: 3em;
   display: inline-block;
@@ -114,11 +116,14 @@
     border-color: red;
     color: red; }
   .user-page.professor .dev .select > input.phone:checked + label {
-    border-color: gold;
-    color: gold; }
-  .user-page.professor .dev .select > input.tablet:checked + label {
     border-color: tomato;
     color: tomato; }
+  .user-page.professor .dev .select > input.tablet:checked + label {
+    border-color: gold;
+    color: gold; }
+  .user-page.professor .dev .select > input.other:checked + label {
+    border-color: royalblue;
+    color: royalblue; }
 .user-page.professor .ch-device .text {
   padding-left: 15px; }
 .user-page.professor .ch-device.activated .text {
