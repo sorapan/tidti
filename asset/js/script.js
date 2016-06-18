@@ -14,5 +14,6 @@ $('a[href=special]').click(function (e) {
   e.preventDefault();
 });
 
+ $('[data-toggle="tooltip"]').tooltip();
 
 });

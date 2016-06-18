@@ -184,11 +184,11 @@ if($this->session->userdata('detail_exists') == false){
 
                                 <div class="dev">
                                     <h3 class="thaisans bold">เลือกอุปกรณ์</h3>
-                                    <div class="select laptop">
-                                        <input type="radio" class="laptop" name="device" id="laptop" value="laptop"><label class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
-                                        <input type="radio" class="phone" name="device" id="phone" value="phone"><label class="fa fa-mobile" for="phone" title="มือถือ"></label>
-                                        <input type="radio" class="tablet" name="device" id="taplet" value="tablet"><label class="fa fa-tablet" for="taplet" title="แท็บเล็ต"></label>
-                                        <!-- <input type="radio" class="other" name="device" id="other" value="other"><label class="fa fa-tablet" for="other" title="อื่นๆ"></label> -->
+                                    <div class="select">
+                                        <input type="radio" class="laptop" name="device" id="laptop" value="laptop"><label data-toggle="tooltip" data-placement="bottom" title="โน๊ตบุ๊ค" class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
+                                        <input type="radio" class="phone" name="device" id="phone" value="phone"><label data-toggle="tooltip" data-placement="bottom" title="มือถือ" class="fa fa-mobile" for="phone" title="มือถือ"></label>
+                                        <input type="radio" class="tablet" name="device" id="taplet" value="tablet"><label data-toggle="tooltip" data-placement="bottom" title="แท็บเล็ต" class="fa fa-tablet" for="taplet" title="แท็บเล็ต"></label>
+                                        <input type="radio" class="other" name="device" id="other" value="other"><label data-toggle="tooltip" data-placement="bottom" title="อื่นๆ" class="fa fa-question" for="other" title="อื่นๆ"></label>
                                     </div>
                                 </div>
                                   <div class="ch-device ">

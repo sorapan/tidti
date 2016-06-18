@@ -7,7 +7,7 @@ class RadSKOModel extends CI_Model {
         // Call the Model constructor
         parent::__construct();
     }
-    
+
     function getFacData()
     {
         $this->db->db_select('radius');
@@ -60,5 +60,11 @@ class RadSKOModel extends CI_Model {
         return $this->db->get('location_peple')->result();
     }
 
-    
+    function getStaffData(){
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        return $this->db->get('staff')->result();
+    }
+
+
 }

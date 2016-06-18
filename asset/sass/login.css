@@ -31,7 +31,7 @@
       text-align: center;
       color: #fcbe32; }
     .login > ._1 > h2 {
-      font-size: 3em; }
+      font-size: 2.5em; }
       .login > ._1 > h2 > .wifi {
         color: #EFFFE9; }
     .login > ._1 > h3 {
@@ -198,7 +198,7 @@
     margin-top: 100px;
     margin-bottom: 55px;
     position: absolute;
-    min-height: 700px; }
+    min-height: 600px; }
     .login .form {
       padding: 0;
       padding-bottom: 15px; }
@@ -206,7 +206,7 @@
       height: 75vh;
       background: none;
       background-color: rgba(0, 78, 102, 0.7);
-      min-height: 700px; }
+      min-height: 600px; }
       .login ._1 > .footer {
         position: absolute;
         bottom: 0;
@@ -223,5 +223,5 @@
             font-size: 1.2em; }
     .login ._2 {
       height: 75vh;
-      min-height: 700px;
+      min-height: 600px;
       overflow-y: auto; } }

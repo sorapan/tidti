@@ -81,6 +81,6 @@ $route['admin/mac'] = 'admin/mac';
 $route['admin/mac/search'] = 'admin/searchToManageMac';
 $route['admin/mac/(:any)'] = 'admin/editmac/$1';
 $route['admin/user'] = 'admin/user';
-$route['admin/submitdevice/(:any)'] = 'admin/submitdevice/$1';
+$route['admin/AddManualUser/(:any)'] = 'admin/AddManualUser/$1';
 $route['admin/mac/setDataToEditById/(:any)'] = 'admin/setDataToEditById/$1';
 
