@@ -54,7 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['std_logincheck'] = 'Login/logincheck';
+$route['admin/admin_logincheck'] ='login/admincheck';
 
+$route['admin/login'] = 'Login/adminLogin';
 //////////STUDENT PAGE
 $route['student'] = 'student_page/index';
 $route['student/addmac'] = 'student_page/add_mac';
@@ -70,11 +72,8 @@ $route['professor/deletemac'] = 'professor_page/deletemac';
 $route['professor/logout'] = 'professor_page/logout';
 
 //////////ADMIN PAGE
-//$route['admin'] = 'admin/login';
-$route['admin'] = 'admin/manage';
-// $route['admin/log'] = 'admin';
+$route['admin'] = 'admin/index';
 $route['admin/log'] = 'admin/log';
-$route['admin/login'] = 'admin/login';
 $route['admin/manage'] = 'admin/manage';
 $route['admin/manage/(:any)'] = 'admin/adduser/$1';
 $route['admin/mac'] = 'admin/mac';
@@ -83,4 +82,5 @@ $route['admin/mac/(:any)'] = 'admin/editmac/$1';
 $route['admin/user'] = 'admin/user';
 $route['admin/AddManualUser/(:any)'] = 'admin/AddManualUser/$1';
 $route['admin/mac/setDataToEditById/(:any)'] = 'admin/setDataToEditById/$1';
+$route['admin/deleteMac/(:any)'] = 'admin/deletemac/$1';
 

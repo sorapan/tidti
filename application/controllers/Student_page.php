@@ -4,6 +4,7 @@ class Student_page extends CI_Controller {
 
 	public function __construct()
 	{
+		date_default_timezone_set("Asia/Bangkok");
 		parent::__construct();
 
 		if(!$this->session->userdata('login')||$this->session->userdata('id')==null){
@@ -17,12 +18,13 @@ class Student_page extends CI_Controller {
 		$this->load->model('RadDeviceModel');
 		$this->load->model('RadOnlineProfileModel');
 		$this->load->model('RadRegisterOnlineModel');
-				
+		$this->load->model('LogModel');
+
 	}
 
 	public function index()
 	{
-		
+
 		$mac_registered_num = $this->MacModel->CountDataOnStdId($this->session->userdata('id'));
 		//$macdata = $this->MacModel->FetchDataWithSTDID($this->session->userdata('id'));
 		//$macdata = $this->RadOnlineProfileModel->getDataByStudentID($this->session->userdata('id'));
@@ -38,7 +40,7 @@ class Student_page extends CI_Controller {
 		));
 
 	}
-	
+
 	public function submit_location()
 	{
 		if(isset($_POST['location']))
@@ -49,20 +51,20 @@ class Student_page extends CI_Controller {
 	}
 
 	public function add_mac()
-	{			
+	{
 		if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
 		{
 			if($this->session->userdata('location') )
 			{
-			
+
 			// $this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
 			// AddLog(	$this->session->userdata('id')." is adding mac address" );
 			// @header('Location: ' . $_SERVER['HTTP_REFERER']);
-			
+
 			$epass = 's'.$this->session->userdata('id');
 			$checkprofileexist = $this->RadOnlineProfileModel->CheckExistDataByStudentID($this->session->userdata('id'));
 			$profile_data = array();
-			
+
 			if(!$checkprofileexist)
 			{
 				$profile_data = array(
@@ -85,7 +87,31 @@ class Student_page extends CI_Controller {
 			{
 				$profile_data = null;
 			}
-			
+
+
+			$this->RadReplyCheckModel->AddRadReply(array(
+					// รับค่าจาก POST
+					'username' => $_POST['macaddress'],
+					// ส่วนที่แก้ไข
+					'attribute' => 'WISPr-Session-Terminate-Time',
+					// ส่วนที่แก้ไข
+					'op' => '-',
+					// ส่วนที่แก้ไข
+					'value'=> '-'
+				));
+
+			// อาจจะมีการแก้ไขในภายหน้า
+			$this->RadReplyCheckModel->AddRadCheck(array(
+					// รับค่าจาก POST
+					'username' => $_POST['macaddress'],
+					// ส่วนที่แก้ไข
+					'attribute' => '-',
+					// ส่วนที่แก้ไข
+					'op' => '-',
+					// ส่วนที่แก้ไข
+					'value'=> '-'
+				));
+
 			$this->RadOnlineProfileModel->AddData(
 			$profile_data,
 			array(
@@ -98,21 +124,21 @@ class Student_page extends CI_Controller {
 				'macaddress' => $_POST['mac'],
 				'status_on' => 'staff'
 			));
-			
+
 			@header('Location: ' . $_SERVER['HTTP_REFERER']);
-			
+
 			}else{
 				echo 'กรุณากรอกข้อมูลวิทยาเขต<br>';
 				echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
 			}
-			
+
 		}else{
-			
+
 			echo 'กรุณากรอก Mac Address<br>';
 			echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
-			
-		}	
-		
+
+		}
+
    	}
 
 	public function delete_mac()
@@ -121,17 +147,25 @@ class Student_page extends CI_Controller {
 		//$this->RadRegisterOnlineModel->DeleteDataByStudentID($this->session->userdata('id'));
 		$this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
 		$this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
-		
+
 		// $device_data = $this->RadRegisterOnlineModel->GetDataByEpass('s'.$this->session->userdata('id'));
-		
+
 		// if($device_data == null)$this->RadOnlineProfileModel->DeleteDataByStudentID($this->session->userdata('id'));
-		
+
 		AddLog(	$this->session->userdata('id')." was deleting his/her registered mac address" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 
 	public function signout()
 	{
+		$this->LogModel->AddEventLog(array(
+				'USERNAME'=>$this->session->userdata('username'),
+				'STATUS'=>$this->session->userdata('status'),
+				'LOCATION'=>$this->session->userdata('location_id'),
+				'EVENT' => 'ได้ทำการออกจากระบบ',
+				'DATE'=>date('Y-m-d'),
+				'TIME'=>date('H:i:s')
+			));
 		$this->session->sess_destroy();
 		AddLog(	$this->session->userdata('id')." was logging out" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
