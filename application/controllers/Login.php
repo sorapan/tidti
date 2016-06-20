@@ -93,8 +93,7 @@ class Login extends CI_Controller {
 
 							//เพิ่มใหม่
 							$this->session->set_userdata('username',$res[0]->usre);
-							$this->session->set_userdata('status',$res[0]->status);
-							$this->session->set_userdata('location_id',$res[0]->location_id);
+
 						}
 
 						//$std_mac_registered = $this->RadAccountModel->getDataByFirstAndLastName( $this->session->userdata('firstname'),$this->session->userdata('lastname'));
