@@ -11,15 +11,15 @@
 <body>
     <div class="admin col-xs-12 nopad">
         <div class="signin">
-            <form class="form">
+            <form method="post" action="std_logincheck" class="form">
                 <div>
-                    <input type="text" placeholder="username">
+                    <input type="text" placeholder="username" name="e_pass">
                 </div>
                 <div>
-                    <input type="password" placeholder="password">
+                    <input type="password" placeholder="password" name="pass">
                 </div>
                 <div class="submit">
-                    <button>เข้าระบบ</button>
+                    <button type="submit">เข้าระบบ</button>
                 </div>
             </form>
         </div>

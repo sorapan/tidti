@@ -1,6 +1,19 @@
 .center{
     text-align: center;
 }
+.myalert{
+    height: 100%;
+    font-size: 1.5em;
+    float: left;
+    // border: 1px solid #12af3c;
+    // border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    margin-left: 25px;
+    color: #108c30;
+    background-color: #c4ffd3;
+}
 .admin{
     &.wrap{
         min-width: 1200px;
@@ -186,6 +199,7 @@
                     color: #004E66;
                 }
 
+
             }
             >.cancle{
                 margin: 25px 0;
@@ -231,7 +245,10 @@
                             font-size: 2em;
                         }
                         td:last-child{
-                            > button{
+                            > form{
+                                display: inline-block;
+                            }
+                            > button,> form > button{
                                 border: 1px solid #ff5f2e;
                                 background-color: transparent;
                                 color: #ff5f2e;
@@ -381,8 +398,39 @@
                 height: 700px;
                 padding: 10px 20px 15px 10px;
                 border: 1px solid #004e66;
-                font-size: 1.4em;
+                font-size: 1.2em;
                 overflow-y: auto;
+                th{
+                    border-bottom: 1px solid #004e66;
+                    // border-color:#004e66;
+                }
+            }
+            >.search form{
+                margin: 5px 0 15px 0;
+                height: 35px;
+                float: left;
+                > .input,>.button,>.select{
+                    height: 100%;
+                    font-size: 1.5em;
+                    float: left;
+                }
+                >.input{
+                    width: 300px;
+                    margin-right: 5px;
+                    padding: 5px;
+                    border: 2px solid #ff5f2e;
+                    background-color: #fff;
+                }
+                >.button{
+                    background-color: #fff;
+                    border: 2px solid #004E66;
+                    color: #004E66;
+                }
+                >.select{
+                    margin-right: 5px;
+                }
+
+
             }
         }
         >.list{

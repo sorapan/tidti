@@ -8,7 +8,13 @@ class DeviceModel extends CI_Model {
         parent::__construct();
     }
 
-       function SelectDevice($where){
+    function AddDevice($data){
+        $this->db->db_select('radius');
+        $this->db->insert('device',$data);
+    }
+
+
+   function SelectDevice($where){
         if($where==null){
             $this->db->db_select('radius');
             $this->db->select('*');
@@ -57,6 +63,22 @@ class DeviceModel extends CI_Model {
         $this->db->update('device',$device);
 
 
+    }
+
+    function DeleteMac($mac){
+        $this->db->db_select('radius');
+        $this->db->delete('device',array(
+                'UserName'=>$mac
+            ));
+        $this->db->delete('register_online',array(
+                'macaddress'=>$mac
+            ));
+        $this->db->delete(array(
+                'radcheck','radreply'
+            ),array(
+                'username'=>$mac
+            ));
+        return  $this->db->error();
     }
 
 

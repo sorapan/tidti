@@ -9,7 +9,10 @@ class Admin_dataModel extends CI_Model {
     }
 
     function Login($user, $pass){
-
+        $this->db->select('*');
+        $this->db->from('admin_data');
+        $this->db->where('username',$user)->where('password',$pass);
+        return $this->db->get()->result();
     }
 
     function GetDataToMange($where){
