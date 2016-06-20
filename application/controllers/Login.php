@@ -38,14 +38,16 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('username',$res[0]->username);
 			$this->session->set_userdata('status',$res[0]->status);
 			$this->session->set_userdata('location_id',$res[0]->location_id);
-			$this->LogModel->AddEventLog(array(
-				'USERNAME'=>$this->session->userdata('username'),
-				'STATUS'=>$this->session->userdata('status'),
-				'LOCATION'=>$this->session->userdata('location_id'),
-				'EVENT' => 'ได้เข้าสู่ระบบ',
-				'DATE'=>date('Y-m-d'),
-				'TIME'=>date('H:i:s')
-			));
+
+			// $this->LogModel->AddEventLog(array(
+			// 	'USERNAME'=>$this->session->userdata('username'),
+			// 	'STATUS'=>$this->session->userdata('status'),
+			// 	'LOCATION'=>$this->session->userdata('location_id'),
+			// 	'EVENT' => 'ได้เข้าสู่ระบบ',
+			// 	'DATE'=>date('Y-m-d'),
+			// 	'TIME'=>date('H:i:s')
+			// ));
+
 			@header('Location:'.base_url().'admin/manage');
 		}
 	}
@@ -90,12 +92,12 @@ class Login extends CI_Controller {
 							$this->session->set_userdata('email',$sd->EMAIL);
 							$this->session->set_userdata('tel',$sd->TELEPHONE);
 							$this->session->set_userdata('citizen_id',$sd->CITIZEN_ID);
-
-							//เพิ่มใหม่
-							$this->session->set_userdata('username',$res[0]->usre);
-							$this->session->set_userdata('status',$res[0]->status);
-							$this->session->set_userdata('location_id',$res[0]->location_id);
 						}
+
+						//เพิ่มใหม่
+							$this->session->set_userdata('username',$res[0]->usre);
+							// $this->session->set_userdata('status',$res[0]->status);
+							// $this->session->set_userdata('location_id',$res[0]->location_id);
 
 						//$std_mac_registered = $this->RadAccountModel->getDataByFirstAndLastName( $this->session->userdata('firstname'),$this->session->userdata('lastname'));
 						$std_mac_registered = $this->RadOnlineProfileModel->getDataByStudentID($this->session->userdata('id'));
@@ -107,14 +109,14 @@ class Login extends CI_Controller {
 
 						AddLog(	$this->session->userdata('id')." is logging in" );
 						// เพิ่ม event
-						$this->LogModel->AddEventLog(array(
-							'USERNAME'=>$this->session->userdata('username'),
-							'STATUS'=>$this->session->userdata('status'),
-							'LOCATION'=>$this->session->userdata('location_id'),
-							'EVENT' => 'ได้เข้าสู่ระบบ',
-							'DATE'=>date('Y-m-d'),
-							'TIME'=>date('H:i:s')
-						));
+						// $this->LogModel->AddEventLog(array(
+						// 	'USERNAME'=>$this->session->userdata('username'),
+						// 	'STATUS'=>$this->session->userdata('status'),
+						// 	'LOCATION'=>$this->session->userdata('location_id'),
+						// 	'EVENT' => 'ได้เข้าสู่ระบบ',
+						// 	'DATE'=>date('Y-m-d'),
+						// 	'TIME'=>date('H:i:s')
+						// ));
 
 
 						@header("Location: student");
@@ -145,23 +147,36 @@ class Login extends CI_Controller {
 								$this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
 								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->prof_branch)[0]->PRO_NAME);
 							}
+
+							// add log data
+							$this->LogModel->AddEventLog(array(
+								'USERNAME'=>$this->session->userdata('username'),
+								'STATUS'=>'user',
+								'LOCATION'=> $this->session->userdata('location'),
+								'EVENT' => 'เข้าสู่ระบบ )',
+								'DATE'=>date('Y-m-d'),
+								'TIME'=>date('H:i:s')
+									));
+
 						}
 						else
 						{
 							$this->session->set_userdata('login',true);
 							$this->session->set_userdata('username',$_POST['e_pass']);
 							$this->session->set_userdata('detail_exists',false);
+
+							// add log data
+							$this->LogModel->AddEventLog(array(
+								'USERNAME'=>$this->session->userdata('username'),
+								'STATUS'=>'user',
+								'LOCATION'=>'-',
+								'EVENT' => 'เข้าสู่ระบบ (ไม่ได้ยืนยันข้อมูล)',
+								'DATE'=>date('Y-m-d'),
+								'TIME'=>date('H:i:s')
+									));
 						}
 
 						AddLog(	$this->session->userdata('username')." is logging in" );
-						$this->LogModel->AddEventLog(array(
-							'USERNAME'=>$this->session->userdata('username'),
-							'STATUS'=>$this->session->userdata('status'),
-							'LOCATION'=>$this->session->userdata('location_id'),
-							'EVENT' => 'ได้เข้าสู่ระบบ',
-							'DATE'=>date('Y-m-d'),
-							'TIME'=>time()
-						));
 						@header("Location: professor");
 
 					}

@@ -83,4 +83,4 @@ $route['admin/user'] = 'admin/user';
 $route['admin/AddManualUser/(:any)'] = 'admin/AddManualUser/$1';
 $route['admin/mac/setDataToEditById/(:any)'] = 'admin/setDataToEditById/$1';
 $route['admin/deleteMac/(:any)'] = 'admin/deletemac/$1';
-
+$route['admin/searchLog'] = 'admin/searchLog';

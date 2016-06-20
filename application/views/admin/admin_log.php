@@ -38,14 +38,29 @@
                 $search = "";
             }
         ?>
-            <form method="post" action="search">
-           <!--  <select class="select">
-                <option disabled selected>วันที่</option>
+            <form method="post" action="searchlog">
+            <select name="date" class="select">
+                <option value="">วันที่</option>
+                <?php
+                    foreach ($date as $var) {
+
+
+
+                        ?>
+
+                        <option value="<?=$var->DATE?>"><?=$var->DATE?></option>
+
+                        <?php
+                    }
+                ?>
+            </select>
+            <!-- <select name="location" class="select">
+                <option value="">วิทยาเขต</option>
                 <?php
                     foreach ($data as $var) {
                         ?>
 
-                        <option value="<?=$var?>"></option>
+                        <option value="<?=$var->LOCATION?>"><?=location_id($var->LOCATION)?></option>
 
                         <?php
                     }
@@ -74,7 +89,23 @@
                     </thead>
                     <?php
 
+                        if(gettype($data)!='array'){
+
+                            ?>
+                            <tr>
+                            <td ></td>
+                            <td ></td>
+                            <td><?=$data?></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <?php
+
+                            }else{
                              foreach($data as $val){
+
 
                          ?>
                          <tr>
@@ -89,6 +120,7 @@
 
                         <?php
                             }
+                        }
                         ?>
                 </table>
             </div>

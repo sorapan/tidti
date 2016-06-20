@@ -29,7 +29,7 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		// $this->manage();
+		@header('Location: admin/manage');
 	}
 
 
@@ -128,12 +128,48 @@ class Admin extends CI_Controller {
 		}else{
 			$data = $this->LogModel->GetLogByLocation($this->session->userdata('status'));
 		}
-
 		$this->load->view('admin/admin_log',array(
-			'data' => $data
+			'data' => $data,
+			'date' => $data
 			));
 	}
 
+
+	public function searchLog(){
+		$date = $_POST['date'];
+		$where = $_POST['search'];
+		// $location = $_POST['location'];
+
+		$this->session->set_flashdata('date',$date);
+		// $this->session->set_flashdata('location',$location);
+
+		if($this->session->userdata('status')=='admin'){
+			$data = $this->LogModel->GetAllLog();
+		}else{
+			$data = $this->LogModel->GetLogByLocation($this->session->userdata('status'));
+		}
+
+		$getsearch = $this->LogModel->GetLogByWhere($date,$where);
+		if(empty($getsearch)){
+
+			$this->load->view('admin/admin_log',array(
+			'data' => 'ไม่พบสิ่งที่ค้นหา',
+			'date' => $data
+			));
+
+		}
+		else if(empty($date)&&empty($where)){
+			$this->log();
+		}else{
+
+			$this->load->view('admin/admin_log',array(
+			'data' => $getsearch,
+			'date' => $data
+			));
+		}
+
+
+	}
 
 	public function login()
 	{

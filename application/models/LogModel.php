@@ -17,6 +17,31 @@ class LogModel extends CI_Model {
         return $this->db->get()->result();
     }
 
+    function GetLogByWhere($date,$where){
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->from('log');
+
+        if(!empty($date)&&!empty($where)){
+            $this->db->where('DATE',$date);
+            $this->db->like('USERNAME',$where);
+            $this->db->or_like('EVENT',$where);
+        }else{
+            // $this->db->or_where('LOCATION',$location);
+            $this->db->where('DATE',$date);
+            if(!empty($where)){
+                $this->db->or_like('USERNAME',$where);
+                $this->db->or_like('EVENT',$where);
+            }
+
+        }
+
+        $this->db->order_by("DATE", "desc");
+        $this->db->order_by("TIME", "desc");
+        return $this->db->get()->result();
+
+    }
+
     function GetLogByLocation($location){
         $this->db->db_select('radius');
         $this->db->select('*');

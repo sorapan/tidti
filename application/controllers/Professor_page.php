@@ -151,6 +151,15 @@ class Professor_page extends CI_Controller {
                             'value'=> '-'
                         ));
 
+                    $this->LogModel->AddEventLog(array(
+                        'USERNAME'=>$this->session->userdata('username'),
+                        'STATUS'=>'user',
+                        'LOCATION'=> $this->session->userdata('location'),
+                        'EVENT' => 'ได้เพิ่มอุปกรณ์:'.$_POST['mac'],
+                        'DATE'=>date('Y-m-d'),
+                        'TIME'=>date('H:i:s')
+                            ));
+
                     @header('Location: ' . $_SERVER['HTTP_REFERER']);
                 }
                 else
@@ -183,14 +192,20 @@ class Professor_page extends CI_Controller {
 
     public function logout()
     {
+        // add log data
+        if(empty($this->session->userdata('location'))){
+            $location = '-';
+        }else{
+            $location = $this->session->userdata('location');
+        }
         $this->LogModel->AddEventLog(array(
-                'USERNAME'=>$this->session->userdata('username'),
-                'STATUS'=>$this->session->userdata('status'),
-                'LOCATION'=>$this->session->userdata('location_id'),
-                'EVENT' => 'ได้ทำการออกจากระบบ',
-                'DATE'=>date('Y-m-d'),
-                'TIME'=>date('H:i:s')
-            ));
+            'USERNAME'=>$this->session->userdata('username'),
+            'STATUS'=>'user',
+            'LOCATION'=> $location,
+            'EVENT' => '(ออกจากระบบ)',
+            'DATE'=>date('Y-m-d'),
+            'TIME'=>date('H:i:s')
+                ));
         $this->session->sess_destroy();
         AddLog(	$this->session->userdata('id')." was logging out" );
         @header('Location: ' . $_SERVER['HTTP_REFERER']);

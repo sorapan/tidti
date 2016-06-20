@@ -158,14 +158,14 @@ class Student_page extends CI_Controller {
 
 	public function signout()
 	{
-		$this->LogModel->AddEventLog(array(
-				'USERNAME'=>$this->session->userdata('username'),
-				'STATUS'=>$this->session->userdata('status'),
-				'LOCATION'=>$this->session->userdata('location_id'),
-				'EVENT' => 'ได้ทำการออกจากระบบ',
-				'DATE'=>date('Y-m-d'),
-				'TIME'=>date('H:i:s')
-			));
+		// $this->LogModel->AddEventLog(array(
+		// 		'USERNAME'=>$this->session->userdata('username'),
+		// 		'STATUS'=>$this->session->userdata('status'),
+		// 		'LOCATION'=>$this->session->userdata('location_id'),
+		// 		'EVENT' => 'ได้ทำการออกจากระบบ',
+		// 		'DATE'=>date('Y-m-d'),
+		// 		'TIME'=>date('H:i:s')
+		// 	));
 		$this->session->sess_destroy();
 		AddLog(	$this->session->userdata('id')." was logging out" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
