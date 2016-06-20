@@ -4,7 +4,6 @@ class Professor_page extends CI_Controller {
 
     public function __construct()
     {
-        date_default_timezone_set("Asia/Bangkok");
         parent::__construct();
 
 		if(!$this->session->userdata('login')){
@@ -15,7 +14,6 @@ class Professor_page extends CI_Controller {
         $this->load->model('RadRegisterOnlineModel');
         $this->load->model('RadDeviceModel');
         $this->load->model('RadSKOModel');
-        $this->load->model('LogModel');
 
     }
 
@@ -99,7 +97,7 @@ class Professor_page extends CI_Controller {
             echo 'กรุณากรอกข้อมูลให้ครบ<br>';
             echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
         }
-
+        
     }
 
     public function addmac()
@@ -126,30 +124,7 @@ class Professor_page extends CI_Controller {
                         'macaddress' => $_POST['mac'],
                         'status_on' => 'staff'
                     ));
-
-                    $this->RadReplyCheckModel->AddRadReply(array(
-                            // รับค่าจาก POST
-                            'username' => $_POST['macaddress'],
-                            // ส่วนที่แก้ไข
-                            'attribute' => 'WISPr-Session-Terminate-Time',
-                            // ส่วนที่แก้ไข
-                            'op' => '-',
-                            // ส่วนที่แก้ไข
-                            'value'=> '-'
-                        ));
-
-                    // อาจจะมีการแก้ไขในภายหน้า
-                    $this->RadReplyCheckModel->AddRadCheck(array(
-                            // รับค่าจาก POST
-                            'username' => $_POST['macaddress'],
-                            // ส่วนที่แก้ไข
-                            'attribute' => '-',
-                            // ส่วนที่แก้ไข
-                            'op' => '-',
-                            // ส่วนที่แก้ไข
-                            'value'=> '-'
-                        ));
-
+                    
                     @header('Location: ' . $_SERVER['HTTP_REFERER']);
                 }
                 else
@@ -175,21 +150,13 @@ class Professor_page extends CI_Controller {
     {
         $this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
 		$this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
-
+		
 		AddLog(	$this->session->userdata('id')." was deleting his/her registered mac address" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function logout()
     {
-        $this->LogModel->AddEventLog(array(
-                'USERNAME'=>$this->session->userdata('username'),
-                'STATUS'=>$this->session->userdata('status'),
-                'LOCATION'=>$this->session->userdata('location_id'),
-                'EVENT' => 'ได้ทำการออกจากระบบ',
-                'DATE'=>date('Y-m-d'),
-                'TIME'=>date('H:i:s')
-            ));
         $this->session->sess_destroy();
         AddLog(	$this->session->userdata('id')." was logging out" );
         @header('Location: ' . $_SERVER['HTTP_REFERER']);

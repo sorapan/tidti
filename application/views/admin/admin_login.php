@@ -15,17 +15,17 @@
                 <h2>เข้าระบบ</h2>
                 <h3>ผู้ดูแล</h3>
             </div>
-            <form method="post" action="admin_logincheck"  class="form">
+            <form class="form">
                 <div class="input">
                     <label class="opensans"><i class="fa fa-user" aria-hidden="true"></i> : username</label>
-                    <input type="text" placeholder="username" name="e_pass">
+                    <input type="text" placeholder="username">
                 </div>
                 <div class="input">
                     <label class="opensans"><i class="fa fa-lock" aria-hidden="true"></i> : password</label>
-                    <input type="password" placeholder="password" name="pass">
+                    <input type="password" placeholder="password">
                 </div>
                 <div class="submit">
-                    <button type="submit">เข้าระบบ</button>
+                    <button>เข้าระบบ</button>
                 </div>
             </form>
         </div>

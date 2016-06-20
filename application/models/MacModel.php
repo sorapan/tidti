@@ -26,11 +26,11 @@ class MacModel extends CI_Model {
           'date' => time()
         ));
     }
-
+    
     function LikeStudentID($stdid)
     {
       $this->db->select('*');
-      $this->db->like('std_id', $stdid);
+      $this->db->like('std_id', $stdid); 
       return $this->db->get('mac')->result();
     }
 
@@ -48,15 +48,11 @@ class MacModel extends CI_Model {
       return count($this->db->get('mac')->result());
     }
 
-
-// edited by bestzaba
     function CheckMac($mac)
     {
-      $this->db->db_select('radius');
       $this->db->select('*');
-      $this->db->where('UserName',$mac);
-      $this->db->from('device',$mac);
-      return $this->db->get()->result();
+      $this->db->where('mac',$mac);
+      return count($this->db->get('mac')->result());
     }
 
     function CheckDevice($device)

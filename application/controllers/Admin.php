@@ -5,15 +5,8 @@ class Admin extends CI_Controller {
 
 	public function __construct()
 	{
-		date_default_timezone_set("Asia/Bangkok");
-		parent::__construct();
-		if($this->session->userdata('status')=='admin' || $this->session->userdata('status')=='staff'){
 
-		}else{
-			@header('Location: '.base_url().'admin/login');
-		}
-
-
+		 parent::__construct();
 		 $this->load->model('E_passModel');
 		 $this->load->model('Uoc_stdModel');
 		 $this->load->model('Admin_dataModel');
@@ -21,27 +14,29 @@ class Admin extends CI_Controller {
 		 $this->load->model('DeviceModel');
 		 $this->load->model('RadSKOModel');
 		 $this->load->model('RadSKOModel');
-		 $this->load->model('RadReplyCheckModel');
 		 $this->load->model('ManualUserModel');
-		 $this->load->model('LogModel');
 
 	}
 
 	public function index()
 	{
-		// $this->manage();
+		echo test_method('Hello World');
+		$this->load->view('admin/index');
 	}
-
-
 
 	// manage page
 	public function manage(){
+		$fac_data = $this->RadSKOModel->getFacData();
+		$program_data = $this->RadSKOModel->getProgramData();
+		$group_data = $this->RadSKOModel->getGroupsData();
+		$location_data = $this->RadSKOModel->getLocationData();
+		$staff_data = $this->RadSKOModel->getStaffData();
 		$this->load->view('admin/admin_manage',array(
-							'fac_data' => $this->RadSKOModel->getFacData(),
-							'program_data' => $this->RadSKOModel->getProgramData(),
-							'group_data' => $this->RadSKOModel->getGroupsData(),
-							'location_data' => $this->RadSKOModel->getLocationData(),
-							'staff_data' => $this->RadSKOModel->getStaffData()
+							'fac_data' => $fac_data,
+							'program_data' => $program_data,
+							'group_data' => $group_data,
+							'location_data' => $location_data,
+							'staff_data' => $staff_data
 			));
 	}
 
@@ -52,66 +47,21 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/admin_mac_list',array('data'=> $data,'search'=> $search));
 	}
 
-	public function CheckMacBeforeAdd(){
-
-	}
-
 	public function AddManualUser($user){
-		// var_dump($_POST);
-
-			$check = $this->MacModel->CheckMac($_POST['macaddress']);
-
-			if($check <= 0){
-			// อาจจะมีการแก้ไขในภายหน้า
-			$this->RadReplyCheckModel->AddRadReply(array(
-					// รับค่าจาก POST
-					'username' => $_POST['macaddress'],
-					// ส่วนที่แก้ไข
-					'attribute' => 'WISPr-Session-Terminate-Time',
-					// ส่วนที่แก้ไข
-					'op' => '-',
-					// ส่วนที่แก้ไข
-					'value'=> '-'
-				));
-
-			// อาจจะมีการแก้ไขในภายหน้า
-			$this->RadReplyCheckModel->AddRadCheck(array(
-					// รับค่าจาก POST
-					'username' => $_POST['macaddress'],
-					// ส่วนที่แก้ไข
-					'attribute' => '-',
-					// ส่วนที่แก้ไข
-					'op' => '-',
-					// ส่วนที่แก้ไข
-					'value'=> '-'
-				));
-
-			$this->DeviceModel->AddDevice(array(
-					'UserName' => $_POST['macaddress'],
-					'dev_type' => $_POST['dev_type'],
-					'dev_net_type' => 'Wireless'
-				));
-			$this->ManualUserModel->AddDataManualUser(array(
-						'username'=>$_POST['macaddress'],
-						// 'password'=>$_POST['password'],
-						'pname'=>$_POST['pname'],
-						'firstname'=>$_POST['firstname'],
-						'lastname'=>$_POST['lastname'],
-						'idcard'=>$_POST['idcard'],
-						'mailaddr'=>$_POST['mailaddr'],
-						'discipline'=>$_POST['discipline'],
-						'department'=>$_POST['department'],
-						'dateregis'=>date('Y-m-d H:i:s',time()),
-						'status'=>$_POST['status'],
-						'location_id'=>$_POST['location_id']
-					));
-			$this->session->set_flashdata('alert', 'เพิ่มข้อมูลสำเร็จ');
-	        @header('Location:'.base_url().'admin/manage');
-	    }else{
-	    	$this->session->set_flashdata('alert', 'รหัสอุปกรณ์ หรือ macaddress ซ้ำ');
-	    	@header('Location:'.base_url().'admin/manage');
-	    }
-
+		$this->ManualUserModel->AddDataManualUser(array(
+					'username'=>$_POST['macaddress'],
+					// 'password'=>$_POST['password'],
+					'pname'=>$_POST['pname'],
+					'firstname'=>$_POST['firstname'],
+					'lastname'=>$_POST['lastname'],
+					'idcard'=>$_POST['idcard'],
+					'mailaddr'=>$_POST['mailaddr'],
+					'discipline'=>$_POST['discipline'],
+					'department'=>$_POST['department'],
+					'dateregis'=>date('Y-m-d H:i:s',time()),
+					'status'=>$_POST['status'],
+					'location_id'=>$_POST['location_id']
+			));
 	}
 
 	public function mac()
@@ -123,15 +73,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function log(){
-		if($this->session->userdata('status')=='admin'){
-			$data = $this->LogModel->GetAllLog();
-		}else{
-			$data = $this->LogModel->GetLogByLocation($this->session->userdata('status'));
-		}
-
-		$this->load->view('admin/admin_log',array(
-			'data' => $data
-			));
+		$this->load->view('admin/admin_log');
 	}
 
 
@@ -168,25 +110,13 @@ class Admin extends CI_Controller {
 
 
 
-
-
 	// manage method
-
-	public function deleteMac($mac){
-
-		$check = $this->DeviceModel->DeleteMac($mac);
-
-		if(empty($check['code'])){
-			$this->session->set_flashdata('alert', 'ลบอุปกรณ์เรียบร้อย');
-			@header('Location: ../mac');
-		}
-	}
 
 	public function getDataToEditById($id){
 		return	$this->DeviceModel->SelectDevice($id);
 	}
 
-	public function editDataById($id){
+	public function setDataToEditById($id){
 		// var_dump($_POST);
 		$where = array(
 					'oid' => $_POST['oid'],
@@ -209,32 +139,24 @@ class Admin extends CI_Controller {
 			);
 
 		$this->DeviceModel->EditDataDevice($where,$online_profile,$register_online,$device);
-
-		// เพิ่ม log แก้ไข event
-		// $this->LogModel->AddEventLog(array(
-		// 		'DATE' => date('Y-m-d H:i:s',time()),
-		// 		'USERNAME' => $this->session->('username'),
-		// 		'STATUS' => $this->session->('status')
-		// 	));
-		@header('Location:'.base_url().'/admin/mac/'.$where['oid']);
+		@header('Location:'.base_url().'/admin/mac/'.$where['oid'].'?stt=1');
 
 
 	}
 
-	public function logout(){
+	public function submitdevice($person){
 
-		$this->LogModel->AddEventLog(array(
-				'USERNAME'=>$this->session->userdata('username'),
-				'STATUS'=>$this->session->userdata('status'),
-				'LOCATION'=>$this->session->userdata('location_id'),
-				'EVENT' => 'ได้ทำการออกจากระบบ',
-				'DATE'=>date('Y-m-d'),
-				'TIME'=>date('H:i:s')
-			));
-		$this->session->sess_destroy();
-		// AddLog(	$this->session->userdata('id')." was logging out" );
-		@header('Location: ' . $_SERVER['HTTP_REFERER']);
+		var_dump($this->session);
+
+		// if($person == 'student'){
+
+		// }elseif($person == 'professor'){
+
+		// }elseif ($person == 'staff') {
+		// 	# code...
+		// }elseif ($person == 'special') {
+		// 	# code...
+		// }
 	}
-
 
 }

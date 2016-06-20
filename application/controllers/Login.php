@@ -4,7 +4,6 @@ class Login extends CI_Controller {
 
 	 public function __construct()
 	 {
-	 		date_default_timezone_set("Asia/Bangkok");
 
 		 	parent::__construct();
 		 	$this->load->model('E_passModel');
@@ -13,49 +12,19 @@ class Login extends CI_Controller {
 		 	$this->load->model('RadAccountModel');
 		 	$this->load->model('RadOnlineProfileModel');
 		 	$this->load->model('RadSKOModel');
-		 	$this->load->model('LogModel');
+
 	 }
 
 		public function index()
 		{
+
 			$this->load->view('login');
-		}
 
-		public function adminLogin(){
-			var_dump($this->session);
-			$this->load->view('admin/admin_login');
 		}
-
-	public function AdminCheck(){
-		$res = $this->E_passModel->AdminCheckLogin($_POST['e_pass'],$_POST['pass']);
-		if(empty($res)){
-			echo 'wrong';
-			// var_dump($res);
-			// @header('Location:'.base_url().'/admin/manage');
-		}else{
-			// var_dump($res);
-			$this->session->set_userdata('login',true);
-			$this->session->set_userdata('username',$res[0]->username);
-			$this->session->set_userdata('status',$res[0]->status);
-			$this->session->set_userdata('location_id',$res[0]->location_id);
-			$this->LogModel->AddEventLog(array(
-				'USERNAME'=>$this->session->userdata('username'),
-				'STATUS'=>$this->session->userdata('status'),
-				'LOCATION'=>$this->session->userdata('location_id'),
-				'EVENT' => 'ได้เข้าสู่ระบบ',
-				'DATE'=>date('Y-m-d'),
-				'TIME'=>date('H:i:s')
-			));
-			@header('Location:'.base_url().'admin/manage');
-		}
-	}
 
     public function LoginCheck()
     {
-    	// @header("Location: student");
         $res = $this->E_passModel->CheckLogin($_POST['e_pass'],$_POST['pass']);
-        // var_dump($res);
-        // $status = $res
 
 				if(empty($res))
 				{
@@ -90,10 +59,6 @@ class Login extends CI_Controller {
 							$this->session->set_userdata('email',$sd->EMAIL);
 							$this->session->set_userdata('tel',$sd->TELEPHONE);
 							$this->session->set_userdata('citizen_id',$sd->CITIZEN_ID);
-
-							//เพิ่มใหม่
-							$this->session->set_userdata('username',$res[0]->usre);
-
 						}
 
 						//$std_mac_registered = $this->RadAccountModel->getDataByFirstAndLastName( $this->session->userdata('firstname'),$this->session->userdata('lastname'));
@@ -105,22 +70,9 @@ class Login extends CI_Controller {
 						}
 
 						AddLog(	$this->session->userdata('id')." is logging in" );
-						// เพิ่ม event
-						$this->LogModel->AddEventLog(array(
-							'USERNAME'=>$this->session->userdata('username'),
-							'STATUS'=>$this->session->userdata('status'),
-							'LOCATION'=>$this->session->userdata('location_id'),
-							'EVENT' => 'ได้เข้าสู่ระบบ',
-							'DATE'=>date('Y-m-d'),
-							'TIME'=>date('H:i:s')
-						));
-
-
+						//echo $this->session->userdata('email');
 						@header("Location: student");
 
-					}
-					else if($res['status'] == 'admin'){
-						$ad_data = $this->Admin_dataModel->Login($_POST['e_pass'],$_POST['pass']);
 					}
 					else
 					{
@@ -153,14 +105,6 @@ class Login extends CI_Controller {
 						}
 
 						AddLog(	$this->session->userdata('username')." is logging in" );
-						$this->LogModel->AddEventLog(array(
-							'USERNAME'=>$this->session->userdata('username'),
-							'STATUS'=>$this->session->userdata('status'),
-							'LOCATION'=>$this->session->userdata('location_id'),
-							'EVENT' => 'ได้เข้าสู่ระบบ',
-							'DATE'=>date('Y-m-d'),
-							'TIME'=>time()
-						));
 						@header("Location: professor");
 
 					}
