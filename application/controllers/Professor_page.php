@@ -52,18 +52,17 @@ class Professor_page extends CI_Controller {
 
         $data_insert = array(
             'username' => $this->session->userdata('username'),
+            'password' => '-',
             'pname' => isset($_POST['pname'])?$_POST['pname']:null,
             'firstname' => $_POST['firstname'],
             'lastname' => $_POST['lastname'],
-            'discipline' => isset($_POST['group'])?$_POST['group']:null,
+            'discipline' => isset($_POST['branch'])?$_POST['branch']:null,
             'mailaddr' => $_POST['email'],
             'status' => 'อาจารย์',
             'idcard' => $_POST['citizen_id'],
             'location_id' => $_POST['location'],
             'department' => isset($_POST['department'])?$_POST['department']:null,
-            'prof_department' => isset($_POST['department'])?$_POST['department']:null,
-            'prof_branch' => isset($_POST['branch'])?$_POST['branch']:null,
-            'staff_group' => isset($_POST['group'])?$_POST['group']:null
+            'encryption' => '-'
         );
 
         if(!in_array(null,$data_insert) || !in_array("",$data_insert))
@@ -88,7 +87,7 @@ class Professor_page extends CI_Controller {
                         $this->session->set_userdata('location',$this->RadSKOModel->getLocationDataByLocationID($sd->location_id)[0]->location_name);
                         $this->session->set_userdata('discipline',$sd->discipline);
                         $this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
-                        $this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->prof_branch)[0]->PRO_NAME);
+                        $this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
                     }
                 }
 
