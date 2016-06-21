@@ -228,3 +228,25 @@ function selectDevice($dev){
         <option value="Tablet" '.$arr["Tablet"].'>แท็บเล็ต</option>
         <option value="Other" '.$arr["Other"].'>อื่นๆ</option>';
 }
+
+function headerOfAdmin($status){
+    switch ($status) {
+        case 'admin':
+            $name = 'ผู้ดูแล';
+            break;
+        case 'staff':
+            $name = 'เจ้าหน้าที่';
+            break;
+        default:
+            return false;
+            break;
+    }
+
+    echo '<div class="nav">
+        <!-- <span class="secret"><i class="fa fa-user-secret" aria-hidden="true"></i></span> -->
+        <span class="username thaisans">'.$name.'</span>
+        <button class="logout" onclick="window.location=\''.base_url().'admin/logout\'" title="ออกระบบ"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+        </div>';
+
+
+}

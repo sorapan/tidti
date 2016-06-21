@@ -10,6 +10,7 @@
   padding-top: 3px;
   margin-left: 25px;
   color: #108c30;
+  display: block;
   background-color: #c4ffd3; }
 
 .admin {
@@ -191,6 +192,9 @@
     padding: 0 0 0 30px;
     width: 25%;
     min-width: 200px; }
+  .admin .managealert {
+    margin-left: 20px;
+    font-size: 1.2em; }
   .admin > .content.manage .top {
     margin-top: 20px;
     background-color: #d9e1e8; }
@@ -275,12 +279,14 @@
   .admin > .content.log > .board > .content {
     width: 800px;
     height: 700px;
-    padding: 10px 0 15px 0;
+    padding: 0 0 15px 0;
     border: 1px solid #004e66;
     font-size: 1.2em;
     overflow-y: auto; }
     .admin > .content.log > .board > .content th {
       border-bottom: 1px solid #004e66; }
+    .admin > .content.log > .board > .content thead tr:first-child {
+      background-color: #e8e8e8; }
   .admin > .content.log > .board > .search form {
     margin: 5px 0 15px 0;
     height: 35px;

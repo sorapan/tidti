@@ -25,27 +25,15 @@
     border-radius: 3px;
     font-size: 1.4em;
     color: #fff; }
-.user-page > ._2 > .form > .alert {
-  position: absolute; }
-.user-page > ._2 > .form > .alert > .user_alert {
-  text-align: center;
-  width: 100%;
+.user-page > ._2 .user_alert {
   padding: 5px 20px;
-  visibility: visible;
-  position: initial; }
-  .user-page > ._2 > .form > .alert > .user_alert > h2 {
-    font-size: 2em;
-    margin-top: 10px; }
-  .user-page > ._2 > .form > .alert > .user_alert.success {
-    color: #fcbe32;
-    background-color: #004e66; }
-    .user-page > ._2 > .form > .alert > .user_alert.success > h2:before {
-      content: "successmac"; }
-  .user-page > ._2 > .form > .alert > .user_alert.delete {
-    color: #004e66;
-    background-color: #fcbe32; }
-    .user-page > ._2 > .form > .alert > .user_alert.delete > h2:before {
-      content: "deletemac"; }
+  margin-top: 10px;
+  background-color: #dcdcdc;
+  display: inline-block; }
+  .user-page > ._2 .user_alert > h2 {
+    font-size: 1.5em;
+    color: #7b7b7b;
+    margin: 0; }
 .user-page .add-device > h2.thaisans {
   margin: none; }
 .user-page .ch-device {

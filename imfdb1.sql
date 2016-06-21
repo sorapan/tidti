@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2016 at 09:12 PM
+-- Generation Time: Jun 21, 2016 at 10:09 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -68,7 +68,8 @@ INSERT INTO `e_pass` (`usre`, `pass`, `name`) VALUES
 ('s155404190025', 'hhhh', 'ธิดารัตน์'),
 ('s155404710076', 'eeee', 'สุนันทา'),
 ('s157404150016', 'dddd', 'วรนารี'),
-('santi.p', '1234', 'santi');
+('santi.p', '1234', 'santi'),
+('yongyut.s', '1234', 'yongyut');
 
 -- --------------------------------------------------------
 

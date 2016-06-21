@@ -50,38 +50,16 @@
         }
 
     }
-    >._2{
-        > .form{
-            >.alert{
-                position: absolute;
-            }
-        }
-    }
-    >._2 > .form >.alert > .user_alert {
-        text-align: center;
-        width: 100%;
+    >._2 .user_alert {
         padding: 5px 20px;
-        visibility: visible;
-        position: initial;
-
+        margin-top: 10px;
+        // border: 1px solid #7b7b7b;
+        background-color:#dcdcdc;
+        display: inline-block;
         >h2{
-            font-size: 2em;
-            margin-top: 10px;
-        }
-        &.success{
-            > h2:before{
-                content: "successmac";
-            }
-            color: #fcbe32;
-            background-color:#004e66;
-        }
-        &.delete{
-            > h2:before{
-                content: "deletemac";
-            }
-
-            color: #004e66;
-            background-color:#fcbe32;
+            font-size: 1.5em;
+            color: #7b7b7b;
+            margin:0;
         }
     }
     .student,.teacher{

@@ -10,11 +10,7 @@
 <?=header_url()?>
 <body>
 <div class="admin wrap nopad">
-    <div class="nav">
-        <!-- <span class="secret"><i class="fa fa-user-secret" aria-hidden="true"></i></span> -->
-        <span class="username thaisans">ผู้ดูแล</span>
-        <button class="logout" onclick="window.location='<?=base_url().'admin/logout'?>'" title="ออกระบบ"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
-    </div>
+    <?=headerOfAdmin($this->session->userdata('status'))?>
     <div class="sidebar ">
 
         <div class="content">

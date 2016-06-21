@@ -22,31 +22,27 @@ class Login extends CI_Controller {
 		}
 
 		public function adminLogin(){
-			var_dump($this->session);
-			$this->load->view('admin/admin_login');
+			// var_dump($this->session);
+			if($this->session->userdata('status')=='admin' || $this->session->userdata('status')=='staff'){
+						@header('Location:'.base_url().'admin/manage');
+				}else{
+
+					$this->load->view('admin/admin_login');
+				}
 		}
 
 	public function AdminCheck(){
 		$res = $this->E_passModel->AdminCheckLogin($_POST['e_pass'],$_POST['pass']);
 		if(empty($res)){
 			echo 'wrong';
-			// var_dump($res);
-			// @header('Location:'.base_url().'/admin/manage');
+			$this->session->set_flashdata('alert','ชื่อผู้ใช้หรือรหัสผิด');
+			@header('Location:'.base_url().'admin/login');
 		}else{
 			// var_dump($res);
 			$this->session->set_userdata('login',true);
 			$this->session->set_userdata('username',$res[0]->username);
 			$this->session->set_userdata('status',$res[0]->status);
 			$this->session->set_userdata('location_id',$res[0]->location_id);
-
-			// $this->LogModel->AddEventLog(array(
-			// 	'USERNAME'=>$this->session->userdata('username'),
-			// 	'STATUS'=>$this->session->userdata('status'),
-			// 	'LOCATION'=>$this->session->userdata('location_id'),
-			// 	'EVENT' => 'ได้เข้าสู่ระบบ',
-			// 	'DATE'=>date('Y-m-d'),
-			// 	'TIME'=>date('H:i:s')
-			// ));
 
 			@header('Location:'.base_url().'admin/manage');
 		}
@@ -108,6 +104,7 @@ class Login extends CI_Controller {
 						}
 
 						AddLog(	$this->session->userdata('id')." is logging in" );
+
 						// เพิ่ม event
 						// $this->LogModel->AddEventLog(array(
 						// 	'USERNAME'=>$this->session->userdata('username'),
@@ -143,6 +140,7 @@ class Login extends CI_Controller {
 								$this->session->set_userdata('email',$sd->mailaddr);
 								$this->session->set_userdata('status',$sd->status);
 								$this->session->set_userdata('location',$this->RadSKOModel->getLocationDataByLocationID($sd->location_id)[0]->location_name);
+								$this->session->set_userdata('location_id',$sd->location_id);
 								$this->session->set_userdata('discipline',$sd->discipline);
 								$this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
 								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->prof_branch)[0]->PRO_NAME);
@@ -152,8 +150,8 @@ class Login extends CI_Controller {
 							$this->LogModel->AddEventLog(array(
 								'USERNAME'=>$this->session->userdata('username'),
 								'STATUS'=>'user',
-								'LOCATION'=> $this->session->userdata('location'),
-								'EVENT' => 'เข้าสู่ระบบ )',
+								'LOCATION'=> $this->session->userdata('location_id'),
+								'EVENT' => 'เข้าสู่ระบบ',
 								'DATE'=>date('Y-m-d'),
 								'TIME'=>date('H:i:s')
 									));

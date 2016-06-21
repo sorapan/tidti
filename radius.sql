@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2016 at 09:12 PM
+-- Generation Time: Jun 21, 2016 at 10:09 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `device` (
   `UserName` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `dev_type` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `dev_net_type` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=12778 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12796 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `device`
@@ -3535,6 +3535,7 @@ INSERT INTO `device` (`id`, `UserName`, `dev_type`, `dev_net_type`) VALUES
 (12734, '1C-7B-21-D8-33-9F', 'Phone', 'Wireless'),
 (12735, 'F4-42-8F-0C-3C-3A', 'Phone', 'Wireless'),
 (12736, '0C-D7-46-96-16-6D', '', ''),
+(12786, '11-ff-dd-22-11-34', 'tablet', 'Wireless'),
 (12739, 'rrr', 'Phone', 'Wireless'),
 (12773, 'test other', 'other', 'Wireless'),
 (12751, 'asdsdd', 'laptop', 'Wireless'),
@@ -3542,7 +3543,9 @@ INSERT INTO `device` (`id`, `UserName`, `dev_type`, `dev_net_type`) VALUES
 (12765, 'esxc', 'laptop', 'Wireless'),
 (12764, 'ddddd', 'laptop', 'Wireless'),
 (12759, 'dfsdsdww', 'phone', 'Wireless'),
-(12772, '000', 'Notebook', 'Wireless');
+(12794, '11-ff-dd-22-11-33', 'phone', 'Wireless'),
+(12772, '000', 'Notebook', 'Wireless'),
+(12795, '11-11-FF-11-11-11', 'Notebook', 'Wireless');
 
 -- --------------------------------------------------------
 
@@ -3630,7 +3633,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `LOCATION` varchar(25) NOT NULL,
   `DATE` date NOT NULL,
   `TIME` time NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `log`
@@ -3639,7 +3642,53 @@ CREATE TABLE IF NOT EXISTS `log` (
 INSERT INTO `log` (`ID`, `USERNAME`, `STATUS`, `EVENT`, `LOCATION`, `DATE`, `TIME`) VALUES
 (34, 'akka.y', 'user', 'เข้าสู่ระบบ (ไม่ได้ยืนยันข้อมูล)', '-', '2016-06-20', '22:46:38'),
 (35, 'akka.y', 'user', 'sdfdsfsdfsdfsdf', 'sk', '2016-06-16', '00:00:00'),
-(36, 'test', 'user', 'sfsdfsdfsfsdf', 'tho', '2016-06-17', '00:00:00');
+(36, 'test', 'user', 'sfsdfsdfsfsdf', 'tho', '2016-06-17', '00:00:00'),
+(37, 'admin', 'admin', 'ได้ทำการออกจากระบบ', 'all', '2016-06-21', '19:30:54'),
+(38, 'admin', 'admin', 'ได้ทำการออกจากระบบ', 'all', '2016-06-21', '19:35:15'),
+(39, 'admin', 'admin', 'ได้ทำการออกจากระบบ', 'all', '2016-06-21', '19:37:22'),
+(40, 'santi.p', 'staff', 'ได้ทำการออกจากระบบ', 'sk', '2016-06-21', '19:38:29'),
+(41, 'yongyut.s', 'user', 'เข้าสู่ระบบ (ไม่ได้ยืนยันข้อมูล)', '-', '2016-06-21', '20:35:58'),
+(42, 'yongyut.s', 'user', '(ออกจากระบบ)', 'วิทยาเขตนครศรีธรรมราช(ขนอ', '2016-06-21', '21:04:53'),
+(43, 'yongyut.s', 'user', 'เข้าสู่ระบบ )', 'วิทยาเขตนครศรีธรรมราช(ขนอ', '2016-06-21', '21:11:42'),
+(44, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:', 'all', '2016-06-21', '21:14:01'),
+(45, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:', 'all', '2016-06-21', '21:14:51'),
+(46, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:', 'all', '2016-06-21', '21:15:37'),
+(47, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:หฟหหห', 'all', '2016-06-21', '21:16:18'),
+(48, 'yongyut.s', 'user', '(ออกจากระบบ)', 'วิทยาเขตนครศรีธรรมราช(ขนอ', '2016-06-21', '21:18:44'),
+(49, 'yongyut.s', 'user', 'เข้าสู่ระบบ )', 'ka', '2016-06-21', '21:18:51'),
+(50, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:test', 'ka', '2016-06-21', '22:19:56'),
+(51, 'yongyut.s', 'user', 'ออกจากระบบ', 'วิทยาเขตนครศรีธรรมราช(ขนอ', '2016-06-21', '22:20:49'),
+(52, 'yongyut.s', 'user', 'เข้าสู่ระบบ', 'ka', '2016-06-22', '00:28:25'),
+(53, 'yongyut.s', 'user', 'ได้เพิ่มอุปกรณ์:11-ff-dd-22-11-33', 'ka', '2016-06-22', '00:33:45'),
+(54, 'yongyut.s', 'user', 'ได้เพิ่มอุปกรณ์:11-ff-dd-22-11-44', 'ka', '2016-06-22', '00:34:19'),
+(55, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:11-ff-dd-22-11-44', 'ka', '2016-06-22', '00:35:42'),
+(56, 'yongyut.s', 'user', 'ได้เพิ่มอุปกรณ์:11-ff-dd-22-11-34', 'ka', '2016-06-22', '01:00:35'),
+(57, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:00-00-00-00-00-00', 'ka', '2016-06-22', '01:13:22'),
+(58, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:21:45'),
+(59, 'yongyut.s', 'user', 'ได้เพิ่มอุปกรณ์:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:22:24'),
+(60, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:22:46'),
+(61, 'yongyut.s', 'user', 'ได้เพิ่มอุปกรณ์:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:23:47'),
+(62, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:23:53'),
+(63, 'yongyut.s', 'user', 'ได้เพิ่มอุปกรณ์:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:24:47'),
+(64, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:29:02'),
+(65, 'yongyut.s', 'user', 'ได้เพิ่มอุปกรณ์:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:29:28'),
+(66, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:30:57'),
+(67, 'yongyut.s', 'user', 'ได้เพิ่มอุปกรณ์:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:31:42'),
+(68, 'yongyut.s', 'user', 'ได้เพิ่มอุปกรณ์:11-ff-dd-22-11-22', 'ka', '2016-06-22', '01:34:15'),
+(69, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:11-ff-dd-22-11-22', 'ka', '2016-06-22', '01:34:47'),
+(70, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:35:02'),
+(71, 'yongyut.s', 'user', 'ได้เพิ่มอุปกรณ์:11-ff-dd-22-11-33', 'ka', '2016-06-22', '01:35:20'),
+(72, 'yongyut.s', 'user', 'ออกจากระบบ', 'วิทยาเขตนครศรีธรรมราช(ขนอ', '2016-06-22', '01:35:48'),
+(73, 'yongyut.s', 'user', 'เข้าสู่ระบบ', 'ka', '2016-06-22', '01:49:50'),
+(74, 'yongyut.s', 'user', 'ออกจากระบบ', 'ka', '2016-06-22', '01:49:52'),
+(75, 'santi.p', 'user', 'เข้าสู่ระบบ', 'sk', '2016-06-22', '02:48:13'),
+(76, 'santi.p', 'user', 'ออกจากระบบ', 'sk', '2016-06-22', '02:48:17'),
+(77, 'yongyut.s', 'user', 'เข้าสู่ระบบ', 'ka', '2016-06-22', '02:48:24'),
+(78, 'yongyut.s', 'user', 'ได้ลบอุปกรณ์หมายเลข:11-ff-dd-22-11-33', 'ka', '2016-06-22', '02:50:56'),
+(79, 'yongyut.s', 'user', 'ได้เพิ่มอุปกรณ์:11-ff-dd-22-11-33', 'ka', '2016-06-22', '02:51:16'),
+(80, 'yongyut.s', 'user', 'ออกจากระบบ', 'ka', '2016-06-22', '02:52:17'),
+(81, 'yongyut.s', 'user', 'เข้าสู่ระบบ', 'ka', '2016-06-22', '02:52:22'),
+(82, 'yongyut.s', 'user', 'ออกจากระบบ', 'ka', '2016-06-22', '02:54:49');
 
 -- --------------------------------------------------------
 
@@ -3663,6 +3712,13 @@ CREATE TABLE IF NOT EXISTS `manual_user` (
   `status` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `location_id` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `manual_user`
+--
+
+INSERT INTO `manual_user` (`username`, `password`, `pname`, `firstname`, `lastname`, `idcard`, `mailaddr`, `discipline`, `department`, `year`, `dateregis`, `encryption`, `status`, `location_id`) VALUES
+('11-11-FF-11-11-11', 'Cleartext-Password', 'นาย', 'test3', 'test3', '11111111111', 'test@test', 'T014', 'de04', '', '2016-06-22 03:03:51', '', 'นักศึกษา : ปกติ', 'ka');
 
 -- --------------------------------------------------------
 
@@ -3694,7 +3750,7 @@ CREATE TABLE IF NOT EXISTS `online_profile` (
 INSERT INTO `online_profile` (`username`, `password`, `pname`, `firstname`, `lastname`, `idcard`, `mailaddr`, `discipline`, `department`, `year`, `dateregis`, `encryption`, `status`, `location_id`) VALUES
 ('s155404130050', 'Cleartext-Password', 'นาย', 'อาคกี', 'กีบเสน', '155404130050', 'chbj;;;,[][''fyyii', '', '', '-', '2016-06-03 13:18:47', '', 'นักศึกษา', 'sk'),
 ('santi.p', 'Cleartext-Password', 'นาย', 'asdsdsad', 'asdasd', '123544444444', 'asdasd@dsdsdsd', 'งานสารสนเทศ', 'de05', '', '0000-00-00 00:00:00', '', 'อาจารย์', 'sk'),
-('yongyut', 'Cleartext-Password', '', '', '', '0000000000000', '', '', '', '', '0000-00-00 00:00:00', '', '', '');
+('yongyut.s', '-', 'นาย', 'ewetwet', 'ewrwerwer', '11111111111111111', 'ssss@sssssd', 'T013', 'de01', '', '0000-00-00 00:00:00', '-', 'อาจารย์', 'ka');
 
 -- --------------------------------------------------------
 
@@ -3708,7 +3764,7 @@ CREATE TABLE IF NOT EXISTS `radcheck` (
   `attribute` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `op` char(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '==',
   `value` varchar(253) COLLATE utf8_unicode_ci NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=23812 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=23824 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `radcheck`
@@ -8970,7 +9026,12 @@ INSERT INTO `radcheck` (`id`, `username`, `attribute`, `op`, `value`) VALUES
 (23800, 'saiyai175', 'Cleartext-Password', ':=', '60597842'),
 (23801, 'saiyai176', 'Cleartext-Password', ':=', '01839542'),
 (23802, 'saiyai177', 'Cleartext-Password', ':=', '07284316'),
-(23803, 'saiyai178', 'Cleartext-Password', ':=', '95612840');
+(23803, 'saiyai178', 'Cleartext-Password', ':=', '95612840'),
+(23813, '11-ff-dd-22-11-44', '-', '-', '-'),
+(23814, '11-ff-dd-22-11-34', '-', '-', '-'),
+(23823, '11-11-FF-11-11-11', '-', '-', '-'),
+(23820, '11-ff-dd-22-11-22', '-', '-', '-'),
+(23822, '11-ff-dd-22-11-33', '-', '-', '-');
 
 -- --------------------------------------------------------
 
@@ -8984,7 +9045,7 @@ CREATE TABLE IF NOT EXISTS `radreply` (
   `attribute` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `op` char(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '=',
   `value` varchar(253) COLLATE utf8_unicode_ci NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=16529 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16541 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `radreply`
@@ -10961,7 +11022,12 @@ INSERT INTO `radreply` (`id`, `username`, `attribute`, `op`, `value`) VALUES
 (16525, 'ddddd', 'WISPr-Session-Terminate-Time', '-', '-'),
 (16526, 'กฟฟกฟก', 'WISPr-Session-Terminate-Time', '-', '-'),
 (16527, 'ฟหกฟหก', 'WISPr-Session-Terminate-Time', '-', '-'),
-(16528, 'ฟหกฟหก', 'WISPr-Session-Terminate-Time', '-', '-');
+(16528, 'ฟหกฟหก', 'WISPr-Session-Terminate-Time', '-', '-'),
+(16530, '11-ff-dd-22-11-44', 'WISPr-Session-Terminate-Time', '-', '-'),
+(16531, '11-ff-dd-22-11-34', 'WISPr-Session-Terminate-Time', '-', '-'),
+(16540, '11-11-FF-11-11-11', 'WISPr-Session-Terminate-Time', '-', '-'),
+(16537, '11-ff-dd-22-11-22', 'WISPr-Session-Terminate-Time', '-', '-'),
+(16539, '11-ff-dd-22-11-33', 'WISPr-Session-Terminate-Time', '-', '-');
 
 -- --------------------------------------------------------
 
@@ -10976,7 +11042,7 @@ CREATE TABLE IF NOT EXISTS `register_online` (
   `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatetime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status_on` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=131 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=145 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `register_online`
@@ -10988,7 +11054,9 @@ INSERT INTO `register_online` (`oid`, `username`, `macaddress`, `addtime`, `upda
 (118, 'santi.p', 'ddddd', '2016-06-13 12:27:44', '0000-00-00 00:00:00', 'staff'),
 (113, 'santi.p', 'dfsdsdww', '2016-06-13 12:25:02', '0000-00-00 00:00:00', 'staff'),
 (127, 'santi.p', 'test other', '2016-06-16 12:57:27', '0000-00-00 00:00:00', 'staff'),
-(126, 's123544444444', '000', '2016-06-13 20:29:27', '0000-00-00 00:00:00', 'staff');
+(144, 'yongyut.s', '11-ff-dd-22-11-33', '2016-06-21 19:51:16', '0000-00-00 00:00:00', 'staff'),
+(126, 's123544444444', '000', '2016-06-13 20:29:27', '0000-00-00 00:00:00', 'staff'),
+(136, 'yongyut.s', '11-ff-dd-22-11-34', '2016-06-21 18:00:35', '0000-00-00 00:00:00', 'staff');
 
 -- --------------------------------------------------------
 
@@ -11218,7 +11286,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `device`
 --
 ALTER TABLE `device`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12778;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12796;
 --
 -- AUTO_INCREMENT for table `groups`
 --
@@ -11233,22 +11301,22 @@ ALTER TABLE `location_peple`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=83;
 --
 -- AUTO_INCREMENT for table `radcheck`
 --
 ALTER TABLE `radcheck`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23812;
+  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23824;
 --
 -- AUTO_INCREMENT for table `radreply`
 --
 ALTER TABLE `radreply`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16529;
+  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16541;
 --
 -- AUTO_INCREMENT for table `register_online`
 --
 ALTER TABLE `register_online`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=131;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=145;
 --
 -- AUTO_INCREMENT for table `sko_fac`
 --

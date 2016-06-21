@@ -26,4 +26,9 @@ class RadReplyCheckModel extends CI_Model {
         return count($this->db->get('radcheck')->result());
     }
 
+    function DeleteRad($data){
+        $this->db->db_select('radius');
+        $this->db->where('username',$data);
+        $this->db->delete(array('radreply','radcheck'));
+    }
 }

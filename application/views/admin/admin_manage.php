@@ -10,11 +10,7 @@
 <?=header_url()?>
 <body>
 <div class="admin wrap nopad">
-    <div class="nav">
-        <!-- <span class="secret"><i class="fa fa-user-secret" aria-hidden="true"></i></span> -->
-        <span class="username thaisans">ผู้ดูแล</span>
-        <button class="logout" onclick="window.location='<?=base_url().'admin/logout'?>'" title="ออกระบบ"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
-    </div>
+    <?=headerOfAdmin($this->session->userdata('status'))?>
     <div class="sidebar ">
 
         <div class="content">
@@ -29,7 +25,7 @@
     </div>
     <div class="content manage">
         <div class="top">
-            <h3 class="thaisans bold">เพิ่มอุปกรณ์ผู้ใช้</h3><span><?=$this->session->flashdata('alert');?></span>
+            <h3 class="thaisans bold">เพิ่มอุปกรณ์ผู้ใช้</h3>
         </div>
         <div class="mid">
             <h3 class="thaisans bold" style="font-size: 2em;margin-top:0;">เลือกประเภทผู้ใช้</h3>
@@ -39,11 +35,11 @@
             <li role="presentation" class="tab"><a href="#staff" aria-controls="professor" role="tab" data-toggle="tab"><div>เพิ่มอุปกรณ์</div><i class="fa fa-user" aria-hidden="true"></i><label>บุคลากร</label></a></li>
             <li role="presentation" class="tab"><a href="#special" aria-controls="professor" role="tab" data-toggle="tab"><div>เพิ่มอุปกรณ์</div><i class="fa fa-user-secret" aria-hidden="true"></i><label>ผู้ใช้พิเศษ</label></a></li>
             </ul>
-
+            <span class="managealert"><?=$this->session->flashdata('alert');?></span>
             <!-- นักศึกษา -->
             <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade form  active in" id="student">
-                <form method="post" action="AddManualUser/student">
+                <form method="post" action="AddManualUser">
                 <div class="form-group">
                     <h3 class="thaisans bold" style="margin-top: 0">นักศึกษา</h3>
                     <label>ข้อมูลส่วนตัว</label>
@@ -242,7 +238,7 @@
 
              <!-- บุคลากร -->
             <div role="tabpanel" class="tab-pane fade form" id="staff">
-                <form method="post" action="admin/submitdevice/staff">
+                <form method="post" action="AddManualUser">
                 <div class="form-group">
                     <h3 class="thaisans bold" style="margin-top: 0">บุคลากร</h3>
                     <label for="exampleInputEmail1">ข้อมูลส่วนตัว</label>
@@ -310,10 +306,10 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                    <input type="text" name="macaddress" class="form-control" id="" placeholder="xx-xx-xx-xx-xx-xx">
+                    <input type="text" name="macaddress" class="form-control" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17"  placeholder="xx-xx-xx-xx-xx-xx">
                 </div>
                 <div class="form-group">
-                    <select name="dev_type" class="form-control">
+                    <select name="dev_type" class="form-control" required>
                         <option label="อุปกรณ์" value="-" disabled selected>อุปกรณ์</option>
                         <option value="Phone">มือถือ</option>
                         <option value="Notebook">โน๊ตบุ๊ค</option>
@@ -321,6 +317,7 @@
                         <option value="Other">อื่นๆ</option>
                     </select>
                 </div>
+                <input type="text" hidden="" name="discipline" value="-">
                 <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             </div>

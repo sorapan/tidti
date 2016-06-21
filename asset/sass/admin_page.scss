@@ -12,6 +12,7 @@
     padding-top: 3px;
     margin-left: 25px;
     color: #108c30;
+    display: block;
     background-color: #c4ffd3;
 }
 .admin{
@@ -275,6 +276,11 @@
 
     }
 
+    .managealert{
+        margin-left: 20px;
+        font-size: 1.2em;
+    }
+
     > .content.manage{
         .top{
             margin-top: 20px;
@@ -284,8 +290,10 @@
                 padding: 10px 20px;
                 background-color: #ff5f2e;
             }
+
             background-color: #d9e1e8;
         }
+
         .tab{
             border: 2px solid #004e66;
             display: inline-block;
@@ -396,7 +404,7 @@
             >.content{
                 width: 800px;
                 height: 700px;
-                padding: 10px 0 15px 0;
+                padding: 0 0 15px 0;
                 border: 1px solid #004e66;
                 font-size: 1.2em;
                 overflow-y: auto;
@@ -404,6 +412,12 @@
                     border-bottom: 1px solid #004e66;
                     // border-color:#004e66;
                 }
+                thead{
+                    tr:first-child{
+                        background-color: #e8e8e8;
+                    }
+                }
+
             }
             >.search form{
                 margin: 5px 0 15px 0;

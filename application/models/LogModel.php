@@ -14,6 +14,20 @@ class LogModel extends CI_Model {
         $this->db->from('log');
         $this->db->order_by("DATE", "desc");
         $this->db->order_by("TIME", "desc");
+
+        // $this->db->group_by("DATE","TIME");
+        return $this->db->get()->result();
+    }
+
+    function GetDateAll(){
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->from('log');
+        // $this->db->where('DATE',date('Y-m-d'));
+        $this->db->order_by("DATE", "desc");
+        $this->db->order_by("TIME", "desc");
+
+        // $this->db->group_by("DATE","TIME");
         return $this->db->get()->result();
     }
 
@@ -27,7 +41,6 @@ class LogModel extends CI_Model {
             $this->db->like('USERNAME',$where);
             $this->db->or_like('EVENT',$where);
         }else{
-            // $this->db->or_where('LOCATION',$location);
             $this->db->where('DATE',$date);
             if(!empty($where)){
                 $this->db->or_like('USERNAME',$where);

@@ -56,12 +56,12 @@ class Admin extends CI_Controller {
 
 	}
 
-	public function AddManualUser($user){
+	public function AddManualUser(){
 		// var_dump($_POST);
 
 			$check = $this->MacModel->CheckMac($_POST['macaddress']);
 
-			if($check <= 0){
+			if(empty($check)){
 			// อาจจะมีการแก้ไขในภายหน้า
 			$this->RadReplyCheckModel->AddRadReply(array(
 					// รับค่าจาก POST
@@ -116,22 +116,31 @@ class Admin extends CI_Controller {
 
 	public function mac()
 	{
+		if($this->session->userdata('status')=='staff'){
+			$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),null);
+			$this->load->view('admin/admin_mac_list',array('data'=> $data));
+		}else{
+			$data = $this->DeviceModel->SelectDevice(null);
+			$this->load->view('admin/admin_mac_list',array('data'=> $data));
+		}
 
-		$data = $this->DeviceModel->SelectDevice(null);
-		// $data= '';
-		$this->load->view('admin/admin_mac_list',array('data'=> $data));
 	}
 
 	public function log(){
 		if($this->session->userdata('status')=='admin'){
 			$data = $this->LogModel->GetAllLog();
+			$date = $this->LogModel->GetDateAll();
 		}else{
-			$data = $this->LogModel->GetLogByLocation($this->session->userdata('status'));
+			$data = $this->LogModel->GetLogByLocation($this->session->userdata('location_id'));
+			$date = $this->LogModel->GetDateAll();
 		}
+
+
 		$this->load->view('admin/admin_log',array(
-			'data' => $data,
-			'date' => $data
-			));
+		'data' => $date,
+		'date' => $data
+		));
+
 	}
 
 
@@ -150,16 +159,16 @@ class Admin extends CI_Controller {
 		}
 
 		$getsearch = $this->LogModel->GetLogByWhere($date,$where);
-		if(empty($getsearch)){
+		if(empty($date)&&empty($where)){
+			$this->log();
+		}
 
+		else if(empty($getsearch)){
 			$this->load->view('admin/admin_log',array(
 			'data' => 'ไม่พบสิ่งที่ค้นหา',
 			'date' => $data
 			));
 
-		}
-		else if(empty($date)&&empty($where)){
-			$this->log();
 		}else{
 
 			$this->load->view('admin/admin_log',array(
@@ -246,27 +255,12 @@ class Admin extends CI_Controller {
 
 		$this->DeviceModel->EditDataDevice($where,$online_profile,$register_online,$device);
 
-		// เพิ่ม log แก้ไข event
-		// $this->LogModel->AddEventLog(array(
-		// 		'DATE' => date('Y-m-d H:i:s',time()),
-		// 		'USERNAME' => $this->session->('username'),
-		// 		'STATUS' => $this->session->('status')
-		// 	));
 		@header('Location:'.base_url().'/admin/mac/'.$where['oid']);
 
 
 	}
 
 	public function logout(){
-
-		$this->LogModel->AddEventLog(array(
-				'USERNAME'=>$this->session->userdata('username'),
-				'STATUS'=>$this->session->userdata('status'),
-				'LOCATION'=>$this->session->userdata('location_id'),
-				'EVENT' => 'ได้ทำการออกจากระบบ',
-				'DATE'=>date('Y-m-d'),
-				'TIME'=>date('H:i:s')
-			));
 		$this->session->sess_destroy();
 		// AddLog(	$this->session->userdata('id')." was logging out" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
