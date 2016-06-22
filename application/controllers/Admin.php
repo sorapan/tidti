@@ -116,66 +116,86 @@ class Admin extends CI_Controller {
 
 	public function mac()
 	{
-		if($this->session->userdata('status')=='staff'){
-			$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),null);
-			$this->load->view('admin/admin_mac_list',array('data'=> $data));
+		if(empty($_GET['search'])){
+			if($this->session->userdata('status')=='staff'){
+				$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),null);
+				$this->load->view('admin/admin_mac_list',array('data'=> $data));
+			}else{
+				$data = $this->DeviceModel->SelectDevice(null);
+				$this->load->view('admin/admin_mac_list',array('data'=> $data));
+			}
 		}else{
-			$data = $this->DeviceModel->SelectDevice(null);
-			$this->load->view('admin/admin_mac_list',array('data'=> $data));
+			if($this->session->userdata('status')=='staff'){
+				$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),$_GET['search']);
+				$this->load->view('admin/admin_mac_list',array('data'=> $data));
+			}else{
+				$data = $this->DeviceModel->SelectDevice($_GET['search']);
+				$this->load->view('admin/admin_mac_list',array('data'=> $data));
+			}
 		}
 
 	}
 
+
+
 	public function log(){
 		if($this->session->userdata('status')=='admin'){
-			$data = $this->LogModel->GetAllLog();
+			$alllog = $this->LogModel->GetAllLog();
 			$date = $this->LogModel->GetDateAll();
 		}else{
-			$data = $this->LogModel->GetLogByLocation($this->session->userdata('location_id'));
-			$date = $this->LogModel->GetDateAll();
+			$alllog = $this->LogModel->GetLogByLocation($this->session->userdata('location_id'));
+			$date = $this->LogModel->GetLogByLocation($this->session->userdata('location_id'));
 		}
 
 
 		$this->load->view('admin/admin_log',array(
-		'data' => $date,
-		'date' => $data
+		'alllog' => $alllog,
+		'date' => $date,
+		'locate'=>$date
 		));
 
 	}
 
 
 	public function searchLog(){
-		$date = $_POST['date'];
-		$where = $_POST['search'];
+		$date = $_GET['date'];
+		$where = $_GET['search'];
+		$location = $_GET['location'];
 		// $location = $_POST['location'];
 
-		$this->session->set_flashdata('date',$date);
+
+		if(empty($date)&&empty($where)&&empty($location)){
+			$this->log();
+		}else{
 		// $this->session->set_flashdata('location',$location);
 
-		if($this->session->userdata('status')=='admin'){
-			$data = $this->LogModel->GetAllLog();
-		}else{
-			$data = $this->LogModel->GetLogByLocation($this->session->userdata('status'));
+			if($this->session->userdata('status')=='admin'){
+				$alllog = $this->LogModel->GetAllLog();
+				$wherelog = $this->LogModel->GetLogByWhere($date,$where,$location);
+			}else{
+				$alllog = $this->LogModel->GetLogByLocation($this->session->userdata('location_id'));
+				$wherelog = $this->LogModel->GetLogByWhere($date,$where,$this->session->userdata('location_id'));
+			}
+
+
+
+			if(empty($wherelog)){
+				$this->load->view('admin/admin_log',array(
+				'alllog' => 'ไม่พบสิ่งที่ค้นหา',
+				'date' =>  $alllog,
+				'locate' => $alllog
+				));
+
+			}else{
+
+				$this->load->view('admin/admin_log',array(
+				'alllog' => $wherelog,
+				'date' => $alllog,
+				'locate'=> $alllog
+				));
+			}
 		}
-
-		$getsearch = $this->LogModel->GetLogByWhere($date,$where);
-		if(empty($date)&&empty($where)){
-			$this->log();
-		}
-
-		else if(empty($getsearch)){
-			$this->load->view('admin/admin_log',array(
-			'data' => 'ไม่พบสิ่งที่ค้นหา',
-			'date' => $data
-			));
-
-		}else{
-
-			$this->load->view('admin/admin_log',array(
-			'data' => $getsearch,
-			'date' => $data
-			));
-		}
+		$this->session->set_flashdata('date',$date);
 
 
 	}
@@ -217,14 +237,11 @@ class Admin extends CI_Controller {
 
 	// manage method
 
-	public function deleteMac($mac){
+	public function deleteMac(){
 
-		$check = $this->DeviceModel->DeleteMac($mac);
-
-		if(empty($check['code'])){
-			$this->session->set_flashdata('alert', 'ลบอุปกรณ์เรียบร้อย');
-			@header('Location: ../mac');
-		}
+		$check = $this->DeviceModel->DeleteMac($_POST['mac']);
+		$this->session->set_flashdata('alert', 'ลบอุปกรณ์เรียบร้อย');
+		@header('Location: mac');
 	}
 
 	public function getDataToEditById($id){

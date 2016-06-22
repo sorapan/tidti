@@ -29,11 +29,13 @@
         <div class="_1">
             <div class="search">
             <?php
-                if(empty($search)){
-                    $search = "";
+                if(!empty($_GET['search'])){
+                    $search = $_GET['search'];
+                }else{
+                    $search = '';
                 }
             ?>
-                <form method="post" action="search">
+                <form method="get" action="mac">
                 <input type="text" class="input thaisans" name="search" value="<?=$search?>" placeholder="ค้นหา" id="search">
                 <button class="button" type="submit"><i class="fa fa-search"></i></button>
                 <?php
@@ -48,9 +50,10 @@
                 <thead>
                     <th class="center">อุปกรณ์  </th>
                     <th class="center">mac address</th>
-                    <th>username</th>
-                    <th>name</th>
-                    <th>date</th>
+                    <th>ชื่อผู้ใช้</th>
+                    <th>ชื่อ-นามสกุล</th>
+                    <th>วันที่</th>
+                    <th>วิทยาเขต</th>
                     <th class="center">
                         ...
                     </th>
@@ -61,14 +64,19 @@
 
                  ?>
                 <tr>
-                    <td><i class="fa fa-<?=switchIcon($val->dev_type);?>" title="phone" aria-hidden="true"></i></td>
+                    <td><i class="fa fa-<?=switchIcon($val->dev_type);?>" title="<?=switchIcon($val->dev_type);?>" aria-hidden="true"></i></td>
                     <td ><?=$val->macaddress?></td>
                     <td><?=$val->username?></td>
                     <td><?=$val->firstname.' '.$val->lastname?></td>
                     <td><?=$val->addtime?></td>
+                    <td><?=location_id($val->location_id)?></td>
                     <td>
                         <button title="ลบ" onclick="DeleteMac('<?=$val->macaddress?>');"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         <!-- <button title="บล็อค"><i class="fa fa-lock" aria-hidden="true"></i></button> -->
+                        <form method="post" action="deleteMac" onsubmit="return confirm('คุณต้องการที่จะลบใช่หรือไม่')">
+                            <input type="text" name="mac" hidden value="<?=$val->macaddress?>">
+                            <button title="ลบ"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </form>
                         <button title="แก้ไข" onclick="window.location='<?=base_url().'admin/mac/'.$val->oid.'?stt='?>'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                     </td>
                 </tr>

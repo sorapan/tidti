@@ -77,7 +77,6 @@ $route['admin/log'] = 'admin/log';
 $route['admin/manage'] = 'admin/manage';
 $route['admin/manage/(:any)'] = 'admin/adduser/$1';
 $route['admin/mac'] = 'admin/mac';
-$route['admin/mac/search'] = 'admin/searchToManageMac';
 $route['admin/mac/(:any)'] = 'admin/editmac/$1';
 $route['admin/user'] = 'admin/user';
 $route['admin/AddManualUser'] = 'admin/AddManualUser';

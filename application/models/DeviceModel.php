@@ -28,7 +28,10 @@ class DeviceModel extends CI_Model {
             $this->db->from('register_online');
             $this->db->join('device','device.username = register_online.macaddress');
             $this->db->join('online_profile','online_profile.username = register_online.username');
-            $this->db->where('register_online.oid',$where);
+            $this->db->like('register_online.macaddress',$where);
+            $this->db->or_like('register_online.username',$where);
+            $this->db->or_like('online_profile.firstname',$where);
+            $this->db->or_like('online_profile.lastname',$where);
             return $this->db->get()->result();
         }
 
@@ -98,7 +101,7 @@ class DeviceModel extends CI_Model {
             ),array(
                 'username'=>$mac
             ));
-        return  $this->db->error();
+        // return  $this->db->error();
     }
 
 

@@ -34,7 +34,7 @@
                 $search = "";
             }
         ?>
-            <form method="post" action="searchlog">
+            <form method="get" action="searchlog">
             <select name="date" class="select">
                 <option value="">วันที่</option>
                 <?php
@@ -53,18 +53,29 @@
 
                 ?>
             </select>
-            <!-- <select name="location" class="select">
+            <select name="location" class="select">
+                <?php if($this->session->userdata('status')=='admin')
+                {
+                ?>
                 <option value="">วิทยาเขต</option>
                 <?php
-                    foreach ($data as $var) {
+                }
+                    $i = 0;
+                    foreach ($locate as $var) {
+                        $value[$i++] = $var->LOCATION;
+                    }
+                    $value = array_unique($value);
+                    foreach ($value as $var) {
+
                         ?>
 
-                        <option value="<?=$var->LOCATION?>"><?=location_id($var->LOCATION)?></option>
+                        <option value="<?=$var?>"  ><?=location_id($var)?></option>
 
                         <?php
                     }
+
                 ?>
-            </select> -->
+            </select>
             <input type="text" class="input thaisans" name="search" value="<?=$search?>" placeholder="ค้นหา" id="search">
             <button class="button" type="submit"><i class="fa fa-search"></i></button>
             <?php
@@ -88,13 +99,13 @@
                     </thead>
                     <?php
 
-                        if(gettype($data)!='array'){
+                        if(gettype($alllog)!='array'){
 
                             ?>
                             <tr>
                             <td ></td>
                             <td ></td>
-                            <td><?=$data?></td>
+                            <td><?=$alllog?></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -103,7 +114,7 @@
                         <?php
 
                             }else{
-                             foreach($data as $val){
+                             foreach($alllog as $val){
 
 
                          ?>
