@@ -8,17 +8,11 @@
 </head> -->
 
 <?=header_url()?>
+
+
 <body>
 <div class="admin wrap nopad">
-<<<<<<< HEAD
-    <div class="nav">
-        <!-- <span class="secret"><i class="fa fa-user-secret" aria-hidden="true"></i></span> -->
-        <span class="username thaisans">ผู้ดูแล</span>
-        <button class="logout" title="ออกระบบ"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
-    </div>
-=======
     <?=headerOfAdmin($this->session->userdata('status'))?>
->>>>>>> refs/remotes/origin/bestzaba
     <div class="sidebar ">
 
         <div class="content">
@@ -26,7 +20,7 @@
                 <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
                 <a href="<?=base_url().'admin/mac'?>"><li class="maclist active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
                 <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
-                <a href="<?=base_url().'admin/log?log='?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
+                <a href="<?=base_url().'admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
             </ul>
         </div>
 
@@ -42,20 +36,17 @@
                 <form method="post" action="search">
                 <input type="text" class="input thaisans" name="search" value="<?=$search?>" placeholder="ค้นหา" id="search">
                 <button class="button" type="submit"><i class="fa fa-search"></i></button>
-<<<<<<< HEAD
-=======
                 <?php
                     if(!empty($this->session->userdata('alert'))){
                 ?>
                     <span class="myalert"><?=$this->session->userdata('alert');?></span>
 
                 <?php }?>
->>>>>>> refs/remotes/origin/bestzaba
                 </form>
             </div>
             <table class="table table-hover">
                 <thead>
-                    <th class="center">#</th>
+                    <th class="center">อุปกรณ์  </th>
                     <th class="center">mac address</th>
                     <th>username</th>
                     <th>name</th>
@@ -76,8 +67,8 @@
                     <td><?=$val->firstname.' '.$val->lastname?></td>
                     <td><?=$val->addtime?></td>
                     <td>
-                        <button title="ลบ"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                        <button title="บล็อค"><i class="fa fa-lock" aria-hidden="true"></i></button>
+                        <button title="ลบ" onclick="DeleteMac('<?=$val->macaddress?>');"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <!-- <button title="บล็อค"><i class="fa fa-lock" aria-hidden="true"></i></button> -->
                         <button title="แก้ไข" onclick="window.location='<?=base_url().'admin/mac/'.$val->oid.'?stt='?>'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                     </td>
                 </tr>
@@ -93,5 +84,19 @@
     </div>
     <div class="wrap"></div>
 </div>
+
 </body>
+<script type="text/javascript">
+
+// alert('s');
+
+        function DeleteMac(mac){
+            var check = confirm('คุณต้องการที่จะลบใช่หรือไม่');
+            if(check){
+                window.location='<?=base_url().'admin/deleteMac/'?>'+mac;
+            }
+
+        }
+
+</script>
 </html>

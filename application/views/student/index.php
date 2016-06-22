@@ -81,75 +81,11 @@ if($this->session->userdata('detail_exists') == false){
                                     <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                                  </div>
                                 <div class="form-group">
-<<<<<<< HEAD
-                                    <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
-                                </div>
-                                <div class="form-group form-inline">
-                                    <select class="form-control" name="department">
-                                        <option value="" disabled selected>*คณะ</option>
-
-                                    <?php
-                                    foreach($fac_data as $fd)
-                                    {
-                                    ?>
-                                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
-                                    <?php
-                                    }
-                                    ?>
-
-                                    </select>
-                                    <select class="form-control" name="branch">
-                                        <option value="" disabled selected>*สาขา</option>
-
-                                    <?php
-                                    foreach($program_data as $pd)
-                                    {
-                                    ?>
-                                        <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
-                                    <?php
-                                    }
-                                    ?>
-
-                                    </select>
-                                    <select class="form-control" name="group">
-                                            <option value="" disabled selected>*กลุ่ม</option>
-
-                                    <?php
-                                    foreach($group_data as $gd)
-                                    {
-                                    ?>
-                                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
-                                    <?php
-                                    }
-                                    ?>
-
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select name="location" class="form-control">
-                                        <option value="" disabled selected>*วิทยาเขต</option>
-
-                                    <?php
-                                    foreach($location_data as $ld)
-                                    {
-                                    ?>
-                                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
-                                    <?php
-                                    }
-                                    ?>
-
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-danger">บันทึก</button>
-                              </form>
-</div>
-=======
                                     <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" placeholder="รหัสนักศึกษา">
                                 </div>
                                 <div class="form-group form-inline">
                                     <select class="form-control" name="group">
                                             <option value="" disabled selected>*กลุ่ม</option>
->>>>>>> refs/remotes/origin/bestzaba
 
                                     <?php
                                     foreach($group_data as $gd)

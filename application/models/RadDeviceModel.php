@@ -7,7 +7,7 @@ class RadDeviceModel extends CI_Model {
         // Call the Model constructor
         parent::__construct();
     }
-    
+
     function GetDataByMac($mac)
     {
         $this->db->db_select('radius');
@@ -15,13 +15,20 @@ class RadDeviceModel extends CI_Model {
         $this->db->where('UserName',$mac);
         return $this->db->get('device')->result();
     }
-    
+
     function DeleteDataByUsername($username)
     {
         $this->db->db_select('radius');
         $this->db->delete('device', array(
             'UserName' => $username
-        )); 
+        ));
+
+    }
+
+    function AddRadReply(){
+
+    }
+    function AddRadCheck(){
 
     }
 

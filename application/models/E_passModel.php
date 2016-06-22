@@ -8,8 +8,6 @@ class E_passModel extends CI_Model {
         parent::__construct();
     }
 
-<<<<<<< HEAD
-=======
     function AdminCheckLogin($user, $pass){
         $this->db->select('*');
         $this->db->from('admin_data');
@@ -18,15 +16,12 @@ class E_passModel extends CI_Model {
     }
 
 
->>>>>>> refs/remotes/origin/bestzaba
     function CheckLogin($user, $pass)
     {
-
-      $this->db->select('*');
-      $this->db->from('e_pass');
-      $this->db->where('usre',$user)->where('pass',$pass);
-      return $this->db->get()->result();
-
+        $this->db->select('*');
+        $this->db->from('e_pass');
+        $this->db->where('usre',$user)->where('pass',$pass);
+        return $this->db->get()->result();
     }
 
 

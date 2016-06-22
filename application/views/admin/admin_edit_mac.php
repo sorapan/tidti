@@ -10,15 +10,7 @@
 <?=header_url()?>
 <body>
 <div class="admin wrap nopad">
-<<<<<<< HEAD
-    <div class="nav">
-        <!-- <span class="secret"><i class="fa fa-user-secret" aria-hidden="true"></i></span> -->
-        <span class="username thaisans">ผู้ดูแล</span>
-        <button class="logout" title="ออกระบบ"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
-    </div>
-=======
     <?=headerOfAdmin($this->session->userdata('status'))?>
->>>>>>> refs/remotes/origin/bestzaba
     <div class="sidebar ">
 
         <div class="content">
@@ -26,7 +18,7 @@
                 <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
                 <a href="<?=base_url().'admin/mac'?>"><li class="maclist active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
                 <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
-                <a href="<?=base_url().'admin/log?log='?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
+                <a href="<?=base_url().'admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
             </ul>
         </div>
 
@@ -71,7 +63,7 @@
             <div class="mid" >
                 <div class="head"><i class="fa fa-gears"></i> <span class="thaisans bold" style="margin-top: 0">แก้ไข</span></div>
                 <div class="form">
-                    <form method="post" action="setDataToEditById/<?=$val->oid?>">
+                    <form method="post" action="editDataById/<?=$val->oid?>">
                     <div class="form-group">
 
                         <label>ข้อมูลส่วนตัว</label>

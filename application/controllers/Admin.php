@@ -5,8 +5,15 @@ class Admin extends CI_Controller {
 
 	public function __construct()
 	{
+		date_default_timezone_set("Asia/Bangkok");
+		parent::__construct();
+		if($this->session->userdata('status')=='admin' || $this->session->userdata('status')=='staff'){
 
-		 parent::__construct();
+		}else{
+			@header('Location: '.base_url().'admin/login');
+		}
+
+
 		 $this->load->model('E_passModel');
 		 $this->load->model('Uoc_stdModel');
 		 $this->load->model('Admin_dataModel');
@@ -14,33 +21,27 @@ class Admin extends CI_Controller {
 		 $this->load->model('DeviceModel');
 		 $this->load->model('RadSKOModel');
 		 $this->load->model('RadSKOModel');
+		 $this->load->model('RadReplyCheckModel');
 		 $this->load->model('ManualUserModel');
+		 $this->load->model('LogModel');
 
 	}
 
 	public function index()
 	{
-<<<<<<< HEAD
-		echo test_method('Hello World');
-		$this->load->view('admin/index');
-=======
 		@header('Location: admin/manage');
->>>>>>> refs/remotes/origin/bestzaba
 	}
+
+
 
 	// manage page
 	public function manage(){
-		$fac_data = $this->RadSKOModel->getFacData();
-		$program_data = $this->RadSKOModel->getProgramData();
-		$group_data = $this->RadSKOModel->getGroupsData();
-		$location_data = $this->RadSKOModel->getLocationData();
-		$staff_data = $this->RadSKOModel->getStaffData();
 		$this->load->view('admin/admin_manage',array(
-							'fac_data' => $fac_data,
-							'program_data' => $program_data,
-							'group_data' => $group_data,
-							'location_data' => $location_data,
-							'staff_data' => $staff_data
+							'fac_data' => $this->RadSKOModel->getFacData(),
+							'program_data' => $this->RadSKOModel->getProgramData(),
+							'group_data' => $this->RadSKOModel->getGroupsData(),
+							'location_data' => $this->RadSKOModel->getLocationData(),
+							'staff_data' => $this->RadSKOModel->getStaffData()
 			));
 	}
 
@@ -51,23 +52,6 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/admin_mac_list',array('data'=> $data,'search'=> $search));
 	}
 
-<<<<<<< HEAD
-	public function AddManualUser($user){
-		$this->ManualUserModel->AddDataManualUser(array(
-					'username'=>$_POST['macaddress'],
-					// 'password'=>$_POST['password'],
-					'pname'=>$_POST['pname'],
-					'firstname'=>$_POST['firstname'],
-					'lastname'=>$_POST['lastname'],
-					'idcard'=>$_POST['idcard'],
-					'mailaddr'=>$_POST['mailaddr'],
-					'discipline'=>$_POST['discipline'],
-					'department'=>$_POST['department'],
-					'dateregis'=>date('Y-m-d H:i:s',time()),
-					'status'=>$_POST['status'],
-					'location_id'=>$_POST['location_id']
-			));
-=======
 	public function CheckMacBeforeAdd(){
 
 	}
@@ -128,7 +112,6 @@ class Admin extends CI_Controller {
 	    	@header('Location:'.base_url().'admin/manage');
 	    }
 
->>>>>>> refs/remotes/origin/bestzaba
 	}
 
 	public function mac()
@@ -144,9 +127,6 @@ class Admin extends CI_Controller {
 	}
 
 	public function log(){
-<<<<<<< HEAD
-		$this->load->view('admin/admin_log');
-=======
 		if($this->session->userdata('status')=='admin'){
 			$data = $this->LogModel->GetAllLog();
 			$date = $this->LogModel->GetDateAll();
@@ -161,7 +141,6 @@ class Admin extends CI_Controller {
 		'date' => $data
 		));
 
->>>>>>> refs/remotes/origin/bestzaba
 	}
 
 
@@ -234,13 +213,25 @@ class Admin extends CI_Controller {
 
 
 
+
+
 	// manage method
+
+	public function deleteMac($mac){
+
+		$check = $this->DeviceModel->DeleteMac($mac);
+
+		if(empty($check['code'])){
+			$this->session->set_flashdata('alert', 'ลบอุปกรณ์เรียบร้อย');
+			@header('Location: ../mac');
+		}
+	}
 
 	public function getDataToEditById($id){
 		return	$this->DeviceModel->SelectDevice($id);
 	}
 
-	public function setDataToEditById($id){
+	public function editDataById($id){
 		// var_dump($_POST);
 		$where = array(
 					'oid' => $_POST['oid'],
@@ -263,37 +254,17 @@ class Admin extends CI_Controller {
 			);
 
 		$this->DeviceModel->EditDataDevice($where,$online_profile,$register_online,$device);
-<<<<<<< HEAD
-		@header('Location:'.base_url().'/admin/mac/'.$where['oid'].'?stt=1');
-=======
 
 		@header('Location:'.base_url().'/admin/mac/'.$where['oid']);
->>>>>>> refs/remotes/origin/bestzaba
 
 
 	}
 
-<<<<<<< HEAD
-	public function submitdevice($person){
-
-		var_dump($this->session);
-=======
 	public function logout(){
 		$this->session->sess_destroy();
 		// AddLog(	$this->session->userdata('id')." was logging out" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
->>>>>>> refs/remotes/origin/bestzaba
 
-		// if($person == 'student'){
-
-		// }elseif($person == 'professor'){
-
-		// }elseif ($person == 'staff') {
-		// 	# code...
-		// }elseif ($person == 'special') {
-		// 	# code...
-		// }
-	}
 
 }

@@ -4,6 +4,7 @@ class Professor_page extends CI_Controller {
 
     public function __construct()
     {
+        date_default_timezone_set("Asia/Bangkok");
         parent::__construct();
 
 		if(!$this->session->userdata('login')){
@@ -14,11 +15,8 @@ class Professor_page extends CI_Controller {
         $this->load->model('RadRegisterOnlineModel');
         $this->load->model('RadDeviceModel');
         $this->load->model('RadSKOModel');
-<<<<<<< HEAD
-=======
         $this->load->model('LogModel');
         $this->load->model('RadReplyCheckModel');
->>>>>>> refs/remotes/origin/bestzaba
 
     }
 
@@ -65,10 +63,7 @@ class Professor_page extends CI_Controller {
             'idcard' => $_POST['citizen_id'],
             'location_id' => $_POST['location'],
             'department' => isset($_POST['department'])?$_POST['department']:null,
-<<<<<<< HEAD
-=======
             'dateregis' => date('Y-m-d H:i:s'),
->>>>>>> refs/remotes/origin/bestzaba
             'encryption' => '-'
         );
 
@@ -118,7 +113,7 @@ class Professor_page extends CI_Controller {
             echo 'กรุณากรอกข้อมูลให้ครบ<br>';
             echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
         }
-        
+
     }
 
     public function addmac()
@@ -134,21 +129,6 @@ class Professor_page extends CI_Controller {
                 {
                     // var_dump($_POST);
                     // var_dump(ctype_space($_POST['mac']) == false);
-<<<<<<< HEAD
-                    $this->RadOnlineProfileModel->AddDataWithoutProfile(
-                    array(
-                        'UserName' => $_POST['mac'],
-                        'dev_type' => $_POST['device'],
-                        'dev_net_type' => "Wireless"
-                    ),
-                    array(
-                        'username' => $this->session->userdata('username'),
-                        'macaddress' => $_POST['mac'],
-                        'status_on' => 'staff'
-                    ));
-                    
-                    @header('Location: ' . $_SERVER['HTTP_REFERER']);
-=======
                     $count_mac = $this->RadRegisterOnlineModel->DuplicateCheck($_POST['mac']);
 
                     if($count_mac<=0){
@@ -203,7 +183,6 @@ class Professor_page extends CI_Controller {
                         echo 'หมายเลขอุปกรณ์ซ้ำ <br>';
                         @header('Location: '.base_url().'professor');
                     }
->>>>>>> refs/remotes/origin/bestzaba
                 }
                 else
                 {
@@ -228,9 +207,6 @@ class Professor_page extends CI_Controller {
     {
         $this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
 		$this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
-<<<<<<< HEAD
-		
-=======
         $this->RadReplyCheckModel->DeleteRad($_POST['del']);
         $this->LogModel->AddEventLog(array(
             'USERNAME'=>$this->session->userdata('username'),
@@ -242,15 +218,12 @@ class Professor_page extends CI_Controller {
                 ));
 
         $this->session->set_flashdata("alert",'ลบอุปกรณ์เรียบร้อย');
->>>>>>> refs/remotes/origin/bestzaba
 		AddLog(	$this->session->userdata('id')." was deleting his/her registered mac address" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function logout()
     {
-<<<<<<< HEAD
-=======
         // add log data
         if(empty($this->session->userdata('location_id'))){
             $location = '-';
@@ -265,7 +238,6 @@ class Professor_page extends CI_Controller {
             'DATE'=>date('Y-m-d'),
             'TIME'=>date('H:i:s')
                 ));
->>>>>>> refs/remotes/origin/bestzaba
         $this->session->sess_destroy();
         AddLog(	$this->session->userdata('id')." was logging out" );
         @header('Location: ' . $_SERVER['HTTP_REFERER']);

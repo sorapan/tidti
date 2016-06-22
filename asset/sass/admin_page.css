@@ -1,8 +1,6 @@
 .center {
   text-align: center; }
 
-<<<<<<< HEAD
-=======
 .myalert {
   height: 100%;
   font-size: 1.5em;
@@ -15,7 +13,6 @@
   display: block;
   background-color: #c4ffd3; }
 
->>>>>>> refs/remotes/origin/bestzaba
 .admin {
   right: 0;
   left: 0;
@@ -178,7 +175,9 @@
         text-align: center; }
       .admin > .content.mac_list > ._1 > table > tbody > tr td:first-child {
         font-size: 2em; }
-      .admin > .content.mac_list > ._1 > table > tbody > tr td:last-child > button {
+      .admin > .content.mac_list > ._1 > table > tbody > tr td:last-child > form {
+        display: inline-block; }
+      .admin > .content.mac_list > ._1 > table > tbody > tr td:last-child > button, .admin > .content.mac_list > ._1 > table > tbody > tr td:last-child > form > button {
         border: 1px solid #ff5f2e;
         background-color: transparent;
         color: #ff5f2e;
@@ -282,10 +281,8 @@
     height: 700px;
     padding: 0 0 15px 0;
     border: 1px solid #004e66;
-    font-size: 1.4em;
+    font-size: 1.2em;
     overflow-y: auto; }
-<<<<<<< HEAD
-=======
     .admin > .content.log > .board > .content th {
       border-bottom: 1px solid #004e66; }
     .admin > .content.log > .board > .content thead tr:first-child {
@@ -310,7 +307,6 @@
       color: #004E66; }
     .admin > .content.log > .board > .search form > .select {
       margin-right: 5px; }
->>>>>>> refs/remotes/origin/bestzaba
   .admin > .content.log > .list {
     margin-left: 10px; }
     .admin > .content.log > .list > h3 {

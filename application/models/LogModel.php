@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 
 class LogModel extends CI_Model {
@@ -72,4 +70,3 @@ class LogModel extends CI_Model {
 
 
 }
->>>>>>> refs/remotes/origin/bestzaba

@@ -4,6 +4,7 @@ class Login extends CI_Controller {
 
 	 public function __construct()
 	 {
+	 		date_default_timezone_set("Asia/Bangkok");
 
 		 	parent::__construct();
 		 	$this->load->model('E_passModel');
@@ -12,16 +13,14 @@ class Login extends CI_Controller {
 		 	$this->load->model('RadAccountModel');
 		 	$this->load->model('RadOnlineProfileModel');
 		 	$this->load->model('RadSKOModel');
-
+		 	$this->load->model('LogModel');
 	 }
 
 		public function index()
 		{
-
-<<<<<<< HEAD
 			$this->load->view('login');
+		}
 
-=======
 		public function adminLogin(){
 			// var_dump($this->session);
 			if($this->session->userdata('status')=='admin' || $this->session->userdata('status')=='staff'){
@@ -46,12 +45,15 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('location_id',$res[0]->location_id);
 
 			@header('Location:'.base_url().'admin/manage');
->>>>>>> refs/remotes/origin/bestzaba
 		}
+	}
 
     public function LoginCheck()
     {
+    	// @header("Location: student");
         $res = $this->E_passModel->CheckLogin($_POST['e_pass'],$_POST['pass']);
+        // var_dump($res);
+        // $status = $res
 
 				if(empty($res))
 				{
@@ -74,22 +76,6 @@ class Login extends CI_Controller {
 					if(!empty($std_data))
 						{		
 						foreach($std_data as $sd)
-<<<<<<< HEAD
-						{
-							$this->session->set_userdata('login',true);
-							$this->session->set_userdata('id',$sd->ID);
-							$this->session->set_userdata('prefix_name_id',$sd->PREFIX_NAME_ID);
-							$this->session->set_userdata('firstname',$sd->STD_FNAME);
-							$this->session->set_userdata('lastname',$sd->STD_LNAME);
-							$this->session->set_userdata('fac_id',$sd->FAC_ID);
-							$this->session->set_userdata('fac', $this->RefModel->fetchFacNameByID($sd->FAC_ID) );
-							$this->session->set_userdata('program_id',$sd->PROGRAM_ID);
-							$this->session->set_userdata('program',$this->RefModel->fetchProgramNameByID($sd->PROGRAM_ID) );
-							$this->session->set_userdata('email',$sd->EMAIL);
-							$this->session->set_userdata('tel',$sd->TELEPHONE);
-							$this->session->set_userdata('citizen_id',$sd->CITIZEN_ID);
-						}
-=======
 							{
 								$this->session->set_userdata('login',true);
 								$this->session->set_userdata('detail_exists',true);
@@ -106,7 +92,6 @@ class Login extends CI_Controller {
 								$this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
 								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->prof_branch)[0]->PRO_NAME);
 							}
->>>>>>> refs/remotes/origin/bestzaba
 
 						//เพิ่มใหม่
 							// $this->session->set_userdata('username',$res[0]->usre);
@@ -116,10 +101,6 @@ class Login extends CI_Controller {
 						}
 						else{
 
-<<<<<<< HEAD
-						AddLog(	$this->session->userdata('id')." is logging in" );
-						//echo $this->session->userdata('email');
-=======
 								$this->session->set_userdata('login',true);
 								$this->session->set_userdata('username',$_POST['e_pass']);
 								$this->session->set_userdata('detail_exists',false);
@@ -136,9 +117,11 @@ class Login extends CI_Controller {
 
 						}
 						AddLog(	$this->session->userdata('id')." is logging in" );
->>>>>>> refs/remotes/origin/bestzaba
 						@header("Location: student");
 
+					}
+					else if($res['status'] == 'admin'){
+						$ad_data = $this->Admin_dataModel->Login($_POST['e_pass'],$_POST['pass']);
 					}
 					else
 					{
@@ -161,7 +144,7 @@ class Login extends CI_Controller {
 								$this->session->set_userdata('location_id',$sd->location_id);
 								$this->session->set_userdata('discipline',$sd->discipline);
 								$this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
-								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
+								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->prof_branch)[0]->PRO_NAME);
 							}
 
 							// add log data

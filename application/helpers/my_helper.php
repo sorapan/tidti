@@ -18,7 +18,29 @@ function AddLog($mes)
 }
 
 //////////////ID DECODE
+function location_id($id){
+     switch ($id) {
+            case 'sk':
+                echo "สงขลา";
+                break;
+            case 'sai':
+                echo "ไสใหญ่";
+                break;
+            case 'tho':
+                echo "ทุ่งใหญ่";
+                break;
+            case 'ka':
+                echo "ขนอม";
+                break;
+            case 'tr':
+                echo "ตรัง";
+                break;
+            case 'rat':
+                echo "วิทยาลัยรัตภูมิ";
+                break;
 
+        }
+}
 function prefix_name_id($id)
 {
 
