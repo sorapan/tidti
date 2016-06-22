@@ -74,7 +74,7 @@ class Login extends CI_Controller {
 
 						//var_dump($std_data);
 					if(!empty($std_data))
-						{		
+						{
 						foreach($std_data as $sd)
 							{
 								$this->session->set_userdata('login',true);
@@ -90,7 +90,7 @@ class Login extends CI_Controller {
 								$this->session->set_userdata('location_id',$sd->location_id);
 								$this->session->set_userdata('discipline',$sd->discipline);
 								$this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
-								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->prof_branch)[0]->PRO_NAME);
+								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
 							}
 
 						//เพิ่มใหม่
@@ -144,7 +144,7 @@ class Login extends CI_Controller {
 								$this->session->set_userdata('location_id',$sd->location_id);
 								$this->session->set_userdata('discipline',$sd->discipline);
 								$this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
-								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->prof_branch)[0]->PRO_NAME);
+								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
 							}
 
 							// add log data

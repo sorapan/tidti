@@ -30,7 +30,7 @@
                 <div class="faculty"><?=$this->session->userdata('department')?></div>
                 <div class="faculty">สาขา <?=$this->session->userdata('branch')?></div>
                 <div class="faculty"><?=$this->session->userdata('location')?></div>
-                <div class="faculty">email: <?=$this->session->userdata('email')?></div>
+                <div class="faculty">อีเมลล์: <?=$this->session->userdata('email')?></div>
 
                 <br>
             <?php
@@ -123,7 +123,7 @@ if($this->session->userdata('detail_exists') == false){
                                     ?>
 
                                     </select>
-                                    
+
                                 </div>
                                 <div class="form-group">
                                     <select name="location" class="form-control">
@@ -184,7 +184,7 @@ if($this->session->userdata('detail_exists') == false){
 
                                 <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" placeholder="mac-address" name="mac" id="">
+                                      <input type="text" class="text opensans" pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" placeholder="mac-address" name="mac" id="">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="laptop" class="laptop"><i class="fa fa-laptop"></i></label>
                                   </div>
@@ -228,7 +228,7 @@ if($this->session->userdata('detail_exists') == false){
 
                                 <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" name="mac" placeholder="mac-address" id="">
+                                      <input type="text" class="text opensans" pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="mac" placeholder="mac-address" id="">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="mobile" class="mobile"><i class="fa fa-mobile"></i></label>
                                   </div>
@@ -280,7 +280,7 @@ if($this->session->userdata('detail_exists') == false){
 
                                 <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" name="mac" placeholder="mac-address" id="">
+                                      <input type="text" class="text opensans" pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="mac" placeholder="mac-address" id="">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="tablet" class="tablet"><i class="fa fa-tablet"></i></label>
                                   </div>
@@ -375,7 +375,7 @@ $(function(){
                 $('.program_select').html('');
                 $('.program_select').append('<option value="" disabled selected>*สาขา</option>');
 
-                $.each(d , function(i, val) { 
+                $.each(d , function(i, val) {
 
                     $('.program_select').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
 

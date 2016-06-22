@@ -16,8 +16,8 @@
         <div class="content">
             <ul class="menus thaisans">
                 <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
-                <a href="<?=base_url().'admin/mac'?>"><li class="maclist active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
-                <!-- <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac manual </li></a> -->
+                <a href="<?=base_url().'admin/mac'?>"><li class="maclist "><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
+                <!-- <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac manual </li></a> -->
                 <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
                 <a href="<?=base_url().'admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
             </ul>
@@ -55,10 +55,10 @@
                  ?>
                 <tr>
                     <td><i class="fa fa-<?=switchIcon($val->dev_type);?>" title="phone" aria-hidden="true"></i></td>
-                    <td ><?=$val->macaddress?></td>
+                    <td ><?=$val->username?></td>
                     <td><?=$val->username?></td>
                     <td><?=$val->pname." ".$val->firstname." ".$val->lastname?></td>
-                    <td><?=$val->addtime?></td>
+                    <td><?=$val->dateregis?></td>
                     <td>
                         <h3>ข้อมูลเดิม</h3>
                     </td>
@@ -71,7 +71,7 @@
             <div class="mid" >
                 <div class="head"><i class="fa fa-gears"></i> <span class="thaisans bold" style="margin-top: 0">แก้ไข</span></div>
                 <div class="form">
-                    <form method="post" action="editDataById/<?=$val->oid?>">
+                    <form method="post" action="editDataByManual/<?=$val->username?>">
                     <div class="form-group">
 
                         <label>ข้อมูลส่วนตัว</label>
@@ -170,16 +170,14 @@
                     </div> -->
                     <div class="form-group">
                         <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                        <input type="text" class="form-control" name="macaddress" pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" placeholder="xx-xx-xx-xx-xx-xx" value="<?=$val->macaddress?>">
+    <input type="text" class="form-control" name="username" maxlength="17" placeholder="xx-xx-xx-xx-xx-xx" value="<?=$val->username?>">
                     </div>
                     <div class="form-group">
                         <select name="dev_type" class="form-control">
                             <?=selectDevice($val->dev_type);?>
                         </select>
                     </div>
-                    <input type="text" hidden="" name="username" value="<?=$val->username?>">
-                    <input type="text" hidden="" name="oid" value="<?=$val->oid?>">.
-                    <input type="text" hidden="" name="old_macaddress" value="<?=$val->macaddress?>">
+                    <input type="text" hidden="" name="old_username" value="<?=$val->username?>">
                     <button type="submit" class="btn btn-success">ตกลง</button>
                     </form>
                 </div>

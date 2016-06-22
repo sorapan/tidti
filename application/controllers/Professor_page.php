@@ -33,7 +33,8 @@ class Professor_page extends CI_Controller {
             'fac_data' => $this->RadSKOModel->getFacData(),
             'program_data' => $this->RadSKOModel->getProgramData(),
             'group_data' => $this->RadSKOModel->getGroupsData(),
-            'location_data' => $this->RadSKOModel->getLocationData()
+            'location_data' => $this->RadSKOModel->getLocationData(),
+            'staff_data' => $this->RadSKOModel->getStaffData()
         ));
     }
 
@@ -72,7 +73,7 @@ class Professor_page extends CI_Controller {
         {
             $this->RadOnlineProfileModel->AddSingleData($data_insert);
 
-            //add log 
+            //add log
             $this->LogModel->AddEventLog(array(
                 'USERNAME'=>$this->session->userdata('username'),
                 'STATUS'=>'user',
@@ -100,6 +101,7 @@ class Professor_page extends CI_Controller {
                         $this->session->set_userdata('location',$this->RadSKOModel->getLocationDataByLocationID($sd->location_id)[0]->location_name);
                         $this->session->set_userdata('location_id',$sd->location_id);
                         $this->session->set_userdata('discipline',$sd->discipline);
+                        // $this->session->set_userdata('discipline_name',$sd->discipline);
                         $this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
                         $this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
                     }

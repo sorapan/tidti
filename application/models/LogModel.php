@@ -26,7 +26,7 @@ class LogModel extends CI_Model {
         // $this->db->where('DATE',date('Y-m-d'));
         $this->db->order_by("DATE", "desc");
         $this->db->order_by("TIME", "desc");
-
+        $this->db->limit(99);
         // $this->db->group_by("DATE","TIME");
         return $this->db->get()->result();
     }

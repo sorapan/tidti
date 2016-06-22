@@ -17,6 +17,7 @@
             <ul class="menus thaisans">
                 <a href="<?=base_url().'admin/manage'?>"><li class="manage active"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
                 <a href="<?=base_url().'admin/mac'?>"><li class="maclist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
+                <!-- <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac manual </li></a> -->
                 <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
                 <a href="<?=base_url().'admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
             </ul>
@@ -35,7 +36,14 @@
             <li role="presentation" class="tab"><a href="#staff" aria-controls="professor" role="tab" data-toggle="tab"><div>เพิ่มอุปกรณ์</div><i class="fa fa-user" aria-hidden="true"></i><label>บุคลากร</label></a></li>
             <li role="presentation" class="tab"><a href="#special" aria-controls="professor" role="tab" data-toggle="tab"><div>เพิ่มอุปกรณ์</div><i class="fa fa-user-secret" aria-hidden="true"></i><label>ผู้ใช้พิเศษ</label></a></li>
             </ul>
-            <span class="managealert"><?=$this->session->flashdata('alert');?></span>
+            <?php
+                if(!empty($this->session->flashdata('alert'))){
+            ?>
+            <span class="managealert" style="padding: 5px 50px;font-size: 1.2em; background-color: #c4ffd3;display: inline-block;"><?=$this->session->flashdata('alert');?></span>
+            <?php
+                }
+            ?>
+
             <!-- นักศึกษา -->
             <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade form  active in" id="student">
@@ -76,7 +84,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="department">
+                    <select class="form-control fac_select" name="department">
                         <option value="" disabled selected>*คณะ</option>
 
                     <?php
@@ -91,17 +99,17 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="discipline">
+                    <select class="form-control program_select" name="discipline">
                             <option value="" disabled selected>*สาขา</option>
 
-                        <?php
+                        <!-- <?php
                         foreach($program_data as $pd)
                         {
                         ?>
                             <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
                         <?php
                         }
-                        ?>
+                        ?> -->
 
                         </select>
                 </div>
@@ -138,9 +146,9 @@
 
             <!-- อาจารย์ -->
             <div role="tabpanel" class="tab-pane fade form" id="professor">
-                <form method="post" action="AddManualUser/student">
+                <form method="post" action="AddManualUser">
                 <div class="form-group">
-                    <h3 class="thaisans bold" style="margin-top: 0">นักศึกษา</h3>
+                    <h3 class="thaisans bold" style="margin-top: 0">อาจารย์</h3>
                     <label>ข้อมูลส่วนตัว</label>
                     <div>
                         <select class="form-control pname" name="pname">
@@ -175,7 +183,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="department">
+                    <select class="form-control fac_select2" name="department">
                         <option value="" disabled selected>*คณะ</option>
 
                     <?php
@@ -190,17 +198,17 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="discipline">
+                    <select class="form-control program_select2" name="discipline">
                             <option value="" disabled selected>*สาขา</option>
 
-                        <?php
+                       <!--  <?php
                         foreach($program_data as $pd)
                         {
                         ?>
                             <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
                         <?php
                         }
-                        ?>
+                        ?> -->
 
                         </select>
                 </div>
@@ -335,18 +343,18 @@
                             <option value="นางสาว">นางสาว</option>
                             <option value="นาง">นาง</option>
                         </select>
-                        <input type="text" class="form-control fname" id="" placeholder="ชื่อ">
-                        <input type="text" class="form-control lname" id="" placeholder="สกุล">
+                        <input type="text" name="firstname" class="form-control fname" id="" placeholder="ชื่อ">
+                        <input type="text" name="lastname" class="form-control lname" id="" placeholder="สกุล">
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="" placeholder="อีเมล์">
+                    <input type="text" name="mailaddr" class="form-control" id="" placeholder="อีเมล์">
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
+                    <input type="text" name="idcard" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="group">
+                    <select class="form-control" name="status">
                             <option value="" disabled selected>*กลุ่ม</option>
 
                     <?php
@@ -361,7 +369,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="department">
+                    <select class="form-control fac_select3" name="department">
                         <option value="" disabled selected>*คณะ</option>
 
                     <?php
@@ -376,22 +384,22 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="branch">
+                    <select class="form-control program_select3" name="discipline">
                             <option value="" disabled selected>*สาขา</option>
 
-                        <?php
+                       <!--  <?php
                         foreach($program_data as $pd)
                         {
                         ?>
                             <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
                         <?php
                         }
-                        ?>
+                        ?> -->
 
                         </select>
                 </div>
                 <div class="form-group">
-                    <select name="location" class="form-control">
+                    <select name="location_id" class="form-control">
                         <option value="" disabled selected>*วิทยาเขต</option>
 
                     <?php
@@ -407,10 +415,10 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                    <input type="text" class="form-control" id="" placeholder="xx-xx-xx-xx-xx-xx">
+                    <input type="text" class="form-control" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
                 </div>
                 <div class="form-group">
-                    <select name="location" class="form-control">
+                    <select name="dev_type" class="form-control">
                         <option label="อุปกรณ์" value="-" disabled selected>อุปกรณ์</option>
                         <option value="Phone">มือถือ</option>
                         <option value="Notebook">โน๊ตบุ๊ค</option>
@@ -428,5 +436,96 @@
     </div>
     <div class="wrap"></div>
 </div>
+<script>
+
+$(function(){
+
+    $(document).on( "change", ".fac_select", function() {
+
+        var data =  $(this).val();
+
+        $.ajax({
+            method:'POST',
+            url:'../student/getprogramdata',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
+
+                $('.program_select').html('');
+                $('.program_select').append('<option value="" disabled selected>*สาขา</option>');
+
+                $.each(d , function(i, val) {
+
+                    $('.program_select').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
+
+                });
+
+            }
+        });
+
+    });
+
+    $(document).on( "change", ".fac_select2", function() {
+
+        var data =  $(this).val();
+
+        $.ajax({
+            method:'POST',
+            url:'../student/getprogramdata',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
+
+                $('.program_select2').html('');
+                $('.program_select2').append('<option value="" disabled selected>*สาขา</option>');
+
+                $.each(d , function(i, val) {
+
+                    $('.program_select2').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
+
+                });
+
+            }
+        });
+
+    });
+
+    $(document).on( "change", ".fac_select3", function() {
+
+        var data =  $(this).val();
+
+        $.ajax({
+            method:'POST',
+            url:'../student/getprogramdata',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
+
+                $('.program_select3').html('');
+                $('.program_select3').append('<option value="" disabled selected>*สาขา</option>');
+
+                $.each(d , function(i, val) {
+
+                    $('.program_select3').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
+
+                });
+
+            }
+        });
+
+    });
+
+});
+
+</script>
 </body>
 </html>

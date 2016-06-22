@@ -119,21 +119,61 @@ class Admin extends CI_Controller {
 		if(empty($_GET['search'])){
 			if($this->session->userdata('status')=='staff'){
 				$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),null);
-				$this->load->view('admin/admin_mac_list',array('data'=> $data));
+				$this->checkMacSearch($data);
 			}else{
 				$data = $this->DeviceModel->SelectDevice(null);
-				$this->load->view('admin/admin_mac_list',array('data'=> $data));
+				$this->checkMacSearch($data);
 			}
 		}else{
 			if($this->session->userdata('status')=='staff'){
 				$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),$_GET['search']);
-				$this->load->view('admin/admin_mac_list',array('data'=> $data));
+				$this->checkMacSearch($data);
 			}else{
 				$data = $this->DeviceModel->SelectDevice($_GET['search']);
-				$this->load->view('admin/admin_mac_list',array('data'=> $data));
+				$this->checkMacSearch($data);
 			}
 		}
 
+	}
+
+	public function macmanual()
+	{
+		if(empty($_GET['search'])){
+			if($this->session->userdata('status')=='staff'){
+				$data = $this->DeviceModel->SelectDeviceByStaffManual($this->session->userdata('location_id'),null);
+				$this->checkMacSearchManual($data);
+			}else{
+				$data = $this->DeviceModel->SelectDeviceManual(null);
+				$this->checkMacSearchManual($data);
+			}
+		}else{
+			if($this->session->userdata('status')=='staff'){
+				$data = $this->DeviceModel->SelectDeviceByStaffManual($this->session->userdata('location_id'),$_GET['search']);
+				$this->checkMacSearchManual($data);
+			}else{
+				$data = $this->DeviceModel->SelectDeviceManual($_GET['search']);
+				$this->checkMacSearchManual($data);
+			}
+		}
+
+	}
+
+	private function checkMacSearch($data){
+		if(empty($data)){
+			$data = "ไม่มีรายการที่ค้นหา";
+			$this->load->view('admin/admin_mac_list',array('data'=> $data));
+		}else{
+			$this->load->view('admin/admin_mac_list',array('data'=> $data));
+		}
+	}
+	private function checkMacSearchManual($data){
+		// var_dump($data);
+		if(empty($data)){
+			$data = "ไม่มีรายการที่ค้นหา";
+			$this->load->view('admin/admin_mac_manual',array('data'=> $data));
+		}else{
+			$this->load->view('admin/admin_mac_manual',array('data'=> $data));
+		}
 	}
 
 
@@ -217,13 +257,29 @@ class Admin extends CI_Controller {
 
 	}
 
-	public function editmac($id){
+	public function editmac(){
+		$id = $_GET['mac'];
 		$data = $this->getDataToEditById($id);
 		$fac_data = $this->RadSKOModel->getFacData();
 		$program_data = $this->RadSKOModel->getProgramData();
 		$group_data = $this->RadSKOModel->getGroupsData();
 		$location_data = $this->RadSKOModel->getLocationData();
 		$this->load->view('admin/admin_edit_mac',array(
+			'data'=> $data,'fac_data' => $fac_data,
+							'program_data' => $program_data,
+							'group_data' => $group_data,
+							'location_data' => $location_data
+			));
+	}
+
+	public function editmacmanual(){
+		$username = $_GET['mac'];
+		$data = $this->getDataToEditByIdManual($username);
+		$fac_data = $this->RadSKOModel->getFacData();
+		$program_data = $this->RadSKOModel->getProgramData();
+		$group_data = $this->RadSKOModel->getGroupsData();
+		$location_data = $this->RadSKOModel->getLocationData();
+		$this->load->view('admin/admin_edit_macmanual',array(
 			'data'=> $data,'fac_data' => $fac_data,
 							'program_data' => $program_data,
 							'group_data' => $group_data,
@@ -244,9 +300,23 @@ class Admin extends CI_Controller {
 		@header('Location: mac');
 	}
 
-	public function getDataToEditById($id){
-		return	$this->DeviceModel->SelectDevice($id);
+	public function deleteMacManual(){
+
+		$check = $this->DeviceModel->DeleteMacManual($_POST['mac']);
+		$this->session->set_flashdata('alert', 'ลบอุปกรณ์เรียบร้อย');
+		@header('Location: mac');
 	}
+
+
+
+	public function getDataToEditById($id){
+		return	$this->DeviceModel->SelectForEdit($id);
+	}
+
+	public function getDataToEditByIdManual($username){
+		return	$this->DeviceModel->SelectForEditManual($username);
+	}
+
 
 	public function editDataById($id){
 		// var_dump($_POST);
@@ -272,7 +342,35 @@ class Admin extends CI_Controller {
 
 		$this->DeviceModel->EditDataDevice($where,$online_profile,$register_online,$device);
 
-		@header('Location:'.base_url().'/admin/mac/'.$where['oid']);
+		$this->session->set_flashdata('alert','แก้ไขข้อมูลเรียบร้อย');
+
+		@header('Location:'.base_url().'admin/editMac?mac='.$where['oid']);
+
+
+	}
+
+	public function editDataByManual($id){
+		// var_dump($_POST);
+		$where = array(
+					'username' => $_POST['username'],
+					'old_username' => $_POST['old_username']
+			);
+		$manual_user = array(
+					'pname' => $_POST['pname'],
+					'firstname' => $_POST['firstname'],
+					'lastname' => $_POST['lastname'],
+					'idcard' => $_POST['idcard']
+			);
+		$device = array(
+				'UserName' => $_POST['username'],
+				'dev_type' => $_POST['dev_type']
+			);
+
+		$this->DeviceModel->EditDataDeviceManual($where,$manual_user,$device);
+
+		$this->session->set_flashdata('alert','แก้ไขข้อมูลเรียบร้อย');
+
+		@header('Location:'.base_url().'admin/editMacManual?mac='.$where['username']);
 
 
 	}

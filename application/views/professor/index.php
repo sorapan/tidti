@@ -33,7 +33,7 @@
                 <div class="faculty"><?=$this->session->userdata('department')?></div>
                 <div class="faculty">สาขา <?=$this->session->userdata('branch')?></div>
                 <div class="faculty"><?=$this->session->userdata('location')?></div>
-                <div class="faculty">email: <?=$this->session->userdata('email')?></div>
+                <div class="faculty">อีเมลล์: <?=$this->session->userdata('email')?></div>
 
                 <br>
             <?php
@@ -88,22 +88,44 @@ if($this->session->userdata('detail_exists') == false){
                             <h3 class="thaisans bold">- <?=$this->session->userdata('username');?></h3>
                              <form method="post" action="professor/submit_detail" class="form-group">
                                 <div class="form-group form-inline">
-                                    <select class="form-control" name="pname">
+                                    <select class="form-control" required name="pname">
                                         <option value="" disabled selected>*คำนำหน้า</option>
                                         <option value="นาย">นาย</option>
                                         <option value="นางสาว">นางสาว</option>
                                         <option value="นาง">นาง</option>
                                     </select>
-                                    <input type="text" name="firstname" class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
-                                    <input type="text" name="lastname" class="form-control" id="exampleInputPassword3" placeholder="นามสกุล">
+                                    <input type="text" name="firstname" required class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
+                                    <input type="text" name="lastname" required class="form-control" id="exampleInputPassword3" placeholder="นามสกุล">
                                 </div>
                                 <div class="form-group">
                                     <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                                  </div>
                                 <div class="form-group">
-                                    <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
+                                    <input type="text" name="citizen_id" required class="form-control" id="exampleInputEmail1" maxlength="13" placeholder="รหัสประจำตัวประชาชน">
                                 </div>
-                                <div class="form-group form-inline">
+                                <div class="form-group form-inline thaisans bold" style="font-size: 1.5em">
+                                    <input type="radio" name="type" value="professor" checked id="professor" style="margin-right: 5px"><label for="professor">อาจารย์</label>
+                                    <input type="radio" name="type" value="staff"  id="staff" style="margin-right: 5px"><label for="staff">บุคลากร</label>
+                                </div>
+
+                                <div class="form-group staffhid" >
+                                    <select class="form-control" name="department">
+                                        <option value="" disabled selected>*หน่วยงาน</option>
+
+                                    <?php
+                                    foreach($staff_data as $sd)
+                                    {
+                                    ?>
+                                        <option value="<?=$sd->staff_id?>"><?=$sd->staff_name?></option>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group professorhid">
                                     <select class="form-control fac_select" name="department">
                                         <option value="" disabled selected>*คณะ</option>
 
@@ -117,6 +139,8 @@ if($this->session->userdata('detail_exists') == false){
                                     ?>
 
                                     </select>
+                                </div>
+                                <div class="form-group">
                                     <select class="form-control program_select" name="branch">
                                         <option value="" disabled selected>*สาขา</option>
 
@@ -130,7 +154,9 @@ if($this->session->userdata('detail_exists') == false){
                                     ?>
 
                                     </select>
-                                    <select class="form-control" name="group">
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" required name="group">
                                             <option value="" disabled selected>*กลุ่ม</option>
 
                                     <?php
@@ -145,7 +171,7 @@ if($this->session->userdata('detail_exists') == false){
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select name="location" class="form-control">
+                                    <select name="location" required class="form-control">
                                         <option value="" disabled selected>*วิทยาเขต</option>
 
                                     <?php
@@ -204,7 +230,7 @@ if($this->session->userdata('detail_exists') == false){
 
                                  <?php
                                  //var_dump($mac_data);
-
+                                 if(!empty($mac_data)){
                                  foreach($mac_data as $val)
                                  {
                                  ?>
@@ -220,8 +246,14 @@ if($this->session->userdata('detail_exists') == false){
 
                                  <?php
                                  }
+                                 }else{
                                  ?>
-
+                                    <div>
+                                        <h3 class="thaisans bold" style="color:#337ab7;font-size:1.6em;margin-left: 15px;">ไม่มีรายการอุปกรณ์</h3>
+                                    </div>
+                                 <?php
+                                  }
+                                 ?>
                                 <!--<form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
                                         <input type="text" class="text opensans" disabled name="" value="" id="laptop">
@@ -316,7 +348,25 @@ if($this->session->userdata('detail_exists') == false){
 <script>
 
 $(function(){
-
+    $('input[name="type"]').each(function(){
+        if(!$(this).is(':checked')){
+            var itclass = '.'+$(this).val()+'hid';
+            $(''+itclass).css("display","none");
+            console.log('.'+$(this).val()+'hid');
+        }
+    });
+    $(document).on("change","input[name='type']",function(){
+         var $type = $(this).val();
+        if($type == 'professor'){
+            var itclass = '.'+$type+'hid';
+            $(''+itclass).css("display","");
+            $('.staffhid').css("display","none");
+        }else{
+            var itclass = '.'+$type+'hid';
+            $(''+itclass).css("display","");
+            $('.professorhid').css("display","none");
+        }
+    });
     $(document).on( "change", ".fac_select", function() {
 
         var data =  $(this).val();
@@ -334,7 +384,7 @@ $(function(){
                 $('.program_select').html('');
                 $('.program_select').append('<option value="" disabled selected>*สาขา</option>');
 
-                $.each(d , function(i, val) { 
+                $.each(d , function(i, val) {
 
                     $('.program_select').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
 
