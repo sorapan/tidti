@@ -63,6 +63,7 @@ class Professor_page extends CI_Controller {
             'idcard' => $_POST['citizen_id'],
             'location_id' => $_POST['location'],
             'department' => isset($_POST['department'])?$_POST['department']:null,
+            'dateregis' => date('Y-m-d H:i:s'),
             'encryption' => '-'
         );
 
@@ -70,6 +71,16 @@ class Professor_page extends CI_Controller {
         if(!in_array(null,$data_insert) || !in_array("",$data_insert))
         {
             $this->RadOnlineProfileModel->AddSingleData($data_insert);
+
+            //add log 
+            $this->LogModel->AddEventLog(array(
+                'USERNAME'=>$this->session->userdata('username'),
+                'STATUS'=>'user',
+                'LOCATION'=> $_POST['location'],
+                'EVENT' => 'ได้เพิ่มข้อมูลส่วนตัว',
+                'DATE'=>date('Y-m-d'),
+                'TIME'=>date('H:i:s')
+                    ));
 
             $stf_data = $this->RadOnlineProfileModel->getDataByUsername($this->session->userdata('username'));
 
