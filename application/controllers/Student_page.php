@@ -125,6 +125,14 @@ class Student_page extends CI_Controller {
 
     }
 
+	public function getprogram()
+	{
+
+		$data = $this->RadSKOModel->getProgramDataByFac($_POST['data']);
+		echo json_encode($data);
+
+	}
+
 	public function add_mac()
 	{
 		if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")

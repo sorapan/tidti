@@ -63,6 +63,7 @@ $route['student/addmac'] = 'student_page/add_mac';
 $route['student/submitlocation'] = 'student_page/submit_location';
 $route['student/deletemac'] = 'student_page/delete_mac';
 $route['student/signout'] = 'student_page/signout';
+$route['student/getprogramdata'] = 'student_page/getprogram';
 
 //////////PROFESSOR PAGE
 $route['professor'] = 'professor_page/index';

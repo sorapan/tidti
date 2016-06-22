@@ -29,6 +29,14 @@ class RadSKOModel extends CI_Model {
         $this->db->select('*');
         return $this->db->get('sko_program')->result();
     }
+    
+    function getProgramDataByFac($facid)
+    {
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->where('FAC_ID',$facid);
+        return $this->db->get('sko_program')->result();
+    }
 
     function getProgramDataByProgramID($programid)
     {
