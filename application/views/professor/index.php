@@ -104,7 +104,7 @@ if($this->session->userdata('detail_exists') == false){
                                     <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
                                 </div>
                                 <div class="form-group form-inline">
-                                    <select class="form-control" name="department">
+                                    <select class="form-control fac_select" name="department">
                                         <option value="" disabled selected>*คณะ</option>
 
                                     <?php
@@ -117,16 +117,16 @@ if($this->session->userdata('detail_exists') == false){
                                     ?>
 
                                     </select>
-                                    <select class="form-control" name="branch">
+                                    <select class="form-control program_select" name="branch">
                                         <option value="" disabled selected>*สาขา</option>
 
                                     <?php
-                                    foreach($program_data as $pd)
-                                    {
+                                    // foreach($program_data as $pd)
+                                    // {
                                     ?>
-                                        <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
+                                        <!--<option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>-->
                                     <?php
-                                    }
+                                    // }
                                     ?>
 
                                     </select>
@@ -312,6 +312,43 @@ if($this->session->userdata('detail_exists') == false){
 
     </div>
 </div>
+
+<script>
+
+$(function(){
+
+    $(document).on( "change", ".fac_select", function() {
+
+        var data =  $(this).val();
+
+        $.ajax({
+            method:'POST',
+            url:'student/getprogramdata',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
+
+                $('.program_select').html('');
+                $('.program_select').append('<option value="" disabled selected>*สาขา</option>');
+
+                $.each(d , function(i, val) { 
+
+                    $('.program_select').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
+
+                });
+
+            }
+        });
+
+    });
+
+});
+
+</script>
+
 </body>
 </html>
 
