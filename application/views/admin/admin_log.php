@@ -10,11 +10,15 @@
 <?=header_url()?>
 <body>
 <div class="admin wrap nopad">
+<<<<<<< HEAD
     <div class="nav">
         <!-- <span class="secret"><i class="fa fa-user-secret" aria-hidden="true"></i></span> -->
         <span class="username thaisans">ผู้ดูแล</span>
         <button class="logout" title="ออกระบบ"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
     </div>
+=======
+    <?=headerOfAdmin($this->session->userdata('status'))?>
+>>>>>>> refs/remotes/origin/bestzaba
     <div class="sidebar ">
 
         <div class="content">
@@ -31,8 +35,109 @@
 
 
         <div class="board">
+<<<<<<< HEAD
         <h2 class="thaisans bold">ช้อมูลการใช้งาน <?=$_GET['log']?></h2>
             <div class="content">
+=======
+        <h2 class="thaisans bold">ช้อมูลการใช้งาน</h2>
+        <div class="search">
+        <?php
+            if(empty($search)){
+                $search = "";
+            }
+        ?>
+            <form method="post" action="searchlog">
+            <select name="date" class="select">
+                <option value="">วันที่</option>
+                <?php
+                        $i = 0;
+
+                    foreach ($date as $var) {
+                        $value[$i++] = $var->DATE;
+                    }
+
+                    foreach (array_unique($value) as $var) {
+                        ?>
+                        <option value="<?=$var;?>"><?=$var?></option>
+
+                        <?php
+                    }
+
+                ?>
+            </select>
+            <!-- <select name="location" class="select">
+                <option value="">วิทยาเขต</option>
+                <?php
+                    foreach ($data as $var) {
+                        ?>
+
+                        <option value="<?=$var->LOCATION?>"><?=location_id($var->LOCATION)?></option>
+
+                        <?php
+                    }
+                ?>
+            </select> -->
+            <input type="text" class="input thaisans" name="search" value="<?=$search?>" placeholder="ค้นหา" id="search">
+            <button class="button" type="submit"><i class="fa fa-search"></i></button>
+            <?php
+                if(!empty($this->session->userdata('alert'))){
+            ?>
+                <span class="myalert"><?=$this->session->userdata('alert');?></span>
+            <?php }?>
+            </form>
+        </div>
+
+
+            <div class="content">
+                <table class="table table-hover ">
+                    <thead>
+                        <th class="center">วันที่</th>
+                        <th>เวลา</th>
+                        <th>ชื่อผู้ใช้</th>
+                        <th>สถานะ</th>
+                        <th class="center">วิทยาเขต</th>
+                        <th>การกระทำ</th>
+                    </thead>
+                    <?php
+
+                        if(gettype($data)!='array'){
+
+                            ?>
+                            <tr>
+                            <td ></td>
+                            <td ></td>
+                            <td><?=$data?></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <?php
+
+                            }else{
+                             foreach($data as $val){
+
+
+                         ?>
+                         <tr>
+                            <td ><?=$val->DATE?></td>
+                            <td ><?=$val->TIME?></td>
+                            <td><?=$val->USERNAME?></td>
+                            <td><?=$val->STATUS?></td>
+                            <td><?=location_id($val->LOCATION)?></td>
+                            <td><?=$val->EVENT?></td>
+
+                        </tr>
+
+                        <?php
+                            }
+                        }
+                        ?>
+                </table>
+            </div>
+
+            <!-- <div class="content">
+>>>>>>> refs/remotes/origin/bestzaba
             <?php
             if(!empty($_GET['log'])){
             ?>

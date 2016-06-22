@@ -1,6 +1,21 @@
 .center {
   text-align: center; }
 
+<<<<<<< HEAD
+=======
+.myalert {
+  height: 100%;
+  font-size: 1.5em;
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  margin-left: 25px;
+  color: #108c30;
+  display: block;
+  background-color: #c4ffd3; }
+
+>>>>>>> refs/remotes/origin/bestzaba
 .admin {
   right: 0;
   left: 0;
@@ -178,6 +193,9 @@
     padding: 0 0 0 30px;
     width: 25%;
     min-width: 200px; }
+  .admin .managealert {
+    margin-left: 20px;
+    font-size: 1.2em; }
   .admin > .content.manage .top {
     margin-top: 20px;
     background-color: #d9e1e8; }
@@ -260,12 +278,39 @@
     color: #FFFFF3;
     font-size: 2em; }
   .admin > .content.log > .board > .content {
-    width: 700px;
+    width: 800px;
     height: 700px;
-    padding: 10px 20px 15px 10px;
+    padding: 0 0 15px 0;
     border: 1px solid #004e66;
     font-size: 1.4em;
     overflow-y: auto; }
+<<<<<<< HEAD
+=======
+    .admin > .content.log > .board > .content th {
+      border-bottom: 1px solid #004e66; }
+    .admin > .content.log > .board > .content thead tr:first-child {
+      background-color: #e8e8e8; }
+  .admin > .content.log > .board > .search form {
+    margin: 5px 0 15px 0;
+    height: 35px;
+    float: left; }
+    .admin > .content.log > .board > .search form > .input, .admin > .content.log > .board > .search form > .button, .admin > .content.log > .board > .search form > .select {
+      height: 100%;
+      font-size: 1.5em;
+      float: left; }
+    .admin > .content.log > .board > .search form > .input {
+      width: 300px;
+      margin-right: 5px;
+      padding: 5px;
+      border: 2px solid #ff5f2e;
+      background-color: #fff; }
+    .admin > .content.log > .board > .search form > .button {
+      background-color: #fff;
+      border: 2px solid #004E66;
+      color: #004E66; }
+    .admin > .content.log > .board > .search form > .select {
+      margin-right: 5px; }
+>>>>>>> refs/remotes/origin/bestzaba
   .admin > .content.log > .list {
     margin-left: 10px; }
     .admin > .content.log > .list > h3 {

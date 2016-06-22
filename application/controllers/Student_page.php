@@ -6,19 +6,25 @@ class Student_page extends CI_Controller {
 	{
 		parent::__construct();
 
-		if(!$this->session->userdata('login')||$this->session->userdata('id')==null){
+		if(!$this->session->userdata('login')){
 			@header('Location: ' . base_url());
 		}
 
 		$this->load->model('E_passModel');
-		$this->load->model('Uoc_stdModel');
+		// $this->load->model('Uoc_stdModel');
 		$this->load->model('MacModel');
 		$this->load->model('RadAccountModel');
 		$this->load->model('RadDeviceModel');
 		$this->load->model('RadOnlineProfileModel');
 		$this->load->model('RadRegisterOnlineModel');
 		$this->load->model('RadSKOModel');
+<<<<<<< HEAD
 				
+=======
+		$this->load->model('LogModel');
+		$this->load->model('RadReplyCheckModel');
+
+>>>>>>> refs/remotes/origin/bestzaba
 	}
 
 	public function index()
@@ -33,12 +39,15 @@ class Student_page extends CI_Controller {
 			$macdata[$key]->device = $this->RadDeviceModel->GetDataByMac($val->macaddress)[0]->dev_type;
 		}
 		$this->load->view('student/index',array(
-			'mac_data' => $macdata,
-			'mac_num' => $mac_registered_num,
-			'rad_test' => $this->RadAccountModel->login()
-		));
+            'mac_data' => $macdata,
+            'fac_data' => $this->RadSKOModel->getFacData(),
+            'program_data' => $this->RadSKOModel->getProgramData(),
+            'group_data' => $this->RadSKOModel->getGroupsData(),
+            'location_data' => $this->RadSKOModel->getLocationData()
+        ));
 
 	}
+<<<<<<< HEAD
 	
 	public function submit_location()
 	{
@@ -48,6 +57,88 @@ class Student_page extends CI_Controller {
 			@header('Location: ' . $_SERVER['HTTP_REFERER']);
 		}
 	}
+=======
+
+	public function submit_detail()
+    {
+        // {
+        // $_POST['pname'];
+        // $_POST['firstname'];
+        // $_POST['lastname'];
+        // $_POST['email'];
+        // $_POST['citizen_id'];
+        // $_POST['department'];
+        // $_POST['branch'];
+        // $_POST['group'];
+        // $_POST['location'];
+        // }
+
+        $data_insert = array(
+            'username' => $this->session->userdata('username'),
+            'password' => '-',
+            'pname' => isset($_POST['pname'])?$_POST['pname']:null,
+            'firstname' => $_POST['firstname'],
+            'lastname' => $_POST['lastname'],
+            'discipline' => isset($_POST['branch'])?$_POST['branch']:null,
+            'mailaddr' => $_POST['email'],
+            'status' => 'อาจารย์',
+            'idcard' => $_POST['citizen_id'],
+            'location_id' => $_POST['location'],
+            'department' => isset($_POST['department'])?$_POST['department']:null,
+			'dateregis' => date('Y-m-d H:i:s'),
+            'encryption' => '-'
+        );
+
+
+        if(!in_array(null,$data_insert) || !in_array("",$data_insert))
+        {
+            $this->RadOnlineProfileModel->AddSingleData($data_insert);
+
+			//add log 
+            $this->LogModel->AddEventLog(array(
+                'USERNAME'=>$this->session->userdata('username'),
+                'STATUS'=>'user',
+                'LOCATION'=> $_POST['location'],
+                'EVENT' => 'ได้เพิ่มข้อมูลส่วนตัว',
+                'DATE'=>date('Y-m-d'),
+                'TIME'=>date('H:i:s')
+                    ));
+
+            $stf_data = $this->RadOnlineProfileModel->getDataByUsername($this->session->userdata('username'));
+
+                if(!empty($stf_data))
+                {
+                    foreach($stf_data as $sd)
+                    {
+                        $this->session->set_userdata('login',true);
+                        $this->session->set_userdata('detail_exists',true);
+                        $this->session->set_userdata('id',$sd->idcard);
+                        $this->session->set_userdata('username',$sd->username);
+                        $this->session->set_userdata('prefix_name_id',$sd->pname);
+                        $this->session->set_userdata('firstname',$sd->firstname);
+                        $this->session->set_userdata('lastname',$sd->lastname);
+                        $this->session->set_userdata('email',$sd->mailaddr);
+                        $this->session->set_userdata('status',$sd->status);
+                        $this->session->set_userdata('location',$this->RadSKOModel->getLocationDataByLocationID($sd->location_id)[0]->location_name);
+                        $this->session->set_userdata('location_id',$sd->location_id);
+                        $this->session->set_userdata('discipline',$sd->discipline);
+                        $this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
+                        $this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
+                    }
+
+                }
+
+            @header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+        else
+        {
+            var_dump($data_insert);
+            echo 'กรุณากรอกข้อมูลให้ครบ<br>';
+            echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+        }
+
+    }
+>>>>>>> refs/remotes/origin/bestzaba
 
 	public function submit_detail()
 	{
@@ -186,6 +277,17 @@ class Student_page extends CI_Controller {
 
 	public function signout()
 	{
+<<<<<<< HEAD
+=======
+		// $this->LogModel->AddEventLog(array(
+		// 		'USERNAME'=>$this->session->userdata('username'),
+		// 		'STATUS'=>$this->session->userdata('status'),
+		// 		'LOCATION'=>$this->session->userdata('location_id'),
+		// 		'EVENT' => 'ได้ทำการออกจากระบบ',
+		// 		'DATE'=>date('Y-m-d'),
+		// 		'TIME'=>date('H:i:s')
+		// 	));
+>>>>>>> refs/remotes/origin/bestzaba
 		$this->session->sess_destroy();
 		AddLog(	$this->session->userdata('id')." was logging out" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);

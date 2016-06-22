@@ -1,6 +1,23 @@
 .center{
     text-align: center;
 }
+<<<<<<< HEAD
+=======
+.myalert{
+    height: 100%;
+    font-size: 1.5em;
+    float: left;
+    // border: 1px solid #12af3c;
+    // border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    margin-left: 25px;
+    color: #108c30;
+    display: block;
+    background-color: #c4ffd3;
+}
+>>>>>>> refs/remotes/origin/bestzaba
 .admin{
     &.wrap{
         min-width: 1200px;
@@ -258,6 +275,11 @@
 
     }
 
+    .managealert{
+        margin-left: 20px;
+        font-size: 1.2em;
+    }
+
     > .content.manage{
         .top{
             margin-top: 20px;
@@ -267,8 +289,10 @@
                 padding: 10px 20px;
                 background-color: #ff5f2e;
             }
+
             background-color: #d9e1e8;
         }
+
         .tab{
             border: 2px solid #004e66;
             display: inline-block;
@@ -377,12 +401,52 @@
                 font-size: 2em;
             }
             >.content{
-                width: 700px;
+                width: 800px;
                 height: 700px;
-                padding: 10px 20px 15px 10px;
+                padding: 0 0 15px 0;
                 border: 1px solid #004e66;
                 font-size: 1.4em;
                 overflow-y: auto;
+<<<<<<< HEAD
+=======
+                th{
+                    border-bottom: 1px solid #004e66;
+                    // border-color:#004e66;
+                }
+                thead{
+                    tr:first-child{
+                        background-color: #e8e8e8;
+                    }
+                }
+
+            }
+            >.search form{
+                margin: 5px 0 15px 0;
+                height: 35px;
+                float: left;
+                > .input,>.button,>.select{
+                    height: 100%;
+                    font-size: 1.5em;
+                    float: left;
+                }
+                >.input{
+                    width: 300px;
+                    margin-right: 5px;
+                    padding: 5px;
+                    border: 2px solid #ff5f2e;
+                    background-color: #fff;
+                }
+                >.button{
+                    background-color: #fff;
+                    border: 2px solid #004E66;
+                    color: #004E66;
+                }
+                >.select{
+                    margin-right: 5px;
+                }
+
+
+>>>>>>> refs/remotes/origin/bestzaba
             }
         }
         >.list{

@@ -10,11 +10,15 @@
 <?=header_url()?>
 <body>
 <div class="admin wrap nopad">
+<<<<<<< HEAD
     <div class="nav">
         <!-- <span class="secret"><i class="fa fa-user-secret" aria-hidden="true"></i></span> -->
         <span class="username thaisans">ผู้ดูแล</span>
         <button class="logout" title="ออกระบบ"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
     </div>
+=======
+    <?=headerOfAdmin($this->session->userdata('status'))?>
+>>>>>>> refs/remotes/origin/bestzaba
     <div class="sidebar ">
 
         <div class="content">
@@ -38,6 +42,15 @@
                 <form method="post" action="search">
                 <input type="text" class="input thaisans" name="search" value="<?=$search?>" placeholder="ค้นหา" id="search">
                 <button class="button" type="submit"><i class="fa fa-search"></i></button>
+<<<<<<< HEAD
+=======
+                <?php
+                    if(!empty($this->session->userdata('alert'))){
+                ?>
+                    <span class="myalert"><?=$this->session->userdata('alert');?></span>
+
+                <?php }?>
+>>>>>>> refs/remotes/origin/bestzaba
                 </form>
             </div>
             <table class="table table-hover">

@@ -29,11 +29,11 @@
             ?>
 
                 <div class="name"><?=$this->session->userdata('prefix_name_id')?> <?= $this->session->userdata('firstname')?> <?=$this->session->userdata('lastname')?></div>
-                <div class="epassport">รหัส <?= $this->session->userdata('id')?></div>
-                <div class="faculty">คณะ <?=$this->session->userdata('department')?></div>
+                <div class="epassport">รหัส: <?= $this->session->userdata('id')?></div>
+                <div class="faculty"><?=$this->session->userdata('department')?></div>
                 <div class="faculty">สาขา <?=$this->session->userdata('branch')?></div>
                 <div class="faculty"><?=$this->session->userdata('location')?></div>
-                <div class="faculty">email <?=$this->session->userdata('email')?></div>
+                <div class="faculty">email: <?=$this->session->userdata('email')?></div>
 
                 <br>
             <?php
@@ -75,11 +75,7 @@
 
                 <!-- //////////////////////////////////////////////////////////// -->
                 <!-- ////////////            alert                  ////////////// -->
-                <div class="alert">
-                    <div class="user_alert">
-                        <h2 class="thaisans"></h2>
-                    </div>
-                </div>
+
                 <div class="content col-xs-10">
                         <div class="add-device">
                             <!--<div class="alert">alert</div>-->
@@ -176,23 +172,27 @@ if($this->session->userdata('detail_exists') == false){
                                 <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
                                   วิธีดู Mac address
                                 </button>
+                                <br><br>
                             <!--/////////////////////////////////////////////////////////////////////////-->
-
-
+                            <?php if (!empty($this->session->userdata('alert'))): ?>
+                                    <div class="user_alert">
+                                        <h2 class="thaisans bold"><?=$this->session->userdata('alert')?></h2>
+                                    </div>
+                            <?php endif ?>
 
                                 <form id="mac_submit" method="POST" action="professor/addmac">
 
                                 <div class="dev">
                                     <h3 class="thaisans bold">เลือกอุปกรณ์</h3>
                                     <div class="select">
-                                        <input type="radio" class="laptop" name="device" id="laptop" value="laptop"><label data-toggle="tooltip" data-placement="bottom" title="โน๊ตบุ๊ค" class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
+                                        <input type="radio" class="laptop" name="device" id="laptop" value="laptop" required><label data-toggle="tooltip" data-placement="bottom" title="โน๊ตบุ๊ค" class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
                                         <input type="radio" class="phone" name="device" id="phone" value="phone"><label data-toggle="tooltip" data-placement="bottom" title="มือถือ" class="fa fa-mobile" for="phone" title="มือถือ"></label>
                                         <input type="radio" class="tablet" name="device" id="taplet" value="tablet"><label data-toggle="tooltip" data-placement="bottom" title="แท็บเล็ต" class="fa fa-tablet" for="taplet" title="แท็บเล็ต"></label>
                                         <input type="radio" class="other" name="device" id="other" value="other"><label data-toggle="tooltip" data-placement="bottom" title="อื่นๆ" class="fa fa-question" for="other" title="อื่นๆ"></label>
                                     </div>
                                 </div>
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" placeholder="mac-address" name="mac" id="laptop">
+                                      <input type="text" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" class="text opensans" placeholder="xx-xx-xx-xx-xx-xx" name="mac" id="laptop">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                   </div>
 
@@ -211,11 +211,11 @@ if($this->session->userdata('detail_exists') == false){
 
                                     <form method="POST" action="professor/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                         <div class="ch-device activated">
-                                            <input type="text" class="text opensans" disabled name="" value="<?=$val->macaddress?>" id="laptop">
+                                            <input type="text" class="text opensans" value="<?=$val->macaddress?>" disabled >
                                             <button class="button" type="submit"><i class="fa fa-trash-o"></i></button>
-                                            <label for="laptop" class="laptop"><i class="fa fa-<?=switchIcon($val->device)?> active"></i></label>
+                                            <label class="<?=switchIcon($val->device)?>"><i class="fa fa-<?=switchIcon($val->device)?> active"></i></label>
                                         </div>
-                                        <input type="hidden" name="del" value="<?=$val->macaddress?>">
+                                        <input type="text" name="del" hidden=""  value="<?=$val->macaddress?>">
                                     </form>
 
                                  <?php

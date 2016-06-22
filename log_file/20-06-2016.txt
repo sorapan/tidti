@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 20-06-2016 00:59 -- santi.p is logging in 
 20-06-2016 01:00 -- 12321112225 was logging out 
 20-06-2016 01:00 -- santi.p is logging in 
@@ -5,3 +6,19 @@
 20-06-2016 14:10 -- 155404130050 was logging out 
 20-06-2016 14:18 -- 155404130050 is logging in 
 20-06-2016 14:18 -- 155404130050 was logging out 
+=======
+20-06-2016 02:32 -- 155404130050 is logging in 
+20-06-2016 02:32 -- 155404130050 was logging out 
+20-06-2016 20:11 -- 155404130050 is logging in 
+20-06-2016 20:12 -- 155404130050 is logging in 
+20-06-2016 20:13 -- 155404130050 is logging in 
+20-06-2016 20:27 -- 155404130050 is logging in 
+20-06-2016 20:28 -- 155404140007 is logging in 
+20-06-2016 20:35 -- akka.y is logging in 
+20-06-2016 22:07 -- 155404140007 was logging out 
+20-06-2016 22:07 -- akka.y is logging in 
+20-06-2016 22:32 --  was logging out 
+20-06-2016 22:34 -- akka.y is logging in 
+20-06-2016 22:35 --  was logging out 
+20-06-2016 22:46 -- akka.y is logging in 
+>>>>>>> refs/remotes/origin/bestzaba
