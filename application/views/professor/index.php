@@ -29,11 +29,11 @@
             ?>
 
                 <div class="name"><?=$this->session->userdata('prefix_name_id')?> <?= $this->session->userdata('firstname')?> <?=$this->session->userdata('lastname')?></div>
-                <div class="epassport">รหัส <?= $this->session->userdata('id')?></div>
-                <div class="faculty">คณะ <?=$this->session->userdata('department')?></div>
+                <div class="epassport">รหัส: <?= $this->session->userdata('id')?></div>
+                <div class="faculty"><?=$this->session->userdata('department')?></div>
                 <div class="faculty">สาขา <?=$this->session->userdata('branch')?></div>
                 <div class="faculty"><?=$this->session->userdata('location')?></div>
-                <div class="faculty">email <?=$this->session->userdata('email')?></div>
+                <div class="faculty">email: <?=$this->session->userdata('email')?></div>
 
                 <br>
             <?php
