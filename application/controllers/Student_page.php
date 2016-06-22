@@ -17,6 +17,7 @@ class Student_page extends CI_Controller {
 		$this->load->model('RadDeviceModel');
 		$this->load->model('RadOnlineProfileModel');
 		$this->load->model('RadRegisterOnlineModel');
+		$this->load->model('RadSKOModel');
 				
 	}
 
@@ -46,6 +47,59 @@ class Student_page extends CI_Controller {
 			$this->session->set_userdata('location',$_POST['location']);
 			@header('Location: ' . $_SERVER['HTTP_REFERER']);
 		}
+	}
+
+	public function submit_detail()
+	{
+		$data_insert = array(
+            'username' => $this->session->userdata('username'),
+            'password' => '-',
+            'pname' => isset($_POST['pname'])?$_POST['pname']:null,
+            'firstname' => $_POST['firstname'],
+            'lastname' => $_POST['lastname'],
+            'discipline' => isset($_POST['branch'])?$_POST['branch']:null,
+            'mailaddr' => $_POST['email'],
+            'status' => 'อาจารย์',
+            'idcard' => $_POST['citizen_id'],
+            'location_id' => $_POST['location'],
+            'department' => isset($_POST['department'])?$_POST['department']:null,
+            'encryption' => '-'
+        );
+
+        if(!in_array(null,$data_insert) || !in_array("",$data_insert))
+        {
+            $this->RadOnlineProfileModel->AddSingleData($data_insert);
+
+            $stf_data = $this->RadOnlineProfileModel->getDataByUsername($this->session->userdata('username'));
+
+                if(!empty($stf_data))
+                {
+                    foreach($stf_data as $sd)
+                    {
+                        $this->session->set_userdata('login',true);
+                        $this->session->set_userdata('detail_exists',true);
+                        $this->session->set_userdata('id',$sd->idcard);
+                        $this->session->set_userdata('username',$sd->username);
+                        $this->session->set_userdata('prefix_name_id',$sd->pname);
+                        $this->session->set_userdata('firstname',$sd->firstname);
+                        $this->session->set_userdata('lastname',$sd->lastname);
+                        $this->session->set_userdata('email',$sd->mailaddr);
+                        $this->session->set_userdata('status',$sd->status);
+                        $this->session->set_userdata('location',$this->RadSKOModel->getLocationDataByLocationID($sd->location_id)[0]->location_name);
+                        $this->session->set_userdata('discipline',$sd->discipline);
+                        $this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
+                        $this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
+                    }
+                }
+
+            @header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+        else
+        {
+            var_dump($data_insert);
+            echo 'กรุณากรอกข้อมูลให้ครบ<br>';
+            echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+        }
 	}
 
 	public function add_mac()

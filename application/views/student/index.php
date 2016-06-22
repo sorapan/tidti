@@ -51,25 +51,86 @@
 <?php
 if(!$this->session->userdata('location') ){
 ?>
-<div class="alert alert-danger" role="alert">** กรุณากรอกข้อมูลวิทยาเขตก่อนกรอก Mac Address **
+<div class="alert alert-danger" role="alert">** กรุณากรอกข้อมูลก่อนกรอก Mac Address **
 
-                            <h3 class="thaisans bold">วิทยาเขต</h3>
-                            <?php if($this->session->userdata('location')){?>
-                            <h3><?=$this->session->userdata('location')?></h3>
-                            <?php }?>
+                            <h3 class="thaisans bold">ข้อมูลส่วนตัว</h3>
+                            <h3 class="thaisans bold">- <?=$this->session->userdata('username');?></h3>
+                             <form method="post" action="student/submit_detail" class="form-group">
+                                <div class="form-group form-inline">
+                                    <select class="form-control" name="pname">
+                                        <option value="" disabled selected>*คำนำหน้า</option>
+                                        <option value="นาย">นาย</option>
+                                        <option value="นางสาว">นางสาว</option>
+                                        <option value="นาง">นาง</option>
+                                    </select>
+                                    <input type="text" name="firstname" class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
+                                    <input type="text" name="lastname" class="form-control" id="exampleInputPassword3" placeholder="นามสกุล">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                 </div>
+                                <div class="form-group">
+                                    <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
+                                </div>
+                                <div class="form-group form-inline">
+                                    <select class="form-control" name="department">
+                                        <option value="" disabled selected>*คณะ</option>
 
-                            <form method="post" action="student/submitlocation">
-                                <select name="location">
-                                    <option value="sk">สงขลา</option>
-                                    <option value="sai">ไสใหญ่</option>
-                                    <option value="tho">ทุ่งใหญ่</option>
-                                    <option value="ka">ขนอม</option>
-                                    <option value="tr">ตรัง</option>
-                                    <option value="rat">วิทยาลัยรัตภูมิ</option>
-                                </select>
-                                <button type="submit">ตกลง</button>
-                            </form>
-                            </div>
+                                    <?php
+                                    foreach($fac_data as $fd)
+                                    {
+                                    ?>
+                                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    </select>
+                                    <select class="form-control" name="branch">
+                                        <option value="" disabled selected>*สาขา</option>
+
+                                    <?php
+                                    foreach($program_data as $pd)
+                                    {
+                                    ?>
+                                        <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    </select>
+                                    <select class="form-control" name="group">
+                                            <option value="" disabled selected>*กลุ่ม</option>
+
+                                    <?php
+                                    foreach($group_data as $gd)
+                                    {
+                                    ?>
+                                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select name="location" class="form-control">
+                                        <option value="" disabled selected>*วิทยาเขต</option>
+
+                                    <?php
+                                    foreach($location_data as $ld)
+                                    {
+                                    ?>
+                                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-danger">บันทึก</button>
+                              </form>
+</div>
 
 <?php
 }else{
