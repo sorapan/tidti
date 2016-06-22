@@ -4,6 +4,7 @@ class Professor_page extends CI_Controller {
 
     public function __construct()
     {
+        date_default_timezone_set("Asia/Bangkok");
         parent::__construct();
 
 		if(!$this->session->userdata('login')){
@@ -14,6 +15,8 @@ class Professor_page extends CI_Controller {
         $this->load->model('RadRegisterOnlineModel');
         $this->load->model('RadDeviceModel');
         $this->load->model('RadSKOModel');
+        $this->load->model('LogModel');
+        $this->load->model('RadReplyCheckModel');
 
     }
 
@@ -63,6 +66,7 @@ class Professor_page extends CI_Controller {
             'encryption' => '-'
         );
 
+
         if(!in_array(null,$data_insert) || !in_array("",$data_insert))
         {
             $this->RadOnlineProfileModel->AddSingleData($data_insert);
@@ -83,6 +87,7 @@ class Professor_page extends CI_Controller {
                         $this->session->set_userdata('email',$sd->mailaddr);
                         $this->session->set_userdata('status',$sd->status);
                         $this->session->set_userdata('location',$this->RadSKOModel->getLocationDataByLocationID($sd->location_id)[0]->location_name);
+                        $this->session->set_userdata('location_id',$sd->location_id);
                         $this->session->set_userdata('discipline',$sd->discipline);
                         $this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
                         $this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
@@ -97,7 +102,7 @@ class Professor_page extends CI_Controller {
             echo 'กรุณากรอกข้อมูลให้ครบ<br>';
             echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
         }
-        
+
     }
 
     public function addmac()
@@ -113,19 +118,60 @@ class Professor_page extends CI_Controller {
                 {
                     // var_dump($_POST);
                     // var_dump(ctype_space($_POST['mac']) == false);
-                    $this->RadOnlineProfileModel->AddDataWithoutProfile(
-                    array(
-                        'UserName' => $_POST['mac'],
-                        'dev_type' => $_POST['device'],
-                        'dev_net_type' => "Wireless"
-                    ),
-                    array(
-                        'username' => $this->session->userdata('username'),
-                        'macaddress' => $_POST['mac'],
-                        'status_on' => 'staff'
-                    ));
-                    
-                    @header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    $count_mac = $this->RadRegisterOnlineModel->DuplicateCheck($_POST['mac']);
+
+                    if($count_mac<=0){
+                        $this->RadOnlineProfileModel->AddDataWithoutProfile(
+                        array(
+                            'UserName' => $_POST['mac'],
+                            'dev_type' => $_POST['device'],
+                            'dev_net_type' => "Wireless"
+                        ),
+                        array(
+                            'username' => $this->session->userdata('username'),
+                            'macaddress' => $_POST['mac'],
+                            'status_on' => 'staff'
+                        ));
+
+                        $this->RadReplyCheckModel->AddRadReply(array(
+                                // รับค่าจาก POST
+                                'username' => $_POST['mac'],
+                                // ส่วนที่แก้ไข
+                                'attribute' => 'WISPr-Session-Terminate-Time',
+                                // ส่วนที่แก้ไข
+                                'op' => '-',
+                                // ส่วนที่แก้ไข
+                                'value'=> '-'
+                            ));
+
+                        // อาจจะมีการแก้ไขในภายหน้า
+                        $this->RadReplyCheckModel->AddRadCheck(array(
+                                // รับค่าจาก POST
+                                'username' => $_POST['mac'],
+                                // ส่วนที่แก้ไข
+                                'attribute' => '-',
+                                // ส่วนที่แก้ไข
+                                'op' => '-',
+                                // ส่วนที่แก้ไข
+                                'value'=> '-'
+                            ));
+
+                        $this->LogModel->AddEventLog(array(
+                            'USERNAME'=>$this->session->userdata('username'),
+                            'STATUS'=>'user',
+                            'LOCATION'=> $this->session->userdata('location_id'),
+                            'EVENT' => 'ได้เพิ่มอุปกรณ์:'.$_POST['mac'],
+                            'DATE'=>date('Y-m-d'),
+                            'TIME'=>date('H:i:s')
+                                ));
+                         $this->session->set_flashdata("alert",'เพิ่มอุปกรณ์เรียบร้อย');
+
+                        @header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    }else{
+                        $this->session->set_flashdata("alert",'หมายเลขอุปกรณ์ซ้ำ');
+                        echo 'หมายเลขอุปกรณ์ซ้ำ <br>';
+                        @header('Location: '.base_url().'professor');
+                    }
                 }
                 else
                 {
@@ -150,13 +196,37 @@ class Professor_page extends CI_Controller {
     {
         $this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
 		$this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
-		
+        $this->RadReplyCheckModel->DeleteRad($_POST['del']);
+        $this->LogModel->AddEventLog(array(
+            'USERNAME'=>$this->session->userdata('username'),
+            'STATUS'=>'user',
+            'LOCATION'=> $this->session->userdata('location_id'),
+            'EVENT' => 'ได้ลบอุปกรณ์หมายเลข:'.$_POST['del'],
+            'DATE'=>date('Y-m-d'),
+            'TIME'=>date('H:i:s')
+                ));
+
+        $this->session->set_flashdata("alert",'ลบอุปกรณ์เรียบร้อย');
 		AddLog(	$this->session->userdata('id')." was deleting his/her registered mac address" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function logout()
     {
+        // add log data
+        if(empty($this->session->userdata('location_id'))){
+            $location = '-';
+        }else{
+            $location = $this->session->userdata('location_id');
+        }
+        $this->LogModel->AddEventLog(array(
+            'USERNAME'=>$this->session->userdata('username'),
+            'STATUS'=>'user',
+            'LOCATION'=> $location,
+            'EVENT' => 'ออกจากระบบ',
+            'DATE'=>date('Y-m-d'),
+            'TIME'=>date('H:i:s')
+                ));
         $this->session->sess_destroy();
         AddLog(	$this->session->userdata('id')." was logging out" );
         @header('Location: ' . $_SERVER['HTTP_REFERER']);
