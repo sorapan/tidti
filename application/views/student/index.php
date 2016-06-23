@@ -83,7 +83,7 @@ if($this->session->userdata('detail_exists') == false){
                                 <div class="form-group">
                                     <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" placeholder="รหัสนักศึกษา">
                                 </div>
-                                <div class="form-group form-inline">
+                                <div class="form-group ">
                                     <select class="form-control" name="group">
                                             <option value="" disabled selected>*กลุ่ม</option>
 
@@ -97,6 +97,8 @@ if($this->session->userdata('detail_exists') == false){
                                     ?>
 
                                     </select>
+                                </div>
+                                <div class="form-group ">
                                     <select class="form-control fac_select" name="department">
                                         <option value="" disabled selected>*คณะ</option>
 
@@ -110,6 +112,8 @@ if($this->session->userdata('detail_exists') == false){
                                     ?>
 
                                     </select>
+                                </div>
+                                <div class="form-group ">
                                     <select class="form-control program_select" name="branch">
                                         <option value="" disabled selected>*สาขา</option>
 
@@ -123,7 +127,6 @@ if($this->session->userdata('detail_exists') == false){
                                     ?>
 
                                     </select>
-
                                 </div>
                                 <div class="form-group">
                                     <select name="location" class="form-control">
