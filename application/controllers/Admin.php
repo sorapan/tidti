@@ -36,11 +36,17 @@ class Admin extends CI_Controller {
 
 	// manage page
 	public function manage(){
+		if($this->session->userdata('status')=="staff"){
+			$location = $this->RadSKOModel->getLocationDataByLocationID($this->session->userdata('location_id'));
+		}else{
+			$location = $this->RadSKOModel->getLocationData();
+		}
+
 		$this->load->view('admin/admin_manage',array(
 							'fac_data' => $this->RadSKOModel->getFacData(),
 							'program_data' => $this->RadSKOModel->getProgramData(),
 							'group_data' => $this->RadSKOModel->getGroupsData(),
-							'location_data' => $this->RadSKOModel->getLocationData(),
+							'location_data' => $location,
 							'staff_data' => $this->RadSKOModel->getStaffData()
 			));
 	}
@@ -63,7 +69,7 @@ class Admin extends CI_Controller {
 
 			if(empty($check)){
 			// อาจจะมีการแก้ไขในภายหน้า
-
+				$_POST['macaddress'] = strtolower($_POST['macaddress']);
 			$this->ManualUserModel->AddDataManualUser(array(
 						'username'=>$_POST['macaddress'],
 						// 'password'=>$_POST['password'],
@@ -72,8 +78,8 @@ class Admin extends CI_Controller {
 						'lastname'=>$_POST['lastname'],
 						'idcard'=>$_POST['idcard'],
 						'mailaddr'=>$_POST['mailaddr'],
-						'discipline'=>$_POST['discipline'],
-						'department'=>$_POST['department'],
+						'discipline'=>isset($_POST['branch'])?$_POST['branch']:'-',
+						'department'=>isset($_POST['department'])?$_POST['department']:'-',
 						'dateregis'=>date('Y-m-d H:i:s',time()),
 						'status'=>$_POST['status'],
 						'location_id'=>$_POST['location_id']
@@ -107,6 +113,29 @@ class Admin extends CI_Controller {
 					'dev_type' => $_POST['dev_type'],
 					'dev_net_type' => 'Wireless'
 				));
+
+			if($this->session->userdata('status')=='staff'){
+				//add log
+	            $this->LogModel->AddEventLog(array(
+	                'USERNAME'=>$this->session->userdata('username'),
+	                'STATUS'=>'staff',
+	                'LOCATION'=> $this->session->userdata('location_id'),
+	                'EVENT' => 'ได้เพิ่มอุปกรณ์หมายเลข:'.$_POST['macaddress'],
+	                'DATE'=>date('Y-m-d'),
+	                'TIME'=>date('H:i:s')
+	                    ));
+			}else{
+				//add log
+	            $this->LogModel->AddEventLog(array(
+	                'USERNAME'=>$this->session->userdata('username'),
+	                'STATUS'=>'admin',
+	                'LOCATION'=> '-',
+	                'EVENT' => 'ได้เพิ่มอุปกรณ์หมายเลข:'.$_POST['macaddress'],
+	                'DATE'=>date('Y-m-d'),
+	                'TIME'=>date('H:i:s')
+	                    ));
+			}
+
 
 			$this->session->set_flashdata('alert', 'เพิ่มข้อมูลสำเร็จ');
 	        @header('Location:'.base_url().'admin/manage');
@@ -293,7 +322,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function editmac(){
-		$id = $_GET['mac'];
+		$id = strtolower($_GET['mac']);
 		$data = $this->getDataToEditById($id);
 		$fac_data = $this->RadSKOModel->getFacData();
 		$program_data = $this->RadSKOModel->getProgramData();
@@ -308,7 +337,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function editmacmanual(){
-		$username = $_GET['mac'];
+		$username = strtolower($_GET['mac']);
 		$data = $this->getDataToEditByIdManual($username);
 		$fac_data = $this->RadSKOModel->getFacData();
 		$program_data = $this->RadSKOModel->getProgramData();
@@ -329,8 +358,30 @@ class Admin extends CI_Controller {
 	// manage method
 
 	public function deleteMac(){
-
 		$check = $this->DeviceModel->DeleteMac($_POST['mac']);
+
+		if($this->session->userdata('status')=='staff'){
+				//add log
+	            $this->LogModel->AddEventLog(array(
+	                'USERNAME'=>$this->session->userdata('username'),
+	                'STATUS'=>'staff',
+	                'LOCATION'=> $this->session->userdata('location_id'),
+	                'EVENT' => 'ได้ลบอุปกรณ์หมายเลข:'.$_POST['mac'],
+	                'DATE'=>date('Y-m-d'),
+	                'TIME'=>date('H:i:s')
+	                    ));
+			}else{
+				//add log
+	            $this->LogModel->AddEventLog(array(
+	                'USERNAME'=>$this->session->userdata('username'),
+	                'STATUS'=>'admin',
+	                'LOCATION'=> '-',
+	                'EVENT' => 'ได้ลบอุปกรณ์หมายเลข:'.$_POST['mac'],
+	                'DATE'=>date('Y-m-d'),
+	                'TIME'=>date('H:i:s')
+	                    ));
+			}
+
 		$this->session->set_flashdata('alert', 'ลบอุปกรณ์เรียบร้อย');
 		@header('Location: mac');
 	}
@@ -338,6 +389,27 @@ class Admin extends CI_Controller {
 	public function deleteMacManual(){
 
 		$check = $this->DeviceModel->DeleteMacManual($_POST['mac']);
+		if($this->session->userdata('status')=='staff'){
+				//add log
+	            $this->LogModel->AddEventLog(array(
+	                'USERNAME'=>$this->session->userdata('username'),
+	                'STATUS'=>'staff',
+	                'LOCATION'=> $this->session->userdata('location_id'),
+	                'EVENT' => 'ได้ลบอุปกรณ์หมายเลข:'.$_POST['mac'],
+	                'DATE'=>date('Y-m-d'),
+	                'TIME'=>date('H:i:s')
+	                    ));
+			}else{
+				//add log
+	            $this->LogModel->AddEventLog(array(
+	                'USERNAME'=>$this->session->userdata('username'),
+	                'STATUS'=>'admin',
+	                'LOCATION'=> '-',
+	                'EVENT' => 'ได้ลบอุปกรณ์หมายเลข:'.$_POST['mac'],
+	                'DATE'=>date('Y-m-d'),
+	                'TIME'=>date('H:i:s')
+	                    ));
+			}
 		$this->session->set_flashdata('alert', 'ลบอุปกรณ์เรียบร้อย');
 		@header('Location: macmanual');
 	}
@@ -377,6 +449,32 @@ class Admin extends CI_Controller {
 
 		$this->DeviceModel->EditDataDevice($where,$online_profile,$register_online,$device);
 
+		if($_POST['macaddress'] !== $_POST['old_macaddress']){
+			$macedit = ' และ ได้แก้ไขหมายเลขอุปกรณ์:'.$_POST['old_macaddress'].'=> '.$_POST['macaddress'];
+		}
+
+		if($this->session->userdata('status')=='staff'){
+				//add log
+	            $this->LogModel->AddEventLog(array(
+	                'USERNAME'=>$this->session->userdata('username'),
+	                'STATUS'=>'staff',
+	                'LOCATION'=> $this->session->userdata('location_id'),
+	                'EVENT' => 'ได้แก้ไขข้อมูลบางส่วน'.$macedit,
+	                'DATE'=>date('Y-m-d'),
+	                'TIME'=>date('H:i:s')
+	                    ));
+			}else{
+				//add log
+	            $this->LogModel->AddEventLog(array(
+	                'USERNAME'=>$this->session->userdata('username'),
+	                'STATUS'=>'admin',
+	                'LOCATION'=> '-',
+	                'EVENT' => 'ได้แก้ไขข้อมูลบางส่วน'.$macedit,
+	                'DATE'=>date('Y-m-d'),
+	                'TIME'=>date('H:i:s')
+	                    ));
+			}
+
 		$this->session->set_flashdata('alert','แก้ไขข้อมูลเรียบร้อย');
 
 		@header('Location:'.base_url().'admin/editMac?mac='.$where['oid']);
@@ -404,6 +502,30 @@ class Admin extends CI_Controller {
 
 		$this->DeviceModel->EditDataDeviceManual($where,$manual_user,$device);
 
+		if($_POST['username'] !== $_POST['old_username']){
+			$macedit = " และ ได้แก้ไขหมายเลขอุปกรณ์:".$_POST['username'].' => '.$_POST['old_username'];
+		}
+		if($this->session->userdata('status')=='staff'){
+				//add log
+	            $this->LogModel->AddEventLog(array(
+	                'USERNAME'=>$this->session->userdata('username'),
+	                'STATUS'=>'staff',
+	                'LOCATION'=> $this->session->userdata('location_id'),
+	                'EVENT' => 'ได้แก้ไขข้อมูลบางส่วน'.$macedit,
+	                'DATE'=>date('Y-m-d'),
+	                'TIME'=>date('H:i:s')
+	                    ));
+			}else{
+				//add log
+	            $this->LogModel->AddEventLog(array(
+	                'USERNAME'=>$this->session->userdata('username'),
+	                'STATUS'=>'admin',
+	                'LOCATION'=> '-',
+	                'EVENT' => 'ได้แก้ไขข้อมูลบางส่วน'.$macedit,
+	                'DATE'=>date('Y-m-d'),
+	                'TIME'=>date('H:i:s')
+	                    ));
+			}
 		$this->session->set_flashdata('alert','แก้ไขข้อมูลเรียบร้อย');
 
 		@header('Location:'.base_url().'admin/editMacManual?mac='.$where['username']);

@@ -81,55 +81,11 @@ if($this->session->userdata('detail_exists') == false){
                                     <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                                  </div>
                                 <div class="form-group">
-                                    <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" placeholder="รหัสนักศึกษา">
+                                    <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" maxlength="12" placeholder="รหัสนักศึกษา">
                                 </div>
-                                <div class="form-group ">
-                                    <select class="form-control" name="group">
-                                            <option value="" disabled selected>*กลุ่ม</option>
 
-                                    <?php
-                                    foreach($group_data as $gd)
-                                    {
-                                    ?>
-                                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
-                                    <?php
-                                    }
-                                    ?>
-
-                                    </select>
-                                </div>
-                                <div class="form-group ">
-                                    <select class="form-control fac_select" name="department">
-                                        <option value="" disabled selected>*คณะ</option>
-
-                                    <?php
-                                    foreach($fac_data as $fd)
-                                    {
-                                    ?>
-                                        <option value="<?=$fd->FAC_ID?>" class="fac_option"><?=$fd->FAC_NAME?></option>
-                                    <?php
-                                    }
-                                    ?>
-
-                                    </select>
-                                </div>
-                                <div class="form-group ">
-                                    <select class="form-control program_select" name="branch">
-                                        <option value="" disabled selected>*สาขา</option>
-
-                                    <?php
-                                    // foreach($program_data as $pd)
-                                    // {
-                                    ?>
-                                        <!--<option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>-->
-                                    <?php
-                                    // }
-                                    ?>
-
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select name="location" class="form-control">
+                                 <div class="form-group">
+                                    <select name="location" class="form-control location_select">
                                         <option value="" disabled selected>*วิทยาเขต</option>
 
                                     <?php
@@ -137,6 +93,37 @@ if($this->session->userdata('detail_exists') == false){
                                     {
                                     ?>
                                         <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group ">
+                                    <select class="form-control fac_select" name="department">
+                                        <option value="" disabled selected>*คณะ</option>
+
+
+                                    </select>
+                                </div>
+                                <div class="form-group ">
+                                    <select class="form-control program_select" name="branch">
+                                        <option value="" disabled selected>*สาขา</option>
+
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group ">
+                                    <select class="form-control group_select" name="group">
+                                            <option value="" disabled selected>*กลุ่ม</option>
+
+                                    <?php
+                                    foreach($group_data as $gd)
+                                    {
+                                    ?>
+                                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
                                     <?php
                                     }
                                     ?>
@@ -390,6 +377,63 @@ $(function(){
                 $.each(d , function(i, val) {
 
                     $('.program_select').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
+
+                });
+
+            }
+        });
+
+    });
+    $(document).on( "change", ".location_select", function() {
+        var location_class = $(this).attr('class').split(' ');
+        var last_word = location_class[1][location_class[1].length-1];
+        if(last_word !== "t"){
+            var fac_class = '.fac_select'+last_word;
+            var group_class = '.group_select'+last_word;
+        }else{
+            var fac_class = '.fac_select';
+            var group_class = '.group_select';
+        }
+        var data =  $(this).val();
+        $.ajax({
+            method:'POST',
+            url:'student/getLocationFacData',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
+
+                console.log(fac_class);
+                $(fac_class).html('');
+                $(fac_class).append('<option value="" disabled selected>*คณะ</option>');
+
+                $.each(d , function(i, val) {
+
+                    $(fac_class).append(' <option value="'+d[i].FAC_ID+'">'+d[i].FAC_NAME+'</option> ');
+
+                });
+
+            }
+        });
+        $.ajax({
+            method:'POST',
+            url:'student/getLocationGroupData',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
+
+                console.log(fac_class);
+                $(group_class).html('');
+                $(group_class).append('<option value="" disabled selected>*กลุ่ม</option>');
+
+                $.each(d , function(i, val) {
+
+                    $(group_class).append(' <option value="'+d[i].gname+'">'+d[i].gdesc+'</option> ');
 
                 });
 

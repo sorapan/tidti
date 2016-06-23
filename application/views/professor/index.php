@@ -31,7 +31,7 @@
                 <div class="name"><?=$this->session->userdata('prefix_name_id')?> <?= $this->session->userdata('firstname')?> <?=$this->session->userdata('lastname')?></div>
                 <div class="epassport">รหัส: <?= $this->session->userdata('id')?></div>
                 <div class="faculty"><?=$this->session->userdata('department')?></div>
-                <div class="faculty">สาขา <?=$this->session->userdata('branch')?></div>
+                <div class="faculty"><?=$this->session->userdata('branch')?></div>
                 <div class="faculty"><?=$this->session->userdata('location')?></div>
                 <div class="faculty">อีเมลล์: <?=$this->session->userdata('email')?></div>
 
@@ -108,70 +108,8 @@ if($this->session->userdata('detail_exists') == false){
                                     <input type="radio" name="type" value="staff"  id="staff" style="margin-right: 5px"><label for="staff">บุคลากร</label>
                                 </div>
 
-                                <div class="form-group staffhid" >
-                                    <select class="form-control" name="department">
-                                        <option value="" disabled selected>*หน่วยงาน</option>
-
-                                    <?php
-                                    foreach($staff_data as $sd)
-                                    {
-                                    ?>
-                                        <option value="<?=$sd->staff_id?>"><?=$sd->staff_name?></option>
-                                    <?php
-                                    }
-                                    ?>
-
-                                    </select>
-                                </div>
-
-
-                                <div class="form-group professorhid">
-                                    <select class="form-control fac_select" name="department">
-                                        <option value="" disabled selected>*คณะ</option>
-
-                                    <?php
-                                    foreach($fac_data as $fd)
-                                    {
-                                    ?>
-                                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
-                                    <?php
-                                    }
-                                    ?>
-
-                                    </select>
-                                </div>
                                 <div class="form-group">
-                                    <select class="form-control program_select" name="branch">
-                                        <option value="" disabled selected>*สาขา</option>
-
-                                    <?php
-                                    // foreach($program_data as $pd)
-                                    // {
-                                    ?>
-                                        <!--<option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>-->
-                                    <?php
-                                    // }
-                                    ?>
-
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control" required name="group">
-                                            <option value="" disabled selected>*กลุ่ม</option>
-
-                                    <?php
-                                    foreach($group_data as $gd)
-                                    {
-                                    ?>
-                                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
-                                    <?php
-                                    }
-                                    ?>
-
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select name="location" required class="form-control">
+                                    <select name="location" required class="form-control location_select">
                                         <option value="" disabled selected>*วิทยาเขต</option>
 
                                     <?php
@@ -185,6 +123,34 @@ if($this->session->userdata('detail_exists') == false){
 
                                     </select>
                                 </div>
+                                <div class="form-group staffhid" >
+                                    <select class="form-control staff_select" name="department">
+                                        <option value="" disabled selected>*หน่วยงาน</option>
+
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group professorhid">
+                                    <select class="form-control fac_select" name="department">
+                                        <option value="" disabled selected>*คณะ</option>
+
+
+                                    </select>
+                                </div>
+                                <div class="form-group professorhid">
+                                    <select class="form-control program_select" name="branch">
+                                        <option value="" disabled selected>*สาขา</option>
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control group_select" name="group ">
+                                            <option value="" disabled selected>*กลุ่ม</option>
+
+                                    </select>
+                                </div>
+
                                 <button type="submit" class="btn btn-danger">บันทึก</button>
                               </form>
 </div>
@@ -387,6 +353,85 @@ $(function(){
                 $.each(d , function(i, val) {
 
                     $('.program_select').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
+
+                });
+
+            }
+        });
+
+    });
+
+    $(document).on( "change", ".location_select", function() {
+        var location_class = $(this).attr('class').split(' ');
+        var last_word = location_class[1][location_class[1].length-1];
+        if(last_word !== "t"){
+            var fac_class = '.fac_select'+last_word;
+            var group_class = '.group_select'+last_word;
+        }else{
+            var fac_class = '.fac_select';
+            var group_class = '.group_select';
+        }
+        var data =  $(this).val();
+        $.ajax({
+            method:'POST',
+            url:'student/getLocationFacData',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
+
+                console.log(fac_class);
+                $(fac_class).html('');
+                $(fac_class).append('<option value="" disabled selected>*คณะ</option>');
+
+                $.each(d , function(i, val) {
+
+                    $(fac_class).append(' <option value="'+d[i].FAC_ID+'">'+d[i].FAC_NAME+'</option> ');
+
+                });
+
+            }
+        });
+        $.ajax({
+            method:'POST',
+            url:'student/getLocationGroupData',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
+
+                console.log(fac_class);
+                $(group_class).html('');
+                $(group_class).append('<option value="" disabled selected>*กลุ่ม</option>');
+
+                $.each(d , function(i, val) {
+
+                    $(group_class).append(' <option value="'+d[i].gname+'">'+d[i].gdesc+'</option> ');
+
+                });
+
+            }
+        });
+        $.ajax({
+            method:'POST',
+            url:'student/getLocationStaffData',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
+
+                $('.staff_select').html('');
+                $('.staff_select').append('<option value="" disabled selected>*หน่วยงาน</option>');
+
+                $.each(d , function(i, val) {
+
+                    $('.staff_select').append(' <option value="'+d[i].staff_id+'">'+d[i].staff_name+'</option> ');
 
                 });
 

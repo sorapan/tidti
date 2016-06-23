@@ -58,12 +58,12 @@ class Professor_page extends CI_Controller {
             'pname' => isset($_POST['pname'])?$_POST['pname']:null,
             'firstname' => $_POST['firstname'],
             'lastname' => $_POST['lastname'],
-            'discipline' => isset($_POST['branch'])?$_POST['branch']:null,
+            'discipline' => isset($_POST['branch'])?$_POST['branch']:'-',
             'mailaddr' => $_POST['email'],
             'status' => 'อาจารย์',
             'idcard' => $_POST['citizen_id'],
             'location_id' => $_POST['location'],
-            'department' => isset($_POST['department'])?$_POST['department']:null,
+            'department' => isset($_POST['department'])?$_POST['department']:'-',
             'dateregis' => date('Y-m-d H:i:s'),
             'encryption' => '-'
         );
@@ -125,6 +125,7 @@ class Professor_page extends CI_Controller {
             if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
             {
 
+                $_POST['mac'] = strtolower($_POST['mac']);
                 $count_data = $this->RadRegisterOnlineModel->GetNumberDataByEpass($this->session->userdata('username'));
 
                 if($count_data<7)

@@ -49,11 +49,23 @@ class RadSKOModel extends CI_Model {
     function getLocationFacData($location_id){
         $this->db->db_select('radius');
         $this->db->select('*');
-        $this->db->from('location_people');
-        $this->db->join('sko_fac','location_people.location_id = sko_fac.location_id');
-        $this->db->join('sko_program','sko_fac.FAC_ID = sko_program.FAC_ID');
-        $this->db->where('location_people.location_id',$location_id);
+        $this->db->from('sko_fac');
+        $this->db->where('location_id',$location_id);
         return $this->db->get()->result();
+    }
+
+    function getGroupsDataByLocation($location_id){
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->where('location_id',$location_id);
+        return $this->db->get('groups')->result();
+    }
+
+    function getStaffDataByLocation($location_id){
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->where('location_id',$location_id);
+        return $this->db->get('staff')->result();
     }
 
     function getGroupsData()

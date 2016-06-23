@@ -69,7 +69,7 @@
                     <input type="text" name="idcard" required class="form-control" maxlength="12" id="exampleInputEmail1" placeholder="รหัสนักศึกษา">
                 </div>
                 <div class="form-group">
-                    <select name="location_id" required class="form-control location_select">
+                    <select class="form-control location_select" name="location_id" required >
                         <option value="" disabled selected>*วิทยาเขต</option>
 
                     <?php
@@ -83,40 +83,25 @@
 
                     </select>
                 </div>
-                <div class="form-group">
-                    <select class="form-control" required name="status">
-                            <option value="" disabled selected>*กลุ่ม</option>
 
-                    <?php
-                    foreach($group_data as $gd)
-                    {
-                    ?>
-                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
-                    <?php
-                    }
-                    ?>
-
-                    </select>
-                </div>
                 <div class="form-group">
                     <select class="form-control fac_select" required name="department">
                         <option value="" disabled selected>*คณะ</option>
-
-                    <?php
-                    foreach($fac_data as $fd)
-                    {
-                    ?>
-                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
-                    <?php
-                    }
-                    ?>
-
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control program_select" required name="discipline">
+                    <select class="form-control program_select" name="discipline">
                             <option value="" disabled selected>*สาขา</option>
                         </select>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control group_select"  name="status">
+                            <option value="" disabled selected>*กลุ่ม</option>
+
+
+
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -159,14 +144,14 @@
                     <input type="text" name="idcard" maxlength="13" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="status">
-                            <option value="" disabled selected>*กลุ่ม</option>
+                    <select name="location_id " class="form-control location_select2">
+                        <option value="" disabled selected>*วิทยาเขต</option>
 
                     <?php
-                    foreach($group_data as $gd)
+                    foreach($location_data as $ld)
                     {
                     ?>
-                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
+                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
                     <?php
                     }
                     ?>
@@ -177,14 +162,14 @@
                     <select class="form-control fac_select2" name="department">
                         <option value="" disabled selected>*คณะ</option>
 
-                    <?php
+                    <!-- <?php
                     foreach($fac_data as $fd)
                     {
                     ?>
                         <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
                     <?php
                     }
-                    ?>
+                    ?> -->
 
                     </select>
                 </div>
@@ -203,18 +188,12 @@
 
                         </select>
                 </div>
-                <div class="form-group">
-                    <select name="location_id" class="form-control">
-                        <option value="" disabled selected>*วิทยาเขต</option>
 
-                    <?php
-                    foreach($location_data as $ld)
-                    {
-                    ?>
-                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
-                    <?php
-                    }
-                    ?>
+                <div class="form-group">
+                    <select class="form-control group_select2" name="status">
+                            <option value="" disabled selected>*กลุ่ม</option>
+
+
 
                     </select>
                 </div>
@@ -259,20 +238,21 @@
                     <input type="personid" name="idcard" required class="form-control" id="exampleInputEmail1" maxlength="13" placeholder="รหัสประจำตัวประชาชน">
                 </div>
                 <div class="form-group">
-                    <select class="form-control" required name="status">
-                            <option value="" disabled selected>*กลุ่ม</option>
+                    <select name="location_id" required class="form-control location_select3">
+                        <option value="" disabled selected>*วิทยาเขต</option>
 
                     <?php
-                    foreach($group_data as $gd)
+                    foreach($location_data as $ld)
                     {
                     ?>
-                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
+                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
                     <?php
                     }
                     ?>
 
                     </select>
                 </div>
+
                 <div class="form-group">
                     <select class="form-control" required name="department">
                         <option value="" disabled selected>*หน่วยงาน</option>
@@ -289,17 +269,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="location_id" required class="form-control">
-                        <option value="" disabled selected>*วิทยาเขต</option>
+                    <select class="form-control group_select3"  name="status">
+                            <option value="" disabled selected>*กลุ่ม</option>
 
-                    <?php
-                    foreach($location_data as $ld)
-                    {
-                    ?>
-                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
-                    <?php
-                    }
-                    ?>
+
 
                     </select>
                 </div>
@@ -345,22 +318,23 @@
                     <input type="text" name="idcard" required class="form-control" id="exampleInputEmail1" maxlength="13" placeholder="รหัสประจำตัวประชาชน">
                 </div>
                 <div class="form-group">
-                    <select class="form-control" required name="status">
-                            <option value="" disabled selected>*กลุ่ม</option>
+                    <select name="location_id" required class="form-control location_select4">
+                        <option value="" disabled selected>*วิทยาเขต</option>
 
                     <?php
-                    foreach($group_data as $gd)
+                    foreach($location_data as $ld)
                     {
                     ?>
-                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
+                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
                     <?php
                     }
                     ?>
 
                     </select>
                 </div>
+
                 <div class="form-group">
-                    <select class="form-control fac_select3" required name="department">
+                    <select class="form-control fac_select4" required name="department">
                         <option value="" disabled selected>*คณะ</option>
 
                     <?php
@@ -375,7 +349,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control program_select3" required name="discipline">
+                    <select class="form-control program_select4"  name="discipline">
                             <option value="" disabled selected>*สาขา</option>
 
                        <!--  <?php
@@ -390,20 +364,14 @@
                         </select>
                 </div>
                 <div class="form-group">
-                    <select name="location_id" required class="form-control">
-                        <option value="" disabled selected>*วิทยาเขต</option>
+                    <select class="form-control group_select4" name="status">
+                            <option value="" disabled selected>*กลุ่ม</option>
 
-                    <?php
-                    foreach($location_data as $ld)
-                    {
-                    ?>
-                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
-                    <?php
-                    }
-                    ?>
+
 
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
                     <input type="text" class="form-control" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
@@ -431,33 +399,63 @@
 
 $(function(){
 
-    // $(document).on( "change", ".location_select", function() {
+    $(document).on( "change", ".location_select,.location_select2,.location_select3,.location_select4", function() {
+        var location_class = $(this).attr('class').split(' ');
+        var last_word = location_class[1][location_class[1].length-1];
+        if(last_word !== "t"){
+            var fac_class = '.fac_select'+last_word;
+            var group_class = '.group_select'+last_word;
+        }else{
+            var fac_class = '.fac_select';
+            var group_class = '.group_select';
+        }
+        var data =  $(this).val();
+        $.ajax({
+            method:'POST',
+            url:'../student/getLocationFacData',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
 
-    //     var data =  $(this).val();
-    //     console.log(data);
-    //     $.ajax({
-    //         method:'POST',
-    //         url:'../student/getLocationFacData',
-    //         dataType: "JSON",
-    //         data:{
-    //             data:data
-    //         },
-    //         success:function(d)
-    //         {
-    //             console.log(d);
-    //             $('.fac_select').html('');
-    //             $('.fac_select').append('<option value="" disabled selected>*คณะ</option>');
+                console.log(fac_class);
+                $(fac_class).html('');
+                $(fac_class).append('<option value="" disabled selected>*คณะ</option>');
 
-    //             $.each(d , function(i, val) {
+                $.each(d , function(i, val) {
 
-    //                 $('.fac_select').append(' <option value="'+d[i].FAC_ID+'">'+d[i].FAC_NAME+'</option> ');
+                    $(fac_class).append(' <option value="'+d[i].FAC_ID+'">'+d[i].FAC_NAME+'</option> ');
 
-    //             });
+                });
 
-    //         }
-    //     });
+            }
+        });
+        $.ajax({
+            method:'POST',
+            url:'../student/getLocationGroupData',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
 
-    // });
+                console.log(fac_class);
+                $(group_class).html('');
+                $(group_class).append('<option value="" disabled selected>*กลุ่ม</option>');
+
+                $.each(d , function(i, val) {
+
+                    $(group_class).append(' <option value="'+d[i].gname+'">'+d[i].gdesc+'</option> ');
+
+                });
+
+            }
+        });
+
+    });
 
     $(document).on( "change", ".fac_select", function() {
 
@@ -515,7 +513,7 @@ $(function(){
 
     });
 
-    $(document).on( "change", ".fac_select3", function() {
+    $(document).on( "change", ".fac_select4", function() {
 
         var data =  $(this).val();
 
@@ -529,12 +527,12 @@ $(function(){
             success:function(d)
             {
 
-                $('.program_select3').html('');
-                $('.program_select3').append('<option value="" disabled selected>*สาขา</option>');
+                $('.program_select4').html('');
+                $('.program_select4').append('<option value="" disabled selected>*สาขา</option>');
 
                 $.each(d , function(i, val) {
 
-                    $('.program_select3').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
+                    $('.program_select4').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
 
                 });
 

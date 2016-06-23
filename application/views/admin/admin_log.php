@@ -110,7 +110,7 @@
             <div class="content">
                 <table class="table table-hover ">
                     <thead>
-                        <th class="center">วันที่</th>
+                        <th style="width: 105px;" class="center">วันที่</th>
                         <th>เวลา</th>
                         <th>ชื่อผู้ใช้</th>
                         <th>สถานะ</th>
