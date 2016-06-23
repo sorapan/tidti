@@ -17,7 +17,7 @@
             <ul class="menus thaisans">
                 <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
                 <a href="<?=base_url().'admin/mac'?>"><li class="maclist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
-                <!-- <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac manual </li></a> -->
+                <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac manual </li></a>
                 <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
                 <a href="<?=base_url().'admin/log'?>"><li class="history active"><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
             </ul>
@@ -35,8 +35,8 @@
                 $search = "";
             }
         ?>
-            <form method="get" action="searchlog">
-            <select name="date" class="select">
+            <form method="get" action="log">
+            <select name="date" class="select" style="font-size: 1em">
                 <option value="">วันที่</option>
                 <?php
                         $i = 0;
@@ -54,31 +54,50 @@
 
                 ?>
             </select>
-            <select name="location" class="select">
-                <?php if($this->session->userdata('status')=='admin')
-                {
-                ?>
-                <option value="">วิทยาเขต</option>
-                <?php
-                }
-                    $i = 0;
-                    foreach ($locate as $var) {
-                        $value[$i++] = $var->LOCATION;
-                    }
-                    $value = array_unique($value);
-                    foreach ($value as $var) {
 
+            <select name="location" class="select" style="font-size: 1em">
+                <!-- <option value="" selected="">วิทยาเขต -->
+                    <option value="" selected>วิทยาเขต</option>
+                    <?php
+                    if(!$this->session->userdata('status')=='staff'){
+                    ?>
+                    <option value="-">-</option>
+                     <?php
+                        }
+                    ?>
+                    <optgroup label="วิทยาเขต" selected>
+                    <?php
+                        foreach($location as $ld)
+                        {
                         ?>
-
-                        <option value="<?=$var?>"  ><?=location_id($var)?></option>
-
+                            <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
                         <?php
-                    }
-
-                ?>
+                        }
+                        ?>
+                        </optgroup>
             </select>
-            <input type="text" class="input thaisans" name="search" value="<?=$search?>" placeholder="ค้นหา" id="search">
-            <button class="button" type="submit"><i class="fa fa-search"></i></button>
+
+            <select name="status" class="select" style="font-size: 1em">
+                <!-- <option value="" selected="">วิทยาเขต -->
+                    <option value="" selected>สถานะ</option>
+                    <option value="user">user</option>
+                    <option value="staff">staff</option>
+            </select>
+            <input type="text" class="input" name="search" value="<?=$search?>" placeholder="ค้นหาชื่อผู้ใช้" id="search">
+            <!-- <button class="button" type="submit"><i class="fa fa-search"></i></button> -->
+
+            <div class="btn-group">
+              <button type="submit" name="type" style="margin-right: 0;border-right: 0;" class="button btn">ค้นหา</button>
+              <button type="button" class="button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><button class="button" type="submit" name="type" value="username">ชื่อผู้ใช้</button></li>
+                <li><button class="button" type="submit" name="type" value="event">การกระทำ</button></li>
+                <li><button class="button" type="submit" name="type" value="status">สถานะ</button></li>
+              </ul>
+            </div>
             <?php
                 if(!empty($this->session->userdata('alert'))){
             ?>

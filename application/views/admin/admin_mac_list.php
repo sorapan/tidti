@@ -19,7 +19,7 @@
             <ul class="menus thaisans">
                 <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
                 <a href="<?=base_url().'admin/mac'?>"><li class="maclist active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
-                <!-- <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac manual </li></a> -->
+                <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac manual </li></a>
                 <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
                 <a href="<?=base_url().'admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
             </ul>
@@ -37,8 +37,72 @@
                 }
             ?>
                 <form method="get" action="mac">
-                <input type="text" class="input thaisans" name="search" value="<?=$search?>" placeholder="ค้นหา" id="search">
-                <button class="button" type="submit"><i class="fa fa-search"></i></button>
+                <select name="date">
+                    <option value="" selected="">วันที่</option>
+                    <?php
+                        $i=0;
+                        foreach ($date as $value) {
+
+                            $datetime[$i++] = date("Y-m-d",strtotime($value->addtime));
+                            # code...array_unique
+                        }
+                        $date = array_unique($datetime);
+                        foreach($date as $ld)
+                        {
+                        ?>
+                            <option value="<?=$ld?>"><?=$ld?></option>
+                        <?php
+                        }
+                        ?>
+                </select>
+                <select name="location_id">
+                    <option value="" selected="">วิทยาเขต</option>
+                    <?php
+                    if($this->session->userdata('status')=='admin'){
+                        foreach($location as $ld)
+                        {
+
+                        ?>
+                            <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
+                        <?php
+                        }
+
+                        }else{
+                        ?>
+                        <option selected value="<?=$this->session->userdata('location_id')?>"><?=location_id($this->session->userdata('location_id'))?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+                <input type="text" class="input thaisans" name="search" value="<?=$search?>" placeholder="ค้นหารหัสอุปกรณ์" id="search">
+                <!-- <div class="btn-group">
+                <button class="button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   ค้นหา <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><button class="button" type="submit" name="type" value="">ค้นหา</button></li>
+                    <li role="separator" class="divider"></li>
+                    <li><button class="button" type="submit" name="type" value="macaddress">รหัสอุปกรณ์</button></li>
+                    <li><button class="button" type="submit" name="type" value="username">ชื่อผู้ใช้</button></li>
+                    <li><button class="button" type="submit" name="type" value="name">ชื่อนามสกุล</button></li>
+                  </ul>
+                </div> -->
+
+                <div class="btn-group" style="float: left">
+                  <button type="submit" name="type" style="margin-right: 0;border-right: 0;" class="button btn">ค้นหา</button>
+                  <button type="button" class="button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <!-- <li><button class="button" type="submit" name="type" value="">ค้นหา</button></li> -->
+                    <li><button class="button" type="submit" name="type" value="username">ชื่อผู้ใช้</button></li>
+                    <li><button class="button" type="submit" name="type" value="name">ชื่อนามสกุล</button></li>
+                  </ul>
+                </div>
+                <!-- <button class="button" type="submit"><i class="fa fa-search"></i></button> -->
+
+
                 <?php
                     if(!empty($this->session->userdata('alert'))){
                 ?>
@@ -113,17 +177,4 @@
 </div>
 
 </body>
-<script type="text/javascript">
-
-// alert('s');
-
-        function DeleteMac(mac){
-            var check = confirm('คุณต้องการที่จะลบใช่หรือไม่');
-            if(check){
-                window.location='<?=base_url().'admin/deleteMac/'?>'+mac;
-            }
-
-        }
-
-</script>
 </html>

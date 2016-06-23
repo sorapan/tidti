@@ -155,8 +155,17 @@ if($this->session->userdata('detail_exists') == false){
                                 <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
                                   วิธีดู Mac address
                                 </button>
+                                <br>
                             <!--/////////////////////////////////////////////////////////////////////////-->
-
+                                <?php
+                                    if(!empty($this->session->userdata('alert'))){
+                                ?>
+                                    <h3 style="font-size: 1.2em;
+                                        background-color: #b9f9a9;display: inline-block;
+                                        padding: 5px 10px;border-radius: 5px;"><?=$this->session->userdata('alert')?></h3>
+                                <?php
+                                }
+                                ?>
                                 <h3 class="thaisans bold">คอมพิวเตอร์/โน็ตบุ๊ค</h3>
 
                             <?php

@@ -145,7 +145,33 @@
       .admin > .content.mac_list > ._1 > .search form > .button {
         background-color: #fff;
         border: 2px solid #004E66;
-        color: #004E66; }
+        color: #004E66;
+        margin-right: 5px; }
+      .admin > .content.mac_list > ._1 > .search form > .btn-group > .button {
+        font-size: 1.2em;
+        height: 35px;
+        background-color: #fff;
+        border: 2px solid #004E66;
+        color: #004E66;
+        margin-right: 5px; }
+      .admin > .content.mac_list > ._1 > .search form > .btn-group > .dropdown-menu > li > button {
+        font-size: 1.2em;
+        border: none;
+        width: 100%;
+        height: 35px;
+        background-color: transparent;
+        text-align: left;
+        margin-bottom: 2px; }
+        .admin > .content.mac_list > ._1 > .search form > .btn-group > .dropdown-menu > li > button:hover {
+          background-color: #004E66;
+          color: #FFFFF3; }
+      .admin > .content.mac_list > ._1 > .search form > select {
+        height: 35px;
+        margin-right: 5px;
+        padding: 5px;
+        border: 2px solid #ff5f2e;
+        background-color: #fff;
+        float: left; }
     .admin > .content.mac_list > ._1 > .cancle {
       margin: 25px 0;
       height: 35px;
@@ -293,10 +319,9 @@
     float: left; }
     .admin > .content.log > .board > .search form > .input, .admin > .content.log > .board > .search form > .button, .admin > .content.log > .board > .search form > .select {
       height: 100%;
-      font-size: 1.5em;
+      font-size: 1em;
       float: left; }
     .admin > .content.log > .board > .search form > .input {
-      width: 300px;
       margin-right: 5px;
       padding: 5px;
       border: 2px solid #ff5f2e;
@@ -307,6 +332,31 @@
       color: #004E66; }
     .admin > .content.log > .board > .search form > .select {
       margin-right: 5px; }
+    .admin > .content.log > .board > .search form > .btn-group > .button {
+      font-size: 1.2em;
+      height: 35px;
+      background-color: #fff;
+      border: 2px solid #004E66;
+      color: #004E66;
+      margin-right: 5px; }
+    .admin > .content.log > .board > .search form > .btn-group > .dropdown-menu > li > button {
+      font-size: 1.2em;
+      border: none;
+      width: 100%;
+      height: 35px;
+      background-color: transparent;
+      text-align: left;
+      margin-bottom: 2px; }
+      .admin > .content.log > .board > .search form > .btn-group > .dropdown-menu > li > button:hover {
+        background-color: #004E66;
+        color: #FFFFF3; }
+    .admin > .content.log > .board > .search form > select {
+      height: 35px;
+      margin-right: 5px;
+      padding: 5px;
+      border: 2px solid #ff5f2e;
+      background-color: #fff;
+      float: left; }
   .admin > .content.log > .list {
     margin-left: 10px; }
     .admin > .content.log > .list > h3 {

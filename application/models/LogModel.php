@@ -31,44 +31,33 @@ class LogModel extends CI_Model {
         return $this->db->get()->result();
     }
 
-    function GetLogByWhere($date,$where,$location){
+    function GetLogByWhere($date,$location,$search,$type,$status){
         $this->db->db_select('radius');
         $this->db->select('*');
         $this->db->from('log');
-
-        if(!empty($date)&&!empty($location)){
+        if(!empty($date)){
             $this->db->where('DATE',$date);
-            $this->db->where('LOCATION',$location);
-        }else{
-            if(empty($date)&&empty($location)){
-                $this->db->like('USERNAME',$where);
-            }
-            elseif(empty($date)){
-                $this->db->where('LOCATION',$location);
-            }else{
-                $this->db->where('DATE',$date);
-            }
         }
-        $this->db->like('USERNAME',$where);
-
-
-        // ในกรณีต้องการค้นหา event ด้วย
-
-        // if(!empty($date)&&!empty($where)){
-        //     $this->db->like('USERNAME',$where);
-        //     // $this->db->or_like('EVENT',$where);
-        // }else{
-        //     if(!empty($where)){
-        //     //     // $this->db->or_like('USERNAME',$where);
-        //         $this->db->like('USERNAME',$where);
-        //         $this->db->or_like('EVENT',$where);
-        //     }else{
-        //         $this->db->like('USERNAME',$where);
-        //         $this->db->or_like('EVENT',$where);
-        //     }
-
-        // }
-
+        if(!empty($location)){
+            $this->db->where('LOCATION',$location);
+        }
+        if(!empty($status)){
+            $this->db->where('STATUS',$status);
+        }
+        switch ($type) {
+            case 'username':
+                $this->db->like('USERNAME',$search);
+                break;
+            case 'event':
+                $this->db->like('EVENT',$search);
+                break;
+            case 'status':
+                $this->db->like('STATUS',$search);
+                break;
+            default:
+                $this->db->like('USERNAME',$search);
+                break;
+        }
         $this->db->order_by("DATE", "desc");
         $this->db->order_by("TIME", "desc");
         return $this->db->get()->result();

@@ -63,6 +63,22 @@ class Admin extends CI_Controller {
 
 			if(empty($check)){
 			// อาจจะมีการแก้ไขในภายหน้า
+
+			$this->ManualUserModel->AddDataManualUser(array(
+						'username'=>$_POST['macaddress'],
+						// 'password'=>$_POST['password'],
+						'pname'=>$_POST['pname'],
+						'firstname'=>$_POST['firstname'],
+						'lastname'=>$_POST['lastname'],
+						'idcard'=>$_POST['idcard'],
+						'mailaddr'=>$_POST['mailaddr'],
+						'discipline'=>$_POST['discipline'],
+						'department'=>$_POST['department'],
+						'dateregis'=>date('Y-m-d H:i:s',time()),
+						'status'=>$_POST['status'],
+						'location_id'=>$_POST['location_id']
+					));
+
 			$this->RadReplyCheckModel->AddRadReply(array(
 					// รับค่าจาก POST
 					'username' => $_POST['macaddress'],
@@ -91,20 +107,7 @@ class Admin extends CI_Controller {
 					'dev_type' => $_POST['dev_type'],
 					'dev_net_type' => 'Wireless'
 				));
-			$this->ManualUserModel->AddDataManualUser(array(
-						'username'=>$_POST['macaddress'],
-						// 'password'=>$_POST['password'],
-						'pname'=>$_POST['pname'],
-						'firstname'=>$_POST['firstname'],
-						'lastname'=>$_POST['lastname'],
-						'idcard'=>$_POST['idcard'],
-						'mailaddr'=>$_POST['mailaddr'],
-						'discipline'=>$_POST['discipline'],
-						'department'=>$_POST['department'],
-						'dateregis'=>date('Y-m-d H:i:s',time()),
-						'status'=>$_POST['status'],
-						'location_id'=>$_POST['location_id']
-					));
+
 			$this->session->set_flashdata('alert', 'เพิ่มข้อมูลสำเร็จ');
 	        @header('Location:'.base_url().'admin/manage');
 	    }else{
@@ -116,20 +119,22 @@ class Admin extends CI_Controller {
 
 	public function mac()
 	{
-		if(empty($_GET['search'])){
+		if(empty($_GET) ){
 			if($this->session->userdata('status')=='staff'){
-				$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),null);
+				$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),null,null,null);
 				$this->checkMacSearch($data);
 			}else{
-				$data = $this->DeviceModel->SelectDevice(null);
+				$data = $this->DeviceModel->SelectDevice(null,null,null,null);
 				$this->checkMacSearch($data);
 			}
 		}else{
 			if($this->session->userdata('status')=='staff'){
-				$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),$_GET['search']);
+				$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),$_GET['search'],$_GET['type'],$_GET['date']);
 				$this->checkMacSearch($data);
 			}else{
-				$data = $this->DeviceModel->SelectDevice($_GET['search']);
+				$data = $this->DeviceModel->SelectDevice($_GET['location_id'],$_GET['search'],$_GET['type'],$_GET['date']);
+				// var_dump($data);
+
 				$this->checkMacSearch($data);
 			}
 		}
@@ -138,20 +143,20 @@ class Admin extends CI_Controller {
 
 	public function macmanual()
 	{
-		if(empty($_GET['search'])){
+		if(empty($_GET)){
 			if($this->session->userdata('status')=='staff'){
-				$data = $this->DeviceModel->SelectDeviceByStaffManual($this->session->userdata('location_id'),null);
+				$data = $this->DeviceModel->SelectDeviceByStaffManual($this->session->userdata('location_id'),null,null,null);
 				$this->checkMacSearchManual($data);
 			}else{
-				$data = $this->DeviceModel->SelectDeviceManual(null);
+				$data = $this->DeviceModel->SelectDeviceManual(null,null,null,null);
 				$this->checkMacSearchManual($data);
 			}
 		}else{
 			if($this->session->userdata('status')=='staff'){
-				$data = $this->DeviceModel->SelectDeviceByStaffManual($this->session->userdata('location_id'),$_GET['search']);
+				$data = $this->DeviceModel->SelectDeviceByStaffManual($this->session->userdata('location_id'),$_GET['search'],$_GET['type'],$_GET['date']);
 				$this->checkMacSearchManual($data);
 			}else{
-				$data = $this->DeviceModel->SelectDeviceManual($_GET['search']);
+				$data = $this->DeviceModel->SelectDeviceManual($_GET['location_id'],$_GET['search'],$_GET['type'],$_GET['date']);
 				$this->checkMacSearchManual($data);
 			}
 		}
@@ -159,41 +164,72 @@ class Admin extends CI_Controller {
 	}
 
 	private function checkMacSearch($data){
+
+		$location = $this->RadSKOModel->getLocationData();
+		$date = $this->DeviceModel->SelectDateFromDevice();
 		if(empty($data)){
 			$data = "ไม่มีรายการที่ค้นหา";
-			$this->load->view('admin/admin_mac_list',array('data'=> $data));
+			$this->load->view('admin/admin_mac_list',array('data'=> $data,'location'=>$location,'date'=>$date));
 		}else{
-			$this->load->view('admin/admin_mac_list',array('data'=> $data));
+			$this->load->view('admin/admin_mac_list',array('data'=> $data,'location'=>$location,'date'=>$date));
 		}
 	}
 	private function checkMacSearchManual($data){
 		// var_dump($data);
+		$location = $this->RadSKOModel->getLocationData();
+		$date = $this->DeviceModel->SelectDeviceManual(null,null,null,null);
 		if(empty($data)){
 			$data = "ไม่มีรายการที่ค้นหา";
-			$this->load->view('admin/admin_mac_manual',array('data'=> $data));
+			$this->load->view('admin/admin_mac_manual',array('data'=> $data,'location'=>$location,'date'=>$date));
 		}else{
-			$this->load->view('admin/admin_mac_manual',array('data'=> $data));
+			$this->load->view('admin/admin_mac_manual',array('data'=> $data,'location'=>$location,'date'=>$date));
 		}
 	}
 
 
 
 	public function log(){
-		if($this->session->userdata('status')=='admin'){
-			$alllog = $this->LogModel->GetAllLog();
-			$date = $this->LogModel->GetDateAll();
+		if(empty($_GET)){
+			if($this->session->userdata('status')=='admin'){
+				$alllog = $this->LogModel->GetAllLog();
+				$date = $this->LogModel->GetDateAll();
+				$location = $this->RadSKOModel->getLocationData();
+			}else{
+				$alllog = $this->LogModel->GetLogByLocation($this->session->userdata('location_id'));
+				$date = $this->LogModel->GetLogByLocation($this->session->userdata('location_id'));
+				$location = $this->RadSKOModel->getLocationDataByLocationID($this->session->userdata('location_id'));
+			}
+
+
+			$this->load->view('admin/admin_log',array(
+			'alllog' => $alllog,
+			'date' => $date,
+			'location'=>$location
+			));
 		}else{
-			$alllog = $this->LogModel->GetLogByLocation($this->session->userdata('location_id'));
-			$date = $this->LogModel->GetLogByLocation($this->session->userdata('location_id'));
+			if($this->session->userdata('status')=='admin'){
+				$alllog = $this->LogModel->GetAllLog();
+				$wherelog = $this->LogModel->GetLogByWhere($_GET['date'],$_GET['location'],$_GET['search'],$_GET['type'],$_GET['status']);
+				$location = $this->RadSKOModel->getLocationData();
+				// var_dump($wherelog);
+				$this->load->view('admin/admin_log',array(
+					'alllog' => $wherelog,
+					'date' => $alllog,
+					'location'=> $location
+					));
+			}else{
+				$location_id = $this->session->userdata('location_id');
+				$alllog = $this->LogModel->GetLogByLocation($this->session->userdata('location_id'));
+				$wherelog = $this->LogModel->GetLogByWhere($_GET['date'],$location_id,$_GET['search'],$_GET['type'],$_GET['status']);
+				$location = $this->RadSKOModel->getLocationDataByLocationID($this->session->userdata('location_id'));
+
+				$this->load->view('admin/admin_log',array(
+					'alllog' => $wherelog,
+					'date' => $alllog,
+					'location'=> $location
+					));
+			}
 		}
-
-
-		$this->load->view('admin/admin_log',array(
-		'alllog' => $alllog,
-		'date' => $date,
-		'locate'=>$date
-		));
-
 	}
 
 
@@ -212,9 +248,11 @@ class Admin extends CI_Controller {
 			if($this->session->userdata('status')=='admin'){
 				$alllog = $this->LogModel->GetAllLog();
 				$wherelog = $this->LogModel->GetLogByWhere($date,$where,$location);
+				$location = $this->RadSKOModel->getLocationData();
 			}else{
 				$alllog = $this->LogModel->GetLogByLocation($this->session->userdata('location_id'));
 				$wherelog = $this->LogModel->GetLogByWhere($date,$where,$this->session->userdata('location_id'));
+				$location = $this->RadSKOModel->getLocationDataByLocationID($this->session->userdata('location_id'));
 			}
 
 
@@ -223,7 +261,7 @@ class Admin extends CI_Controller {
 				$this->load->view('admin/admin_log',array(
 				'alllog' => 'ไม่พบสิ่งที่ค้นหา',
 				'date' =>  $alllog,
-				'locate' => $alllog
+				'location' => $location
 				));
 
 			}else{
@@ -231,13 +269,10 @@ class Admin extends CI_Controller {
 				$this->load->view('admin/admin_log',array(
 				'alllog' => $wherelog,
 				'date' => $alllog,
-				'locate'=> $alllog
+				'location'=> $location
 				));
 			}
 		}
-		$this->session->set_flashdata('date',$date);
-
-
 	}
 
 	public function login()
@@ -304,7 +339,7 @@ class Admin extends CI_Controller {
 
 		$check = $this->DeviceModel->DeleteMacManual($_POST['mac']);
 		$this->session->set_flashdata('alert', 'ลบอุปกรณ์เรียบร้อย');
-		@header('Location: mac');
+		@header('Location: macmanual');
 	}
 
 
@@ -356,6 +391,7 @@ class Admin extends CI_Controller {
 					'old_username' => $_POST['old_username']
 			);
 		$manual_user = array(
+					'username' => $_POST['username'],
 					'pname' => $_POST['pname'],
 					'firstname' => $_POST['firstname'],
 					'lastname' => $_POST['lastname'],

@@ -64,6 +64,7 @@ $route['student/submit_detail'] = 'student_page/submit_detail';
 $route['student/deletemac'] = 'student_page/delete_mac';
 $route['student/signout'] = 'student_page/signout';
 $route['student/getprogramdata'] = 'student_page/getprogram';
+$route['student/getLocationFacData'] = 'student_page/getLocationFacData';
 
 //////////PROFESSOR PAGE
 $route['professor'] = 'professor_page/index';
@@ -89,5 +90,5 @@ $route['admin/editMac'] = 'admin/editMac';
 
 $route['admin/deleteMacManual/(:any)'] = 'admin/deleteMacManual/$1';
 $route['admin/editMacManual'] = 'admin/editMacManual';
-
-$route['admin/searchLog'] = 'admin/searchLog';
+// $route['admin/editDataByManual'] = 'admin/editDataByManual';
+// $route['admin/searchLog'] = 'admin/log';

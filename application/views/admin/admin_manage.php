@@ -17,7 +17,7 @@
             <ul class="menus thaisans">
                 <a href="<?=base_url().'admin/manage'?>"><li class="manage active"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
                 <a href="<?=base_url().'admin/mac'?>"><li class="maclist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
-                <!-- <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac manual </li></a> -->
+                <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac manual </li></a>
                 <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
                 <a href="<?=base_url().'admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
             </ul>
@@ -39,11 +39,11 @@
             <?php
                 if(!empty($this->session->flashdata('alert'))){
             ?>
-            <span class="managealert" style="padding: 5px 50px;font-size: 1.2em; background-color: #c4ffd3;display: inline-block;"><?=$this->session->flashdata('alert');?></span>
+            <span class="managealert" style="margin-bottom: 10px;padding: 5px 50px;font-size: 1.2em; background-color: #c4ffd3;display: inline-block;"><?=$this->session->flashdata('alert');?></span>
             <?php
                 }
             ?>
-
+            <br>
             <!-- นักศึกษา -->
             <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade form  active in" id="student">
@@ -52,69 +52,24 @@
                     <h3 class="thaisans bold" style="margin-top: 0">นักศึกษา</h3>
                     <label>ข้อมูลส่วนตัว</label>
                     <div>
-                        <select class="form-control pname" name="pname">
+                        <select class="form-control pname" required name="pname">
                             <option value="" disabled selected>คำนำหน้า</option>
                             <option value="นาย">นาย</option>
                             <option value="นางสาว">นางสาว</option>
                             <option value="นาง">นาง</option>
                         </select>
-                        <input type="text" name="firstname" class="form-control fname" id="" placeholder="ชื่อ">
-                        <input type="text" name="lastname" class="form-control lname" id="" placeholder="สกุล">
+                        <input type="text" name="firstname" required class="form-control fname" id="" placeholder="ชื่อ">
+                        <input type="text" name="lastname" required class="form-control lname" id="" placeholder="สกุล">
                     </div>
                 </div>
                 <div class="form-group">
                     <input type="text" name="mailaddr" class="form-control" id="" placeholder="อีเมล์">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="idcard" class="form-control" id="exampleInputEmail1" placeholder="รหัสนักศึกษา">
+                    <input type="text" name="idcard" required class="form-control" maxlength="12" id="exampleInputEmail1" placeholder="รหัสนักศึกษา">
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="status">
-                            <option value="" disabled selected>*กลุ่ม</option>
-
-                    <?php
-                    foreach($group_data as $gd)
-                    {
-                    ?>
-                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
-                    <?php
-                    }
-                    ?>
-
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select class="form-control fac_select" name="department">
-                        <option value="" disabled selected>*คณะ</option>
-
-                    <?php
-                    foreach($fac_data as $fd)
-                    {
-                    ?>
-                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
-                    <?php
-                    }
-                    ?>
-
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select class="form-control program_select" name="discipline">
-                            <option value="" disabled selected>*สาขา</option>
-
-                        <!-- <?php
-                        foreach($program_data as $pd)
-                        {
-                        ?>
-                            <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
-                        <?php
-                        }
-                        ?> -->
-
-                        </select>
-                </div>
-                <div class="form-group">
-                    <select name="location_id" class="form-control">
+                    <select name="location_id" required class="form-control location_select">
                         <option value="" disabled selected>*วิทยาเขต</option>
 
                     <?php
@@ -129,11 +84,47 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                    <input type="text" class="form-control" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
+                    <select class="form-control" required name="status">
+                            <option value="" disabled selected>*กลุ่ม</option>
+
+                    <?php
+                    foreach($group_data as $gd)
+                    {
+                    ?>
+                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
+                    <?php
+                    }
+                    ?>
+
+                    </select>
                 </div>
                 <div class="form-group">
-                    <select name="dev_type" class="form-control">
+                    <select class="form-control fac_select" required name="department">
+                        <option value="" disabled selected>*คณะ</option>
+
+                    <?php
+                    foreach($fac_data as $fd)
+                    {
+                    ?>
+                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
+                    <?php
+                    }
+                    ?>
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control program_select" required name="discipline">
+                            <option value="" disabled selected>*สาขา</option>
+                        </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
+                    <input type="text" class="form-control" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
+                </div>
+                <div class="form-group">
+                    <select name="dev_type" required class="form-control">
                         <option label="อุปกรณ์" value="-" disabled selected>อุปกรณ์</option>
                         <option value="Phone">มือถือ</option>
                         <option value="Notebook">โน๊ตบุ๊ค</option>
@@ -151,21 +142,21 @@
                     <h3 class="thaisans bold" style="margin-top: 0">อาจารย์</h3>
                     <label>ข้อมูลส่วนตัว</label>
                     <div>
-                        <select class="form-control pname" name="pname">
+                        <select class="form-control pname" required name="pname">
                             <option value="" disabled selected>คำนำหน้า</option>
                             <option value="นาย">นาย</option>
                             <option value="นางสาว">นางสาว</option>
                             <option value="นาง">นาง</option>
                         </select>
-                        <input type="text" name="firstname" class="form-control fname" id="" placeholder="ชื่อ">
-                        <input type="text" name="lastname" class="form-control lname" id="" placeholder="สกุล">
+                        <input type="text" name="firstname" required class="form-control fname" id="" placeholder="ชื่อ">
+                        <input type="text" name="lastname" required class="form-control lname" id="" placeholder="สกุล">
                     </div>
                 </div>
                 <div class="form-group">
                     <input type="text" name="mailaddr" class="form-control" id="" placeholder="อีเมล์">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="idcard" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
+                    <input type="text" name="idcard" maxlength="13" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
                 </div>
                 <div class="form-group">
                     <select class="form-control" name="status">
@@ -229,7 +220,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                    <input type="text" class="form-control" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
+                    <input type="text" class="form-control" pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
                 </div>
                 <div class="form-group">
                     <select name="dev_type" class="form-control">
@@ -251,24 +242,24 @@
                     <h3 class="thaisans bold" style="margin-top: 0">บุคลากร</h3>
                     <label for="exampleInputEmail1">ข้อมูลส่วนตัว</label>
                     <div>
-                        <select class="form-control pname" name="pname">
+                        <select class="form-control pname" required name="pname">
                             <option value="" disabled selected>คำนำหน้า</option>
                             <option value="นาย">นาย</option>
                             <option value="นางสาว">นางสาว</option>
                             <option value="นาง">นาง</option>
                         </select>
-                        <input type="text" name="firstname" class="form-control fname" id="" placeholder="ชื่อ">
-                        <input type="text" name="lastname" class="form-control lname" id="" placeholder="สกุล">
+                        <input type="text" name="firstname" required class="form-control fname" id="" placeholder="ชื่อ">
+                        <input type="text" name="lastname" required class="form-control lname" id="" placeholder="สกุล">
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="mailaddr" class="form-control" id="" placeholder="อีเมล์">
+                    <input type="text" name="mailaddr"  class="form-control" id="" placeholder="อีเมล์">
                 </div>
                 <div class="form-group">
-                    <input type="personid" name="idcard" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
+                    <input type="personid" name="idcard" required class="form-control" id="exampleInputEmail1" maxlength="13" placeholder="รหัสประจำตัวประชาชน">
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="status">
+                    <select class="form-control" required name="status">
                             <option value="" disabled selected>*กลุ่ม</option>
 
                     <?php
@@ -283,7 +274,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="department">
+                    <select class="form-control" required name="department">
                         <option value="" disabled selected>*หน่วยงาน</option>
 
                     <?php
@@ -298,7 +289,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="location_id" class="form-control">
+                    <select name="location_id" required class="form-control">
                         <option value="" disabled selected>*วิทยาเขต</option>
 
                     <?php
@@ -314,10 +305,10 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                    <input type="text" name="macaddress" class="form-control" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17"  placeholder="xx-xx-xx-xx-xx-xx">
+                    <input class="form-control" required placeholder="xx-xx-xx-xx-xx-xx" type="text" name="macaddress" pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" >
                 </div>
                 <div class="form-group">
-                    <select name="dev_type" class="form-control" required>
+                    <select name="dev_type" class="form-control">
                         <option label="อุปกรณ์" value="-" disabled selected>อุปกรณ์</option>
                         <option value="Phone">มือถือ</option>
                         <option value="Notebook">โน๊ตบุ๊ค</option>
@@ -332,29 +323,29 @@
 
             <!-- พิเศษ -->
             <div role="tabpanel" class="tab-pane fade form" id="special">
-                <form method="post" action="admin/submitdevice/special">
+                <form method="post" action="AddManualUser">
                 <div class="form-group">
                     <h3 class="thaisans bold" style="margin-top: 0">ผู้ใช้พิเศษ</h3>
                     <label for="exampleInputEmail1">ข้อมูลส่วนตัว</label>
                     <div>
-                        <select class="form-control pname" name="pname">
+                        <select class="form-control pname" required name="pname">
                             <option value="" disabled selected>คำนำหน้า</option>
                             <option value="นาย">นาย</option>
                             <option value="นางสาว">นางสาว</option>
                             <option value="นาง">นาง</option>
                         </select>
-                        <input type="text" name="firstname" class="form-control fname" id="" placeholder="ชื่อ">
-                        <input type="text" name="lastname" class="form-control lname" id="" placeholder="สกุล">
+                        <input type="text" name="firstname" required class="form-control fname" id="" placeholder="ชื่อ">
+                        <input type="text" name="lastname" required class="form-control lname" id="" placeholder="สกุล">
                     </div>
                 </div>
                 <div class="form-group">
                     <input type="text" name="mailaddr" class="form-control" id="" placeholder="อีเมล์">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="idcard" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
+                    <input type="text" name="idcard" required class="form-control" id="exampleInputEmail1" maxlength="13" placeholder="รหัสประจำตัวประชาชน">
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="status">
+                    <select class="form-control" required name="status">
                             <option value="" disabled selected>*กลุ่ม</option>
 
                     <?php
@@ -369,7 +360,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control fac_select3" name="department">
+                    <select class="form-control fac_select3" required name="department">
                         <option value="" disabled selected>*คณะ</option>
 
                     <?php
@@ -384,7 +375,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control program_select3" name="discipline">
+                    <select class="form-control program_select3" required name="discipline">
                             <option value="" disabled selected>*สาขา</option>
 
                        <!--  <?php
@@ -399,7 +390,7 @@
                         </select>
                 </div>
                 <div class="form-group">
-                    <select name="location_id" class="form-control">
+                    <select name="location_id" required class="form-control">
                         <option value="" disabled selected>*วิทยาเขต</option>
 
                     <?php
@@ -415,10 +406,10 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                    <input type="text" class="form-control" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
+                    <input type="text" class="form-control" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
                 </div>
                 <div class="form-group">
-                    <select name="dev_type" class="form-control">
+                    <select name="dev_type" required class="form-control">
                         <option label="อุปกรณ์" value="-" disabled selected>อุปกรณ์</option>
                         <option value="Phone">มือถือ</option>
                         <option value="Notebook">โน๊ตบุ๊ค</option>
@@ -439,6 +430,34 @@
 <script>
 
 $(function(){
+
+    // $(document).on( "change", ".location_select", function() {
+
+    //     var data =  $(this).val();
+    //     console.log(data);
+    //     $.ajax({
+    //         method:'POST',
+    //         url:'../student/getLocationFacData',
+    //         dataType: "JSON",
+    //         data:{
+    //             data:data
+    //         },
+    //         success:function(d)
+    //         {
+    //             console.log(d);
+    //             $('.fac_select').html('');
+    //             $('.fac_select').append('<option value="" disabled selected>*คณะ</option>');
+
+    //             $.each(d , function(i, val) {
+
+    //                 $('.fac_select').append(' <option value="'+d[i].FAC_ID+'">'+d[i].FAC_NAME+'</option> ');
+
+    //             });
+
+    //         }
+    //     });
+
+    // });
 
     $(document).on( "change", ".fac_select", function() {
 

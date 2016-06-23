@@ -29,7 +29,7 @@ class RadSKOModel extends CI_Model {
         $this->db->select('*');
         return $this->db->get('sko_program')->result();
     }
-    
+
     function getProgramDataByFac($facid)
     {
         $this->db->db_select('radius');
@@ -46,6 +46,16 @@ class RadSKOModel extends CI_Model {
         return $this->db->get('sko_program')->result();
     }
 
+    function getLocationFacData($location_id){
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->from('location_people');
+        $this->db->join('sko_fac','location_people.location_id = sko_fac.location_id');
+        $this->db->join('sko_program','sko_fac.FAC_ID = sko_program.FAC_ID');
+        $this->db->where('location_people.location_id',$location_id);
+        return $this->db->get()->result();
+    }
+
     function getGroupsData()
     {
         $this->db->db_select('radius');
@@ -57,6 +67,7 @@ class RadSKOModel extends CI_Model {
     {
         $this->db->db_select('radius');
         $this->db->select('*');
+        $this->db->order_by('id','ASC');
         return $this->db->get('location_peple')->result();
     }
 

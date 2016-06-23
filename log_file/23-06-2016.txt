@@ -5,3 +5,11 @@
 23-06-2016 00:34 -- 1111111111111 was logging out 
 23-06-2016 00:34 -- akka.y is logging in 
 23-06-2016 00:34 -- 1111111111111 was logging out 
+23-06-2016 14:43 -- 1111111111111 is logging in 
+23-06-2016 14:58 -- 1111111111111 was logging out 
+23-06-2016 14:59 -- 1111111111111 is logging in 
+23-06-2016 15:00 -- 1111111111111 was deleting his/her registered mac address 
+23-06-2016 15:09 -- 1111111111111 was deleting his/her registered mac address 
+23-06-2016 15:12 -- 1111111111111 was deleting his/her registered mac address 
+23-06-2016 20:52 -- santi.p is logging in 
+23-06-2016 20:52 -- 123544444444 was logging out 
