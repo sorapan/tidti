@@ -17,6 +17,7 @@ class Professor_page extends CI_Controller {
         $this->load->model('RadSKOModel');
         $this->load->model('LogModel');
         $this->load->model('RadReplyCheckModel');
+        $this->load->model('ManualUserModel');
 
     }
 
@@ -73,6 +74,13 @@ class Professor_page extends CI_Controller {
         {
             $this->RadOnlineProfileModel->AddSingleData($data_insert);
 
+            $where = array(
+                'firstname' => $_POST['firstname'],
+                'lastname' => $_POST['lastname'],
+                'idcard' => $_POST['citizen_id']
+                );
+            $this->moveDataManualToOnline($where,$_POST['location']);
+
             //add log
             $this->LogModel->AddEventLog(array(
                 'USERNAME'=>$this->session->userdata('username'),
@@ -116,6 +124,37 @@ class Professor_page extends CI_Controller {
             echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
         }
 
+    }
+
+    public function moveDataManualToOnline($where,$location){
+        // $where = array(
+        //     'firstname' => 'test3',
+        //     'lastname' => 'test3',
+        //     'idcard' => '2222222222211'
+        //     );
+        $count = $this->ManualUserModel->GetDataManualUserByWhere($where);
+        if(!empty($count)){
+            $device_data = null;
+            $register_data = array(
+                    'username' => $this->session->usesdata('username'),
+                    'macaddress' => $count[0]->username,
+                    'addtime' => $count[0]->dateregis,
+                    'status_on' => 'staff'
+                );
+            $this->RadOnlineProfileModel->AddDataWithoutProfile($device_data,$register_data);
+            $this->ManualUserModel->DeleteManual($count[0]->username);
+            // echo $count[0]->username;
+            // var_dump($count);
+
+            $this->LogModel->AddEventLog(array(
+                'USERNAME'=>$this->session->userdata('username'),
+                'STATUS'=>'user',
+                'LOCATION'=> $_POST['location'],
+                'EVENT' => 'ได้ยืนยัน macaddress ด้วย e-pass หมายเลขอุปกรณ์:'.$count[0]->username,
+                'DATE'=>date('Y-m-d'),
+                'TIME'=>date('H:i:s')
+                    ));
+        }
     }
 
     public function addmac()
@@ -245,5 +284,8 @@ class Professor_page extends CI_Controller {
         AddLog(	$this->session->userdata('id')." was logging out" );
         @header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
+
+
+
 
 }

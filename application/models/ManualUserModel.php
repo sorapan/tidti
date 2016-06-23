@@ -15,8 +15,17 @@ class ManualUserModel extends CI_Model {
         // $this->db->select('*');
     }
 
-    public function GetWhereDataManualUser($where){
-
+    public function GetDataManualUserByWhere($where){
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        // $this->db->from('manual_user');
+        $this->db->where('firstname',$where['firstname']);
+        $this->db->where('lastname',$where['lastname']);
+        $this->db->where('idcard',$where['idcard']);
+        // $this->db->get('manual_user')->result();
+        // $this->db->where($where);
+        // return $this->output->enable_profiler(TRUE);
+        return $this->db->get('manual_user')->result();
     }
 
     public function AddDataManualUser($data){
@@ -27,4 +36,10 @@ class ManualUserModel extends CI_Model {
         // return $this->output->enable_profiler(TRUE);
     }
 
+    function DeleteManual($username){
+        $this->db->db_select('radius');
+        $this->db->delete('manual_user',array(
+                'username'=>$username
+            ));
+    }
 }

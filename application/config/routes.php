@@ -84,7 +84,6 @@ $route['admin/manage/(:any)'] = 'admin/adduser/$1';
 $route['admin/mac'] = 'admin/mac';
 $route['admin/mac/(:any)'] = 'admin/editmac/$1';
 $route['admin/macmanual'] = 'admin/macmanual';
-// $route['admin/macmanual/(:any)'] = 'admin/macmanual/$1';
 $route['admin/user'] = 'admin/user';
 $route['admin/AddManualUser'] = 'admin/AddManualUser';
 $route['admin/mac/setDataToEditById/(:any)'] = 'admin/setDataToEditById/$1';
@@ -93,5 +92,10 @@ $route['admin/editMac'] = 'admin/editMac';
 
 $route['admin/deleteMacManual/(:any)'] = 'admin/deleteMacManual/$1';
 $route['admin/editMacManual'] = 'admin/editMacManual';
-// $route['admin/editDataByManual'] = 'admin/editDataByManual';
-// $route['admin/searchLog'] = 'admin/log';
+
+$route['moveDataManualToOnline'] = 'professor_page/moveDataManualToOnline';
+
+
+//error
+$route['error'] = 'error/index';
+$route['error/(:any)'] = 'error/show_error/$1';

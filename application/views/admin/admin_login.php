@@ -16,6 +16,13 @@
                 <h3>ผู้ดูแล</h3>
             </div>
             <form method="post" action="admin_logincheck"  class="form">
+                <?php
+                if(null!==$this->session->userdata('alert')){
+                ?>
+                    <h3 style="font-size: 1.2em"><i style="color:red" class="fa fa-times-circle" aria-hidden="true"></i> <?=$this->session->userdata('alert')?></h3>
+                <?php
+                }
+                ?>
                 <div class="input">
                     <label class="opensans"><i class="fa fa-user" aria-hidden="true"></i> : username</label>
                     <input type="text" placeholder="username" name="e_pass">

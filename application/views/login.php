@@ -25,8 +25,15 @@
                 <form method="post" class="form  col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" action="std_logincheck">
                 <!-- <div class="form  col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10"> -->
                     <div class="head">
-                        <h2 class="thaisans bold">เข้าสู่ระบบ</h2>
+                        <h2 class="thaisans bold">เข้าสู่ระบบ</h2><?php
+                        if(null!==$this->session->userdata('alert')){
+                        ?>
+                            <h3 style="display: block;font-size: 1.2em"><i style="color:red" class="fa fa-times-circle" aria-hidden="true"></i> <?=$this->session->userdata('alert')?></h3>
+                        <?php
+                        }
+                        ?>
                     </div>
+
                     <div class="input">
                         <div class="inputbox">
                             <div class="col-xs-offset-1 col-xs-10 col-sm-10 col-md-offset-1 col-md-10 nopad">

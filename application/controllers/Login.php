@@ -34,7 +34,7 @@ class Login extends CI_Controller {
 	public function AdminCheck(){
 		$res = $this->E_passModel->AdminCheckLogin($_POST['e_pass'],$_POST['pass']);
 		if(empty($res)){
-			echo 'wrong';
+			// @header('Location:'.base_url().'error/'.'ชื่อผู้ใช้หรือรหัสผิด');
 			$this->session->set_flashdata('alert','ชื่อผู้ใช้หรือรหัสผิด');
 			@header('Location:'.base_url().'admin/login');
 		}else{
@@ -57,7 +57,8 @@ class Login extends CI_Controller {
 
 				if(empty($res))
 				{
-					echo 'wrong';
+					$this->session->set_flashdata('alert','ชื่อผู้ใช้หรือรหัสผิด');
+					@header('Location:'.base_url());
 				}
 				else
 				{

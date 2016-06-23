@@ -448,7 +448,7 @@ $(function(){
 
                 $.each(d , function(i, val) {
 
-                    $(group_class).append(' <option value="'+d[i].gname+'">'+d[i].gdesc+'</option> ');
+                    $(group_class).append(' <option value="'+d[i].gdesc+'">'+d[i].gdesc+'</option> ');
 
                 });
 

@@ -21,6 +21,7 @@ class Student_page extends CI_Controller {
 		$this->load->model('RadSKOModel');
 		$this->load->model('LogModel');
 		$this->load->model('RadReplyCheckModel');
+        $this->load->model('ManualUserModel');
 
 	}
 
@@ -47,17 +48,6 @@ class Student_page extends CI_Controller {
 
 	public function submit_detail()
     {
-        // {
-        // $_POST['pname'];
-        // $_POST['firstname'];
-        // $_POST['lastname'];
-        // $_POST['email'];
-        // $_POST['citizen_id'];
-        // $_POST['department'];
-        // $_POST['branch'];
-        // $_POST['group'];
-        // $_POST['location'];
-        // }
 
         $data_insert = array(
             'username' => $this->session->userdata('username'),
@@ -78,7 +68,16 @@ class Student_page extends CI_Controller {
 
         if(!in_array(null,$data_insert) || !in_array("",$data_insert))
         {
+
+
             $this->RadOnlineProfileModel->AddSingleData($data_insert);
+
+            $where = array(
+                'firstname' => $_POST['firstname'],
+                'lastname' => $_POST['lastname'],
+                'idcard' => $_POST['citizen_id']
+                );
+            $this->moveDataManualToOnline($where,$_POST['location']);
 
 			//add log
             $this->LogModel->AddEventLog(array(
@@ -124,6 +123,39 @@ class Student_page extends CI_Controller {
         }
 
     }
+
+    public function moveDataManualToOnline($where,$location){
+        // $where = array(
+        //     'firstname' => 'test3',
+        //     'lastname' => 'test3',
+        //     'idcard' => '2222222222211'
+        //     );
+        $count = $this->ManualUserModel->GetDataManualUserByWhere($where);
+        var_dump( $count);
+        if(!empty($count)){
+            $register_data = array(
+                    'username' => $this->session->userdata('username'),
+                    'macaddress' => $count[0]->username,
+                    'addtime' => $count[0]->dateregis,
+                    'updatetime' => '',
+                    'status_on' => 'staff'
+                );
+            $this->RadOnlineProfileModel->AddRegisterProfile($register_data);
+            $this->ManualUserModel->DeleteManual($count[0]->username);
+            // echo $count[0]->username;
+            // var_dump($count);
+
+            $this->LogModel->AddEventLog(array(
+                'USERNAME'=>$this->session->userdata('username'),
+                'STATUS'=>'user',
+                'LOCATION'=> $_POST['location'],
+                'EVENT' => 'ได้ยืนยัน macaddress ด้วย e-pass หมายเลขอุปกรณ์:'.$count[0]->username,
+                'DATE'=>date('Y-m-d'),
+                'TIME'=>date('H:i:s')
+                    ));
+        }
+    }
+
 
 	public function getprogram()
 	{
@@ -285,11 +317,13 @@ class Student_page extends CI_Controller {
 
 	public function signout()
 	{
+        var_dump($this->session);
+        // $location = $this->session->userdata('location_id');
 		$this->LogModel->AddEventLog(array(
             'USERNAME'=>$this->session->userdata('username'),
             'STATUS'=>'user',
-            'LOCATION'=> $this->session->userdata('location'),
-            'EVENT' => 'ออกจากระบบ:'.$_POST['mac'],
+            'LOCATION'=> null!==$this->session->userdata('location_id')?$this->session->userdata('location_id'):"-",
+            'EVENT' => 'ออกจากระบบ',
             'DATE'=>date('Y-m-d'),
             'TIME'=>date('H:i:s')
                 ));

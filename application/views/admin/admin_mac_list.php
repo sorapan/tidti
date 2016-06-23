@@ -37,7 +37,8 @@
                 }
             ?>
                 <form method="get" action="mac">
-                <select name="date">
+                <input class="input" style="width:160px;font-size: 1.1em" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" title="1997-06-30" placeholder="1997-06-30 (ปี ค.ศ.)" type="text" name="date">
+                <!-- <select name="date">
                     <option value="" selected="">วันที่</option>
                     <?php
                         $i=0;
@@ -54,7 +55,7 @@
                         <?php
                         }
                         ?>
-                </select>
+                </select> -->
                 <select name="location_id">
                     <option value="" selected="">วิทยาเขต</option>
                     <?php
@@ -74,7 +75,7 @@
                     }
                     ?>
                 </select>
-                <input type="text" class="input thaisans" name="search" value="<?=$search?>" placeholder="ค้นหารหัสอุปกรณ์" id="search">
+                <input type="text" class="input thaisans" name="search" value="<?=$search?>" title="ค้นหารหัสอุปกรณ์" placeholder="ค้นหารหัสอุปกรณ์" id="search">
                 <!-- <div class="btn-group">
                 <button class="button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                    ค้นหา <span class="caret"></span>

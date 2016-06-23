@@ -36,7 +36,8 @@
             }
         ?>
             <form method="get" action="log">
-            <select name="date" class="select" style="font-size: 1em">
+            <input class="input" style="width:160px;font-size: 1.1em" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" title="1997-06-30" placeholder="1997-06-30 (ปี ค.ศ.)" type="text" name="date">
+            <!-- <select name="date" class="select" style="font-size: 1em">
                 <option value="">วันที่</option>
                 <?php
                         $i = 0;
@@ -53,7 +54,7 @@
                     }
 
                 ?>
-            </select>
+            </select> -->
 
             <select name="location" class="select" style="font-size: 1em">
                 <!-- <option value="" selected="">วิทยาเขต -->

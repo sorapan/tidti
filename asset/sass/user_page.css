@@ -1,6 +1,25 @@
 .nopad {
   padding: 0 !important; }
 
+.errorpage {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  margin-top: 5%;
+  display: block;
+  padding: 100px 10px 10px 50px;
+  border: 1px solid #004e66;
+  border-bottom-width: 2px;
+  background-color: #d9e1e8; }
+  .errorpage > button {
+    margin-top: 25px;
+    padding: 5px 30px;
+    border: 2px solid #fff;
+    background-color: #004e66;
+    color: #d9e1e8;
+    border-radius: 5px;
+    font-size: 2em; }
+
 .user-page > ._1 > .head {
   width: 100%;
   text-align: center; }
@@ -15,8 +34,6 @@
   text-align: center; }
   .user-page > ._1 > .content > div {
     font-size: 1.8em; }
-  .user-page > ._1 > .content > .epassport {
-    /*margin-bottom: 15px; */}
   .user-page > ._1 > .content > .tel {
     margin-bottom: 40px; }
   .user-page > ._1 > .content > .signout {
