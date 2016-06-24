@@ -83,8 +83,8 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <ul class="dropdown-menu">
-                    <!-- <li><button class="button" type="submit" name="type" value="">ค้นหา</button></li> -->
-                    <li><button class="button" type="submit" name="type" value="username">ชื่อผู้ใช้</button></li>
+                    <!-- <li><button class="button" type="submit" name="type" value="">ค้นหา</button></li> --><!--
+                    <li><button class="button" type="submit" name="type" value="username">ชื่อผู้ใช้</button></li> -->
                     <li><button class="button" type="submit" name="type" value="name">ชื่อนามสกุล</button></li>
                   </ul>
                 </div>
@@ -100,7 +100,7 @@
                 <thead>
                     <th class="center">อุปกรณ์  </th>
                     <th class="center">mac address</th>
-                    <th>ชื่อผู้ใช้</th>
+                    <!-- <th>ชื่อผู้ใช้</th> -->
                     <th>ชื่อ-นามสกุล</th>
                     <th>วันที่</th>
                     <th>วิทยาเขต</th>
@@ -117,7 +117,6 @@
                         <td><?=$data?></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                         <td>
 
                         </td>
@@ -131,7 +130,6 @@
                 <tr>
                     <td><i class="fa fa-<?=switchIcon($val->dev_type);?>" title="<?=switchIcon($val->dev_type);?>" aria-hidden="true"></i></td>
                     <td ><?=$val->username?></td>
-                    <td><?=$val->username?></td>
                     <td><?=$val->firstname.' '.$val->lastname?></td>
                     <td><?=$val->dateregis?></td>
                     <td><?=location_id($val->location_id)?></td>
