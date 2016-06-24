@@ -144,7 +144,7 @@
                     <input type="text" name="idcard" maxlength="13" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
                 </div>
                 <div class="form-group">
-                    <select name="location_id " class="form-control location_select2">
+                    <select name="location_id" class="form-control location_select2">
                         <option value="" disabled selected>*วิทยาเขต</option>
 
                     <?php
