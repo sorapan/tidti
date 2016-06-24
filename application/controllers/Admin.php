@@ -78,7 +78,7 @@ class Admin extends CI_Controller {
 						'lastname'=>$_POST['lastname'],
 						'idcard'=>$_POST['idcard'],
 						'mailaddr'=>$_POST['mailaddr'],
-						'discipline'=>isset($_POST['branch'])?$_POST['branch']:'-',
+						'discipline'=>isset($_POST['discipline'])?$_POST['discipline']:'-',
 						'department'=>isset($_POST['department'])?$_POST['department']:'-',
 						'dateregis'=>date('Y-m-d H:i:s',time()),
 						'status'=>$_POST['status'],
