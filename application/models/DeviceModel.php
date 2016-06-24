@@ -88,6 +88,9 @@ class DeviceModel extends CI_Model {
             $this->db->select('*');
             $this->db->from('manual_user');
             $this->db->join('device','device.username = manual_user.username');
+            if(!empty($date)){
+                $this->db->like('manual_user.dateregis',$date);
+            }
             if(!empty($location)){
                 $this->db->where('manual_user.location_id',$location);
             }
