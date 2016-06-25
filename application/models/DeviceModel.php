@@ -51,6 +51,7 @@ class DeviceModel extends CI_Model {
                 case 'name':
                     $this->db->like('online_profile.firstname',$search);
                     $this->db->or_like('online_profile.lastname',$search);
+                    $this->db->or_like('CONCAT(online_profile.firstname,\' \',online_profile.lastname)',$search);
                     break;
                 default:
                     $this->db->like('register_online.addtime',$date);
@@ -117,6 +118,7 @@ class DeviceModel extends CI_Model {
                 case 'name':
                     $this->db->like('manual_user.firstname',$search);
                     $this->db->or_like('manual_user.lastname',$search);
+                    $this->db->or_like('CONCAT(manual_user.firstname,\' \',manual_user.lastname)',$search);
                     break;
                 default:
                     $this->db->like('manual_user.dateregis',$date);
@@ -164,6 +166,7 @@ class DeviceModel extends CI_Model {
                 case 'name':
                     $this->db->like('online_profile.firstname',$search);
                     $this->db->or_like('online_profile.lastname',$search);
+                    $this->db->or_like('CONCAT(online_profile.firstname,\' \',online_profile.lastname)',$search);
                     break;
                 default:
                     $this->db->like('register_online.addtime',$date);
@@ -204,10 +207,12 @@ class DeviceModel extends CI_Model {
                 case 'name':
                     $this->db->like('manual_user.firstname',$search);
                     $this->db->or_like('manual_user.lastname',$search);
+                    $this->db->or_like('CONCAT(manual_user.firstname,\' \',manual_user.lastname)',$search);
                     break;
                 default:
                     $this->db->like('manual_user.dateregis',$date);
                     $this->db->like('manual_user.username',$search);
+
                     break;
             }
             return $this->db->get()->result();
