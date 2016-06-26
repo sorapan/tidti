@@ -12,16 +12,16 @@
 
 <body>
 <div class="admin wrap nopad">
-    <?=headerOfAdmin($this->session->userdata('status'))?>
+    <?=headerOfAdmin($this->session->userdata('status'),$this->session->userdata('location_id'))?>
     <div class="sidebar ">
 
         <div class="content">
             <ul class="menus thaisans">
-                <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
-                <a href="<?=base_url().'admin/mac'?>"><li class="maclist active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
-                <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac manual </li></a>
+                <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span>เพิ่มอุปกรณ์ผู้ใช้ </li></a>
+                <a href="<?=base_url().'admin/mac'?>"><li class="maclist active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span>mac ลงทะเบียนออนไลน์</li></a>
+                <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span>mac จุดลงทะเบียน </li></a>
                 <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
-                <a href="<?=base_url().'admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
+                <a href="<?=base_url().'admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span>ประวัติการเข้าระบบ </li></a>
             </ul>
         </div>
 
@@ -118,10 +118,10 @@
                     <th class="center">mac address</th>
                     <th>ชื่อผู้ใช้</th>
                     <th>ชื่อ-นามสกุล</th>
-                    <th>วันที่</th>
+                    <th>วันที่ลงทะเบียน</th>
                     <th>วิทยาเขต</th>
                     <th class="center">
-                        ...
+                        การจัดการ
                     </th>
                 </thead>
                 <?php

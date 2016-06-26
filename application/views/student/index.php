@@ -68,21 +68,31 @@ if($this->session->userdata('detail_exists') == false){
                             <h3 class="thaisans bold">- <?=$this->session->userdata('username');?></h3>
                              <form method="post" action="student/submit_detail" class="form-group">
                                 <div class="form-group form-inline">
-                                    <select class="form-control" name="pname">
-                                        <option value="" disabled selected>*คำนำหน้า</option>
+                                <div class="input-group">
+                                  <span class="input-group-addon" style="background-color: #ddd">คำนำหน้า</span>
+                                  <select class="form-control" name="pname">
                                         <option value="นาย">นาย</option>
                                         <option value="นางสาว">นางสาว</option>
                                         <option value="นาง">นาง</option>
                                     </select>
-                                    <input type="text" name="firstname" class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
+                                </div>
+                                    <input type="text" name="firstname" class="form-control " id="exampleInputEmail3" placeholder="ชื่อ">
+                                </div>
+                                <div class="form-group">
                                     <input type="text" name="lastname" class="form-control" id="exampleInputPassword3" placeholder="นามสกุล">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                                 </div>
-                                <div class="form-group">
                                     <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" maxlength="12" placeholder="รหัสนักศึกษา">
                                 </div>
+                                <div class="form-group input-group">
+                                  <input type="text" class="form-control" placeholder="ปีการศึกษา" maxlength="4" pattern="0-9">
+                                  <span class="input-group-addon" style="background-color: #ddd">ปี ค.ศ. 1997</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="อีเมลล์">
+                                 </div>
+
 
                                  <div class="form-group">
                                     <select name="location" class="form-control location_select">
@@ -147,8 +157,8 @@ if($this->session->userdata('detail_exists') == false){
                                 <?php
                                     if(!empty($this->session->userdata('alert'))){
                                 ?>
-                                    <h3 style="font-size: 1.2em;
-                                        background-color: #b9f9a9;display: inline-block;
+                                    <h3 class="<?=$this->session->flashdata('type')?>" style="font-size: 1.2em;
+                                        display: inline-block;
                                         padding: 5px 10px;border-radius: 5px;"><?=$this->session->userdata('alert')?></h3>
                                 <?php
                                 }
@@ -168,7 +178,7 @@ if($this->session->userdata('detail_exists') == false){
                                 if($data_exists){
                             ?>
 
-                                <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+                                <form method="POST" action="student/deletemac" onsubmit="return confirm('ลบอุปกรณ์หมายเลข: <?=$data->macaddress?> ?');">
                                     <div class="ch-device activated">
                                         <input type="text" class="text opensans" disabled name="" value="<?=$data->macaddress?>" id="">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
@@ -183,7 +193,7 @@ if($this->session->userdata('detail_exists') == false){
 
                                 <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" placeholder="mac-address" name="mac" id="">
+                                      <input type="text" class="text opensans" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" placeholder="mac-address" name="mac" id="">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="laptop" class="laptop"><i class="fa fa-laptop"></i></label>
                                   </div>
@@ -227,7 +237,7 @@ if($this->session->userdata('detail_exists') == false){
 
                                 <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="mac" placeholder="mac-address" id="">
+                                      <input type="text" class="text opensans" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="mac" placeholder="mac-address" id="">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="mobile" class="mobile"><i class="fa fa-mobile"></i></label>
                                   </div>
@@ -279,7 +289,7 @@ if($this->session->userdata('detail_exists') == false){
 
                                 <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="mac" placeholder="mac-address" id="">
+                                      <input type="text" class="text opensans" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="mac" placeholder="mac-address" id="">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="tablet" class="tablet"><i class="fa fa-tablet"></i></label>
                                   </div>

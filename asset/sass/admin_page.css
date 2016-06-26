@@ -37,8 +37,6 @@
     text-align: right;
     overflow: hidden;
     line-height: 40px; }
-    .admin > .nav > .secret {
-      color: #EFFFF9; }
     .admin > .nav > .username {
       color: #ff5f2e;
       padding: 0 15px;
@@ -53,6 +51,13 @@
       color: #004e66; }
       .admin > .nav > .logout:hover {
         background-color: #d9e1e8; }
+    .admin > .nav > .location_head {
+      color: #ffffff;
+      padding: 0 15px;
+      height: 40px;
+      line-height: 30px;
+      vertical-align: middle;
+      display: inline-block; }
   .admin > .sidebar {
     top: 40px;
     bottom: 0;

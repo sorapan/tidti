@@ -69,7 +69,7 @@ class Admin extends CI_Controller {
 
 			if(empty($check)){
 			// อาจจะมีการแก้ไขในภายหน้า
-				$_POST['macaddress'] = strtolower($_POST['macaddress']);
+				$_POST['macaddress'] = strtoupper($_POST['macaddress']);
 			$this->ManualUserModel->AddDataManualUser(array(
 						'username'=>$_POST['macaddress'],
 						// 'password'=>$_POST['password'],
@@ -82,18 +82,24 @@ class Admin extends CI_Controller {
 						'department'=>isset($_POST['department'])?$_POST['department']:'-',
 						'dateregis'=>date('Y-m-d H:i:s',time()),
 						'status'=>$_POST['status'],
-						'location_id'=>$_POST['location_id']
+						'location_id'=>$_POST['location_id'],
+						'year' => isset($_POST['year'])?$_POST['year']:'-'
 					));
 
+			if($_POST['discipline']!=='-'){
+				$radvalue = date('Y-m-d',strtotime('+1 years')).'T'.date('H:i:s');
+			}else{
+				$radvalue = '';
+			}
 			$this->RadReplyCheckModel->AddRadReply(array(
 					// รับค่าจาก POST
 					'username' => $_POST['macaddress'],
 					// ส่วนที่แก้ไข
 					'attribute' => 'WISPr-Session-Terminate-Time',
 					// ส่วนที่แก้ไข
-					'op' => '-',
+					'op' => ':=',
 					// ส่วนที่แก้ไข
-					'value'=> '-'
+					'value'=> $radvalue
 				));
 
 			// อาจจะมีการแก้ไขในภายหน้า
@@ -101,11 +107,11 @@ class Admin extends CI_Controller {
 					// รับค่าจาก POST
 					'username' => $_POST['macaddress'],
 					// ส่วนที่แก้ไข
-					'attribute' => '-',
+					'attribute' => 'Cleartext-Password',
 					// ส่วนที่แก้ไข
-					'op' => '-',
+					'op' => ':=',
 					// ส่วนที่แก้ไข
-					'value'=> '-'
+					'value'=> 'Liu;b=yp;kpakp'
 				));
 
 			$this->DeviceModel->AddDevice(array(
@@ -322,7 +328,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function editmac(){
-		$id = strtolower($_GET['mac']);
+		$id = strtoupper($_GET['mac']);
 		$data = $this->getDataToEditById($id);
 		$fac_data = $this->RadSKOModel->getFacData();
 		$program_data = $this->RadSKOModel->getProgramData();
@@ -337,7 +343,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function editmacmanual(){
-		$username = strtolower($_GET['mac']);
+		$username = strtoupper($_GET['mac']);
 		$data = $this->getDataToEditByIdManual($username);
 		$fac_data = $this->RadSKOModel->getFacData();
 		$program_data = $this->RadSKOModel->getProgramData();

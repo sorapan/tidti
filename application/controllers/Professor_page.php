@@ -164,7 +164,7 @@ class Professor_page extends CI_Controller {
             if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
             {
 
-                $_POST['mac'] = strtolower($_POST['mac']);
+                $_POST['mac'] = strtoupper($_POST['mac']);
                 $count_data = $this->RadRegisterOnlineModel->GetNumberDataByEpass($this->session->userdata('username'));
 
                 if($count_data<7)
@@ -186,15 +186,22 @@ class Professor_page extends CI_Controller {
                             'status_on' => 'staff'
                         ));
 
+
+                        if($this->session->userdata('discipline')!=='-'){
+                            $radvalue = date('Y-m-d',strtotime('+1 years')).'T'.date('H:i:s');
+                        }else{
+                            $radvalue = '';
+                        }
+
                         $this->RadReplyCheckModel->AddRadReply(array(
                                 // รับค่าจาก POST
                                 'username' => $_POST['mac'],
                                 // ส่วนที่แก้ไข
                                 'attribute' => 'WISPr-Session-Terminate-Time',
                                 // ส่วนที่แก้ไข
-                                'op' => '-',
+                                'op' => ':=',
                                 // ส่วนที่แก้ไข
-                                'value'=> '-'
+                                'value'=> $radvalue
                             ));
 
                         // อาจจะมีการแก้ไขในภายหน้า
@@ -202,12 +209,36 @@ class Professor_page extends CI_Controller {
                                 // รับค่าจาก POST
                                 'username' => $_POST['mac'],
                                 // ส่วนที่แก้ไข
-                                'attribute' => '-',
+                                'attribute' => 'Cleartext-Password',
                                 // ส่วนที่แก้ไข
-                                'op' => '-',
+                                'op' => ':=',
                                 // ส่วนที่แก้ไข
-                                'value'=> '-'
+                                'value'=> 'Liu;b=yp;kpakp'
                             ));
+
+                        // ของเก่า
+                        // $this->RadReplyCheckModel->AddRadReply(array(
+                        //         // รับค่าจาก POST
+                        //         'username' => $_POST['mac'],
+                        //         // ส่วนที่แก้ไข
+                        //         'attribute' => 'WISPr-Session-Terminate-Time',
+                        //         // ส่วนที่แก้ไข
+                        //         'op' => '-',
+                        //         // ส่วนที่แก้ไข
+                        //         'value'=> '-'
+                        //     ));
+
+                        // // อาจจะมีการแก้ไขในภายหน้า
+                        // $this->RadReplyCheckModel->AddRadCheck(array(
+                        //         // รับค่าจาก POST
+                        //         'username' => $_POST['mac'],
+                        //         // ส่วนที่แก้ไข
+                        //         'attribute' => '-',
+                        //         // ส่วนที่แก้ไข
+                        //         'op' => '-',
+                        //         // ส่วนที่แก้ไข
+                        //         'value'=> '-'
+                        //     ));
 
                         $this->LogModel->AddEventLog(array(
                             'USERNAME'=>$this->session->userdata('username'),

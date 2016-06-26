@@ -10,16 +10,16 @@
 <?=header_url()?>
 <body>
 <div class="admin wrap nopad">
-    <?=headerOfAdmin($this->session->userdata('status'))?>
+    <?=headerOfAdmin($this->session->userdata('status'),$this->session->userdata('location_id'))?>
     <div class="sidebar ">
 
         <div class="content">
             <ul class="menus thaisans">
-                <a href="<?=base_url().'admin/manage'?>"><li class="manage active"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
-                <a href="<?=base_url().'admin/mac'?>"><li class="maclist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
-                <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac manual </li></a>
+                <a href="<?=base_url().'admin/manage'?>"><li class="manage active"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span>เพิ่มอุปกรณ์ผู้ใช้ </li></a>
+                <a href="<?=base_url().'admin/mac'?>"><li class="maclist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span>mac ลงทะเบียนออนไลน์  </li></a>
+                <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span>mac จุดลงทะเบียน </li></a>
                 <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
-                <a href="<?=base_url().'admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
+                <a href="<?=base_url().'admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span>ประวัติการเข้าระบบ </li></a>
             </ul>
         </div>
 
@@ -65,11 +65,17 @@
                 <div class="form-group">
                     <input type="text" name="mailaddr" class="form-control" id="" placeholder="อีเมล์">
                 </div>
-                <div class="form-group">
-                    <input type="text" name="idcard" required class="form-control" maxlength="12" id="exampleInputEmail1" placeholder="รหัสนักศึกษา">
+                <div class="form-group form-inline">
+                    <div class="form-group">
+                        <input type="text" name="idcard" required class="form-control" maxlength="12" id="exampleInputEmail1" placeholder="รหัสนักศึกษา">
+                    </div>
+                    <div class="form-group input-group">
+                      <input type="text" name="year" class="form-control" placeholder="ปีการศึกษา" maxlength="4" pattern="[0-9]{4}">
+                      <span class="input-group-addon" style="background-color: #ddd">ปี พ.ศ. 2559</span>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <select class="form-control location_select" name="location_id" required >
+                    <select class="form-control location_select" title="วิทยาเขต" name="location_id" required >
                         <option value="" disabled selected>*วิทยาเขต</option>
 
                     <?php
@@ -85,7 +91,7 @@
                 </div>
 
                 <div class="form-group">
-                    <select class="form-control fac_select" required name="department">
+                    <select class="form-control fac_select"  title="คณะ"  required name="department">
                         <option value="" disabled selected>*คณะ</option>
                     </select>
                 </div>

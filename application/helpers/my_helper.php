@@ -21,22 +21,28 @@ function AddLog($mes)
 function location_id($id){
      switch ($id) {
             case 'sk':
-                echo "สงขลา";
+                return "สงขลา";
                 break;
             case 'sai':
-                echo "ไสใหญ่";
+                return "ไสใหญ่";
                 break;
             case 'tho':
-                echo "ทุ่งใหญ่";
+                return "ทุ่งใหญ่";
                 break;
             case 'ka':
-                echo "ขนอม";
+                return "ขนอม";
                 break;
             case 'tr':
-                echo "ตรัง";
+                return "ตรัง";
                 break;
             case 'rat':
-                echo "วิทยาลัยรัตภูมิ";
+                return "วิทยาลัยรัตภูมิ";
+                break;
+            case 'all':
+                return "";
+                break;
+            default:
+                return '';
                 break;
 
         }
@@ -229,7 +235,7 @@ function selectDevice($dev){
         <option value="Other" '.$arr["Other"].'>อื่นๆ</option>';
 }
 
-function headerOfAdmin($status){
+function headerOfAdmin($status,$location_id){
     switch ($status) {
         case 'admin':
             $name = 'ผู้ดูแล';
@@ -241,10 +247,14 @@ function headerOfAdmin($status){
             return false;
             break;
     }
-
+    if($location_id !== 'all'){
+        $location = 'วิทยาเขต '.location_id($location_id);
+    }else{
+        $location = '';
+    }
     echo '<div class="nav">
-        <!-- <span class="secret"><i class="fa fa-user-secret" aria-hidden="true"></i></span> -->
         <span class="username thaisans">'.$name.'</span>
+        <span class="location_head thaisans">'.$location.'</span>
         <button class="logout" onclick="window.location=\''.base_url().'admin/logout\'" title="ออกระบบ"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
         </div>';
 

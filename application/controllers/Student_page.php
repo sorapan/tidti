@@ -190,7 +190,7 @@ class Student_page extends CI_Controller {
 	{
 		if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
 		{
-            $_POST['mac'] = strtolower($_POST['mac']);
+            $_POST['mac'] = strtoupper($_POST['mac']);
 			if($this->session->userdata('location') )
 			{
 
@@ -228,28 +228,32 @@ class Student_page extends CI_Controller {
 
                 $count_mac = $this->RadRegisterOnlineModel->DuplicateCheck($_POST['mac']);
                 if($count_mac<=0){
-        			$this->RadReplyCheckModel->AddRadReply(array(
-        					// รับค่าจาก POST
-        					'username' => $_POST['mac'],
-        					// ส่วนที่แก้ไข
-        					'attribute' => 'WISPr-Session-Terminate-Time',
-        					// ส่วนที่แก้ไข
-        					'op' => '-',
-        					// ส่วนที่แก้ไข
-        					'value'=> '-'
-        				));
 
-        			// อาจจะมีการแก้ไขในภายหน้า
-        			$this->RadReplyCheckModel->AddRadCheck(array(
-        					// รับค่าจาก POST
-        					'username' => $_POST['mac'],
-        					// ส่วนที่แก้ไข
-        					'attribute' => '-',
-        					// ส่วนที่แก้ไข
-        					'op' => '-',
-        					// ส่วนที่แก้ไข
-        					'value'=> '-'
-        				));
+
+
+                    //ของเดิม
+        			// $this->RadReplyCheckModel->AddRadReply(array(
+        			// 		// รับค่าจาก POST
+        			// 		'username' => $_POST['mac'],
+        			// 		// ส่วนที่แก้ไข
+        			// 		'attribute' => 'WISPr-Session-Terminate-Time',
+        			// 		// ส่วนที่แก้ไข
+        			// 		'op' => '-',
+        			// 		// ส่วนที่แก้ไข
+        			// 		'value'=> '-'
+        			// 	));
+
+        			// // อาจจะมีการแก้ไขในภายหน้า
+        			// $this->RadReplyCheckModel->AddRadCheck(array(
+        			// 		// รับค่าจาก POST
+        			// 		'username' => $_POST['mac'],
+        			// 		// ส่วนที่แก้ไข
+        			// 		'attribute' => '-',
+        			// 		// ส่วนที่แก้ไข
+        			// 		'op' => '-',
+        			// 		// ส่วนที่แก้ไข
+        			// 		'value'=> '-'
+        			// 	));
 
         			$this->RadOnlineProfileModel->AddData(
         			$profile_data,
@@ -263,6 +267,38 @@ class Student_page extends CI_Controller {
         				'macaddress' => $_POST['mac'],
         				'status_on' => 'user'
         			));
+
+
+                    if($this->session->userdata('discipline')!=='-'){
+                        $radvalue = date('Y-m-d',strtotime('+1 years')).'T'.date('H:i:s');
+                    }else{
+                        $radvalue = '';
+                    }
+                    $this->RadReplyCheckModel->AddRadReply(array(
+                            // รับค่าจาก POST
+                            'username' => $_POST['mac'],
+                            // ส่วนที่แก้ไข
+                            'attribute' => 'WISPr-Session-Terminate-Time',
+                            // ส่วนที่แก้ไข
+                            'op' => ':=',
+                            // ส่วนที่แก้ไข
+                            'value'=> $radvalue
+                        ));
+
+                    // อาจจะมีการแก้ไขในภายหน้า
+                    $this->RadReplyCheckModel->AddRadCheck(array(
+                            // รับค่าจาก POST
+                            'username' => $_POST['mac'],
+                            // ส่วนที่แก้ไข
+                            'attribute' => 'Cleartext-Password',
+                            // ส่วนที่แก้ไข
+                            'op' => ':=',
+                            // ส่วนที่แก้ไข
+                            'value'=> 'Liu;b=yp;kpakp'
+                        ));
+
+
+
                     $this->LogModel->AddEventLog(array(
                         'USERNAME'=>$this->session->userdata('username'),
                         'STATUS'=>'user',
@@ -271,22 +307,28 @@ class Student_page extends CI_Controller {
                         'DATE'=>date('Y-m-d'),
                         'TIME'=>date('H:i:s')
                             ));
-                    $this->session->set_flashdata('alert','เพิ่มอุปกรณ์สำเร็จ');
+                    $this->session->set_flashdata('alert','เพิ่มอุปกรณ์สำเร็จ :'.strtoupper($_POST['mac']));
+                    $this->session->set_flashdata('type','alert-success');
         			@header('Location: ' . $_SERVER['HTTP_REFERER']);
                 }else{
-                    echo 'รหัสอุปกรณ์ซ้ำ<br>';
-                    echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+                    $this->session->set_flashdata('alert','รหัสอุปกรณ์ซ้ำ :'.strtoupper($_POST['mac']));
+                    $this->session->set_flashdata('type','alert-danger');
+                    @header('Location: ' . $_SERVER['HTTP_REFERER']);
                 }
 
 			}else{
-				echo 'กรุณากรอกข้อมูลวิทยาเขต<br>';
-				echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+                $this->session->set_flashdata('alert','กรุณากรอกข้อมูล');
+                $this->session->set_flashdata('type','alert-warning');
+                @header('Location: ' . $_SERVER['HTTP_REFERER']);
 			}
 
 		}else{
 
-			echo 'กรุณากรอก Mac Address<br>';
-			echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+            $this->session->set_flashdata('alert','กรุณากรอก Mac Address');
+            $this->session->set_flashdata('type','alert-warning');
+            @header('Location: ' . $_SERVER['HTTP_REFERER']);
+			// echo 'กรุณากรอก Mac Address<br>';
+			// echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
 
 		}
 
@@ -310,7 +352,8 @@ class Student_page extends CI_Controller {
             'DATE'=>date('Y-m-d'),
             'TIME'=>date('H:i:s')
                 ));
-        $this->session->set_flashdata('alert','ลบอุปกรณ์เรียบร้อย');
+        $this->session->set_flashdata('alert','ลบอุปกรณ์เรียบร้อย :'.strtoupper($_POST['del']));
+        $this->session->set_flashdata('type','alert-info');
 		// AddLog(	$this->session->userdata('id')." was deleting his/her registered mac address" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
