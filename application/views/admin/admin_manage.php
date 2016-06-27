@@ -50,6 +50,7 @@
                 <form method="post" action="AddManualUser">
                 <div class="form-group">
                     <h3 class="thaisans bold" style="margin-top: 0">นักศึกษา</h3>
+                    <input type="text" name="statustype" value="student" hidden>
                     <label>ข้อมูลส่วนตัว</label>
                     <div>
                         <select class="form-control pname" required name="pname">
