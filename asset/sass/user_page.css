@@ -56,29 +56,29 @@
 .user-page .ch-device {
   position: relative;
   width: 100%;
-  height: 70px;
+  height: 50px;
   margin: 20px 0;
   /* hide input */ }
   .user-page .ch-device > label {
-    height: 70px;
-    width: 70px;
+    height: 50px;
+    width: 50px;
     background-color: transparent;
     font-size: 5em;
-    line-height: 70px;
+    line-height: 50px;
     text-align: center;
     left: 0;
     color: #D1D3D4;
     position: absolute; }
     .user-page .ch-device > label.mobile {
-      font-size: 3.3em; }
+      font-size: 3em; }
     .user-page .ch-device > label.tablet {
-      font-size: 4em;
-      line-height: 75px; }
+      font-size: 3em;
+      line-height: 55px; }
     .user-page .ch-device > label.laptop {
-      font-size: 3.5em; }
+      font-size: 2.8em; }
   .user-page .ch-device > input.text {
     width: 100%;
-    height: 70px;
+    height: 50px;
     padding-left: 75px;
     font-size: 2em;
     border-radius: 5px 0 0 5px;
@@ -86,9 +86,9 @@
     border-right: none;
     float: left; }
   .user-page .ch-device > button.button {
-    height: 70px;
-    line-height: 70px;
-    font-size: 3em;
+    height: 50px;
+    line-height: 50px;
+    font-size: 2.5em;
     padding: 0 10px;
     border: 2px solid #D1D3D4;
     border-radius: 0 5px 5px 0;
