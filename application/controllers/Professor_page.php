@@ -249,10 +249,12 @@ class Professor_page extends CI_Controller {
                             'TIME'=>date('H:i:s')
                                 ));
                          $this->session->set_flashdata("alert",'เพิ่มอุปกรณ์เรียบร้อย');
+                         $this->session->set_flashdata('type','alert-success');
 
                         @header('Location: ' . $_SERVER['HTTP_REFERER']);
                     }else{
                         $this->session->set_flashdata("alert",'หมายเลขอุปกรณ์ซ้ำ');
+                        $this->session->set_flashdata('type','alert-danger');
                         echo 'หมายเลขอุปกรณ์ซ้ำ <br>';
                         @header('Location: '.base_url().'professor');
                     }
@@ -291,7 +293,7 @@ class Professor_page extends CI_Controller {
                 ));
 
         $this->session->set_flashdata("alert",'ลบอุปกรณ์เรียบร้อย');
-		AddLog(	$this->session->userdata('id')." was deleting his/her registered mac address" );
+        $this->session->set_flashdata('type','alert-info');
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 

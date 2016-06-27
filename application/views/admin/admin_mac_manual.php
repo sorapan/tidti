@@ -91,9 +91,12 @@
                 <?php
                     if(!empty($this->session->userdata('alert'))){
                 ?>
-                    <span class="myalert"><?=$this->session->userdata('alert');?></span>
-
-                <?php }?>
+                    <span class="<?=$this->session->flashdata('type')?>" style="font-size: 1.2em;
+                        display: inline-block;
+                        padding: 5px 10px;border-radius: 5px;margin-left: 15px"><?=$this->session->userdata('alert')?></span>
+                <?php
+                }
+                ?>
                 </form>
             </div>
             <table class="table table-hover">

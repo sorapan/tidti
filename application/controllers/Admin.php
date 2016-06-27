@@ -147,9 +147,11 @@ class Admin extends CI_Controller {
 
 
 			$this->session->set_flashdata('alert', 'เพิ่มข้อมูลสำเร็จ');
+			$this->session->set_flashdata('type','alert-success');
 	        @header('Location:'.base_url().'admin/manage');
 	    }else{
 	    	$this->session->set_flashdata('alert', 'รหัสอุปกรณ์ หรือ macaddress ซ้ำ');
+	    	$this->session->set_flashdata('type','alert-danger');
 	    	@header('Location:'.base_url().'admin/manage');
 	    }
 
@@ -392,6 +394,7 @@ class Admin extends CI_Controller {
 			}
 
 		$this->session->set_flashdata('alert', 'ลบอุปกรณ์เรียบร้อย');
+		$this->session->set_flashdata('type','alert-info');
 		@header('Location: mac');
 	}
 
@@ -420,6 +423,7 @@ class Admin extends CI_Controller {
 	                    ));
 			}
 		$this->session->set_flashdata('alert', 'ลบอุปกรณ์เรียบร้อย');
+		$this->session->set_flashdata('type','alert-info');
 		@header('Location: macmanual');
 	}
 
@@ -485,6 +489,7 @@ class Admin extends CI_Controller {
 			}
 
 		$this->session->set_flashdata('alert','แก้ไขข้อมูลเรียบร้อย');
+		$this->session->set_flashdata('type','alert-info');
 
 		@header('Location:'.base_url().'admin/editMac?mac='.$where['oid']);
 
@@ -536,6 +541,7 @@ class Admin extends CI_Controller {
 	                    ));
 			}
 		$this->session->set_flashdata('alert','แก้ไขข้อมูลเรียบร้อย');
+		$this->session->set_flashdata('type','alert-info');
 
 		@header('Location:'.base_url().'admin/editMacManual?mac='.$where['username']);
 

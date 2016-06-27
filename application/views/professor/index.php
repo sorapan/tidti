@@ -164,19 +164,22 @@ if($this->session->userdata('detail_exists') == false){
                                 <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
                                   วิธีดู Mac address
                                 </button>
-                                <br>
-                                <a class="btn" data-toggle="modal" data-target="#myModalInternet">
+                                <a class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModalInternet">
                                   วิธีเชื่อมต่ออินเทอร์เน็ต
                                 </a>
                                 <br>
-                                <br>
 
-                            <!--/////////////////////////////////////////////////////////////////////////-->
-                            <?php if (!empty($this->session->userdata('alert'))): ?>
-                                    <div class="user_alert">
-                                        <h2 class="thaisans bold"><?=$this->session->userdata('alert')?></h2>
-                                    </div>
-                            <?php endif ?>
+
+
+                                <?php
+                                    if(!empty($this->session->userdata('alert'))){
+                                ?>
+                                    <h3 class="<?=$this->session->flashdata('type')?>" style="font-size: 1.2em;
+                                        display: inline-block;
+                                        padding: 5px 10px;border-radius: 5px;"><?=$this->session->userdata('alert')?></h3>
+                                <?php
+                                }
+                                ?>
 
                                 <form id="mac_submit" method="POST" action="professor/addmac">
 

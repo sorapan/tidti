@@ -37,11 +37,13 @@
             <li role="presentation" class="tab"><a href="#special" aria-controls="professor" role="tab" data-toggle="tab"><div>เพิ่มอุปกรณ์</div><i class="fa fa-user-secret" aria-hidden="true"></i><label>ผู้ใช้พิเศษ</label></a></li>
             </ul>
             <?php
-                if(!empty($this->session->flashdata('alert'))){
+                if(!empty($this->session->userdata('alert'))){
             ?>
-            <span class="managealert" style="margin-bottom: 10px;padding: 5px 50px;font-size: 1.2em; background-color: #c4ffd3;display: inline-block;"><?=$this->session->flashdata('alert');?></span>
+                <h3 class="<?=$this->session->flashdata('type')?>" style="font-size: 1.2em;
+                    display: inline-block;
+                    padding: 5px 10px;border-radius: 5px;"><?=$this->session->userdata('alert')?></h3>
             <?php
-                }
+            }
             ?>
             <br>
             <!-- นักศึกษา -->

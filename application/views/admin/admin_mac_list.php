@@ -76,18 +76,7 @@
                     ?>
                 </select>
                 <input type="text" class="input thaisans" name="search" value="<?=$search?>" title="ค้นหารหัสอุปกรณ์" placeholder="ค้นหารหัสอุปกรณ์" id="search">
-                <!-- <div class="btn-group">
-                <button class="button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   ค้นหา <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><button class="button" type="submit" name="type" value="">ค้นหา</button></li>
-                    <li role="separator" class="divider"></li>
-                    <li><button class="button" type="submit" name="type" value="macaddress">รหัสอุปกรณ์</button></li>
-                    <li><button class="button" type="submit" name="type" value="username">ชื่อผู้ใช้</button></li>
-                    <li><button class="button" type="submit" name="type" value="name">ชื่อนามสกุล</button></li>
-                  </ul>
-                </div> -->
+
 
                 <div class="btn-group" style="float: left">
                   <button type="submit" name="type" style="margin-right: 0;border-right: 0;" class="button btn">ค้นหา</button>
@@ -107,9 +96,12 @@
                 <?php
                     if(!empty($this->session->userdata('alert'))){
                 ?>
-                    <span class="myalert"><?=$this->session->userdata('alert');?></span>
-
-                <?php }?>
+                    <span class="<?=$this->session->flashdata('type')?>" style="font-size: 1.2em;
+                        display: inline-block;
+                        padding: 5px 10px;border-radius: 5px;margin-left: 15px"><?=$this->session->userdata('alert')?></span>
+                <?php
+                }
+                ?>
                 </form>
             </div>
             <table class="table table-hover">

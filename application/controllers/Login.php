@@ -176,7 +176,7 @@ class Login extends CI_Controller {
 									));
 						}
 
-						AddLog(	$this->session->userdata('username')." is logging in" );
+						// AddLog(	$this->session->userdata('username')." is logging in" );
 						@header("Location: professor");
 
 					}

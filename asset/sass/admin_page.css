@@ -28,7 +28,7 @@
     position: absolute; }
   .admin > .nav {
     height: 40px;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -36,7 +36,8 @@
     font-size: 1.6em;
     text-align: right;
     overflow: hidden;
-    line-height: 40px; }
+    line-height: 40px;
+    z-index: 999; }
     .admin > .nav > .username {
       color: #ff5f2e;
       padding: 0 15px;
@@ -61,8 +62,9 @@
   .admin > .sidebar {
     top: 40px;
     bottom: 0;
-    position: absolute;
-    background-color: #004e66; }
+    position: fixed;
+    background-color: #004e66;
+    z-index: 999; }
   .admin .menus > .logo {
     text-align: center;
     font-size: 1.7em;
