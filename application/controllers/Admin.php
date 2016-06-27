@@ -85,11 +85,11 @@ class Admin extends CI_Controller {
 						'location_id'=>$_POST['location_id'],
 						'year' => isset($_POST['year'])?$_POST['year']:'-'
 					));
-			
+
 
 			// $_POST['statustype'] = null!==$_POST['statustype']?$_POST['statustype']:'';
 
-			if($_POST['discipline']!=='-' && $_POST['statustype']=="student"){
+			if($_POST['discipline']!=='-' && $_POST['statustype']!=="special"){
 				$radvalue = date('Y-m-d',strtotime('+1 years')).'T'.date('H:i:s');
 			}else{
 				$radvalue = '0000-00-00T00:00:00';

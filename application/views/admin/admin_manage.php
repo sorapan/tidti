@@ -50,7 +50,6 @@
                 <form method="post" action="AddManualUser">
                 <div class="form-group">
                     <h3 class="thaisans bold" style="margin-top: 0">นักศึกษา</h3>
-                    <input type="text" name="statustype" value="student" hidden>
                     <label>ข้อมูลส่วนตัว</label>
                     <div>
                         <select class="form-control pname" required name="pname">
@@ -305,6 +304,7 @@
             <div role="tabpanel" class="tab-pane fade form" id="special">
                 <form method="post" action="AddManualUser">
                 <div class="form-group">
+                    <input class="text" name="statustype" value="special" hidden="">
                     <h3 class="thaisans bold" style="margin-top: 0">ผู้ใช้พิเศษ</h3>
                     <label for="exampleInputEmail1">ข้อมูลส่วนตัว</label>
                     <div>
@@ -344,14 +344,6 @@
                     <select class="form-control fac_select4" required name="department">
                         <option value="" disabled selected>*คณะ</option>
 
-                    <?php
-                    foreach($fac_data as $fd)
-                    {
-                    ?>
-                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
-                    <?php
-                    }
-                    ?>
 
                     </select>
                 </div>
@@ -359,14 +351,6 @@
                     <select class="form-control program_select4"  name="discipline">
                             <option value="" disabled selected>*สาขา</option>
 
-                       <!--  <?php
-                        foreach($program_data as $pd)
-                        {
-                        ?>
-                            <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
-                        <?php
-                        }
-                        ?> -->
 
                         </select>
                 </div>
