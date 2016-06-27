@@ -39,7 +39,7 @@
 
             <table class="table table-hover">
                 <thead>
-                    <th class="center">#</th>
+                    <th class="center">อุปกรณ์</th>
                     <th class="center">หมายเลข mac</th>
                     <th>ชื่อผู้ใช้</th>
                     <th>ชื่อ-นามสกุล</th>

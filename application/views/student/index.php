@@ -85,8 +85,8 @@ if($this->session->userdata('detail_exists') == false){
                                     <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" maxlength="12" placeholder="รหัสนักศึกษา">
                                 </div>
                                 <div class="form-group input-group">
-                                  <input type="text" class="form-control" placeholder="ปีการศึกษา" maxlength="4" pattern="0-9">
-                                  <span class="input-group-addon" style="background-color: #ddd">ปี ค.ศ. 1997</span>
+                                  <input type="text" class="form-control" placeholder="ปีการศึกษา" maxlength="4" pattern="[0-9]{4}">
+                                  <span class="input-group-addon" style="background-color: #ddd">ปี พ.ศ. 2559</span>
                                 </div>
 
                                 <div class="form-group">
@@ -153,6 +153,12 @@ if($this->session->userdata('detail_exists') == false){
                                   วิธีดู Mac address
                                 </button>
                                 <br>
+
+                                <a class="btn" data-toggle="modal" data-target="#myModal">
+                                  วิธีเชื่อมต่ออินเทอร์เน็ต
+                                </a>
+                                <br>
+
                             <!--/////////////////////////////////////////////////////////////////////////-->
                                 <?php
                                     if(!empty($this->session->userdata('alert'))){
@@ -221,7 +227,7 @@ if($this->session->userdata('detail_exists') == false){
                                 if($data_exists){
                             ?>
 
-                                <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+                                <form method="POST" action="student/deletemac" onsubmit="return confirm('ลบอุปกรณ์หมายเลข: <?=$data->macaddress?>)">
                                     <div class="ch-device activated">
                                         <input type="text" class="text opensans" disabled name="" value="<?=$data->macaddress?>" id="">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
@@ -274,7 +280,7 @@ if($this->session->userdata('detail_exists') == false){
                                 if($data_exists){
                             ?>
 
-                                <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+                                <form method="POST" action="student/deletemac" onsubmit="return confirm('ลบอุปกรณ์หมายเลข: <?=$data->macaddress?>);">
                                     <div class="ch-device activated">
                                         <input type="text" class="text opensans" disabled name="" value="<?=$data->macaddress?>" id="">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
@@ -311,10 +317,23 @@ if($this->session->userdata('detail_exists') == false){
                               </div>
                               <div class="modal-body">
                                 <div class="my-modal-text">
+                                    <h2>Windows</h2>
+                                    <div>
+                                    <p>1. กด "windows + R" เพื่อเปิดหน้าต่าง Run แล้วพิมพ์ "cmd" และคลิก "OK"</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/win1.jpg" align="middle" width="60%" height="auto"></div>
+                                    </div>
+                                    <div>
+                                    <p>2. ในหน้าต่าง cmd พิมพ์ "getmac /v" แล้วกด Enter
+                                "MAC addres" คือ Physical Address เลือกอันที่เป็นของอุปกรณ์ WI-FI ซึ่งจะอยู่ในรูปแบบ “C4-17-FE-FF-FF-FF″</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/win2.png" align="middle" width="90%" height="auto"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="my-modal-text">
                                     <h2>IOS</h2>
                                     <div>
                                     <p>ไปที่ "Settings" -> "General" -> "About" แล้วเลื่อนลงมา MAC address คือ "Wi-Fi Address"</p>
-                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_ios.png" align="middle" width="60%" height="60%"></div>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_ios.png" align="middle" width="60%" height="auto"></div>
                                     </div>
                                 </div>
                                 <br>
@@ -322,7 +341,7 @@ if($this->session->userdata('detail_exists') == false){
                                     <h2>Android</h2>
                                     <div>
                                     <p>ไปที่ "Settings" -> "About phone" -> "Status" แล้วเลื่อนลงมา MAC address คือ "Wi-Fi MAC Address"</p>
-                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_android.png" width="60%" height="60%"></div>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_android.png" width="60%" height="auto"></div>
                                     </div>
                                 </div>
                                 <br>
@@ -330,7 +349,7 @@ if($this->session->userdata('detail_exists') == false){
                                     <h2>Windows Phone</h2>
                                     <div>
                                     <p>ไปที่ "Settings" -> "about" -> "more info" </p>
-                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_wp.jpg" width="60%" height="60%"></div>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_wp.jpg" width="60%" height="auto"></div>
                                     </div>
                                 </div>
                                 <br>
@@ -338,11 +357,11 @@ if($this->session->userdata('detail_exists') == false){
                                     <h2>BlackBerry</h2>
                                     <div>
                                     <p>1. ไปที่ Options</p>
-                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_bb1.jpg" width="60%" height="60%"></div>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_bb1.jpg" width="60%" height="auto"></div>
                                     <p>2. เลื่อนลงไปเลือก Status </p>
-                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_bb2.jpg" width="60%" height="60%"></div>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_bb2.jpg" width="60%" height="auto"></div>
                                     <p>3. เลื่อนลงไปดูที่ WLAN MAC</p>
-                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_bb3.jpg" width="60%" height="60%"></div>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/mac_bb3.jpg" width="60%" height="auto"></div>
                                     </div>
                                 </div>
                               </div>
