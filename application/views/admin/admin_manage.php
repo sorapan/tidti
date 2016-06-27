@@ -405,6 +405,10 @@
 
 $(function(){
 
+    $(document).on("click",".tab",function(){
+        $('.managealert').remove();
+    });
+
     $(document).on( "change", ".location_select,.location_select2,.location_select3,.location_select4", function() {
         var location_class = $(this).attr('class').split(' ');
         var last_word = location_class[1][location_class[1].length-1];
