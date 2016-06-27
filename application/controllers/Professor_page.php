@@ -188,9 +188,9 @@ class Professor_page extends CI_Controller {
 
 
                         if($this->session->userdata('discipline')!=='-'){
-                            $radvalue = date('Y-m-d',strtotime('+1 years')).'T'.date('H:i:s');
+                            $radvalue = '0000-00-00T00:00:00';
                         }else{
-                            $radvalue = '';
+                            $radvalue = '0000-00-00T00:00:00';
                         }
 
                         $this->RadReplyCheckModel->AddRadReply(array(

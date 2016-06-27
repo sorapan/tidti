@@ -89,7 +89,7 @@ class Admin extends CI_Controller {
 			if($_POST['discipline']!=='-'){
 				$radvalue = date('Y-m-d',strtotime('+1 years')).'T'.date('H:i:s');
 			}else{
-				$radvalue = '';
+				$radvalue = '0000-00-00T00:00:00';
 			}
 			$this->RadReplyCheckModel->AddRadReply(array(
 					// รับค่าจาก POST
