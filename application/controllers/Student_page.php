@@ -28,9 +28,6 @@ class Student_page extends CI_Controller {
 	public function index()
 	{
 
-		$mac_registered_num = $this->MacModel->CountDataOnStdId($this->session->userdata('username'));
-		//$macdata = $this->MacModel->FetchDataWithSTDID($this->session->userdata('id'));
-		//$macdata = $this->RadOnlineProfileModel->getDataByStudentID($this->session->userdata('id'));
 		$macdata = $this->RadRegisterOnlineModel->GetDataByEpass($this->session->userdata('username'));
 		foreach($macdata as $key=>$val)
 		{

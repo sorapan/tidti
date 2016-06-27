@@ -54,7 +54,7 @@ class Admin extends CI_Controller {
 	public function searchToManageMac(){
 		// var_dump($_POST);
 		$search = $_POST['search'];
-		$data = $this->Admin_dataModel->GetDataToMange($_POST['search']);
+		$data = $this->Admin_dataModel->GetDataToManage($_POST['search']);
 		$this->load->view('admin/admin_mac_list',array('data'=> $data,'search'=> $search));
 	}
 

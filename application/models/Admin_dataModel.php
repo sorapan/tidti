@@ -8,14 +8,14 @@ class Admin_dataModel extends CI_Model {
         parent::__construct();
     }
 
-    function Login($user, $pass){
-        $this->db->select('*');
-        $this->db->from('admin_data');
-        $this->db->where('username',$user)->where('password',$pass);
-        return $this->db->get()->result();
-    }
+    // function Login($user, $pass){
+    //     $this->db->select('*');
+    //     $this->db->from('admin_data');
+    //     $this->db->where('username',$user)->where('password',$pass);
+    //     return $this->db->get()->result();
+    // }
 
-    function GetDataToMange($where){
+    function GetDataToManage($where){
         // return $where;
         $this->db->db_select('radius');
         $this->db->select('*');

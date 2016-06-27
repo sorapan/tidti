@@ -7,7 +7,7 @@ class E_passModel extends CI_Model {
         // Call the Model constructor
         parent::__construct();
     }
-
+// login check admin from admin_data table
     function AdminCheckLogin($user, $pass){
         $this->db->select('*');
         $this->db->from('admin_data');
@@ -16,6 +16,7 @@ class E_passModel extends CI_Model {
     }
 
 
+// login check uesr from e_pass table
     function CheckLogin($user, $pass)
     {
         $this->db->select('*');
