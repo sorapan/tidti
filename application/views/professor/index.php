@@ -164,7 +164,13 @@ if($this->session->userdata('detail_exists') == false){
                                 <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
                                   วิธีดู Mac address
                                 </button>
-                                <br><br>
+                                <br>
+                                <a class="btn" data-toggle="modal" data-target="#myModalInternet">
+                                  วิธีเชื่อมต่ออินเทอร์เน็ต
+                                </a>
+                                <br>
+                                <br>
+
                             <!--/////////////////////////////////////////////////////////////////////////-->
                             <?php if (!empty($this->session->userdata('alert'))): ?>
                                     <div class="user_alert">
@@ -201,7 +207,7 @@ if($this->session->userdata('detail_exists') == false){
                                  {
                                  ?>
 
-                                    <form method="POST" action="professor/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+                                    <form method="POST" action="professor/deletemac" onsubmit="return confirm('ลบอุปกรณ์หมายเลข: <?=$val->macaddress?> ?');">
                                         <div class="ch-device activated">
                                             <input type="text" class="text opensans" value="<?=$val->macaddress?>" disabled >
                                             <button class="button" type="submit"><i class="fa fa-trash-o"></i></button>
@@ -259,6 +265,35 @@ if($this->session->userdata('detail_exists') == false){
                               </div>
                               <div class="modal-body">
                                 <div class="my-modal-text">
+                                    <h2>Windows</h2>
+                                    <div>
+                                    <p>1. กด "windows + R" เพื่อเปิดหน้าต่าง Run แล้วพิมพ์ "cmd" และคลิก "OK"</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/win1.jpg" align="middle" width="60%" height="auto"></div>
+                                    </div>
+                                    <div>
+                                    <p>2. ในหน้าต่าง cmd พิมพ์ "getmac /v" แล้วกด Enter
+                                "MAC addres" คือ Physical Address เลือกอันที่เป็นของอุปกรณ์ WI-FI ซึ่งจะอยู่ในรูปแบบ “C4-17-FE-FF-FF-FF″</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/win2.png" align="middle" width="90%" height="auto"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="my-modal-text">
+                                    <h2>Mac OS</h2>
+                                    <div>
+                                    <p>1. กด Wi-Fi ไอคอน ด้านบนขวาของจอแล้วกด "Open Network References…"</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/macos1.jpg" align="middle" width="60%" height="auto"></div>
+                                    </div>
+                                    <div>
+                                    <p>2. กด "Advanced…" ในหน้าต่าง Network</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/macos2.jpg" align="middle" width="60%" height="auto"></div>
+                                    </div>
+                                    <div>
+                                    <p>3. MAC address คือ "Wi-Fi Address"</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/macos3.jpg" align="middle" width="90%" height="auto"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="my-modal-text">
                                     <h2>IOS</h2>
                                     <div>
                                     <p>ไปที่ "Settings" -> "General" -> "About" แล้วเลื่อนลงมา MAC address คือ "Wi-Fi Address"</p>
@@ -291,6 +326,32 @@ if($this->session->userdata('detail_exists') == false){
                                     <div class="img"><img src="<?=asset_url()?>/pic/mac_bb2.jpg" width="60%" height="60%"></div>
                                     <p>3. เลื่อนลงไปดูที่ WLAN MAC</p>
                                     <div class="img"><img src="<?=asset_url()?>/pic/mac_bb3.jpg" width="60%" height="60%"></div>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="modal fade my-modal" id="myModalInternet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog my-modal-content" role="document">
+                            <div class="modal-content  my-modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title thaisans" style="font-size: 2.2em" id="myModalLabel">วิธีดู Mac address</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="my-modal-text">
+                                    <h2>เชื่อมต่ออินเทอร์เน็ต Srivijaya Wifi</h2>
+                                    <div>
+                                    <p style="font-size:1.1em">1.นำเมาส์ไปคลิก เพื่อดูสัญญาณ Wifi ตัวที่จะเชื่อมต่อหรือไม่?</p>
+                                    <p style="font-size:1.1em">2.นำเมาส์ไปคลิกสัญญาณ Wifi ที่มีชื่อว่า Srivijaya wifi ซึ่งเป็น wifi ของมหาลัย</p>
+                                    <p style="font-size:1.1em">3.กดปุ่ม Connect เพื่อทำการเชื่อมต่อสัญญาณ</p>
+                                    <p style="font-size:1em">***หมายเหตุ : การเชื่อมต่อ wifi แบบนี้จะเชื่อมต่อได้เฉพาะเครื่องที่ลงทะเบียน Mac-Address กับมหาลัยแล้วเท่านั้น</p>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/internet.png" align="middle" width="100%" height="auto"></div>
                                     </div>
                                 </div>
                               </div>
