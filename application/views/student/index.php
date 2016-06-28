@@ -85,7 +85,7 @@ if($this->session->userdata('detail_exists') == false){
                                     <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" maxlength="12" placeholder="รหัสนักศึกษา">
                                 </div>
                                 <div class="form-group input-group">
-                                  <input type="text" class="form-control" placeholder="ปีการศึกษา" maxlength="4" pattern="[0-9]{4}">
+                                  <input type="text" name="year" class="form-control" placeholder="ปีการศึกษา" maxlength="4" pattern="[0-9]{4}">
                                   <span class="input-group-addon" style="background-color: #ddd">ปี พ.ศ. 2559</span>
                                 </div>
 
