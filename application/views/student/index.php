@@ -54,6 +54,17 @@
                     <h2 class="thaisans">ลงทะเบียน mac-address เพื่อรับสัญญาณ Internet</h2>
                 </div>
 
+
+                    <?php
+                        if(!empty($this->session->userdata('alert'))){
+                    ?>
+                        <h3 class="<?=$this->session->flashdata('type')?>" style="font-size: 1.2em;
+                            display: inline-block;
+                            padding: 5px 10px;border-radius: 5px;margin-left: 15px"><?=$this->session->userdata('alert')?></h3>
+                    <?php
+                    }
+                    ?>
+
                 <!-- //////////////////////////////////////////////////////////// -->
                 <!-- ////////////            alert                  ////////////// -->
                 <div class="content col-xs-10">
@@ -159,15 +170,7 @@ if($this->session->userdata('detail_exists') == false){
                                 <br>
 
                             <!--/////////////////////////////////////////////////////////////////////////-->
-                                <?php
-                                    if(!empty($this->session->userdata('alert'))){
-                                ?>
-                                    <h3 class="<?=$this->session->flashdata('type')?>" style="font-size: 1.2em;
-                                        display: inline-block;
-                                        padding: 5px 10px;border-radius: 5px;"><?=$this->session->userdata('alert')?></h3>
-                                <?php
-                                }
-                                ?>
+
                                 <h3 class="thaisans bold">คอมพิวเตอร์/โน็ตบุ๊ค</h3>
 
                             <?php

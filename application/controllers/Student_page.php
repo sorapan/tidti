@@ -56,7 +56,7 @@ class Student_page extends CI_Controller {
             'mailaddr' => $_POST['email'],
             'status' => 'อาจารย์',
             'idcard' => $_POST['citizen_id'],
-            'location_id' => $_POST['location'],
+            'location_id' => isset($_POST['location'])?$_POST['location']:null,
             'department' => isset($_POST['department'])?$_POST['department']:null,
 			'dateregis' => date('Y-m-d H:i:s'),
             'encryption' => '-'
@@ -114,21 +114,19 @@ class Student_page extends CI_Controller {
         }
         else
         {
-            var_dump($data_insert);
-            echo 'กรุณากรอกข้อมูลให้ครบ<br>';
-            echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+            // var_dump($data_insert);
+            $this->session->set_flashdata('alert','กรุณากรอกข้อมูลให้ครบ');
+            $this->session->set_flashdata('type','alert-danger');
+            @header('Location: ' . $_SERVER['HTTP_REFERER']);
+            // echo 'กรุณากรอกข้อมูลให้ครบ<br>';
+            // echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
         }
 
     }
 
     public function moveDataManualToOnline($where,$location){
-        // $where = array(
-        //     'firstname' => 'test3',
-        //     'lastname' => 'test3',
-        //     'idcard' => '2222222222211'
-        //     );
         $count = $this->ManualUserModel->GetDataManualUserByWhere($where);
-        var_dump( $count);
+        // var_dump( $count);
         if(!empty($count)){
             $register_data = array(
                     'username' => $this->session->userdata('username'),
@@ -150,6 +148,8 @@ class Student_page extends CI_Controller {
                 'DATE'=>date('Y-m-d'),
                 'TIME'=>date('H:i:s')
                     ));
+        }else{
+            return FALSE;
         }
     }
 
@@ -228,29 +228,6 @@ class Student_page extends CI_Controller {
 
 
 
-                    //ของเดิม
-        			// $this->RadReplyCheckModel->AddRadReply(array(
-        			// 		// รับค่าจาก POST
-        			// 		'username' => $_POST['mac'],
-        			// 		// ส่วนที่แก้ไข
-        			// 		'attribute' => 'WISPr-Session-Terminate-Time',
-        			// 		// ส่วนที่แก้ไข
-        			// 		'op' => '-',
-        			// 		// ส่วนที่แก้ไข
-        			// 		'value'=> '-'
-        			// 	));
-
-        			// // อาจจะมีการแก้ไขในภายหน้า
-        			// $this->RadReplyCheckModel->AddRadCheck(array(
-        			// 		// รับค่าจาก POST
-        			// 		'username' => $_POST['mac'],
-        			// 		// ส่วนที่แก้ไข
-        			// 		'attribute' => '-',
-        			// 		// ส่วนที่แก้ไข
-        			// 		'op' => '-',
-        			// 		// ส่วนที่แก้ไข
-        			// 		'value'=> '-'
-        			// 	));
 
         			$this->RadOnlineProfileModel->AddData(
         			$profile_data,
