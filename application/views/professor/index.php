@@ -73,6 +73,16 @@
                     <h2 class="thaisans">ลงทะเบียน mac-address เพื่อรับสัญญาณ Internet</h2>
                 </div>
 
+                <?php
+                    if(!empty($this->session->userdata('alert'))){
+                ?>
+                    <h3 class="<?=$this->session->flashdata('type')?>" style="font-size: 1.2em;
+                        display: inline-block;
+                        padding: 5px 10px;border-radius: 5px;margin-left: 15px"><?=$this->session->userdata('alert')?></h3>
+                <?php
+                }
+                ?>
+
                 <!-- //////////////////////////////////////////////////////////// -->
                 <!-- ////////////            alert                  ////////////// -->
 
@@ -171,15 +181,7 @@ if($this->session->userdata('detail_exists') == false){
 
 
 
-                                <?php
-                                    if(!empty($this->session->userdata('alert'))){
-                                ?>
-                                    <h3 class="<?=$this->session->flashdata('type')?>" style="font-size: 1.2em;
-                                        display: inline-block;
-                                        padding: 5px 10px;border-radius: 5px;"><?=$this->session->userdata('alert')?></h3>
-                                <?php
-                                }
-                                ?>
+
 
                                 <form id="mac_submit" method="POST" action="professor/addmac">
 
@@ -229,34 +231,6 @@ if($this->session->userdata('detail_exists') == false){
                                  <?php
                                   }
                                  ?>
-                                <!--<form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
-                                    <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="" id="laptop">
-                                        <button class="button"><i class="fa fa-trash-o"></i></button>
-                                        <label for="laptop" class="laptop"><i class="fa fa-laptop active"></i></label>
-                                    </div>
-                                    <input type="hidden" name="del" value=">">
-                                </form>-->
-
-                                    <!-- ///////////////////// -->
-                                <!--<form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
-                                    <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="" id="laptop">
-                                        <button class="button"><i class="fa fa-trash-o"></i></button>
-                                        <label for="phone" class="phone"><i class="fa fa-mobile active"></i></label>
-                                    </div>
-                                    <input type="hidden" name="del" value=">">
-                                </form>-->
-
-                                <!-- ///////////////////// -->
-                                <!--<form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
-                                    <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="" id="laptop">
-                                        <button class="button"><i class="fa fa-trash-o"></i></button>
-                                        <label for="tablet" class="tablet"><i class="fa fa-tablet active"></i></label>
-                                    </div>
-                                    <input type="hidden" name="del" value=">">
-                                </form>-->
 
                         <!-- Modal -->
                         <div class="modal fade my-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
