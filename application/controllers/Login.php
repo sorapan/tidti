@@ -51,11 +51,13 @@ class Login extends CI_Controller {
     public function LoginCheck()
     {
     	// @header("Location: student");
-        $res = $this->E_passModel->CheckLogin($_POST['e_pass'],$_POST['pass']);
+        //$res = $this->E_passModel->CheckLogin($_POST['e_pass'],$_POST['pass']);
+		$res = $this->login($_POST['e_pass'],$_POST['pass']);
         // var_dump($res);
         // $status = $res
 
-				if(empty($res))
+				//if(empty($res))
+				if(!$res)
 				{
 					$this->session->set_flashdata('alert','ชื่อผู้ใช้หรือรหัสผิด');
 					@header('Location:'.base_url());
@@ -63,7 +65,8 @@ class Login extends CI_Controller {
 				else
 				{
 
-					if (strpos($res[0]->usre, ".") == false) {
+					if (strpos($_POST['e_pass'], ".") == false)
+					{
 
 
 						//var_dump($res);
@@ -74,7 +77,7 @@ class Login extends CI_Controller {
 						$std_data = $this->RadOnlineProfileModel->getDataByUsername($_POST['e_pass']);
 
 						//var_dump($std_data);
-					if(!empty($std_data))
+						if(!empty($std_data))
 						{
 						foreach($std_data as $sd)
 							{
@@ -121,9 +124,9 @@ class Login extends CI_Controller {
 						@header("Location: student");
 
 					}
-					else if($res['status'] == 'admin'){
-						$ad_data = $this->Admin_dataModel->Login($_POST['e_pass'],$_POST['pass']);
-					}
+					// else if($res['status'] == 'admin'){
+					// 	$ad_data = $this->Admin_dataModel->Login($_POST['e_pass'],$_POST['pass']);
+					// }
 					else
 					{
 						$stf_data = $this->RadOnlineProfileModel->getDataByUsername($_POST['e_pass']);
@@ -157,7 +160,7 @@ class Login extends CI_Controller {
 								'DATE'=>date('Y-m-d'),
 								'TIME'=>date('H:i:s')
 									));
-
+							@header("Location: student");
 						}
 						else
 						{
@@ -182,6 +185,44 @@ class Login extends CI_Controller {
 					}
 
 				}
+		}
+
+
+
+		//PRIVATE
+
+		private function login($user,$passwd)
+		{
+
+			$ldapserver = "ldap://ldap.rmutsv.ac.th";
+			//$ldapserver = "ldap://203.158.177.202"; // test ระบบ
+			$ldapport = 389;
+			$ldapbasedn = "dc=rmutsv,dc=ac,dc=th";
+			//$ldapadmin = 'uid=arnn.l,ou=people,ou=staff,ou=arit,ou=e-passport,dc=rmutsv,dc=ac,dc=th';
+
+			$encoding = "md5crypt";
+
+			if(!($ds = ldap_connect($ldapserver, $ldapport)))  return FALSE;
+			ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+			if(!($r=ldap_bind($ds)))  return FALSE;
+			if(!($sr=ldap_search($ds, $ldapbasedn, "(uid=$user)")))  return FALSE;
+
+			$entry_count = ldap_count_entries($ds, $sr);
+
+			if($entry_count != 1 )  return FALSE;
+			if (!($entry = ldap_first_entry($ds, $sr)))  return FALSE;
+			if (!($dn = ldap_get_dn($ds, $entry)))  return FALSE;
+
+			ldap_close($ds);
+
+			$ds = ldap_connect($ldapserver,$ldapport);
+			ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+
+			if(!($b = ldap_bind($ds,$dn,$passwd)))  return FALSE;
+
+			ldap_close($ds);
+
+			return TRUE;
 		}
 
 }
