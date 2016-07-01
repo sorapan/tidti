@@ -59,7 +59,8 @@ class Student_page extends CI_Controller {
             'location_id' => isset($_POST['location'])?$_POST['location']:null,
             'department' => isset($_POST['department'])?$_POST['department']:null,
 			'dateregis' => date('Y-m-d H:i:s'),
-            'encryption' => '-'
+            'encryption' => '-',
+            'year'=>$_POST['year']
         );
 
 
@@ -314,7 +315,7 @@ class Student_page extends CI_Controller {
 		//$this->RadRegisterOnlineModel->DeleteDataByStudentID($this->session->userdata('id'));
 		$this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
 		$this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
-
+		$this->RadReplyCheckModel->DeleteRad($_POST['del']);
 		// $device_data = $this->RadRegisterOnlineModel->GetDataByEpass('s'.$this->session->userdata('id'));
 
 		// if($device_data == null)$this->RadOnlineProfileModel->DeleteDataByStudentID($this->session->userdata('id'));
