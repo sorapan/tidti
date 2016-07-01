@@ -22,7 +22,7 @@
                 </div>
  -->
 
-                <form method="post" class="form  col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" action="std_logincheck">
+                <form method="post" class="form  col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" action="index.php/std_logincheck">
                 <!-- <div class="form  col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10"> -->
                     <div class="head">
                         <h2 class="thaisans bold">เข้าสู่ระบบ</h2><?php
