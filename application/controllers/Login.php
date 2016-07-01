@@ -69,11 +69,6 @@ class Login extends CI_Controller {
 					{
 
 
-						//var_dump($res);
-						//echo $res[0]->usre."<br>";
-						//echo $res[0]->pass."<br>";
-						//echo explode("s",$res[0]->usre)[1];
-
 						$std_data = $this->RadOnlineProfileModel->getDataByUsername($_POST['e_pass']);
 
 						//var_dump($std_data);
@@ -97,11 +92,6 @@ class Login extends CI_Controller {
 								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
 							}
 
-						//เพิ่มใหม่
-							// $this->session->set_userdata('username',$res[0]->usre);
-							// $this->session->set_userdata('status',$res[0]->status);
-							// $this->session->set_userdata('location_id',$res[0]->location_id);
-
 						}
 						else{
 
@@ -124,9 +114,6 @@ class Login extends CI_Controller {
 						@header("Location: student");
 
 					}
-					// else if($res['status'] == 'admin'){
-					// 	$ad_data = $this->Admin_dataModel->Login($_POST['e_pass'],$_POST['pass']);
-					// }
 					else
 					{
 						$stf_data = $this->RadOnlineProfileModel->getDataByUsername($_POST['e_pass']);
@@ -160,7 +147,6 @@ class Login extends CI_Controller {
 								'DATE'=>date('Y-m-d'),
 								'TIME'=>date('H:i:s')
 									));
-							@header("Location: student");
 						}
 						else
 						{
@@ -179,7 +165,6 @@ class Login extends CI_Controller {
 									));
 						}
 
-						// AddLog(	$this->session->userdata('username')." is logging in" );
 						@header("Location: professor");
 
 					}
