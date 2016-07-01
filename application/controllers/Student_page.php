@@ -2,38 +2,38 @@
 
 class Student_page extends CI_Controller {
 
-	public function __construct()
-	{
-		date_default_timezone_set("Asia/Bangkok");
-		parent::__construct();
+    public function __construct()
+    {
+        date_default_timezone_set("Asia/Bangkok");
+        parent::__construct();
 
-		if(!$this->session->userdata('login')){
-			@header('Location: ' . base_url());
-		}
+        if(!$this->session->userdata('login')){
+            @header('Location: ' . base_url());
+        }
 
-		$this->load->model('E_passModel');
-		// $this->load->model('Uoc_stdModel');
-		$this->load->model('MacModel');
-		$this->load->model('RadAccountModel');
-		$this->load->model('RadDeviceModel');
-		$this->load->model('RadOnlineProfileModel');
-		$this->load->model('RadRegisterOnlineModel');
-		$this->load->model('RadSKOModel');
-		$this->load->model('LogModel');
-		$this->load->model('RadReplyCheckModel');
+        $this->load->model('E_passModel');
+        // $this->load->model('Uoc_stdModel');
+        $this->load->model('MacModel');
+        $this->load->model('RadAccountModel');
+        $this->load->model('RadDeviceModel');
+        $this->load->model('RadOnlineProfileModel');
+        $this->load->model('RadRegisterOnlineModel');
+        $this->load->model('RadSKOModel');
+        $this->load->model('LogModel');
+        $this->load->model('RadReplyCheckModel');
         $this->load->model('ManualUserModel');
 
-	}
+    }
 
-	public function index()
-	{
+    public function index()
+    {
 
-		$macdata = $this->RadRegisterOnlineModel->GetDataByEpass($this->session->userdata('username'));
-		foreach($macdata as $key=>$val)
-		{
-			$macdata[$key]->device = $this->RadDeviceModel->GetDataByMac($val->macaddress)[0]->dev_type;
-		}
-		$this->load->view('student/index',array(
+        $macdata = $this->RadRegisterOnlineModel->GetDataByEpass($this->session->userdata('username'));
+        foreach($macdata as $key=>$val)
+        {
+            $macdata[$key]->device = $this->RadDeviceModel->GetDataByMac($val->macaddress)[0]->dev_type;
+        }
+        $this->load->view('student/index',array(
             'mac_data' => $macdata,
             'fac_data' => $this->RadSKOModel->getFacData(),
             'program_data' => $this->RadSKOModel->getProgramData(),
@@ -41,13 +41,13 @@ class Student_page extends CI_Controller {
             'location_data' => $this->RadSKOModel->getLocationData()
         ));
 
-	}
+    }
 
-	public function submit_detail()
+    public function submit_detail()
     {
 
         $data_insert = array(
-            'username' => $this->session->userdata('username'),
+            'username' => strtolower($this->session->userdata('username')),
             'password' => '-',
             'pname' => isset($_POST['pname'])?$_POST['pname']:null,
             'firstname' => $_POST['firstname'],
@@ -77,7 +77,7 @@ class Student_page extends CI_Controller {
                 );
             $this->moveDataManualToOnline($where,$_POST['location']);
 
-			//add log
+            //add log
             $this->LogModel->AddEventLog(array(
                 'USERNAME'=>$this->session->userdata('username'),
                 'STATUS'=>'user',
@@ -134,7 +134,7 @@ class Student_page extends CI_Controller {
                     'macaddress' => $count[0]->username,
                     'addtime' => $count[0]->dateregis,
                     'updatetime' => '',
-                    'status_on' => 'staff'
+                    'status_on' => 'student'
                 );
             $this->RadOnlineProfileModel->AddRegisterProfile($register_data);
             $this->ManualUserModel->DeleteManual($count[0]->username);
@@ -155,13 +155,13 @@ class Student_page extends CI_Controller {
     }
 
 
-	public function getprogram()
-	{
+    public function getprogram()
+    {
 
-		$data = $this->RadSKOModel->getProgramDataByFac($_POST['data']);
-		echo json_encode($data);
+        $data = $this->RadSKOModel->getProgramDataByFac($_POST['data']);
+        echo json_encode($data);
 
-	}
+    }
     public function getLocationFacData(){
         $data = $this->RadSKOModel->getLocationFacData($_POST['data']);
         // var_dump($data);
@@ -184,64 +184,61 @@ class Student_page extends CI_Controller {
     }
 
 
-	public function add_mac()
-	{
-		if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
-		{
+    public function add_mac()
+    {
+        if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
+        {
             $_POST['mac'] = strtoupper($_POST['mac']);
-			if($this->session->userdata('location') )
-			{
+            if($this->session->userdata('location') )
+            {
 
-			// $this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
-			// AddLog(	$this->session->userdata('id')." is adding mac address" );
-			// @header('Location: ' . $_SERVER['HTTP_REFERER']);
+            // $this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
+            // AddLog(  $this->session->userdata('id')." is adding mac address" );
+            // @header('Location: ' . $_SERVER['HTTP_REFERER']);
 
-			$epass = $this->session->userdata('username');
-			$checkprofileexist = $this->RadOnlineProfileModel->CheckExistDataByStudentID($this->session->userdata('id'));
-			$profile_data = array();
+            $epass = $this->session->userdata('username');
+            $checkprofileexist = $this->RadOnlineProfileModel->CheckExistDataByStudentID($this->session->userdata('id'));
+            $profile_data = array();
 
-			if(!$checkprofileexist)
-			{
-				$profile_data = array(
-					'username' => $epass,
-					//'password' => null,
-					'pname' => $this->session->userdata('prefix_name_id'),
-					'firstname' => $this->session->userdata('firstname'),
-					'lastname' => $this->session->userdata('lastname'),
-					'idcard' => $this->session->userdata('id'),
-					'mailaddr' => $this->session->userdata('email'),
-					'discipline' => '',
-					'department' => '',
-					'year' => '-',
-					'dateregis' => date('Y-m-d H:i:s',time()),
-					'status' => 'นักศึกษา',
-					'location_id' => $this->session->userdata('location')
-				);
-			}
-			else
-			{
-				$profile_data = null;
-			}
+            if(!$checkprofileexist)
+            {
+                $profile_data = array(
+                    'username' => $epass,
+                    //'password' => null,
+                    'pname' => $this->session->userdata('prefix_name_id'),
+                    'firstname' => $this->session->userdata('firstname'),
+                    'lastname' => $this->session->userdata('lastname'),
+                    'idcard' => $this->session->userdata('id'),
+                    'mailaddr' => $this->session->userdata('email'),
+                    'discipline' => '',
+                    'department' => '',
+                    'year' => '-',
+                    'dateregis' => date('Y-m-d H:i:s',time()),
+                    'status' => 'นักศึกษา',
+                    'location_id' => $this->session->userdata('location')
+                );
+            }
+            else
+            {
+                $profile_data = null;
+            }
 
 
                 $count_mac = $this->RadRegisterOnlineModel->DuplicateCheck($_POST['mac']);
                 if($count_mac<=0){
 
-
-
-
-        			$this->RadOnlineProfileModel->AddData(
-        			$profile_data,
-        			array(
-        				'UserName' => $_POST['mac'],
-        				'dev_type' => $_POST['device'],
-        				'dev_net_type' => "Wireless"
-        			),
-        			array(
-        				'username' => $epass,
-        				'macaddress' => $_POST['mac'],
-        				'status_on' => 'user'
-        			));
+                    $this->RadOnlineProfileModel->AddData(
+                    $profile_data,
+                    array(
+                        'UserName' => $_POST['mac'],
+                        'dev_type' => $_POST['device'],
+                        'dev_net_type' => "Wireless"
+                    ),
+                    array(
+                        'username' => $epass,
+                        'macaddress' => $_POST['mac'],
+                        'status_on' => 'student'
+                    ));
 
 
                     if($this->session->userdata('discipline')!=='-'){
@@ -284,41 +281,41 @@ class Student_page extends CI_Controller {
                             ));
                     $this->session->set_flashdata('alert','เพิ่มอุปกรณ์สำเร็จ :'.strtoupper($_POST['mac']));
                     $this->session->set_flashdata('type','alert-success');
-        			@header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    @header('Location: ' . $_SERVER['HTTP_REFERER']);
                 }else{
                     $this->session->set_flashdata('alert','รหัสอุปกรณ์ซ้ำ :'.strtoupper($_POST['mac']));
                     $this->session->set_flashdata('type','alert-danger');
                     @header('Location: ' . $_SERVER['HTTP_REFERER']);
                 }
 
-			}else{
+            }else{
                 $this->session->set_flashdata('alert','กรุณากรอกข้อมูล');
                 $this->session->set_flashdata('type','alert-warning');
                 @header('Location: ' . $_SERVER['HTTP_REFERER']);
-			}
+            }
 
-		}else{
+        }else{
 
             $this->session->set_flashdata('alert','กรุณากรอก Mac Address');
             $this->session->set_flashdata('type','alert-warning');
             @header('Location: ' . $_SERVER['HTTP_REFERER']);
-			// echo 'กรุณากรอก Mac Address<br>';
-			// echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+            // echo 'กรุณากรอก Mac Address<br>';
+            // echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
 
-		}
+        }
 
-   	}
+    }
 
-	public function delete_mac()
-	{
-		//$this->RadAccountModel->DeleteDataByIDCard($this->session->userdata('id'),$_POST['del']);
-		//$this->RadRegisterOnlineModel->DeleteDataByStudentID($this->session->userdata('id'));
-		$this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
-		$this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
-		$this->RadReplyCheckModel->DeleteRad($_POST['del']);
-		// $device_data = $this->RadRegisterOnlineModel->GetDataByEpass('s'.$this->session->userdata('id'));
+    public function delete_mac()
+    {
+        //$this->RadAccountModel->DeleteDataByIDCard($this->session->userdata('id'),$_POST['del']);
+        //$this->RadRegisterOnlineModel->DeleteDataByStudentID($this->session->userdata('id'));
+        $this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
+        $this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
+        $this->RadReplyCheckModel->DeleteRad($_POST['del']);
+        // $device_data = $this->RadRegisterOnlineModel->GetDataByEpass('s'.$this->session->userdata('id'));
 
-		// if($device_data == null)$this->RadOnlineProfileModel->DeleteDataByStudentID($this->session->userdata('id'));
+        // if($device_data == null)$this->RadOnlineProfileModel->DeleteDataByStudentID($this->session->userdata('id'));
         $this->LogModel->AddEventLog(array(
             'USERNAME'=>$this->session->userdata('username'),
             'STATUS'=>'user',
@@ -329,15 +326,15 @@ class Student_page extends CI_Controller {
                 ));
         $this->session->set_flashdata('alert','ลบอุปกรณ์เรียบร้อย :'.strtoupper($_POST['del']));
         $this->session->set_flashdata('type','alert-info');
-		// AddLog(	$this->session->userdata('id')." was deleting his/her registered mac address" );
-		@header('Location: ' . $_SERVER['HTTP_REFERER']);
-	}
+        // AddLog(  $this->session->userdata('id')." was deleting his/her registered mac address" );
+        @header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 
-	public function signout()
-	{
+    public function signout()
+    {
         var_dump($this->session);
         // $location = $this->session->userdata('location_id');
-		$this->LogModel->AddEventLog(array(
+        $this->LogModel->AddEventLog(array(
             'USERNAME'=>$this->session->userdata('username'),
             'STATUS'=>'user',
             'LOCATION'=> null!==$this->session->userdata('location_id')?$this->session->userdata('location_id'):"-",
@@ -346,9 +343,9 @@ class Student_page extends CI_Controller {
             'TIME'=>date('H:i:s')
                 ));
 
-		$this->session->sess_destroy();
-		// AddLog(	$this->session->userdata('id')." was logging out" );
-		@header('Location: ' . $_SERVER['HTTP_REFERER']);
-	}
+        $this->session->sess_destroy();
+        // AddLog(  $this->session->userdata('id')." was logging out" );
+        @header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 
 }
