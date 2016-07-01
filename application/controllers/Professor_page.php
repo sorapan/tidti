@@ -41,17 +41,6 @@ class Professor_page extends CI_Controller {
 
     public function submit_detail()
     {
-        // {
-        // $_POST['pname'];
-        // $_POST['firstname'];
-        // $_POST['lastname'];
-        // $_POST['email'];
-        // $_POST['citizen_id'];
-        // $_POST['department'];
-        // $_POST['branch'];
-        // $_POST['group'];
-        // $_POST['location'];
-        // }
 
         $data_insert = array(
             'username' => $this->session->userdata('username'),
@@ -60,13 +49,14 @@ class Professor_page extends CI_Controller {
             'firstname' => $_POST['firstname'],
             'lastname' => $_POST['lastname'],
             'discipline' => isset($_POST['branch'])?$_POST['branch']:'-',
-            'mailaddr' => $_POST['email'],
-            'status' => 'อาจารย์',
+            'mailaddr' => isset($_POST['email'])?$_POST['email']:'-',
+            'status' => $_POST['group'],
             'idcard' => $_POST['citizen_id'],
             'location_id' => $_POST['location'],
             'department' => isset($_POST['department'])?$_POST['department']:'-',
             'dateregis' => date('Y-m-d H:i:s'),
-            'encryption' => '-'
+            'encryption' => '-',
+            'year'=>'-'
         );
 
 
@@ -77,7 +67,8 @@ class Professor_page extends CI_Controller {
             $where = array(
                 'firstname' => $_POST['firstname'],
                 'lastname' => $_POST['lastname'],
-                'idcard' => $_POST['citizen_id']
+                'idcard' => $_POST['citizen_id'],
+                'status_on' => $_POST['type']
                 );
             $this->moveDataManualToOnline($where,$_POST['location']);
 
@@ -119,9 +110,9 @@ class Professor_page extends CI_Controller {
         }
         else
         {
-            var_dump($data_insert);
-            echo 'กรุณากรอกข้อมูลให้ครบ<br>';
-            echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+            $this->session->set_flashdata('alert','กรุณากรอกข้อมูลให้ครบ');
+            $this->session->set_flashdata('type','alert-danger');
+            @header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
     }
@@ -139,9 +130,9 @@ class Professor_page extends CI_Controller {
                     'username' => $this->session->usesdata('username'),
                     'macaddress' => $count[0]->username,
                     'addtime' => $count[0]->dateregis,
-                    'status_on' => 'staff'
+                    'status_on' => $where->status_on
                 );
-            $this->RadOnlineProfileModel->AddDataWithoutProfile($device_data,$register_data);
+            $this->RadOnlineProfileModel->AddRegisterProfile($register_data);
             $this->ManualUserModel->DeleteManual($count[0]->username);
             // echo $count[0]->username;
             // var_dump($count);
@@ -174,6 +165,8 @@ class Professor_page extends CI_Controller {
                     $count_mac = $this->RadRegisterOnlineModel->DuplicateCheck($_POST['mac']);
 
                     if($count_mac<=0){
+
+                        $status_on = $this->session->userdata('discipline')!=='-'?'teacher':'staff';
                         $this->RadOnlineProfileModel->AddDataWithoutProfile(
                         array(
                             'UserName' => $_POST['mac'],
@@ -183,7 +176,7 @@ class Professor_page extends CI_Controller {
                         array(
                             'username' => $this->session->userdata('username'),
                             'macaddress' => $_POST['mac'],
-                            'status_on' => 'staff'
+                            'status_on' =>  $status_on
                         ));
 
 
@@ -216,29 +209,6 @@ class Professor_page extends CI_Controller {
                                 'value'=> 'Liu;b=yp;kpakp'
                             ));
 
-                        // ของเก่า
-                        // $this->RadReplyCheckModel->AddRadReply(array(
-                        //         // รับค่าจาก POST
-                        //         'username' => $_POST['mac'],
-                        //         // ส่วนที่แก้ไข
-                        //         'attribute' => 'WISPr-Session-Terminate-Time',
-                        //         // ส่วนที่แก้ไข
-                        //         'op' => '-',
-                        //         // ส่วนที่แก้ไข
-                        //         'value'=> '-'
-                        //     ));
-
-                        // // อาจจะมีการแก้ไขในภายหน้า
-                        // $this->RadReplyCheckModel->AddRadCheck(array(
-                        //         // รับค่าจาก POST
-                        //         'username' => $_POST['mac'],
-                        //         // ส่วนที่แก้ไข
-                        //         'attribute' => '-',
-                        //         // ส่วนที่แก้ไข
-                        //         'op' => '-',
-                        //         // ส่วนที่แก้ไข
-                        //         'value'=> '-'
-                        //     ));
 
                         $this->LogModel->AddEventLog(array(
                             'USERNAME'=>$this->session->userdata('username'),
@@ -255,26 +225,30 @@ class Professor_page extends CI_Controller {
                     }else{
                         $this->session->set_flashdata("alert",'หมายเลขอุปกรณ์ซ้ำ');
                         $this->session->set_flashdata('type','alert-danger');
-                        echo 'หมายเลขอุปกรณ์ซ้ำ <br>';
-                        @header('Location: '.base_url().'professor');
+                        // echo 'หมายเลขอุปกรณ์ซ้ำ <br>';
+                        @header('Location: ' . $_SERVER['HTTP_REFERER']);
+                        // @header('Location: '.base_url().'professor');
                     }
                 }
                 else
                 {
-                    echo 'กรอกข้อมูลได้เพียง 7 อุปกรณ์เท่านั้น<br>';
-                    echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+                    $this->session->set_flashdata('alert','กรอกข้อมูลได้เพียง 7 อุปกรณ์เท่านั้น');
+                    $this->session->set_flashdata('type','alert-warning');
+                    @header('Location: ' . $_SERVER['HTTP_REFERER']);
                 }
             }
             else
             {
-                echo 'กรุณากรอก Mac Address<br>';
-                echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+                $this->session->set_flashdata('alert','กรุณากรอก Mac Address');
+                $this->session->set_flashdata('type','alert-warning');
+                @header('Location: ' . $_SERVER['HTTP_REFERER']);
             }
         }
         else
         {
-            echo 'กรุณากรอกข้อมูลส่วนตัว<br>';
-            echo '<button onclick="history.go(-1);">ย้อนกลับ </button>';
+            $this->session->set_flashdata('alert','กรุณากรอกข้อมูลส่วนตัว');
+            $this->session->set_flashdata('type','alert-warning');
+            @header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
     }
 
@@ -314,7 +288,7 @@ class Professor_page extends CI_Controller {
             'TIME'=>date('H:i:s')
                 ));
         $this->session->sess_destroy();
-        AddLog(	$this->session->userdata('id')." was logging out" );
+        // AddLog(	$this->session->userdata('id')." was logging out" );
         @header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
