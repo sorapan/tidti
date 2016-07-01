@@ -114,7 +114,7 @@ if($this->session->userdata('detail_exists') == false){
                                     <input type="text" name="citizen_id" required class="form-control" id="exampleInputEmail1" maxlength="13" placeholder="รหัสประจำตัวประชาชน">
                                 </div>
                                 <div class="form-group form-inline thaisans bold" style="font-size: 1.5em">
-                                    <input type="radio" name="type" value="professor" checked id="professor" style="margin-right: 5px"><label for="professor">อาจารย์</label>
+                                    <input type="radio" name="type" value="teacher" checked id="professor" style="margin-right: 5px"><label for="professor">อาจารย์</label>
                                     <input type="radio" name="type" value="staff"  id="staff" style="margin-right: 5px"><label for="staff">บุคลากร</label>
                                 </div>
 
@@ -155,7 +155,7 @@ if($this->session->userdata('detail_exists') == false){
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control group_select" name="group ">
+                                    <select class="form-control group_select" name="group">
                                             <option value="" disabled selected>*กลุ่ม</option>
 
                                     </select>
@@ -186,8 +186,9 @@ if($this->session->userdata('detail_exists') == false){
                                 <form id="mac_submit" method="POST" action="professor/addmac">
 
                                 <div class="dev">
-                                    <h3 class="thaisans bold">เลือกอุปกรณ์</h3>
-                                    <div class="select">
+                                     <h3 class="thaisans bold">เลือกอุปกรณ์</h3>
+                                    <span class="labelalert label label-danger hidden">คุณยังไม่ได้เลือกอุปกรณ์</span>
+                                    <div class="select" style="margin-top:10px;">
                                         <input type="radio" class="laptop" name="device" id="laptop" value="laptop" required><label data-toggle="tooltip" data-placement="bottom" title="โน๊ตบุ๊ค" class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
                                         <input type="radio" class="phone" name="device" id="phone" value="phone"><label data-toggle="tooltip" data-placement="bottom" title="มือถือ" class="fa fa-mobile" for="phone" title="มือถือ"></label>
                                         <input type="radio" class="tablet" name="device" id="taplet" value="tablet"><label data-toggle="tooltip" data-placement="bottom" title="แท็บเล็ต" class="fa fa-tablet" for="taplet" title="แท็บเล็ต"></label>
@@ -196,7 +197,7 @@ if($this->session->userdata('detail_exists') == false){
                                 </div>
                                   <div class="ch-device ">
                                       <input type="text" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" class="text opensans" placeholder="xx-xx-xx-xx-xx-xx" name="mac" id="laptop">
-                                      <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
+                                      <button class="button dev-submit" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                   </div>
 
                                 </form>
@@ -352,6 +353,14 @@ if($this->session->userdata('detail_exists') == false){
 <script>
 
 $(function(){
+    $(document).on('click','.dev-submit',function(){
+        var check = $("input[name='device']").is(':checked');
+        if(check){
+            return true;
+        }else{
+            $('.labelalert').removeClass('hidden');
+        }
+    });
     $('input[name="type"]').each(function(){
         if(!$(this).is(':checked')){
             var itclass = '.'+$(this).val()+'hid';
@@ -484,4 +493,3 @@ $(function(){
 
 </body>
 </html>
-
