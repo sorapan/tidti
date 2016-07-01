@@ -10,7 +10,7 @@ class Admin extends CI_Controller {
 		if($this->session->userdata('status')=='admin' || $this->session->userdata('status')=='staff'){
 
 		}else{
-			@header('Location: '.base_url().'admin/login');
+			@header('Location: '.base_url().'index.php/admin/login');
 		}
 
 
@@ -70,89 +70,93 @@ class Admin extends CI_Controller {
 			if(empty($check)){
 			// อาจจะมีการแก้ไขในภายหน้า
 				$_POST['macaddress'] = strtoupper($_POST['macaddress']);
-			$this->ManualUserModel->AddDataManualUser(array(
-						'username'=>$_POST['macaddress'],
-						// 'password'=>$_POST['password'],
-						'pname'=>$_POST['pname'],
-						'firstname'=>$_POST['firstname'],
-						'lastname'=>$_POST['lastname'],
-						'idcard'=>$_POST['idcard'],
-						'mailaddr'=>$_POST['mailaddr'],
-						'discipline'=>isset($_POST['discipline'])?$_POST['discipline']:'-',
-						'department'=>isset($_POST['department'])?$_POST['department']:'-',
-						'dateregis'=>date('Y-m-d H:i:s',time()),
-						'status'=>$_POST['status'],
-						'location_id'=>$_POST['location_id'],
-						'year' => isset($_POST['year'])?$_POST['year']:'-'
+				if(in_array(null,$_POST) || in_array("",$_POST)){
+					$this->session->set_flashdata('alert','กรุณากรอกข้อมูลให้ครบ');
+		            $this->session->set_flashdata('type','alert-danger');
+		            @header('Location: ' . $_SERVER['HTTP_REFERER']);
+				}else{
+
+					$manual = $this->ManualUserModel->AddDataManualUser(array(
+							'username'=>$_POST['macaddress'],
+							// 'password'=>$_POST['password'],
+							'pname'=>$_POST['pname'],
+							'firstname'=>$_POST['firstname'],
+							'lastname'=>$_POST['lastname'],
+							'idcard'=>$_POST['idcard'],
+							'mailaddr'=>isset($_POST['mailaddr'])?$_POST['mailaddr']:'-',
+							'discipline'=>isset($_POST['discipline'])?$_POST['discipline']:'-',
+							'department'=>isset($_POST['department'])?$_POST['department']:'-',
+							'dateregis'=>date('Y-m-d H:i:s',time()),
+							'status'=>$_POST['status'],
+							'location_id'=>$_POST['location_id'],
+							'year' => isset($_POST['year'])?$_POST['year']:'-'
+						));
+				// $_POST['statustype'] = null!==$_POST['statustype']?$_POST['statustype']:'';
+
+					if($_POST['discipline']!=='-' && $_POST['statustype']!=="special"){
+						$radvalue = date('Y-m-d',strtotime('+1 years')).'T'.date('H:i:s');
+					}else{
+						$radvalue = '0000-00-00T00:00:00';
+					}
+					$this->RadReplyCheckModel->AddRadReply(array(
+							// รับค่าจาก POST
+							'username' => $_POST['macaddress'],
+							// ส่วนที่แก้ไข
+							'attribute' => 'WISPr-Session-Terminate-Time',
+							// ส่วนที่แก้ไข
+							'op' => ':=',
+							// ส่วนที่แก้ไข
+						'value'=> $radvalue
 					));
 
+					// อาจจะมีการแก้ไขในภายหน้า
+					$this->RadReplyCheckModel->AddRadCheck(array(
+							// รับค่าจาก POST
+							'username' => $_POST['macaddress'],
+							// ส่วนที่แก้ไข
+							'attribute' => 'Cleartext-Password',
+							// ส่วนที่แก้ไข
+							'op' => ':=',
+							// ส่วนที่แก้ไข
+							'value'=> 'Liu;b=yp;kpakp'
+						));
 
-			// $_POST['statustype'] = null!==$_POST['statustype']?$_POST['statustype']:'';
+					$this->DeviceModel->AddDevice(array(
+							'UserName' => $_POST['macaddress'],
+							'dev_type' => $_POST['dev_type'],
+							'dev_net_type' => 'Wireless'
+						));
 
-			if($_POST['discipline']!=='-' && $_POST['statustype']!=="special"){
-				$radvalue = date('Y-m-d',strtotime('+1 years')).'T'.date('H:i:s');
-			}else{
-				$radvalue = '0000-00-00T00:00:00';
-			}
-			$this->RadReplyCheckModel->AddRadReply(array(
-					// รับค่าจาก POST
-					'username' => $_POST['macaddress'],
-					// ส่วนที่แก้ไข
-					'attribute' => 'WISPr-Session-Terminate-Time',
-					// ส่วนที่แก้ไข
-					'op' => ':=',
-					// ส่วนที่แก้ไข
-					'value'=> $radvalue
-				));
+					if($this->session->userdata('status')=='staff'){
+						//add log
+			            $this->LogModel->AddEventLog(array(
+			                'USERNAME'=>$this->session->userdata('username'),
+			                'STATUS'=>'staff',
+			                'LOCATION'=> $this->session->userdata('location_id'),
+			                'EVENT' => 'ได้เพิ่มอุปกรณ์หมายเลข:'.$_POST['macaddress'],
+			                'DATE'=>date('Y-m-d'),
+			                'TIME'=>date('H:i:s')
+			                    ));
+					}else{
+						//add log
+			            $this->LogModel->AddEventLog(array(
+			                'USERNAME'=>$this->session->userdata('username'),
+			                'STATUS'=>'admin',
+			                'LOCATION'=> '-',
+			                'EVENT' => 'ได้เพิ่มอุปกรณ์หมายเลข:'.$_POST['macaddress'],
+			                'DATE'=>date('Y-m-d'),
+			                'TIME'=>date('H:i:s')
+			                    ));
+					}
 
-			// อาจจะมีการแก้ไขในภายหน้า
-			$this->RadReplyCheckModel->AddRadCheck(array(
-					// รับค่าจาก POST
-					'username' => $_POST['macaddress'],
-					// ส่วนที่แก้ไข
-					'attribute' => 'Cleartext-Password',
-					// ส่วนที่แก้ไข
-					'op' => ':=',
-					// ส่วนที่แก้ไข
-					'value'=> 'Liu;b=yp;kpakp'
-				));
-
-			$this->DeviceModel->AddDevice(array(
-					'UserName' => $_POST['macaddress'],
-					'dev_type' => $_POST['dev_type'],
-					'dev_net_type' => 'Wireless'
-				));
-
-			if($this->session->userdata('status')=='staff'){
-				//add log
-	            $this->LogModel->AddEventLog(array(
-	                'USERNAME'=>$this->session->userdata('username'),
-	                'STATUS'=>'staff',
-	                'LOCATION'=> $this->session->userdata('location_id'),
-	                'EVENT' => 'ได้เพิ่มอุปกรณ์หมายเลข:'.$_POST['macaddress'],
-	                'DATE'=>date('Y-m-d'),
-	                'TIME'=>date('H:i:s')
-	                    ));
-			}else{
-				//add log
-	            $this->LogModel->AddEventLog(array(
-	                'USERNAME'=>$this->session->userdata('username'),
-	                'STATUS'=>'admin',
-	                'LOCATION'=> '-',
-	                'EVENT' => 'ได้เพิ่มอุปกรณ์หมายเลข:'.$_POST['macaddress'],
-	                'DATE'=>date('Y-m-d'),
-	                'TIME'=>date('H:i:s')
-	                    ));
-			}
-
-
-			$this->session->set_flashdata('alert', 'เพิ่มข้อมูลสำเร็จ');
-			$this->session->set_flashdata('type','alert-success');
-	        @header('Location:'.base_url().'admin/manage');
+				$this->session->set_flashdata('alert', 'เพิ่มข้อมูลสำเร็จ');
+				$this->session->set_flashdata('type','alert-success');
+		        @header('Location:'.base_url().'index.php/admin/manage');
+	    	}
 	    }else{
 	    	$this->session->set_flashdata('alert', 'รหัสอุปกรณ์ หรือ macaddress ซ้ำ');
 	    	$this->session->set_flashdata('type','alert-danger');
-	    	@header('Location:'.base_url().'admin/manage');
+	    	@header('Location:'.base_url().'index.php/admin/manage');
 	    }
 
 	}
@@ -491,7 +495,7 @@ class Admin extends CI_Controller {
 		$this->session->set_flashdata('alert','แก้ไขข้อมูลเรียบร้อย');
 		$this->session->set_flashdata('type','alert-info');
 
-		@header('Location:'.base_url().'admin/editMac?mac='.$where['oid']);
+		@header('Location:'.base_url().'index.php/admin/editMac?mac='.$where['oid']);
 
 
 	}
@@ -543,7 +547,7 @@ class Admin extends CI_Controller {
 		$this->session->set_flashdata('alert','แก้ไขข้อมูลเรียบร้อย');
 		$this->session->set_flashdata('type','alert-info');
 
-		@header('Location:'.base_url().'admin/editMacManual?mac='.$where['username']);
+		@header('Location:'.base_url().'index.php/admin/editMacManual?mac='.$where['username']);
 
 
 	}
@@ -551,7 +555,7 @@ class Admin extends CI_Controller {
 	public function logout(){
 		$this->session->sess_destroy();
 		// AddLog(	$this->session->userdata('id')." was logging out" );
-		@header('Location: ' . $_SERVER['HTTP_REFERER']);
+		@header('Location: ' . base_url().'index.php/admin/login');
 	}
 
 
