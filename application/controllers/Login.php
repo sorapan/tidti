@@ -44,7 +44,7 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('status',$res[0]->status);
 			$this->session->set_userdata('location_id',$res[0]->location_id);
 
-			@header('Location:'.base_url().'admin/manage');
+			@header('Location:'.base_url().'index.php/admin/manage');
 		}
 	}
 
@@ -91,6 +91,14 @@ class Login extends CI_Controller {
 								$this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
 								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
 							}
+							$this->LogModel->AddEventLog(array(
+								'USERNAME'=>$this->session->userdata('username'),
+								'STATUS'=>'user',
+								'LOCATION'=> $this->session->userdata('location_id'),
+								'EVENT' => 'เข้าสู่ระบบ',
+								'DATE'=>date('Y-m-d'),
+								'TIME'=>date('H:i:s')
+									));
 
 						}
 						else{

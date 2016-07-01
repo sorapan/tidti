@@ -196,7 +196,8 @@ if($this->session->userdata('detail_exists') == false){
                                     </div>
                                 </div>
                                   <div class="ch-device ">
-                                      <input type="text" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" class="text opensans" placeholder="xx-xx-xx-xx-xx-xx" name="mac" id="laptop">
+                                      <input type="text" required pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" maxlength="17" class="text opensans"
+                                      placeholder="xx-xx-xx-xx-xx-xx" name="mac" id="laptop" data-toggle="tooltip" data-placement="bottom" title="mac-address">
                                       <button class="button dev-submit" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                   </div>
 

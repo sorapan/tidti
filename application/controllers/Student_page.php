@@ -192,7 +192,7 @@ class Student_page extends CI_Controller {
             if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
             {
 
-                // $epass = $this->session->userdata('username');
+                $epass = $this->session->userdata('username');
                 // $checkprofileexist = $this->RadOnlineProfileModel->CheckExistDataByStudentID($this->session->userdata('id'));
                 // $profile_data = array();
 
@@ -217,13 +217,13 @@ class Student_page extends CI_Controller {
                 // {
                 //     $profile_data = null;
                 // }
-                    $_POST['mac'] = strtoupper($_POST['mac']);
+                    $_POST['mac'] = str_replace(':','-',strtoupper($_POST['mac']));
+
 
                     $count_mac = $this->RadRegisterOnlineModel->DuplicateCheck($_POST['mac']);
                     if($count_mac<=0){
 
-                        $this->RadOnlineProfileModel->AddData(
-                        $profile_data,
+                        $this->RadOnlineProfileModel->AddDataWithoutProfile(
                         array(
                             'UserName' => $_POST['mac'],
                             'dev_type' => $_POST['device'],

@@ -201,7 +201,8 @@ if($this->session->userdata('detail_exists') == false){
 
                                 <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" placeholder="mac-address" name="mac" id="">
+                                      <input type="text" class="text opensans" required pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" maxlength="17"
+                                      placeholder="xx-xx-xx-xx-xx-xx" name="mac" data-toggle="tooltip" data-placement="bottom" title="mac-address">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="laptop" class="laptop"><i class="fa fa-laptop"></i></label>
                                   </div>
@@ -245,7 +246,8 @@ if($this->session->userdata('detail_exists') == false){
 
                                 <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="mac" placeholder="mac-address" id="">
+                                      <input type="text" class="text opensans" required pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+                                      maxlength="17" name="mac" placeholder="xx-xx-xx-xx-xx-xx" data-toggle="tooltip" data-placement="bottom" title="mac-address">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="mobile" class="mobile"><i class="fa fa-mobile"></i></label>
                                   </div>
@@ -289,7 +291,8 @@ if($this->session->userdata('detail_exists') == false){
 
                                 <form id="mac_submit" method="POST" action="student/addmac">
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="mac" placeholder="mac-address" id="">
+                                      <input type="text" class="text opensans" required pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+                                      maxlength="17" name="mac" placeholder="xx-xx-xx-xx-xx-xx" data-toggle="tooltip" data-placement="bottom" title="mac-address">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="tablet" class="tablet"><i class="fa fa-tablet"></i></label>
                                   </div>
@@ -397,7 +400,7 @@ if($this->session->userdata('detail_exists') == false){
                                     <p style="font-size:1.1em">2.นำเมาส์ไปคลิกสัญญาณ Wifi ที่มีชื่อว่า Srivijaya wifi ซึ่งเป็น wifi ของมหาลัย</p>
                                     <p style="font-size:1.1em">3.กดปุ่ม Connect เพื่อทำการเชื่อมต่อสัญญาณ</p>
                                     <p style="font-size:1em">***หมายเหตุ : การเชื่อมต่อ wifi แบบนี้จะเชื่อมต่อได้เฉพาะเครื่องที่ลงทะเบียน Mac-Address กับมหาลัยแล้วเท่านั้น</p>
-                                    <div class="img"><img src="<?=asset_url()?>/pic/internet.png" align="middle" width="100%" height="auto"></div>
+                                    <div class="img"><img src="<?=asset_url()?>/pic/internet.PNG" align="middle" width="100%" height="auto"></div>
                                     </div>
                                 </div>
                               </div>

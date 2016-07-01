@@ -155,7 +155,7 @@ class Professor_page extends CI_Controller {
             if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
             {
 
-                $_POST['mac'] = strtoupper($_POST['mac']);
+                $_POST['mac'] = str_replace(':','-',strtoupper($_POST['mac']));
                 $count_data = $this->RadRegisterOnlineModel->GetNumberDataByEpass($this->session->userdata('username'));
 
                 if($count_data<7)

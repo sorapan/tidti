@@ -114,11 +114,12 @@
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                    <input type="text" class="form-control" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
+                    <input type="text" class="form-control" required pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" maxlength="17"
+                    name="macaddress" placeholder="xx-xx-xx-xx-xx-xx" data-toggle="tooltip" data-placement="bottom" title="mac-address">
                 </div>
                 <div class="form-group">
                     <select name="dev_type" required class="form-control">
-                        <option label="อุปกรณ์" value="-" disabled selected>อุปกรณ์</option>
+                        <option label="อุปกรณ์" value="" disabled selected>อุปกรณ์</option>
                         <option value="Phone">มือถือ</option>
                         <option value="Notebook">โน๊ตบุ๊ค</option>
                         <option value="Tablet">แท็บเล็ต</option>
@@ -189,11 +190,12 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                    <input type="text" class="form-control" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
+                    <input type="text" class="form-control" required pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+                    maxlength="17" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx" data-toggle="tooltip" data-placement="bottom" title="mac-address">
                 </div>
                 <div class="form-group">
                     <select name="dev_type" required class="form-control">
-                        <option label="อุปกรณ์" value="-" disabled selected>อุปกรณ์</option>
+                        <option label="อุปกรณ์" value="" disabled selected>อุปกรณ์</option>
                         <option value="Phone">มือถือ</option>
                         <option value="Notebook">โน๊ตบุ๊ค</option>
                         <option value="Tablet">แท็บเล็ต</option>
@@ -268,11 +270,12 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                    <input class="form-control" required placeholder="xx-xx-xx-xx-xx-xx" type="text" name="macaddress" pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" >
+                    <input class="form-control" required placeholder="xx-xx-xx-xx-xx-xx" type="text" name="macaddress"
+                    pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" maxlength="17" data-toggle="tooltip" data-placement="bottom" title="mac-address">
                 </div>
                 <div class="form-group">
                     <select name="dev_type" required class="form-control">
-                        <option label="อุปกรณ์" value="-" disabled selected>อุปกรณ์</option>
+                        <option label="อุปกรณ์" value="" disabled selected>อุปกรณ์</option>
                         <option value="Phone">มือถือ</option>
                         <option value="Notebook">โน๊ตบุ๊ค</option>
                         <option value="Tablet">แท็บเล็ต</option>
@@ -349,7 +352,8 @@
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                    <input type="text" class="form-control" required pattern="^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$" maxlength="17" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
+                    <input type="text" class="form-control" required pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+                    maxlength="17" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx" data-toggle="tooltip" data-placement="bottom" title="mac-address">
                 </div>
                 <div class="form-group">
                     <select name="dev_type" required class="form-control">
