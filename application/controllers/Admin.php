@@ -82,7 +82,7 @@ class Admin extends CI_Controller {
 			}else{
 				//ถ้า mac address ไม่ซ้ำ
 				//เปลี่ยน mac เป็นตัวพิมพ์ใหญ่
-				$_POST['macaddress'] = str_replac(':','-',strtoupper($_POST['macaddress']));
+				$_POST['macaddress'] = str_replace(':','-',strtoupper($_POST['macaddress']));
 
 				// เพิ่ม ข้อมูลลงใน Manualuser database
 				// โดยส่งข้อมูลไปที่ Manual Model
