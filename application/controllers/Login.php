@@ -24,7 +24,7 @@ class Login extends CI_Controller {
 		public function adminLogin(){
 			// var_dump($this->session);
 			if($this->session->userdata('status')=='admin' || $this->session->userdata('status')=='staff'){
-						@header('Location:'.base_url().'admin/manage');
+						@header('Location:'.base_url().'index.php/admin/manage');
 				}else{
 
 					$this->load->view('admin/admin_login');
@@ -36,7 +36,7 @@ class Login extends CI_Controller {
 		if(empty($res)){
 			// @header('Location:'.base_url().'error/'.'ชื่อผู้ใช้หรือรหัสผิด');
 			$this->session->set_flashdata('alert','ชื่อผู้ใช้หรือรหัสผิด');
-			@header('Location:'.base_url().'admin/login');
+			@header('Location:'.base_url().'index.php/admin/login');
 		}else{
 			// var_dump($res);
 			$this->session->set_userdata('login',true);

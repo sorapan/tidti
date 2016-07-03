@@ -155,34 +155,26 @@ function header_url()
 
 ////////////// switch case show device icon
 function switchIcon($dev){
+    $dev = strtolower($dev);
     switch ($dev) {
-        case 'Phone':
-            return 'mobile';
-            break;
-        case 'Notebook':
-            return 'laptop';
-            break;
-        case 'Tablet':
-            return 'tablet';
-            break;
         case 'phone':
             return 'mobile';
             break;
-        case 'laptop':
+        case 'notebook':
             return 'laptop';
             break;
         case 'tablet':
             return 'tablet';
             break;
-        case 'Other':
-            return 'question';
+        case 'laptop':
+            return 'laptop';
             break;
         case 'other':
             return 'question';
             break;
 
         default:
-            return false;
+            return 'question';
             break;
     }
 }
@@ -255,7 +247,7 @@ function headerOfAdmin($status,$location_id){
     echo '<div class="nav">
         <span class="username thaisans">'.$name.'</span>
         <span class="location_head thaisans">'.$location.'</span>
-        <button class="logout" onclick="window.location=\''.base_url().'admin/logout\'" title="ออกระบบ"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+        <button class="logout" onclick="window.location=\''.base_url().'index.php/admin/logout\'" title="ออกระบบ"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
         </div>';
 
 
