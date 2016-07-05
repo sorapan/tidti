@@ -42,18 +42,6 @@
 
 
 
-                <!-- /////////////////////////////////////////////////////
-                กรอกข้อมูลแล้ว หรือ มีข้อมูลอยู่แล้ว แสดงในส่วนนี้
-                <div class="name"><?=prefix_name_id($this->session->userdata('prefix_name_id'))?> <?= $this->session->userdata('firstname')?> <?= $this->session->userdata('lastname')?></div>
-                <div class="epassport">รหัส <?= $this->session->userdata('id')?></div>
-                 <?php //fac_id($this->session->userdata('fac_id'))?>
-                <div class="faculty">คณะ <?=$this->session->userdata('fac')?></div>
-                <?php //program_id($this->session->userdata('program_id'))?>
-                <div class="major">สาขา <?=$this->session->userdata('program')?></div>
-                <div class="major">สาขา <?=$this->session->userdata('citizen_id')?></div>
-                <div class="email">อีเมลล์ <?=$this->session->userdata('email')?></div>
-                <div class="tel">โทร <?=$this->session->userdata('tel')?></div>
-                ///////////////////////////////////////////////////// -->
 
                 <a href="professor/logout" class="signout"><i class="fa fa-sign-out" title="ออกจากระบบ" aria-hidden="true"></i>&nbspออกจากระบบ</a>
             </div>
@@ -133,7 +121,7 @@ if($this->session->userdata('detail_exists') == false){
 
                                     </select>
                                 </div>
-                                <div class="form-group staffhid" >
+                                <div class="form-group staffhid" style="display:none" >
                                     <select class="form-control staff_select" name="department">
                                         <option value="" disabled selected>*หน่วยงาน</option>
 
@@ -141,14 +129,14 @@ if($this->session->userdata('detail_exists') == false){
                                 </div>
 
 
-                                <div class="form-group professorhid">
+                                <div class="form-group teacherhid">
                                     <select class="form-control fac_select" name="department">
                                         <option value="" disabled selected>*คณะ</option>
 
 
                                     </select>
                                 </div>
-                                <div class="form-group professorhid">
+                                <div class="form-group teacherhid">
                                     <select class="form-control program_select" name="branch">
                                         <option value="" disabled selected>*สาขา</option>
 
@@ -330,7 +318,7 @@ if($this->session->userdata('detail_exists') == false){
                                     <p style="font-size:1.1em">2.นำเมาส์ไปคลิกสัญญาณ Wifi ที่มีชื่อว่า Srivijaya wifi ซึ่งเป็น wifi ของมหาลัย</p>
                                     <p style="font-size:1.1em">3.กดปุ่ม Connect เพื่อทำการเชื่อมต่อสัญญาณ</p>
                                     <p style="font-size:1em">***หมายเหตุ : การเชื่อมต่อ wifi แบบนี้จะเชื่อมต่อได้เฉพาะเครื่องที่ลงทะเบียน Mac-Address กับมหาลัยแล้วเท่านั้น</p>
-                                    <div class="img"><img src="<?=asset_url()?>/pic/internet.png" align="middle" width="100%" height="auto"></div>
+                                    <div class="img"><img src="<?=asset_url()?>pic/internet.PNG" align="middle" width="100%" height="auto"></div>
                                     </div>
                                 </div>
                               </div>
@@ -362,23 +350,24 @@ $(function(){
             $('.labelalert').removeClass('hidden');
         }
     });
-    $('input[name="type"]').each(function(){
-        if(!$(this).is(':checked')){
-            var itclass = '.'+$(this).val()+'hid';
-            $(''+itclass).css("display","none");
-            console.log('.'+$(this).val()+'hid');
-        }
-    });
+    // $('input[name="type"]').each(function(){
+    //     if(!$(this).is(':checked')){
+    //         var itclass = '.'+$(this).val()+'hid';
+    //         $(''+itclass).css("display","none");
+    //         console.log('.'+$(this).val()+'hid');
+    //     }
+    // });
     $(document).on("change","input[name='type']",function(){
          var $type = $(this).val();
-        if($type == 'professor'){
+         console.log($type);
+        if($type == 'teacher'){
             var itclass = '.'+$type+'hid';
             $(''+itclass).css("display","");
             $('.staffhid').css("display","none");
         }else{
             var itclass = '.'+$type+'hid';
             $(''+itclass).css("display","");
-            $('.professorhid').css("display","none");
+            $('.teacherhid').css("display","none");
         }
     });
     $(document).on( "change", ".fac_select", function() {
