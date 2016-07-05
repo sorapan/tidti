@@ -8,7 +8,7 @@
     <div class="login  col-md-offset-2 col-xs-12 col-sm-12 col-md-8 nopad">
         <div class="_1 col-xs-12 col-sm-4">
                 <h2 class="opensans bold">SrivijayaWifi <i class="fa fa-wifi wifi" aria-hidden="true"></i></h2>
-                <p class=" thaisans">ลงทะเบียนอุปกรณ์เพื่อเข้าใช้งานอินเตอร์เน็ต</p>
+                <p class=" thaisans">ลงทะเบียนอุปกรณ์เพื่อเข้าใช้งานอินเทอร์เน็ต</p>
                 <div class="footer">
                     <h2 class="">มีปัญหาติดต่อ งานวิศวกรรมเครือข่าย <br>สำนักวิทยบริการฯ</h2>
                     <p><i class="fa fa-phone" aria-hidden="true"></i> : 074-317100 ต่อ 1911 - 1912 </p>

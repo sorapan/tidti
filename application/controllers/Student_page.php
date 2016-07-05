@@ -191,32 +191,6 @@ class Student_page extends CI_Controller {
 
             if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
             {
-
-                $epass = $this->session->userdata('username');
-                // $checkprofileexist = $this->RadOnlineProfileModel->CheckExistDataByStudentID($this->session->userdata('id'));
-                // $profile_data = array();
-
-                // if(!$checkprofileexist)
-                // {
-                //     $profile_data = array(
-                //         'username' => $epass,
-                //         //'password' => null,
-                //         'pname' => $this->session->userdata('prefix_name_id'),
-                //         'firstname' => $this->session->userdata('firstname'),
-                //         'lastname' => $this->session->userdata('lastname'),
-                //         'idcard' => $this->session->userdata('id'),
-                //         'mailaddr' => $this->session->userdata('email'),
-                //         'discipline' => '',
-                //         'department' => '',
-                //         'year' => '-',
-                //         'dateregis' => date('Y-m-d H:i:s',time()),
-                //         'status' => 'นักศึกษา',
-                //         'location_id' => $this->session->userdata('location')
-                //     );
-                // }else
-                // {
-                //     $profile_data = null;
-                // }
                     $_POST['mac'] = str_replace(':','-',strtoupper($_POST['mac']));
 
 
@@ -230,7 +204,7 @@ class Student_page extends CI_Controller {
                             'dev_net_type' => "Wireless"
                         ),
                         array(
-                            'username' => $epass,
+                            'username' => $this->session->userdata('username'),
                             'macaddress' => $_POST['mac'],
                             'status_on' => 'student'
                         ));
