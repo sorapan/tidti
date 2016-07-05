@@ -154,7 +154,7 @@ if($this->session->userdata('detail_exists') == false){
 </div>
 
 <?php
-}
+}else{
 ?>
 
 
@@ -221,6 +221,10 @@ if($this->session->userdata('detail_exists') == false){
                                  <?php
                                   }
                                  ?>
+
+<?php
+}
+?>
 
                         <!-- Modal -->
                         <div class="modal fade my-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
