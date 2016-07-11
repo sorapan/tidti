@@ -77,9 +77,9 @@ class DeviceModel extends CI_Model {
     function SelectForEditManual($username){
         $this->db->db_select('radius');
         $this->db->select('*');
-        $this->db->from('manual_user');
-        $this->db->join('device','device.username = manual_user.username');
-        $this->db->where('manual_user.username',$username);
+        $this->db->from('manualuser');
+        $this->db->join('device','device.username = manualuser.username');
+        $this->db->where('manualuser.username',$username);
         return $this->db->get()->result();
     }
 
@@ -87,45 +87,45 @@ class DeviceModel extends CI_Model {
         if($search==null){
             $this->db->db_select('radius');
             $this->db->select('*');
-            $this->db->from('manual_user');
-            $this->db->join('device','device.username = manual_user.username');
+            $this->db->from('manualuser');
+            $this->db->join('device','device.username = manualuser.username');
             if(!empty($date)){
-                $this->db->like('manual_user.dateregis',$date);
+                $this->db->like('manualuser.dateregis',$date);
             }
             if(!empty($location)){
-                $this->db->where('manual_user.location_id',$location);
+                $this->db->where('manualuser.location_id',$location);
             }
-            $this->db->order_by('manual_user.dateregis','desc');
+            $this->db->order_by('manualuser.dateregis','desc');
             return $this->db->get()->result();
         }else{
             $this->db->db_select('radius');
             $this->db->select('*');
-            $this->db->from('manual_user');
-            $this->db->join('device','device.username = manual_user.username');
+            $this->db->from('manualuser');
+            $this->db->join('device','device.username = manualuser.username');
             if(!empty($date)){
-                $this->db->like('manual_user.dateregis',$date);
+                $this->db->like('manualuser.dateregis',$date);
             }
             if(!empty($location)){
-                $this->db->where('manual_user.location_id',$location);
+                $this->db->where('manualuser.location_id',$location);
             }
             switch ($type) {
                 case 'macaddress':
-                    $this->db->like('manual_user.username',$search);
+                    $this->db->like('manualuser.username',$search);
                     break;
                 case 'username':
-                    $this->db->like('manual_user.username',$search);
+                    $this->db->like('manualuser.username',$search);
                     break;
                 case 'name':
-                    $this->db->like('manual_user.firstname',$search);
-                    $this->db->or_like('manual_user.lastname',$search);
-                    $this->db->or_like('CONCAT(manual_user.firstname,\' \',manual_user.lastname)',$search);
+                    $this->db->like('manualuser.firstname',$search);
+                    $this->db->or_like('manualuser.lastname',$search);
+                    $this->db->or_like('CONCAT(manualuser.firstname,\' \',manualuser.lastname)',$search);
                     break;
                 default:
-                    $this->db->like('manual_user.dateregis',$date);
-                    $this->db->like('manual_user.username',$search);
+                    $this->db->like('manualuser.dateregis',$date);
+                    $this->db->like('manualuser.username',$search);
                     break;
             }
-            $this->db->order_by('manual_user.dateregis','desc');
+            $this->db->order_by('manualuser.dateregis','desc');
             return $this->db->get()->result();
         }
 
@@ -180,38 +180,38 @@ class DeviceModel extends CI_Model {
         if($search==null){
             $this->db->db_select('radius');
             $this->db->select('*');
-            $this->db->from('manual_user');
-            $this->db->join('device','device.username = manual_user.username');
-            $this->db->where('manual_user.location_id',$location);
-            $this->db->like('manual_user.dateregis',$date);
+            $this->db->from('manualuser');
+            $this->db->join('device','device.username = manualuser.username');
+            $this->db->where('manualuser.location_id',$location);
+            $this->db->like('manualuser.dateregis',$date);
             return $this->db->get()->result();
         }else{
             $this->db->db_select('radius');
             $this->db->select('*');
-            $this->db->from('manual_user');
-            $this->db->join('device','device.username = manual_user.username');
-            $this->db->like('manual_user.username',$search);
+            $this->db->from('manualuser');
+            $this->db->join('device','device.username = manualuser.username');
+            $this->db->like('manualuser.username',$search);
             if(!empty($date)){
-                $this->db->like('manual_user.dateregis',$date);
+                $this->db->like('manualuser.dateregis',$date);
             }
             if(!empty($location)){
-                $this->db->where('manual_user.location_id',$location);
+                $this->db->where('manualuser.location_id',$location);
             }
             switch ($type) {
                 case 'macaddress':
-                    $this->db->like('manual_user.username',$search);
+                    $this->db->like('manualuser.username',$search);
                     break;
                 case 'username':
-                    $this->db->like('manual_user.username',$search);
+                    $this->db->like('manualuser.username',$search);
                     break;
                 case 'name':
-                    $this->db->like('manual_user.firstname',$search);
-                    $this->db->or_like('manual_user.lastname',$search);
-                    $this->db->or_like('CONCAT(manual_user.firstname,\' \',manual_user.lastname)',$search);
+                    $this->db->like('manualuser.firstname',$search);
+                    $this->db->or_like('manualuser.lastname',$search);
+                    $this->db->or_like('CONCAT(manualuser.firstname,\' \',manualuser.lastname)',$search);
                     break;
                 default:
-                    $this->db->like('manual_user.dateregis',$date);
-                    $this->db->like('manual_user.username',$search);
+                    $this->db->like('manualuser.dateregis',$date);
+                    $this->db->like('manualuser.username',$search);
 
                     break;
             }
@@ -288,11 +288,11 @@ class DeviceModel extends CI_Model {
 
     }
 
-    function EditDataDeviceManual($where,$manual_user,$device){
+    function EditDataDeviceManual($where,$manualuser,$device){
         $this->db->db_select('radius');
 
         $this->db->where('username', $where['old_username']);
-        $this->db->update('manual_user',$manual_user);
+        $this->db->update('manualuser',$manualuser);
 
 
         $this->db->where('UserName', $where['old_username']);
@@ -329,7 +329,7 @@ class DeviceModel extends CI_Model {
         $this->db->delete('device',array(
                 'UserName'=>$username
             ));
-        $this->db->delete('manual_user',array(
+        $this->db->delete('manualuser',array(
                 'username'=>$username
             ));
         $this->db->delete(array(

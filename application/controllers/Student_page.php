@@ -54,7 +54,7 @@ class Student_page extends CI_Controller {
             'lastname' => $_POST['lastname'],
             'discipline' => isset($_POST['branch'])?$_POST['branch']:null,
             'mailaddr' => $_POST['email'],
-            'status' => 'อาจารย์',
+            'status' => $_POST['group'],
             'idcard' => $_POST['citizen_id'],
             'location_id' => isset($_POST['location'])?$_POST['location']:null,
             'department' => isset($_POST['department'])?$_POST['department']:null,

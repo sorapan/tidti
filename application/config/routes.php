@@ -53,12 +53,12 @@ $route['default_controller'] = 'Login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['std_logincheck'] = 'Login/logincheck';
-$route['admin/admin_logincheck'] ='login/admincheck';
+$route["std_logincheck"] = "Login/logincheck";
+$route['admin/admin_logincheck'] ='Login/admincheck';
 
 $route['admin/login'] = 'Login/adminLogin';
 //////////STUDENT PAGE
-$route['student'] = 'student_page/index';
+$route['student'] = 'Student_page/index';
 $route['student/addmac'] = 'student_page/add_mac';
 $route['student/submit_detail'] = 'student_page/submit_detail';
 $route['student/deletemac'] = 'student_page/delete_mac';

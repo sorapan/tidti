@@ -24,10 +24,16 @@ class Professor_page extends CI_Controller {
     public function index()
     {
         $macdata = $this->RadRegisterOnlineModel->GetDataByEpass($this->session->userdata('username'));
+
         foreach($macdata as $key=>$val)
 		{
-			$macdata[$key]->device = $this->RadDeviceModel->GetDataByMac($val->macaddress)[0]->dev_type;
+
+            $getmac = $this->RadDeviceModel->GetDataByMac($val->macaddress);
+            $macdata[$key]->device = $getmac[0]->dev_type;
+            // print_r($val->macaddress);
+
 		}
+
         $this->load->view('professor/index',
         array(
             'mac_data' => $macdata,
@@ -118,19 +124,14 @@ class Professor_page extends CI_Controller {
     }
 
     public function moveDataManualToOnline($where,$location){
-        // $where = array(
-        //     'firstname' => 'test3',
-        //     'lastname' => 'test3',
-        //     'idcard' => '2222222222211'
-        //     );
         $count = $this->ManualUserModel->GetDataManualUserByWhere($where);
         if(!empty($count)){
             $device_data = null;
             $register_data = array(
-                    'username' => $this->session->usesdata('username'),
+                    'username' => $this->session->userdata('username'),
                     'macaddress' => $count[0]->username,
                     'addtime' => $count[0]->dateregis,
-                    'status_on' => $where->status_on
+                    'status_on' => $where['status_on']
                 );
             $this->RadOnlineProfileModel->AddRegisterProfile($register_data);
             $this->ManualUserModel->DeleteManual($count[0]->username);

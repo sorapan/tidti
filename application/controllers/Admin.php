@@ -88,7 +88,7 @@ class Admin extends CI_Controller {
 				// โดยส่งข้อมูลไปที่ Manual Model
 				$manual = $this->ManualUserModel->AddDataManualUser(array(
 					'username'=>$_POST['macaddress'],
-					// 'password'=>$_POST['password'],
+					'password'=>'-',
 					'pname'=>$_POST['pname'],
 					'firstname'=>$_POST['firstname'],
 					'lastname'=>$_POST['lastname'],
@@ -99,6 +99,7 @@ class Admin extends CI_Controller {
 					'dateregis'=>date('Y-m-d H:i:s',time()),
 					'status'=>$_POST['status'],
 					'location_id'=>$_POST['location_id'],
+					'encryption' => '-',
 					'year' => isset($_POST['year'])?$_POST['year']:'-'
 				));
 				// ถ้า discipline ไม่เป็น "-" และ ค่าstatustypeไม่เป็น special

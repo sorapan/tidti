@@ -15,11 +15,11 @@
 
         <div class="content">
             <ul class="menus thaisans">
-                <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span>เพิ่มอุปกรณ์ผู้ใช้ </li></a>
-                <a href="<?=base_url().'admin/mac'?>"><li class="maclist "><span><i class="fa fa-list-ul" aria-hidden="true"></i></span>mac ลงทะเบียนออนไลน์</li></a>
-                <a href="<?=base_url().'admin/macmanual'?>"><li class="manuallist active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span>mac จุดลงทะเบียน </li></a>
+                <a href="<?=base_url().'index.php/admin/manage'?>"><li class="manage"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span>เพิ่มอุปกรณ์ผู้ใช้ </li></a>
+                <a href="<?=base_url().'index.php/admin/mac'?>"><li class="maclist "><span><i class="fa fa-list-ul" aria-hidden="true"></i></span>mac ลงทะเบียนออนไลน์</li></a>
+                <a href="<?=base_url().'index.php/admin/macmanual'?>"><li class="manuallist active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span>mac จุดลงทะเบียน </li></a>
                 <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
-                <a href="<?=base_url().'admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span>ประวัติการเข้าระบบ </li></a>
+                <a href="<?=base_url().'index.php/admin/log'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span>ประวัติการเข้าระบบ </li></a>
             </ul>
         </div>
 
@@ -36,7 +36,7 @@
         }
         ?>
             <div class="cancle">
-                <button class="button thaisans" onclick="location.href = 'mac'">กลับ</button>
+                <button class="button thaisans" onclick="location.href = 'macmanual'">กลับ</button>
             </div>
 
             <table class="table table-hover">
