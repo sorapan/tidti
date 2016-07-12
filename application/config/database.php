@@ -72,8 +72,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
-/*
-/*$db['default'] = array(
+
+$db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
@@ -94,13 +94,13 @@ $query_builder = TRUE;
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-*/
 
-$db['default'] = array(
+
+$db['radius'] = array(
 	'dsn'	=> '',
-	'hostname' => '203.158.177.123',
+	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'bunsirnm',
+	'password' => '',
 	'database' => 'radius',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
