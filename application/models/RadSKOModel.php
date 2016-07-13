@@ -54,10 +54,11 @@ class RadSKOModel extends CI_Model {
         return $this->db->get()->result();
     }
 
-    function getGroupsDataByLocation($location_id){
+    function getGroupsDataByLocation($location_id,$group){
         $this->db->db_select('radius');
         $this->db->select('*');
         $this->db->where('location_id',$location_id);
+        $this->db->like('gdesc',$group);
         return $this->db->get('groups')->result();
     }
 
@@ -97,5 +98,12 @@ class RadSKOModel extends CI_Model {
         return $this->db->get('staff')->result();
     }
 
+    function getWhereGroupsData($group)
+    {
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->where("gdesc",$group);
+        return $this->db->get('groups')->result();
+    }
 
 }

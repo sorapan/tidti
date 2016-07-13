@@ -9,7 +9,7 @@ class E_passModel extends CI_Model {
     }
 // login check admin from admin_data table
     function AdminCheckLogin($user, $pass){
-        $this->db->db_select('radius');
+        // $this->db->db_select('radius');
 		$this->db->select('*');
         $this->db->from('admin_data');
         $this->db->where('username',$user)->where('password',$pass);
@@ -23,7 +23,7 @@ class E_passModel extends CI_Model {
         $this->db->select('*');
         $this->db->from('e_pass');
         $this->db->where('usre',$user)->where('pass',$pass);
-       // return $this->db->get()->result();
+       return $this->db->get()->result();
     }
 
 
