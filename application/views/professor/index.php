@@ -364,20 +364,14 @@ $(function(){
     $(document).on("change","input[name='type']",function(){
          var $type = $(this).val();
          console.log($type);
-         $('.fac_select').html('<option value="" disabled selected>*คณะ</option>');
-        $('.program_select').html('<option value="" disabled selected>*สาขา</option>');
-        $('.group_select').html('<option value="" disabled selected>*กลุ่ม</option>');
-        $('.staff_select').html('<option value="" disabled selected>*หน่วยงาน</option>');
         if($type == 'teacher'){
             var itclass = '.'+$type+'hid';
             $(''+itclass).css("display","");
             $('.staffhid').css("display","none");
-            $('.location_select').val('');
         }else{
             var itclass = '.'+$type+'hid';
             $(''+itclass).css("display","");
             $('.teacherhid').css("display","none");
-            $('.location_select').val('');
         }
     });
     $(document).on( "change", ".fac_select", function() {
@@ -411,7 +405,6 @@ $(function(){
     $(document).on( "change", ".location_select", function() {
         var location_class = $(this).attr('class').split(' ');
         var last_word = location_class[1][location_class[1].length-1];
-        var group = ($("input[name='type']").val()=="techer")?'อาจารย์':'เจ้าหน้าที่';
         if(last_word !== "t"){
             var fac_class = '.fac_select'+last_word;
             var group_class = '.group_select'+last_word;
@@ -429,6 +422,7 @@ $(function(){
             },
             success:function(d)
             {
+
                 console.log(fac_class);
                 $(fac_class).html('');
                 $(fac_class).append('<option value="" disabled selected>*คณะ</option>');
@@ -446,8 +440,7 @@ $(function(){
             url:'student/getLocationGroupData',
             dataType: "JSON",
             data:{
-                data:data,
-                group:group
+                data:data
             },
             success:function(d)
             {

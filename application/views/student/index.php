@@ -78,7 +78,6 @@ if($this->session->userdata('detail_exists') == false){
                             <h3 class="thaisans bold">ข้อมูลส่วนตัว</h3>
                             <h3 class="thaisans bold">- <?=$this->session->userdata('username');?></h3>
                              <form method="post" action="student/submit_detail" class="form-group">
-                                <input type="text" name="typestatus" hidden value="นักศึกษา">
                                 <div class="form-group form-inline">
                                 <div class="input-group">
                                   <span class="input-group-addon" style="background-color: #ddd">คำนำหน้า</span>
@@ -420,12 +419,9 @@ if($this->session->userdata('detail_exists') == false){
 
 $(function(){
 
-    // $('input[name="mac"]').on("keyup", formatMAC);
-
     $(document).on( "change", ".fac_select", function() {
 
         var data =  $(this).val();
-
 
         $.ajax({
             method:'POST',
@@ -453,8 +449,6 @@ $(function(){
     $(document).on( "change", ".location_select", function() {
         var location_class = $(this).attr('class').split(' ');
         var last_word = location_class[1][location_class[1].length-1];
-        var group = $('input[name="typestatus"]').val();
-
         if(last_word !== "t"){
             var fac_class = '.fac_select'+last_word;
             var group_class = '.group_select'+last_word;
@@ -490,9 +484,7 @@ $(function(){
             url:'student/getLocationGroupData',
             dataType: "JSON",
             data:{
-                data:data,
-                group:group
-
+                data:data
             },
             success:function(d)
             {
@@ -500,7 +492,9 @@ $(function(){
                 console.log(fac_class);
                 $(group_class).html('');
                 $(group_class).append('<option value="" disabled selected>*กลุ่ม</option>');
+
                 $.each(d , function(i, val) {
+
                     $(group_class).append(' <option value="'+d[i].gdesc+'">'+d[i].gdesc+'</option> ');
 
                 });

@@ -48,11 +48,6 @@
             <br>
             <!-- นักศึกษา -->
             <div class="tab-content">
-            <input type="text" class="type_select" value="นักศึกษา" hidden="">
-            <input type="text" class="type_select2" value="อาจารย์" hidden="">
-            <input type="text" class="type_select3" value="เจ้าหน้าที่" hidden="">
-            <input type="text" class="type_select4" value="" hidden="">
-
             <div role="tabpanel" class="tab-pane fade form  active in" id="student">
                 <form method="post" action="AddManualUser">
                 <div class="form-group">
@@ -390,16 +385,12 @@ $(function(){
     $(document).on( "change", ".location_select,.location_select2,.location_select3,.location_select4", function() {
         var location_class = $(this).attr('class').split(' ');
         var last_word = location_class[1][location_class[1].length-1];
-        var group;
-
         if(last_word !== "t"){
             var fac_class = '.fac_select'+last_word;
             var group_class = '.group_select'+last_word;
-            group = $('.type_select'+last_word).val();
         }else{
             var fac_class = '.fac_select';
             var group_class = '.group_select';
-            group = $('.type_select').val();
         }
         var data =  $(this).val();
         $.ajax({
@@ -429,8 +420,7 @@ $(function(){
             url:'../student/getLocationGroupData',
             dataType: "JSON",
             data:{
-                data:data,
-                group:group
+                data:data
             },
             success:function(d)
             {
@@ -450,14 +440,8 @@ $(function(){
 
     });
 
-    $(document).on( "change", ".fac_select,.fac_select2,.fac_select4", function() {
-        var fac_class = $(this).attr('class').split(' ');
-        var last_word = fac_class[1][fac_class[1].length-1];
-        if(last_word !== "t"){
-            var pro_class = '.program_select'+last_word;
-        }else{
-            var pro_class = '.program_select';
-        }
+    $(document).on( "change", ".fac_select", function() {
+
         var data =  $(this).val();
 
         $.ajax({
@@ -470,12 +454,12 @@ $(function(){
             success:function(d)
             {
 
-                $(pro_class).html('');
-                $(pro_class).append('<option value="" disabled selected>*สาขา</option>');
+                $('.program_select').html('');
+                $('.program_select').append('<option value="" disabled selected>*สาขา</option>');
 
                 $.each(d , function(i, val) {
 
-                    $(pro_class).append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
+                    $('.program_select').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
 
                 });
 
@@ -484,6 +468,61 @@ $(function(){
 
     });
 
+    $(document).on( "change", ".fac_select2", function() {
+
+        var data =  $(this).val();
+
+        $.ajax({
+            method:'POST',
+            url:'../student/getprogramdata',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
+
+                $('.program_select2').html('');
+                $('.program_select2').append('<option value="" disabled selected>*สาขา</option>');
+
+                $.each(d , function(i, val) {
+
+                    $('.program_select2').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
+
+                });
+
+            }
+        });
+
+    });
+
+    $(document).on( "change", ".fac_select4", function() {
+
+        var data =  $(this).val();
+
+        $.ajax({
+            method:'POST',
+            url:'../student/getprogramdata',
+            dataType: "JSON",
+            data:{
+                data:data
+            },
+            success:function(d)
+            {
+
+                $('.program_select4').html('');
+                $('.program_select4').append('<option value="" disabled selected>*สาขา</option>');
+
+                $.each(d , function(i, val) {
+
+                    $('.program_select4').append(' <option value="'+d[i].PRO_ID+'">'+d[i].PRO_NAME+'</option> ');
+
+                });
+
+            }
+        });
+
+    });
 
 });
 

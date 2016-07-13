@@ -51,13 +51,13 @@ class Login extends CI_Controller {
     public function LoginCheck()
     {
     	// @header("Location: student");
-        $res = $this->E_passModel->CheckLogin($_POST['e_pass'],$_POST['pass']);
-		// $res = $this->login($_POST['e_pass'],$_POST['pass']);
+        //$res = $this->E_passModel->CheckLogin($_POST['e_pass'],$_POST['pass']);
+		$res = $this->login($_POST['e_pass'],$_POST['pass']);
         // var_dump($res);
         // $status = $res
 
-				if(empty($res))
-				// if(!$res)
+				//if(empty($res))
+				if(!$res)
 				{
 					$this->session->set_flashdata('alert','ชื่อผู้ใช้หรือรหัสผิด');
 					@header('Location:'.base_url());
@@ -90,7 +90,6 @@ class Login extends CI_Controller {
 								$this->session->set_userdata('discipline',$sd->discipline);
 								$this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
 								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
-								$this->session->set_userdata('group_id',$this->RadSKOModel->getWhereGroupsData($sd->status)[0]->gname);
 							}
 							$this->LogModel->AddEventLog(array(
 								'USERNAME'=>$this->session->userdata('username'),
@@ -120,7 +119,6 @@ class Login extends CI_Controller {
 
 						}
 						// AddLog(	$this->session->userdata('id')." is logging in" );
-						// var_dump($this->session);
 						@header("Location: student");
 
 					}
@@ -146,7 +144,6 @@ class Login extends CI_Controller {
 								$this->session->set_userdata('discipline',$sd->discipline);
 								$this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
 								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
-								$this->session->set_userdata('group_id',$this->RadSKOModel->getWhereGroupsData($sd->status)[0]->gname);
 							}
 
 							// add log data

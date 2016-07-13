@@ -22,8 +22,6 @@ class Student_page extends CI_Controller {
         $this->load->model('LogModel');
         $this->load->model('RadReplyCheckModel');
         $this->load->model('ManualUserModel');
-        $this->load->model('RadUsergroupModel');
-
 
     }
 
@@ -109,7 +107,6 @@ class Student_page extends CI_Controller {
                         $this->session->set_userdata('discipline',$sd->discipline);
                         $this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
                         $this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
-                        $this->session->set_userdata('group_id',$this->RadSKOModel->getWhereGroupsData($sd->status)[0]->gname);
                     }
 
                 }
@@ -173,7 +170,7 @@ class Student_page extends CI_Controller {
     }
 
     public function getLocationGroupData(){
-        $data = $this->RadSKOModel->getGroupsDataByLocation($_POST['data'],$_POST['group']);
+        $data = $this->RadSKOModel->getGroupsDataByLocation($_POST['data']);
         // var_dump($data);
         // $this->output->enable_profiler(TRUE);
         echo json_encode($data);
@@ -213,13 +210,6 @@ class Student_page extends CI_Controller {
                         ));
 
 
-                        //เพิ่ม กลุ่มใน usergroup
-                        $this->RadUsergroupModel->insertUsergroups(array(
-                                'UserName' => $_POST['mac'],
-                                'GroupName' => $this->session->userdata("group_id"),
-                                'priority' => 0
-                            ));
-
                         if($this->session->userdata('discipline')!=='-'){
                             $radvalue = date('Y-m-d',strtotime('+1 years')).'T'.date('H:i:s');
                         }else{
@@ -248,6 +238,7 @@ class Student_page extends CI_Controller {
                                 // ส่วนที่แก้ไข
                                 'value'=> 'Liu;b=yp;kpakp'
                             ));
+
 
 
                         $this->LogModel->AddEventLog(array(
@@ -288,8 +279,6 @@ class Student_page extends CI_Controller {
         $this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
         $this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
         $this->RadReplyCheckModel->DeleteRad($_POST['del']);
-        //ลบ mac ใน usergroup
-        $this->RadUsergroupModel->deleteUsergroups($_POST['del']);
         $this->LogModel->AddEventLog(array(
             'USERNAME'=>$this->session->userdata('username'),
             'STATUS'=>'user',
