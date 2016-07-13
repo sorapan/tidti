@@ -18,6 +18,7 @@ class Professor_page extends CI_Controller {
         $this->load->model('LogModel');
         $this->load->model('RadReplyCheckModel');
         $this->load->model('ManualUserModel');
+        $this->load->model('RadUsergroupModel');
 
     }
 
@@ -109,6 +110,7 @@ class Professor_page extends CI_Controller {
                         // $this->session->set_userdata('discipline_name',$sd->discipline);
                         $this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
                         $this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->discipline)[0]->PRO_NAME);
+                        $this->session->set_userdata('group_id',$this->RadSKOModel->getWhereGroupsData($sd->status)[0]->gname);
                     }
                 }
 
@@ -180,6 +182,12 @@ class Professor_page extends CI_Controller {
                             'status_on' =>  $status_on
                         ));
 
+                        //เพิ่ม กลุ่มใน usergroup
+                        $this->RadUsergroupModel->insertUsergroups(array(
+                                'UserName' => $_POST['mac'],
+                                'GroupName' => $this->session->userdata("group_id"),
+                                'priority' => 0
+                            ));
 
                         if($this->session->userdata('discipline')!=='-'){
                             $radvalue = date('Y-m-d',strtotime('+1 years')).'T'.date('H:i:s');
@@ -258,6 +266,8 @@ class Professor_page extends CI_Controller {
         $this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
 		$this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
         $this->RadReplyCheckModel->DeleteRad($_POST['del']);
+        //ลบ mac ใน usergroup
+        $this->RadUsergroupModel->deleteUsergroups($_POST['del']);
         $this->LogModel->AddEventLog(array(
             'USERNAME'=>$this->session->userdata('username'),
             'STATUS'=>'user',

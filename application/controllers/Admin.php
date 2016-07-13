@@ -24,6 +24,7 @@ class Admin extends CI_Controller {
 		 $this->load->model('RadReplyCheckModel');
 		 $this->load->model('ManualUserModel');
 		 $this->load->model('LogModel');
+		 $this->load->model('RadUsergroupModel');
 
 	}
 
@@ -139,7 +140,12 @@ class Admin extends CI_Controller {
 							'dev_type' => $_POST['dev_type'],
 							'dev_net_type' => 'Wireless'
 						));
-
+					//เพิ่ม กลุ่มใน usergroup
+                    $this->RadUsergroupModel->insertUsergroups(array(
+                            'UserName' => $_POST['mac'],
+                            'GroupName' => $this->RadSKOModel->getWhereGroupsData($sd->status)[0]->gname,
+                            'priority' => 0
+                        ));
 					//ถ้าสถานะเป็น staff ให้บรรทึกโดย staff
 					if($this->session->userdata('status')=='staff'){
 						//add log
@@ -386,6 +392,8 @@ class Admin extends CI_Controller {
 
 	public function deleteMac(){
 		$check = $this->DeviceModel->DeleteMac($_POST['mac']);
+		//ลบ mac ใน usergroup
+        $this->RadUsergroupModel->deleteUsergroups($_POST['mac']);
 
 		if($this->session->userdata('status')=='staff'){
 				//add log
