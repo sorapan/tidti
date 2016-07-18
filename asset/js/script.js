@@ -16,8 +16,7 @@ $('a[href=special]').click(function (e) {
 
  $('[data-toggle="tooltip"]').tooltip();
 
-var im = new Inputmask("");
-im.mask('input[name="mac"]');
+
 
 });
 
