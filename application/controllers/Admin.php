@@ -142,8 +142,8 @@ class Admin extends CI_Controller {
 						));
 					//เพิ่ม กลุ่มใน usergroup
                     $this->RadUsergroupModel->insertUsergroups(array(
-                            'UserName' => $_POST['mac'],
-                            'GroupName' => $this->RadSKOModel->getWhereGroupsData($sd->status)[0]->gname,
+                            'UserName' => $_POST['macaddress'],
+                            'GroupName' => $this->RadSKOModel->getWhereGroupsData($_POST['status'])[0]->gname,
                             'priority' => 0
                         ));
 					//ถ้าสถานะเป็น staff ให้บรรทึกโดย staff

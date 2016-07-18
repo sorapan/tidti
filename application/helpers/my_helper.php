@@ -136,7 +136,7 @@ function header_url()
 {
     return '<head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Srivijaya WiFi</title>
         <link rel="stylesheet" href="'.asset_url().'sass/reset.css">
         <link rel="stylesheet" type="text/css" href="'.asset_url().'sass/font.css">
         <link rel="stylesheet" type="text/css" href="'.asset_url().'font-awesome/css/font-awesome.css">
@@ -149,9 +149,7 @@ function header_url()
 
         <script type="text/javascript" src="'.asset_url().'js/jquery.js"></script>
         <script type="text/javascript" src="'.asset_url().'bootstrap/js/bootstrap.js"></script>
-        <script type="text/javascript" src="'.asset_url().'js/inputmask.min.js"></script>
         <script type="text/javascript" src="'.asset_url().'js/script.js"></script>
-
     </head>';
 }
 

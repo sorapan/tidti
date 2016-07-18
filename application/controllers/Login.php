@@ -51,13 +51,13 @@ class Login extends CI_Controller {
     public function LoginCheck()
     {
     	// @header("Location: student");
-        $res = $this->E_passModel->CheckLogin($_POST['e_pass'],$_POST['pass']);
-		// $res = $this->login($_POST['e_pass'],$_POST['pass']);
+        // $res = $this->E_passModel->CheckLogin($_POST['e_pass'],$_POST['pass']);
+		$res = $this->login($_POST['e_pass'],$_POST['pass']);
         // var_dump($res);
         // $status = $res
 
-				if(empty($res))
-				// if(!$res)
+				// if(empty($res))
+				if(!$res)
 				{
 					$this->session->set_flashdata('alert','ชื่อผู้ใช้หรือรหัสผิด');
 					@header('Location:'.base_url());
