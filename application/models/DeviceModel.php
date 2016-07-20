@@ -13,6 +13,14 @@ class DeviceModel extends CI_Model {
         $this->db->insert('device',$data);
     }
 
+    function GetDataByMac($mac)
+    {
+        // $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->where('UserName',$mac);
+        return $this->db->get('device')->result();
+    }
+
 
    function SelectDevice($location,$search,$type,$date){
         if($search==null){
@@ -286,6 +294,10 @@ class DeviceModel extends CI_Model {
         $this->db->where('username', $where['old_macaddress']);
         $this->db->update('radreply',$username);
 
+        $usergroup = array('UserName' => $register_online['macaddress']);
+        $this->db->where('UserName', $where['old_macaddress']);
+        $this->db->update('usergroup',$usergroup);
+
     }
 
     function EditDataDeviceManual($where,$manualuser,$device){
@@ -306,6 +318,10 @@ class DeviceModel extends CI_Model {
         $this->db->where('username', $where['old_username']);
         $this->db->update('radreply',$username);
 
+        $usergroup = array ('UserName' => $where['username']);
+        $this->db->where('UserName', $where['old_username']);
+        $this->db->update('usergroup',$usergroup);
+
     }
 
     function DeleteMac($mac){
@@ -321,7 +337,11 @@ class DeviceModel extends CI_Model {
             ),array(
                 'username'=>$mac
             ));
-        // return  $this->db->error();
+
+        $this->db->delete('usergroup',array(
+                'UserName'=>$mac
+            ));
+
     }
 
     function DeleteMacManual($username){
@@ -337,6 +357,11 @@ class DeviceModel extends CI_Model {
             ),array(
                 'username'=>$username
             ));
+
+        $this->db->delete('usergroup',array(
+                'UserName'=>$username
+            ));
+
     }
 
 

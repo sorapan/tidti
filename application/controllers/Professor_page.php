@@ -19,6 +19,7 @@ class Professor_page extends CI_Controller {
         $this->load->model('RadReplyCheckModel');
         $this->load->model('ManualUserModel');
         $this->load->model('RadUsergroupModel');
+        $this->load->model('DeviceModel');
 
     }
 

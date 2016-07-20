@@ -31,9 +31,6 @@ class ManualUserModel extends CI_Model {
     public function AddDataManualUser($data){
         $this->db->db_select('radius');
         $this->db->insert('manualuser',$data);
-        // $this->session->set_flashdata('alert', 'เพิ่มข้อมูลสำเร็จ');
-        // @header('Location:'.base_url().'/admin');
-        // return $this->output->enable_profiler(TRUE);
     }
 
     function DeleteManual($username){

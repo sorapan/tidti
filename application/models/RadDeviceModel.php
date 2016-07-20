@@ -25,11 +25,5 @@ class RadDeviceModel extends CI_Model {
 
     }
 
-    function AddRadReply(){
-
-    }
-    function AddRadCheck(){
-
-    }
 
 }

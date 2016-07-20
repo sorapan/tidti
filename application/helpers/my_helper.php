@@ -1,21 +1,5 @@
 <?php
 
-function test_method($var = '')
-{
-
-  return 'ddddd'.$var;
-
-}
-
-function AddLog($mes)
-{
-  $filename = date('d-m-Y', time());
-  $file_exist = file_exists("log_file/". $filename .".txt");
-  if(!$file_exist)fopen("log_file/". $filename .".txt", "w");
-
-   $myfile = file_put_contents("log_file/". $filename .".txt", date('d-m-Y H:i -- ', time()).$mes." \r\n" , FILE_APPEND);
-
-}
 
 //////////////ID DECODE
 function location_id($id){
@@ -149,6 +133,7 @@ function header_url()
 
         <script type="text/javascript" src="'.asset_url().'js/jquery.js"></script>
         <script type="text/javascript" src="'.asset_url().'bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="'.asset_url().'js/inputmask.min.js"></script>
         <script type="text/javascript" src="'.asset_url().'js/script.js"></script>
     </head>';
 }

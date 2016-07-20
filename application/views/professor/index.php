@@ -71,12 +71,9 @@
                 }
                 ?>
 
-                <!-- //////////////////////////////////////////////////////////// -->
-                <!-- ////////////            alert                  ////////////// -->
 
                 <div class="content col-xs-10">
                         <div class="add-device">
-                            <!--<div class="alert">alert</div>-->
 <?php
 if($this->session->userdata('detail_exists') == false){
 ?>
@@ -346,6 +343,9 @@ if($this->session->userdata('detail_exists') == false){
 <script>
 
 $(function(){
+
+    // function ตรวจสอบ ผู้ใช้ไม่เลือก ชนิดอุปกรณ์
+    //
     $(document).on('click','.dev-submit',function(){
         var check = $("input[name='device']").is(':checked');
         if(check){
@@ -354,13 +354,9 @@ $(function(){
             $('.labelalert').removeClass('hidden');
         }
     });
-    // $('input[name="type"]').each(function(){
-    //     if(!$(this).is(':checked')){
-    //         var itclass = '.'+$(this).val()+'hid';
-    //         $(''+itclass).css("display","none");
-    //         console.log('.'+$(this).val()+'hid');
-    //     }
-    // });
+
+    // function เปลี่ยน กลุ่ม คณะ ตาม location
+    //
     $(document).on("change","input[name='type']",function(){
          var $type = $(this).val();
          console.log($type);
@@ -380,6 +376,9 @@ $(function(){
             $('.location_select').val('');
         }
     });
+
+    // function แสดงสาขา ตามคณะ
+    //
     $(document).on( "change", ".fac_select", function() {
 
         var data =  $(this).val();
@@ -408,10 +407,13 @@ $(function(){
 
     });
 
+    // function แสดงคณะ กลุ่ม หน่วยงาน ตาม location
+    //
     $(document).on( "change", ".location_select", function() {
         var location_class = $(this).attr('class').split(' ');
         var last_word = location_class[1][location_class[1].length-1];
-        var group = ($("input[name='type']").val()=="techer")?'อาจารย์':'เจ้าหน้าที่';
+        var group = $("input[name='type']:checked").val()=="teacher"?'อาจารย์':'เจ้าหน้าที่';
+        console.log(group);
         if(last_word !== "t"){
             var fac_class = '.fac_select'+last_word;
             var group_class = '.group_select'+last_word;
@@ -419,7 +421,11 @@ $(function(){
             var fac_class = '.fac_select';
             var group_class = '.group_select';
         }
+
         var data =  $(this).val();
+        //
+        // คณะ
+        //
         $.ajax({
             method:'POST',
             url:'student/getLocationFacData',
@@ -441,6 +447,9 @@ $(function(){
 
             }
         });
+        //
+        // กลุ่ม
+        //
         $.ajax({
             method:'POST',
             url:'student/getLocationGroupData',
@@ -464,6 +473,9 @@ $(function(){
 
             }
         });
+        //
+        // หน่วยงาน
+        //
         $.ajax({
             method:'POST',
             url:'student/getLocationStaffData',
