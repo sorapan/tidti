@@ -29,10 +29,8 @@ class Professor_page extends CI_Controller {
         foreach($macdata as $key=>$val)
 		{
 
-            $getmac = $this->RadDeviceModel->GetDataByMac($val->macaddress);
+            $getmac = $this->DeviceModel->GetDataByMac($val->macaddress);
             $macdata[$key]->device = $getmac[0]->dev_type;
-            // print_r($val->macaddress);
-
 		}
 
         $this->load->view('professor/index',
@@ -128,7 +126,7 @@ class Professor_page extends CI_Controller {
     public function moveDataManualToOnline($where,$location){
         $count = $this->ManualUserModel->GetDataManualUserByWhere($where);
         if(!empty($count)){
-            $device_data = null;
+
             $register_data = array(
                     'username' => $this->session->userdata('username'),
                     'macaddress' => $count[0]->username,
