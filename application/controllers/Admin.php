@@ -181,6 +181,8 @@ class Admin extends CI_Controller {
 
 	public function mac()
 	{
+
+		// $date = $_GET['year'].'-'.$_GET['month'].'-'.$_GET['day'];
 		if(empty($_GET) ){
 			if($this->session->userdata('status')=='staff'){
 				$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),null,null,null);
@@ -190,11 +192,15 @@ class Admin extends CI_Controller {
 				$this->checkMacSearch($data);
 			}
 		}else{
+			$month = ($_GET['month']!=='')?'-'.$_GET['month'].'-':'';
+			$day = ($_GET['day']!=='')?'-'.$_GET['day']:'';
+			$year = ($_GET['year']!=='')?$_GET['year'].'-':'';
+			$date = $year.$month.$day;
 			if($this->session->userdata('status')=='staff'){
-				$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),$_GET['search'],$_GET['type'],$_GET['date']);
+				$data = $this->DeviceModel->SelectDeviceByStaff($this->session->userdata('location_id'),$_GET['search'],$_GET['type'],$date);
 				$this->checkMacSearch($data);
 			}else{
-				$data = $this->DeviceModel->SelectDevice($_GET['location_id'],$_GET['search'],$_GET['type'],$_GET['date']);
+				$data = $this->DeviceModel->SelectDevice($_GET['location_id'],$_GET['search'],$_GET['type'],$date);
 				// var_dump($data);
 
 				$this->checkMacSearch($data);

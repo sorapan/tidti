@@ -139,7 +139,7 @@
       margin: 25px 0;
       height: 35px;
       float: left; }
-      .admin > .content.mac_list > ._1 > .search form > .input, .admin > .content.mac_list > ._1 > .search form > .button {
+      .admin > .content.mac_list > ._1 > .search form > .input, .admin > .content.mac_list > ._1 > .search form > .button, .admin > .content.mac_list > ._1 > .search form > .inputmulti {
         height: 100%;
         font-size: 1.5em;
         float: left; }
@@ -149,6 +149,33 @@
         padding: 5px;
         border: 2px solid #ff5f2e;
         background-color: #fff; }
+      .admin > .content.mac_list > ._1 > .search form > .inputmulti {
+        width: auto;
+        margin-right: 5px;
+        background-color: #fff;
+        overflow: hidden; }
+        .admin > .content.mac_list > ._1 > .search form > .inputmulti > span {
+          display: inline;
+          float: left;
+          border: 2px solid #ff5f2e;
+          padding-left: 5px;
+          padding-right: 5px;
+          text-align: center;
+          height: 35px;
+          color: #555;
+          background-color: #ddd; }
+          .admin > .content.mac_list > ._1 > .search form > .inputmulti > span + input {
+            border-left: 0; }
+        .admin > .content.mac_list > ._1 > .search form > .inputmulti > input {
+          display: inline;
+          float: left;
+          border: 2px solid #ff5f2e;
+          padding-left: 5px;
+          padding-right: 5px;
+          text-align: center;
+          height: 35px; }
+          .admin > .content.mac_list > ._1 > .search form > .inputmulti > input + input {
+            border-left: 0; }
       .admin > .content.mac_list > ._1 > .search form > .button {
         background-color: #fff;
         border: 2px solid #004E66;

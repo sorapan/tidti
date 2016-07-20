@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ด<!DOCTYPE html>
 <html lang="en">
 <!-- <head>
     <meta charset="UTF-8">
@@ -37,7 +37,14 @@
                 }
             ?>
                 <form method="get" action="mac">
-                <input class="input" style="width:160px;font-size: 1.1em" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" title="1997-06-30" placeholder="1997-06-30 (ปี ค.ศ.)" type="text" name="date">
+
+                <div class="inputmulti thaisans ">
+                    <span>yyyy/mm/dd</span>
+                    <input style="width:50px;font-size: 1.1em" pattern="[0-9]{4}" title="1997" maxlength="4" placeholder="1997" type="text" name="year">
+                    <input style="width:40px;font-size: 1.1em" pattern="[0-9]{2}" title="1997" maxlength="2" placeholder="06" type="text" name="month">
+                    <input style="width:40px;font-size: 1.1em" pattern="[0-9]{2}" title="1997" maxlength="2" placeholder="30" type="text" name="day">
+                </div>
+
                 <!-- <select name="date">
                     <option value="" selected="">วันที่</option>
                     <?php
