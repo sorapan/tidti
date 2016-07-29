@@ -184,38 +184,6 @@ class Login extends CI_Controller {
 
 		//PRIVATE
 
-		private function login($user,$passwd)
-		{
-
-			$ldapserver = "ldap://ldap.rmutsv.ac.th";
-			//$ldapserver = "ldap://203.158.177.202"; // test ระบบ
-			$ldapport = 389;
-			$ldapbasedn = "dc=rmutsv,dc=ac,dc=th";
-			//$ldapadmin = 'uid=arnn.l,ou=people,ou=staff,ou=arit,ou=e-passport,dc=rmutsv,dc=ac,dc=th';
-
-			$encoding = "md5crypt";
-
-			if(!($ds = ldap_connect($ldapserver, $ldapport)))  return FALSE;
-			ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
-			if(!($r=ldap_bind($ds)))  return FALSE;
-			if(!($sr=ldap_search($ds, $ldapbasedn, "(uid=$user)")))  return FALSE;
-
-			$entry_count = ldap_count_entries($ds, $sr);
-
-			if($entry_count != 1 )  return FALSE;
-			if (!($entry = ldap_first_entry($ds, $sr)))  return FALSE;
-			if (!($dn = ldap_get_dn($ds, $entry)))  return FALSE;
-
-			ldap_close($ds);
-
-			$ds = ldap_connect($ldapserver,$ldapport);
-			ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
-
-			if(!($b = ldap_bind($ds,$dn,$passwd)))  return FALSE;
-
-			ldap_close($ds);
-
-			return TRUE;
-		}
+	
 
 }
